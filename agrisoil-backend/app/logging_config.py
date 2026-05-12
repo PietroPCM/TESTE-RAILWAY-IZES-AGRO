@@ -9,9 +9,14 @@ import json
 from pythonjsonlogger import jsonlogger
 from app.config import settings
 import os
+import sys
 
 # Criar diretório de logs se não existir
 os.makedirs("logs", exist_ok=True)
+
+for stream in (sys.stdout, sys.stderr):
+    if hasattr(stream, "reconfigure"):
+        stream.reconfigure(encoding="utf-8", errors="replace")
 
 # Configuração de logging
 LOGGING_CONFIG = {
@@ -78,7 +83,7 @@ def setup_logging():
     """Configurar logging estruturado"""
     logging.config.dictConfig(LOGGING_CONFIG)
     logger = logging.getLogger(__name__)
-    logger.info(f"🔧 Logging iniciado - Environment: {settings.environment}")
+    logger.info("Logging iniciado - Environment: %s", settings.environment)
     return logger
 
 

@@ -1,18 +1,22 @@
 """
 Rotas de Plantio e Fase da Cultura (CAMADA 2)
-Registro de plantio e detecção automática de fase
+Registro de plantio e deteccao automatica de fase.
 """
+
+from datetime import datetime, timedelta
+import logging
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from typing import Optional
-from datetime import datetime
-import logging
 
 from app.db import get_db
+from app.models.contexto_fixo import FaseFenologica
+from app.models.database import FaseAtualDB, HistoricoFaseDB, ZonaManejoDB
 from app.models.fase_cultura import (
-    FaseAtual, FaseAtualCreate, DeteccaoFaseResponse, HistoricoFase,
-    MetodoDeteccaoFase
+    DeteccaoFaseResponse,
+    FaseAtual,
+    FaseAtualCreate,
+    MetodoDeteccaoFase,
 )
 from app.security import obter_usuario_atual
 
@@ -20,256 +24,220 @@ router = APIRouter(prefix="/api/plantio", tags=["Plantio e Fase"])
 logger = logging.getLogger(__name__)
 
 
-# ============================================================================
-# REGISTRAR PLANTIO
-# ============================================================================
+FASES_POR_DIA = [
+    (15, FaseFenologica.EMERGENCIA),
+    (45, FaseFenologica.VEGETATIVO),
+    (65, FaseFenologica.FLORESCIMENTO),
+    (100, FaseFenologica.ENCHIMENTO_GRAOS),
+    (125, FaseFenologica.MATURACAO),
+    (10_000, FaseFenologica.COLHEITA),
+]
+
+
+def _detectar_fase(dias_apos_plantio: int) -> FaseFenologica:
+    for limite, fase in FASES_POR_DIA:
+        if dias_apos_plantio <= limite:
+            return fase
+    return FaseFenologica.COLHEITA
+
+
+def _dias_para_proxima_fase(dias_apos_plantio: int) -> int:
+    for limite, _fase in FASES_POR_DIA:
+        if dias_apos_plantio < limite:
+            return max(limite - dias_apos_plantio, 0)
+    return 0
+
+
+def _fim_fase_atual(data_plantio: datetime, dias_apos_plantio: int) -> datetime:
+    return data_plantio + timedelta(days=dias_apos_plantio + _dias_para_proxima_fase(dias_apos_plantio))
+
+
+def _fase_atual_model(fase: FaseAtualDB) -> FaseAtual:
+    return FaseAtual(
+        zona_id=fase.zona_id,
+        cultura=fase.cultura,
+        fase=fase.fase,
+        metodo=fase.metodo,
+        data_plantio=fase.data_plantio,
+        dias_apos_plantio=fase.dias_apos_plantio,
+        data_inicio_fase=fase.data_inicio_fase,
+        data_prevista_proxima_fase=fase.data_prevista_proxima_fase,
+        graus_dias_acumulados=fase.graus_dias_acumulados,
+        graus_dias_necessarios=fase.graus_dias_necessarios,
+        certeza_fase_percentual=fase.certeza_fase_percentual,
+        validado_por_agronomia=fase.validado_por_agronomia,
+        detectado_em=fase.detectado_em,
+        ultima_validacao=fase.ultima_validacao,
+    )
+
+
+def _obter_zona_ou_404(db: Session, zona_id: str) -> ZonaManejoDB:
+    zona = db.query(ZonaManejoDB).filter(
+        ZonaManejoDB.zona_id == zona_id,
+        ZonaManejoDB.ativo.is_(True),
+    ).first()
+    if not zona:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Zona nao encontrada")
+    return zona
+
+
+def _ultima_fase(db: Session, zona_id: str) -> FaseAtualDB | None:
+    return db.query(FaseAtualDB).filter(FaseAtualDB.zona_id == zona_id).order_by(FaseAtualDB.detectado_em.desc()).first()
+
 
 @router.post("/registrar/{zona_id}", response_model=dict)
 async def registrar_plantio(
     zona_id: str,
     plantio_data: FaseAtualCreate,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Registrar data de plantio para uma zona
-    
-    Isso inicia:
-    1. Detecção automática de fase
-    2. Geração de alertas contextualizados
-    3. Rastreamento do ciclo
-    
-    Exemplo:
-    ```json
-    {
-      "data_plantio": "2025-10-17T08:00:00Z",
-      "fase_observada": null,
-      "observacoes": "Plantio de soja com boa umidade",
-      "validado_por_agronomia": false
-    }
-    ```
-    """
-    try:
-        # Validar data
-        if plantio_data.data_plantio > datetime.now():
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Data de plantio não pode ser no futuro"
-            )
-        
-        # TODO: Buscar zona no banco
-        # zona = db.query(ZonaManejo)\
-        #     .filter(ZonaManejo.id == zona_id)\
-        #     .first()
-        
-        # if not zona:
-        #     raise HTTPException(
-        #         status_code=status.HTTP_404_NOT_FOUND,
-        #         detail="Zona não encontrada"
-        #     )
-        
-        # Calcular dias após plantio
-        dias_apos_plantio = (datetime.now() - plantio_data.data_plantio).days
-        
-        # Detectar fase automaticamente
-        # TODO: Usar motor de detecção de fase
-        # fase_detectada = detector_fase.detectar(
-        #     cultura=zona.cultura,
-        #     data_plantio=plantio_data.data_plantio
-        # )
-        
-        # Mock
-        fase_atual = FaseAtual(
+    """Registrar data de plantio para uma zona."""
+    agora = datetime.utcnow()
+    data_plantio = plantio_data.data_plantio.replace(tzinfo=None)
+    if data_plantio > agora:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Data de plantio nao pode ser no futuro")
+
+    zona = _obter_zona_ou_404(db, zona_id)
+    fase_anterior = _ultima_fase(db, zona_id)
+    dias_apos_plantio = max((agora - data_plantio).days, 0)
+    fase_detectada = plantio_data.fase_observada or _detectar_fase(dias_apos_plantio)
+    metodo = MetodoDeteccaoFase.OBSERVACAO_CAMPO if plantio_data.fase_observada else MetodoDeteccaoFase.DATA_PLANTIO
+
+    fase_atual = FaseAtualDB(
+        zona_id=zona_id,
+        cultura=zona.cultura,
+        fase=fase_detectada.value,
+        metodo=metodo.value,
+        data_plantio=data_plantio,
+        dias_apos_plantio=dias_apos_plantio,
+        data_inicio_fase=data_plantio,
+        data_prevista_proxima_fase=_fim_fase_atual(data_plantio, dias_apos_plantio),
+        certeza_fase_percentual=100 if plantio_data.validado_por_agronomia else 90,
+        validado_por_agronomia=plantio_data.validado_por_agronomia,
+        ultima_validacao=agora if plantio_data.validado_por_agronomia else None,
+        observacoes=plantio_data.observacoes,
+    )
+    db.add(fase_atual)
+    db.add(
+        HistoricoFaseDB(
             zona_id=zona_id,
-            cultura="soja",  # zona.cultura
-            fase="emergencia",  # fase_detectada
-            metodo=MetodoDeteccaoFase.DATA_PLANTIO,
-            data_plantio=plantio_data.data_plantio,
-            dias_apos_plantio=dias_apos_plantio,
-            data_inicio_fase=plantio_data.data_plantio,
-            data_prevista_proxima_fase=datetime.now(),  # Calcular
-            graus_dias_acumulados=None,
-            graus_dias_necessarios=None,
-            certeza_fase_percentual=95,
-            validado_por_agronomia=plantio_data.validado_por_agronomia,
-            detectado_em=datetime.now(),
-            ultima_validacao=None if not plantio_data.validado_por_agronomia else datetime.now()
+            fase_anterior=fase_anterior.fase if fase_anterior else None,
+            fase_nova=fase_detectada.value,
+            data_transicao=agora,
+            dias_na_fase_anterior=(agora - fase_anterior.detectado_em).days if fase_anterior else 0,
+            metodo=metodo.value,
+            validado=plantio_data.validado_por_agronomia,
         )
-        
-        # TODO: Salvar no banco
-        # db.add(fase_atual)
-        # db.commit()
-        # db.refresh(fase_atual)
-        
-        logger.info(f"Plantio registrado: zona={zona_id}, data={plantio_data.data_plantio}")
-        
-        return {
-            "zona_id": zona_id,
-            "data_plantio": plantio_data.data_plantio,
-            "fase_atual": "emergencia",
-            "dias_apos_plantio": dias_apos_plantio,
-            "proximamente": "Alertas contextualizados ativados!",
-            "mensagem": "Sistema pronto para monitorar a cultura"
-        }
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Erro ao registrar plantio: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=str(e)
-        )
+    )
+    db.commit()
+    db.refresh(fase_atual)
 
+    logger.info("Plantio registrado: zona=%s, fase=%s por %s", zona_id, fase_detectada.value, usuario)
+    return {
+        "zona_id": zona_id,
+        "data_plantio": data_plantio,
+        "fase_atual": fase_detectada.value,
+        "dias_apos_plantio": dias_apos_plantio,
+        "mensagem": "Sistema pronto para monitorar a cultura",
+    }
 
-# ============================================================================
-# OBTER FASE ATUAL
-# ============================================================================
 
 @router.get("/{zona_id}/fase-atual", response_model=DeteccaoFaseResponse)
 async def obter_fase_atual(
     zona_id: str,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Obter fase atual da cultura em uma zona
-    
-    Retorna:
-    - Fase atual
-    - Dias até próxima fase
-    - Confiança da detecção
-    - Status (em dia, adiantado, atrasado)
-    """
-    try:
-        # TODO: Query no banco
-        # fase = db.query(FaseAtual)\
-        #     .filter(FaseAtual.zona_id == zona_id)\
-        #     .order_by(FaseAtual.detectado_em.desc())\
-        #     .first()
-        
-        # if not fase:
-        #     raise HTTPException(
-        #         status_code=status.HTTP_404_NOT_FOUND,
-        #         detail="Sem registro de plantio para esta zona"
-        #     )
-        
-        # Mock
-        return DeteccaoFaseResponse(
-            zona_id=zona_id,
-            fase_atual=FaseAtual(
-                zona_id=zona_id,
-                cultura="soja",
-                fase="emergencia",
-                metodo=MetodoDeteccaoFase.DATA_PLANTIO,
-                data_plantio=datetime(2025, 10, 17),
-                dias_apos_plantio=21,
-                data_inicio_fase=datetime(2025, 10, 17),
-                data_prevista_proxima_fase=datetime(2025, 11, 10),
-                graus_dias_acumulados=120.5,
-                graus_dias_necessarios=80,
-                certeza_fase_percentual=95,
-                validado_por_agronomia=True,
-                detectado_em=datetime.now(),
-                ultima_validacao=datetime.now()
-            ),
-            proxima_fase_em_dias=20,
-            status="em_dia",
-            alerta_fase=None
-        )
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Erro ao obter fase: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao obter fase atual"
-        )
+    """Obter fase atual da cultura em uma zona."""
+    _obter_zona_ou_404(db, zona_id)
+    fase = _ultima_fase(db, zona_id)
+    if not fase:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Sem registro de plantio para esta zona")
 
+    logger.debug("Consulta de fase atual da zona %s por %s", zona_id, usuario)
+    return DeteccaoFaseResponse(
+        zona_id=zona_id,
+        fase_atual=_fase_atual_model(fase),
+        proxima_fase_em_dias=_dias_para_proxima_fase(fase.dias_apos_plantio),
+        status="em_dia",
+        alerta_fase=None,
+    )
 
-# ============================================================================
-# VALIDAR FASE MANUALMENTE
-# ============================================================================
 
 @router.post("/{zona_id}/fase-atual/validar", response_model=dict)
 async def validar_fase_manualmente(
     zona_id: str,
-    fase_observada: str,  # ex: "emergencia", "vegetativo"
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    fase_observada: FaseFenologica,
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Validar fase manualmente (agrônomo foi ao campo)
-    
-    Isso atualiza a confiança e pode corrigir detecção automática
-    """
-    try:
-        # TODO: Query no banco e update
-        
-        logger.info(f"Fase validada: zona={zona_id}, fase={fase_observada}")
-        
-        return {
-            "zona_id": zona_id,
-            "fase_validada": fase_observada,
-            "confirmada_por": usuario,
-            "timestamp": datetime.now(),
-            "mensagem": "Fase validada com sucesso"
-        }
-        
-    except Exception as e:
-        logger.error(f"Erro ao validar fase: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao validar fase"
+    """Validar fase manualmente quando tecnico/agronomo confirma no campo."""
+    _obter_zona_ou_404(db, zona_id)
+    fase = _ultima_fase(db, zona_id)
+    if not fase:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Sem registro de plantio para esta zona")
+
+    agora = datetime.utcnow()
+    fase_anterior = fase.fase
+    fase.fase = fase_observada.value
+    fase.metodo = MetodoDeteccaoFase.OBSERVACAO_CAMPO.value
+    fase.validado_por_agronomia = True
+    fase.certeza_fase_percentual = 100
+    fase.ultima_validacao = agora
+    fase.detectado_em = agora
+    fase.data_prevista_proxima_fase = _fim_fase_atual(fase.data_plantio, fase.dias_apos_plantio)
+
+    if fase_anterior != fase_observada.value:
+        db.add(
+            HistoricoFaseDB(
+                zona_id=zona_id,
+                fase_anterior=fase_anterior,
+                fase_nova=fase_observada.value,
+                data_transicao=agora,
+                dias_na_fase_anterior=0,
+                metodo=MetodoDeteccaoFase.OBSERVACAO_CAMPO.value,
+                validado=True,
+            )
         )
 
+    db.commit()
 
-# ============================================================================
-# HISTÓRICO DE FASES
-# ============================================================================
+    logger.info("Fase validada: zona=%s, fase=%s por %s", zona_id, fase_observada.value, usuario)
+    return {
+        "zona_id": zona_id,
+        "fase_validada": fase_observada.value,
+        "confirmada_por": usuario,
+        "timestamp": agora,
+        "mensagem": "Fase validada com sucesso",
+    }
+
 
 @router.get("/{zona_id}/historico-fases", response_model=dict)
 async def obter_historico_fases(
     zona_id: str,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Obter histórico de transições de fase
-    
-    Mostra quando entrou em cada fase e quanto tempo ficou
-    """
-    try:
-        # TODO: Query no banco
-        historico = [
+    """Obter historico de transicoes de fase."""
+    _obter_zona_ou_404(db, zona_id)
+    historico = db.query(HistoricoFaseDB).filter(
+        HistoricoFaseDB.zona_id == zona_id,
+    ).order_by(HistoricoFaseDB.data_transicao.desc()).all()
+
+    logger.debug("Historico de fases da zona %s consultado por %s", zona_id, usuario)
+    return {
+        "zona_id": zona_id,
+        "total_fases": len(historico),
+        "historico": [
             {
-                "fase_anterior": None,
-                "fase_nova": "emergencia",
-                "data_transicao": datetime(2025, 10, 17),
-                "dias_na_fase": 21,
-                "metodo": "data_plantio",
-                "validado": True
-            },
-            {
-                "fase_anterior": "emergencia",
-                "fase_nova": "vegetativo",
-                "data_transicao": datetime(2025, 11, 7),
-                "dias_na_fase": 15,  # Previsto
-                "metodo": "automatico",
-                "validado": False
+                "fase_anterior": item.fase_anterior,
+                "fase_nova": item.fase_nova,
+                "data_transicao": item.data_transicao,
+                "dias_na_fase_anterior": item.dias_na_fase_anterior,
+                "metodo": item.metodo,
+                "validado": item.validado,
             }
-        ]
-        
-        return {
-            "zona_id": zona_id,
-            "total_fases": len(historico),
-            "historico": historico
-        }
-        
-    except Exception as e:
-        logger.error(f"Erro ao obter histórico: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao obter histórico de fases"
-        )
+            for item in historico
+        ],
+    }

@@ -196,6 +196,175 @@ class UsuarioDB(Base):
 
 
 # ============================================================================
+# MODELOS OPERACIONAIS DE GESTAO
+# ============================================================================
+
+class ClienteDB(Base):
+    """Tabela de clientes/organizacoes atendidas pelo sistema."""
+    __tablename__ = "clientes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    cliente_id = Column(String(100), unique=True, index=True, nullable=False)
+    nome = Column(String(200), nullable=False)
+    email = Column(String(200), unique=True, index=True, nullable=False)
+    telefone = Column(String(50), nullable=True)
+    cnpj = Column(String(30), unique=True, index=True, nullable=True)
+    endereco = Column(String(300), nullable=True)
+    cidade = Column(String(100), nullable=True)
+    estado = Column(String(50), nullable=True)
+    responsavel_nome = Column(String(200), nullable=False)
+    responsavel_email = Column(String(200), index=True, nullable=False)
+    responsavel_telefone = Column(String(50), nullable=True)
+    observacoes = Column(Text, nullable=True)
+    ativo = Column(Boolean, default=True, index=True)
+    data_criacao = Column(DateTime, default=datetime.utcnow, index=True)
+    data_atualizacao = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Cliente {self.cliente_id} - {self.nome}>"
+
+
+class ZonaManejoDB(Base):
+    """Tabela de zonas de manejo dentro dos talhoes."""
+    __tablename__ = "zonas_manejo"
+
+    id = Column(Integer, primary_key=True, index=True)
+    zona_id = Column(String(100), unique=True, index=True, nullable=False)
+    parcel_id = Column(String(100), ForeignKey("agri_parcels.parcel_id"), nullable=False, index=True)
+    prop_id = Column(String(100), index=True, nullable=True)
+    cliente_id = Column(String(100), index=True, nullable=True)
+    nome = Column(String(200), nullable=False)
+    cultura = Column(String(80), nullable=False)
+    variedade = Column(String(100), nullable=True)
+    tipo_solo = Column(String(80), nullable=False)
+    profundidade_sensor_cm = Column(Integer, nullable=False)
+    objetivo = Column(String(120), nullable=False)
+    area_hectares = Column(Float, nullable=False)
+    location_coordinates = Column(JSON, nullable=True)
+    ativo = Column(Boolean, default=True, index=True)
+    criado_em = Column(DateTime, default=datetime.utcnow, index=True)
+    atualizado_em = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    deletado_em = Column(DateTime, nullable=True)
+
+    parcel = relationship("AgriParcelDB")
+
+    def __repr__(self):
+        return f"<ZonaManejo {self.zona_id} - {self.nome}>"
+
+
+class FaseAtualDB(Base):
+    """Tabela com o estado fenologico atual detectado por zona."""
+    __tablename__ = "fases_atuais"
+
+    id = Column(Integer, primary_key=True, index=True)
+    zona_id = Column(String(100), ForeignKey("zonas_manejo.zona_id"), nullable=False, index=True)
+    cultura = Column(String(80), nullable=False)
+    fase = Column(String(80), nullable=False)
+    metodo = Column(String(80), nullable=False)
+    data_plantio = Column(DateTime, nullable=False, index=True)
+    dias_apos_plantio = Column(Integer, nullable=False)
+    data_inicio_fase = Column(DateTime, nullable=False)
+    data_prevista_proxima_fase = Column(DateTime, nullable=False)
+    graus_dias_acumulados = Column(Float, nullable=True)
+    graus_dias_necessarios = Column(Float, nullable=True)
+    certeza_fase_percentual = Column(Float, nullable=False, default=90)
+    validado_por_agronomia = Column(Boolean, default=False)
+    detectado_em = Column(DateTime, default=datetime.utcnow, index=True)
+    ultima_validacao = Column(DateTime, nullable=True)
+    observacoes = Column(Text, nullable=True)
+
+    zona = relationship("ZonaManejoDB")
+
+    def __repr__(self):
+        return f"<FaseAtual {self.zona_id} - {self.fase}>"
+
+
+class HistoricoFaseDB(Base):
+    """Historico de transicoes fenologicas por zona."""
+    __tablename__ = "historico_fases"
+
+    id = Column(Integer, primary_key=True, index=True)
+    zona_id = Column(String(100), ForeignKey("zonas_manejo.zona_id"), nullable=False, index=True)
+    fase_anterior = Column(String(80), nullable=True)
+    fase_nova = Column(String(80), nullable=False)
+    data_transicao = Column(DateTime, default=datetime.utcnow, index=True)
+    dias_na_fase_anterior = Column(Integer, default=0)
+    metodo = Column(String(80), nullable=False)
+    validado = Column(Boolean, default=False)
+
+    zona = relationship("ZonaManejoDB")
+
+
+class InfraestruturaDB(Base):
+    """Infraestrutura real disponivel em cada propriedade."""
+    __tablename__ = "infraestruturas"
+
+    id = Column(Integer, primary_key=True, index=True)
+    propriedade_id = Column(String(100), unique=True, index=True, nullable=False)
+    produtor_nome = Column(String(200), nullable=False)
+    possui_irrigacao = Column(Boolean, nullable=False, default=False, index=True)
+    sistemas_irrigacao = Column(JSON, nullable=True)
+    area_irrigada_ha = Column(Float, nullable=True)
+    fonte_agua = Column(String(80), nullable=True)
+    capacidade_agua_m3_dia = Column(Float, nullable=True)
+    equipamentos_aplicacao = Column(JSON, nullable=True)
+    possui_hangar_aeronave = Column(Boolean, default=False)
+    possui_maquinario_proprio = Column(Boolean, nullable=False, default=False, index=True)
+    possui_armazem = Column(Boolean, default=False, index=True)
+    capacidade_armazem_ton = Column(Float, nullable=True)
+    possui_silo = Column(Boolean, default=False)
+    possui_energia_eletrica = Column(Boolean, default=True, index=True)
+    possui_geradores = Column(Boolean, default=False)
+    limitacoes = Column(JSON, nullable=True)
+    depende_terceiros_para = Column(JSON, nullable=True)
+    custo_medio_terceiros = Column(JSON, nullable=True)
+    ativo = Column(Boolean, default=True, index=True)
+    criado_em = Column(DateTime, default=datetime.utcnow, index=True)
+    atualizado_em = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Infraestrutura {self.propriedade_id}>"
+
+
+class AlertaExecucaoDB(Base):
+    """Confirmacao operacional de execucao de um alerta estrategico."""
+    __tablename__ = "alertas_execucoes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    alerta_id = Column(Integer, ForeignKey("alertas.id"), nullable=False, index=True)
+    produtor_executou = Column(Boolean, nullable=False)
+    data_execucao = Column(DateTime, nullable=True)
+    acao_tomada = Column(Text, nullable=True)
+    quantidade_aplicada = Column(String(100), nullable=True)
+    custo_real = Column(Float, nullable=True)
+    observacoes = Column(Text, nullable=True)
+    razao_nao_execucao = Column(Text, nullable=True)
+    resultado_percebido = Column(Text, nullable=True)
+    criado_em = Column(DateTime, default=datetime.utcnow, index=True)
+
+    alerta = relationship("AlertaDB")
+
+
+class AlertaExcecaoDB(Base):
+    """Registro de situacoes atipicas e overrides agronomicos."""
+    __tablename__ = "alertas_excecoes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    alerta_id = Column(Integer, ForeignKey("alertas.id"), nullable=False, index=True)
+    situacao_atipica = Column(Boolean, nullable=False, default=False)
+    descricao_atipico = Column(Text, nullable=True)
+    requer_intervencao_agronomica = Column(Boolean, nullable=False, default=False)
+    override_aplicado = Column(Boolean, default=False)
+    regra_original = Column(Text, nullable=True)
+    decisao_agronomica = Column(Text, nullable=True)
+    justificativa = Column(Text, nullable=True)
+    validado_por = Column(String(200), nullable=True)
+    criado_em = Column(DateTime, default=datetime.utcnow, index=True)
+
+    alerta = relationship("AlertaDB")
+
+
+# ============================================================================
 # MODELOS DE GESTÃO AGRÍCOLA (Smart Data Models)
 # ============================================================================
 

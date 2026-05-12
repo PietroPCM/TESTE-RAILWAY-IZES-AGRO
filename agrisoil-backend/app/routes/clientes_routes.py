@@ -1,63 +1,75 @@
 """
 Rotas de Clientes
-Gestão de clientes (empresas agrícolas, agropecuárias)
+Gestao de clientes (empresas agricolas, agropecuarias)
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.orm import Session
-from typing import List, Optional
-from datetime import datetime
-from pydantic import BaseModel
+from datetime import datetime, timedelta
 import logging
+from typing import Optional
+from uuid import uuid4
+
+from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel, EmailStr
+from sqlalchemy.orm import Session
 
 from app.db import get_db
+from app.models.database import (
+    AgriFarmDB,
+    AgriParcelDB,
+    AlertaDB,
+    ClienteDB,
+    FaseAtualDB,
+    SensorDB,
+    SeveridadeAlerta,
+    StatusAlerta,
+    ZonaManejoDB,
+)
 from app.security import obter_usuario_atual, verificar_admin
 
 router = APIRouter(prefix="/api/clientes", tags=["Clientes"])
 logger = logging.getLogger(__name__)
 
 
-# ============================================================================
-# MODELS
-# ============================================================================
-
 class ClienteCreate(BaseModel):
-    """Dados para criar novo cliente"""
+    """Dados para criar novo cliente."""
+
     nome: str
-    email: str
+    email: EmailStr
     telefone: Optional[str] = None
     cnpj: Optional[str] = None
     endereco: Optional[str] = None
     cidade: Optional[str] = None
     estado: Optional[str] = None
     responsavel_nome: str
-    responsavel_email: str
+    responsavel_email: EmailStr
     responsavel_telefone: Optional[str] = None
     observacoes: Optional[str] = None
-    
+
     class Config:
         from_attributes = True
 
 
 class ClienteUpdate(BaseModel):
-    """Dados para atualizar cliente"""
+    """Dados para atualizar cliente."""
+
     nome: Optional[str] = None
-    email: Optional[str] = None
+    email: Optional[EmailStr] = None
     telefone: Optional[str] = None
     endereco: Optional[str] = None
     cidade: Optional[str] = None
     estado: Optional[str] = None
     responsavel_nome: Optional[str] = None
-    responsavel_email: Optional[str] = None
+    responsavel_email: Optional[EmailStr] = None
     responsavel_telefone: Optional[str] = None
     observacoes: Optional[str] = None
-    
+
     class Config:
         from_attributes = True
 
 
 class ClienteResponse(BaseModel):
-    """Resposta ao retornar cliente"""
+    """Resposta ao retornar cliente."""
+
     id: str
     nome: str
     email: str
@@ -75,397 +87,270 @@ class ClienteResponse(BaseModel):
     total_propriedades: int
     total_zonas: int
     total_sensores: int
-    
+
     class Config:
         from_attributes = True
 
 
-# ============================================================================
-# CRIAR NOVO CLIENTE (ADMIN ONLY)
-# ============================================================================
+def _usuario_cliente_id(usuario) -> Optional[str]:
+    if isinstance(usuario, dict):
+        return usuario.get("cliente_id") or usuario.get("sub") or usuario.get("user_id")
+    if isinstance(usuario, str):
+        return usuario
+    return getattr(usuario, "cliente_id", None)
+
+
+def _usuario_eh_admin(usuario) -> bool:
+    if isinstance(usuario, dict):
+        return bool(usuario.get("eh_admin") or usuario.get("is_admin") or usuario.get("role") == "admin")
+    return bool(getattr(usuario, "eh_admin", False) or getattr(usuario, "role", None) == "admin")
+
+
+def _pode_acessar_cliente(usuario, cliente_id: str) -> bool:
+    usuario_cliente_id = _usuario_cliente_id(usuario)
+    return _usuario_eh_admin(usuario) or usuario_cliente_id in (None, cliente_id)
+
+
+def _normalizar_cnpj(cnpj: Optional[str]) -> Optional[str]:
+    if not cnpj:
+        return None
+    cnpj_limpo = "".join(ch for ch in cnpj if ch.isdigit())
+    if len(cnpj_limpo) != 14:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="CNPJ invalido")
+    return cnpj_limpo
+
+
+def _cliente_response(db: Session, cliente: ClienteDB) -> ClienteResponse:
+    total_propriedades = db.query(AgriFarmDB).filter(
+        AgriFarmDB.cliente_id == cliente.cliente_id,
+        AgriFarmDB.ativo.is_(True),
+    ).count()
+    total_zonas = db.query(ZonaManejoDB).filter(
+        ZonaManejoDB.cliente_id == cliente.cliente_id,
+        ZonaManejoDB.ativo.is_(True),
+    ).count()
+    total_sensores = db.query(SensorDB).filter(
+        SensorDB.cliente_id == cliente.cliente_id,
+        SensorDB.ativo.is_(True),
+    ).count()
+
+    return ClienteResponse(
+        id=cliente.cliente_id,
+        nome=cliente.nome,
+        email=cliente.email,
+        telefone=cliente.telefone,
+        cnpj=cliente.cnpj,
+        endereco=cliente.endereco,
+        cidade=cliente.cidade,
+        estado=cliente.estado,
+        responsavel_nome=cliente.responsavel_nome,
+        responsavel_email=cliente.responsavel_email,
+        responsavel_telefone=cliente.responsavel_telefone,
+        ativo=cliente.ativo,
+        data_criacao=cliente.data_criacao,
+        data_atualizacao=cliente.data_atualizacao,
+        total_propriedades=total_propriedades,
+        total_zonas=total_zonas,
+        total_sensores=total_sensores,
+    )
+
+
+def _obter_cliente_ou_404(db: Session, cliente_id: str) -> ClienteDB:
+    cliente = db.query(ClienteDB).filter(ClienteDB.cliente_id == cliente_id).first()
+    if not cliente:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Cliente nao encontrado")
+    return cliente
+
 
 @router.post("", status_code=status.HTTP_201_CREATED, response_model=ClienteResponse)
 async def criar_cliente(
     cliente_data: ClienteCreate,
-    usuario = Depends(obter_usuario_atual),
-    _admin = Depends(verificar_admin),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    _admin=Depends(verificar_admin),
+    db: Session = Depends(get_db),
 ):
-    """
-    Criar novo cliente (SÓ ADMIN)
-    
-    Isso também cria o usuário principal (responsável) do cliente
-    com permissões de gerenciar propriedades, zonas e sensores
-    """
-    try:
-        # Validar CNPJ se fornecido
-        if cliente_data.cnpj:
-            cnpj_limpo = cliente_data.cnpj.replace(".", "").replace("/", "").replace("-", "")
-            if len(cnpj_limpo) != 14:
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="CNPJ inválido"
-                )
-        
-        # TODO: Verificar se email já existe
-        # cliente_existente = db.query(Cliente)\
-        #     .filter(Cliente.email == cliente_data.email)\
-        #     .first()
-        # if cliente_existente:
-        #     raise HTTPException(...)
-        
-        # TODO: Criar novo cliente no banco
-        # novo_cliente = Cliente(
-        #     nome=cliente_data.nome,
-        #     email=cliente_data.email,
-        #     telefone=cliente_data.telefone,
-        #     cnpj=cliente_data.cnpj,
-        #     endereco=cliente_data.endereco,
-        #     cidade=cliente_data.cidade,
-        #     estado=cliente_data.estado,
-        #     responsavel_nome=cliente_data.responsavel_nome,
-        #     responsavel_email=cliente_data.responsavel_email,
-        #     responsavel_telefone=cliente_data.responsavel_telefone,
-        #     ativo=True,
-        #     data_criacao=datetime.now()
-        # )
-        # db.add(novo_cliente)
-        # db.commit()
-        # db.refresh(novo_cliente)
-        
-        # TODO: Criar usuário principal (responsável) com email=responsavel_email
-        # usuario_principal = Usuario(
-        #     email=cliente_data.responsavel_email,
-        #     nome=cliente_data.responsavel_nome,
-        #     senha_hash=gerar_hash_padrao(),
-        #     cliente_id=novo_cliente.id,
-        #     role="cliente_admin",
-        #     ativo=True
-        # )
-        # db.add(usuario_principal)
-        # db.commit()
-        
-        # Enviar email de boas-vindas com instruções de login
-        # TODO: send_welcome_email(cliente_data.responsavel_email, cliente_data.responsavel_nome)
-        
-        logger.info(f"Cliente criado: {cliente_data.nome} por {usuario}")
-        
-        return ClienteResponse(
-            id="cliente_001",
-            nome=cliente_data.nome,
-            email=cliente_data.email,
-            telefone=cliente_data.telefone,
-            cnpj=cliente_data.cnpj,
-            endereco=cliente_data.endereco,
-            cidade=cliente_data.cidade,
-            estado=cliente_data.estado,
-            responsavel_nome=cliente_data.responsavel_nome,
-            responsavel_email=cliente_data.responsavel_email,
-            responsavel_telefone=cliente_data.responsavel_telefone,
-            ativo=True,
-            data_criacao=datetime.now(),
-            data_atualizacao=None,
-            total_propriedades=0,
-            total_zonas=0,
-            total_sensores=0
-        )
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Erro ao criar cliente: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao criar cliente"
-        )
+    """Criar novo cliente. A criacao de usuario principal fica para o modulo de login."""
+    cnpj = _normalizar_cnpj(cliente_data.cnpj)
 
+    if db.query(ClienteDB).filter(ClienteDB.email == cliente_data.email).first():
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email ja cadastrado")
+    if cnpj and db.query(ClienteDB).filter(ClienteDB.cnpj == cnpj).first():
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="CNPJ ja cadastrado")
 
-# ============================================================================
-# OBTER CLIENTE (POR ID OU PRÓPRIO)
-# ============================================================================
+    cliente = ClienteDB(
+        cliente_id=f"cliente_{uuid4().hex[:12]}",
+        nome=cliente_data.nome,
+        email=str(cliente_data.email),
+        telefone=cliente_data.telefone,
+        cnpj=cnpj,
+        endereco=cliente_data.endereco,
+        cidade=cliente_data.cidade,
+        estado=cliente_data.estado,
+        responsavel_nome=cliente_data.responsavel_nome,
+        responsavel_email=str(cliente_data.responsavel_email),
+        responsavel_telefone=cliente_data.responsavel_telefone,
+        observacoes=cliente_data.observacoes,
+        ativo=True,
+    )
+    db.add(cliente)
+    db.commit()
+    db.refresh(cliente)
+
+    logger.info("Cliente criado: %s por %s", cliente.cliente_id, usuario)
+    return _cliente_response(db, cliente)
+
 
 @router.get("/{cliente_id}", response_model=ClienteResponse)
 async def obter_cliente(
     cliente_id: str,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Obter detalhes de um cliente
-    
-    - Clientes podem ver só suas próprias informações
-    - Admin pode ver qualquer cliente
-    """
-    try:
-        # Validação de permissão
-        if cliente_id != usuario.cliente_id and not usuario.eh_admin:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Sem permissão para acessar este cliente"
-            )
-        
-        # TODO: Query no banco
-        # cliente = db.query(Cliente).filter(Cliente.id == cliente_id).first()
-        # if not cliente:
-        #     raise HTTPException(...)
-        
-        # Mock
-        return ClienteResponse(
-            id=cliente_id,
-            nome="Fazenda Santa Clara",
-            email="contato@santaclara.com.br",
-            telefone="(11) 98765-4321",
-            cnpj="12.345.678/0001-90",
-            endereco="Rodovia SP-310, km 150",
-            cidade="Ribeirão Preto",
-            estado="SP",
-            responsavel_nome="João da Silva",
-            responsavel_email="joao@santaclara.com.br",
-            responsavel_telefone="(11) 98765-4321",
-            ativo=True,
-            data_criacao=datetime(2025, 1, 15),
-            data_atualizacao=datetime(2025, 10, 1),
-            total_propriedades=3,
-            total_zonas=12,
-            total_sensores=48
-        )
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Erro ao obter cliente: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao obter cliente"
-        )
+    """Obter detalhes de um cliente."""
+    if not _pode_acessar_cliente(usuario, cliente_id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Sem permissao para acessar este cliente")
 
+    return _cliente_response(db, _obter_cliente_ou_404(db, cliente_id))
 
-# ============================================================================
-# LISTAR CLIENTES (ADMIN ONLY)
-# ============================================================================
 
 @router.get("", response_model=dict)
 async def listar_clientes(
     ativo: Optional[bool] = None,
     pagina: int = 1,
     por_pagina: int = 10,
-    usuario = Depends(obter_usuario_atual),
-    _admin = Depends(verificar_admin),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    _admin=Depends(verificar_admin),
+    db: Session = Depends(get_db),
 ):
-    """
-    Listar todos os clientes (SÓ ADMIN)
-    """
-    try:
-        # TODO: Query com paginação
-        # total = db.query(Cliente).count()
-        # clientes = db.query(Cliente)\
-        #     .offset((pagina-1)*por_pagina)\
-        #     .limit(por_pagina)\
-        #     .all()
-        
-        clientes = [
-            {
-                "id": "cliente_001",
-                "nome": "Fazenda Santa Clara",
-                "email": "contato@santaclara.com.br",
-                "cidade": "Ribeirão Preto",
-                "estado": "SP",
-                "ativo": True,
-                "total_propriedades": 3,
-                "total_sensores": 48
-            },
-            {
-                "id": "cliente_002",
-                "nome": "Agropecuária Brasil",
-                "email": "contato@agrobrasil.com.br",
-                "cidade": "Goiás",
-                "estado": "GO",
-                "ativo": True,
-                "total_propriedades": 2,
-                "total_sensores": 24
-            }
-        ]
-        
-        return {
-            "total": 2,
-            "pagina": pagina,
-            "por_pagina": por_pagina,
-            "clientes": clientes
-        }
-        
-    except Exception as e:
-        logger.error(f"Erro ao listar clientes: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao listar clientes"
-        )
+    """Listar clientes com paginacao."""
+    if pagina < 1:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="pagina deve ser maior que zero")
 
+    por_pagina = max(1, min(por_pagina, 100))
+    query = db.query(ClienteDB)
+    if ativo is not None:
+        query = query.filter(ClienteDB.ativo == ativo)
 
-# ============================================================================
-# ATUALIZAR CLIENTE
-# ============================================================================
+    total = query.count()
+    clientes = query.order_by(ClienteDB.data_criacao.desc()).offset((pagina - 1) * por_pagina).limit(por_pagina).all()
+
+    return {
+        "total": total,
+        "pagina": pagina,
+        "por_pagina": por_pagina,
+        "clientes": [_cliente_response(db, cliente).model_dump() for cliente in clientes],
+    }
+
 
 @router.put("/{cliente_id}", response_model=ClienteResponse)
 async def atualizar_cliente(
     cliente_id: str,
     cliente_data: ClienteUpdate,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Atualizar dados do cliente
-    
-    - Clientes podem atualizar só suas próprias informações
-    - Admin pode atualizar qualquer cliente
-    """
-    try:
-        # Validação de permissão
-        if cliente_id != usuario.cliente_id and not usuario.eh_admin:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Sem permissão para atualizar este cliente"
-            )
-        
-        # TODO: Query e update no banco
-        # cliente = db.query(Cliente).filter(Cliente.id == cliente_id).first()
-        # if not cliente:
-        #     raise HTTPException(...)
-        
-        # for field, value in cliente_data.dict(exclude_unset=True).items():
-        #     setattr(cliente, field, value)
-        # cliente.data_atualizacao = datetime.now()
-        # db.commit()
-        # db.refresh(cliente)
-        
-        logger.info(f"Cliente atualizado: {cliente_id} por {usuario}")
-        
-        return ClienteResponse(
-            id=cliente_id,
-            nome=cliente_data.nome or "Fazenda Santa Clara",
-            email=cliente_data.email or "contato@santaclara.com.br",
-            telefone=cliente_data.telefone,
-            cnpj=None,
-            endereco=cliente_data.endereco,
-            cidade=cliente_data.cidade,
-            estado=cliente_data.estado,
-            responsavel_nome=cliente_data.responsavel_nome or "João da Silva",
-            responsavel_email=cliente_data.responsavel_email or "joao@santaclara.com.br",
-            responsavel_telefone=cliente_data.responsavel_telefone,
-            ativo=True,
-            data_criacao=datetime(2025, 1, 15),
-            data_atualizacao=datetime.now(),
-            total_propriedades=3,
-            total_zonas=12,
-            total_sensores=48
-        )
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Erro ao atualizar cliente: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao atualizar cliente"
-        )
+    """Atualizar dados do cliente."""
+    if not _pode_acessar_cliente(usuario, cliente_id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Sem permissao para atualizar este cliente")
 
+    cliente = _obter_cliente_ou_404(db, cliente_id)
+    payload = cliente_data.model_dump(exclude_unset=True)
 
-# ============================================================================
-# DELETAR CLIENTE (SOFT DELETE - ADMIN ONLY)
-# ============================================================================
+    if "email" in payload:
+        email_existente = db.query(ClienteDB).filter(
+            ClienteDB.email == str(payload["email"]),
+            ClienteDB.cliente_id != cliente_id,
+        ).first()
+        if email_existente:
+            raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email ja cadastrado")
+        payload["email"] = str(payload["email"])
+
+    if "responsavel_email" in payload:
+        payload["responsavel_email"] = str(payload["responsavel_email"])
+
+    for field, value in payload.items():
+        setattr(cliente, field, value)
+    cliente.data_atualizacao = datetime.utcnow()
+    db.commit()
+    db.refresh(cliente)
+
+    logger.info("Cliente atualizado: %s por %s", cliente_id, usuario)
+    return _cliente_response(db, cliente)
+
 
 @router.delete("/{cliente_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def deletar_cliente(
     cliente_id: str,
-    usuario = Depends(obter_usuario_atual),
-    _admin = Depends(verificar_admin),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    _admin=Depends(verificar_admin),
+    db: Session = Depends(get_db),
 ):
-    """
-    Deletar cliente (SOFT DELETE - marca como inativo)
-    
-    Preserva histórico e dados para auditoria
-    """
-    try:
-        # TODO: Update com ativo=False
-        # cliente = db.query(Cliente).filter(Cliente.id == cliente_id).first()
-        # if not cliente:
-        #     raise HTTPException(...)
-        # cliente.ativo = False
-        # db.commit()
-        
-        logger.info(f"Cliente deletado (soft): {cliente_id} por {usuario}")
-        
-    except Exception as e:
-        logger.error(f"Erro ao deletar cliente: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao deletar cliente"
-        )
+    """Soft delete de cliente para preservar historico."""
+    cliente = _obter_cliente_ou_404(db, cliente_id)
+    cliente.ativo = False
+    cliente.data_atualizacao = datetime.utcnow()
+    db.commit()
 
+    logger.info("Cliente desativado: %s por %s", cliente_id, usuario)
 
-# ============================================================================
-# OBTER RESUMO DO CLIENTE
-# ============================================================================
 
 @router.get("/{cliente_id}/resumo", response_model=dict)
 async def obter_resumo_cliente(
     cliente_id: str,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Obter resumo de estatísticas do cliente
-    
-    - Total de propriedades
-    - Total de sensores
-    - Alertas nos últimos 7 dias
-    - Saúde geral do sistema
-    """
-    try:
-        if cliente_id != usuario.cliente_id and not usuario.eh_admin:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Sem permissão"
-            )
-        
-        return {
-            "cliente_id": cliente_id,
-            "nome_cliente": "Fazenda Santa Clara",
-            "propriedades": {
-                "total": 3,
-                "nomes": ["Santa Clara - Sede", "Santa Clara - Extensão", "Experimental"]
-            },
-            "zonas_manejo": {
-                "total": 12,
-                "com_plantio": 8,
-                "sem_plantio": 4
-            },
-            "sensores": {
-                "total": 48,
-                "funcionando": 46,
-                "com_problema": 2,
-                "bateria_baixa": 0
-            },
-            "alertas_ultimos_7_dias": {
-                "total": 15,
-                "novo": 3,
-                "reconhecido": 5,
-                "resolvido": 7,
-                "criticos": 1
-            },
-            "saude_sistema": {
-                "status": "bom",
-                "percentual": 95,
-                "ultima_verificacao": datetime.now()
-            }
-        }
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Erro ao obter resumo: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao obter resumo"
-        )
+    """Obter resumo operacional real do cliente."""
+    if not _pode_acessar_cliente(usuario, cliente_id):
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Sem permissao")
+
+    cliente = _obter_cliente_ou_404(db, cliente_id)
+    sete_dias_atras = datetime.utcnow() - timedelta(days=7)
+
+    propriedades = db.query(AgriFarmDB).filter(AgriFarmDB.cliente_id == cliente_id, AgriFarmDB.ativo.is_(True)).all()
+    total_zonas = db.query(ZonaManejoDB).filter(ZonaManejoDB.cliente_id == cliente_id, ZonaManejoDB.ativo.is_(True)).count()
+    zonas_com_plantio = db.query(FaseAtualDB.zona_id).join(
+        ZonaManejoDB,
+        FaseAtualDB.zona_id == ZonaManejoDB.zona_id,
+    ).filter(ZonaManejoDB.cliente_id == cliente_id, ZonaManejoDB.ativo.is_(True)).distinct().count()
+    sensores_total = db.query(SensorDB).filter(SensorDB.cliente_id == cliente_id).count()
+    sensores_funcionando = db.query(SensorDB).filter(SensorDB.cliente_id == cliente_id, SensorDB.ativo.is_(True)).count()
+    alertas_query = db.query(AlertaDB).filter(AlertaDB.cliente_id == cliente_id, AlertaDB.criado_em >= sete_dias_atras)
+    total_alertas = alertas_query.count()
+    alertas_ativos = alertas_query.filter(AlertaDB.status == StatusAlerta.ATIVO).count()
+    alertas_resolvidos = alertas_query.filter(AlertaDB.status == StatusAlerta.RESOLVIDO).count()
+    alertas_reconhecidos = alertas_query.filter(AlertaDB.status == StatusAlerta.RECONHECIDO).count()
+    criticos = alertas_query.filter(AlertaDB.severidade == SeveridadeAlerta.CRITICO).count()
+    percentual_saude = 100 if sensores_total == 0 else round((sensores_funcionando / sensores_total) * 100)
+
+    return {
+        "cliente_id": cliente_id,
+        "nome_cliente": cliente.nome,
+        "propriedades": {
+            "total": len(propriedades),
+            "nomes": [prop.name for prop in propriedades],
+        },
+        "zonas_manejo": {
+            "total": total_zonas,
+            "com_plantio": zonas_com_plantio,
+            "sem_plantio": max(total_zonas - zonas_com_plantio, 0),
+        },
+        "sensores": {
+            "total": sensores_total,
+            "funcionando": sensores_funcionando,
+            "com_problema": max(sensores_total - sensores_funcionando, 0),
+            "bateria_baixa": 0,
+        },
+        "alertas_ultimos_7_dias": {
+            "total": total_alertas,
+            "novo": alertas_ativos,
+            "reconhecido": alertas_reconhecidos,
+            "resolvido": alertas_resolvidos,
+            "criticos": criticos,
+        },
+        "saude_sistema": {
+            "status": "bom" if percentual_saude >= 90 else "atencao",
+            "percentual": percentual_saude,
+            "ultima_verificacao": datetime.utcnow(),
+        },
+    }
