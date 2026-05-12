@@ -1,0 +1,43 @@
+# Prometheus Configuration - AgriSoil Monitoring
+global:
+  scrape_interval: 15s # Coletar métricas a cada 15s
+  evaluation_interval: 15s # Avaliar regras a cada 15s
+  external_labels:
+    monitor: 'agrisoil-monitor'
+    environment: 'production'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+# Carregar regras de alerta
+rule_files:
+  - "alerts.yml"
+
+# Scrape configurations
+scrape_configs:
+  # FastAPI Application
+  - job_name: 'agrisoil-api'
+    static_configs:
+      - targets: ['app:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+    scrape_timeout: 5s
+    
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # PostgreSQL Exporter (opcional - adicionar depois)
+  # - job_name: 'postgres'
+  #   static_configs:
+  #     - targets: ['postgres-exporter:9187']
+
+  # Redis Exporter (opcional - adicionar depois)
+  # - job_name: 'redis'
+  #   static_configs:
+  #     - targets: ['redis-exporter:9121']

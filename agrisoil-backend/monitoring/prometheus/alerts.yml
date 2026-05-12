@@ -1,0 +1,84 @@
+# Prometheus Alert Rules - AgriSoil
+groups:
+  - name: agrisoil_api_alerts
+    interval: 30s
+    rules:
+      # Alta taxa de erros 5xx
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+          component: api
+        annotations:
+          summary: "Alta taxa de erros HTTP 5xx"
+          description: "API está retornando {{ $value | humanizePercentage }} de erros 5xx nos últimos 5 minutos"
+
+      # API está down
+      - alert: APIDown
+        expr: up{job="agrisoil-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: api
+        annotations:
+          summary: "API AgriSoil está DOWN"
+          description: "A API não está respondendo há mais de 1 minuto"
+
+      # Latência alta (P95 > 1 segundo)
+      - alert: HighLatency
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
+        for: 5m
+        labels:
+          severity: warning
+          component: api
+        annotations:
+          summary: "Latência P95 acima de 1 segundo"
+          description: "95% das requisições estão levando mais de {{ $value | humanizeDuration }}"
+
+      # Muitas requisições de webhook falhando
+      - alert: WebhookFailureRate
+        expr: rate(http_requests_total{path=~"/api/webhook/.*",status!="200"}[10m]) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+          component: webhook
+        annotations:
+          summary: "Alta taxa de falhas em webhook"
+          description: "{{ $value | humanizePercentage }} dos webhooks estão falhando"
+
+      # Alerta de sensores
+      - alert: NoSensorDataReceived
+        expr: rate(http_requests_total{path=~"/api/webhook/.*"}[30m]) == 0
+        for: 30m
+        labels:
+          severity: warning
+          component: sensors
+        annotations:
+          summary: "Nenhum dado de sensor recebido"
+          description: "Nenhuma leitura de sensor nos últimos 30 minutos"
+
+  - name: agrisoil_system_alerts
+    interval: 60s
+    rules:
+      # Uso de memória alto
+      - alert: HighMemoryUsage
+        expr: (process_resident_memory_bytes / 1024 / 1024) > 512
+        for: 10m
+        labels:
+          severity: warning
+          component: system
+        annotations:
+          summary: "Uso de memória alto"
+          description: "API está usando {{ $value | humanize }}MB de RAM"
+
+      # Muitas conexões abertas no banco
+      - alert: HighDatabaseConnections
+        expr: sqlalchemy_pool_connections > 15
+        for: 10m
+        labels:
+          severity: warning
+          component: database
+        annotations:
+          summary: "Muitas conexões no pool do banco"
+          description: "{{ $value }} conexões ativas (limite: 20)"

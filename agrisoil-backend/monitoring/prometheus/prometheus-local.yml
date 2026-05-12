@@ -1,0 +1,41 @@
+# ==========================================
+# Prometheus Configuration - AgriSoil
+# PRODUÇÃO - Otimizado para Performance
+# ==========================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 10s
+  external_labels:
+    monitor: 'agrisoil-monitor'
+    environment: 'production'
+    cluster: 'main'
+
+# Alertmanager configuration (opcional - descomentar quando configurar)
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets:
+#             - alertmanager:9093
+
+# Carregar regras de alerta
+rule_files:
+  - "alerts.yml"
+
+# Scrape configurations
+scrape_configs:
+  # FastAPI Application
+  - job_name: 'agrisoil-api'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+    scrape_timeout: 5s
+    honor_labels: true
+    
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 15s

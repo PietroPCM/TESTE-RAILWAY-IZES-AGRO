@@ -1,0 +1,62 @@
+# Global ignores for this monorepo
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.venv/
+venv/
+.env
+.env.*
+*.env
+
+# Node/JS
+node_modules/
+**/node_modules/
+.npm/
+.pnpm-store/
+
+# Next.js / React / Build outputs
+.next/
+**/.next/
+dist/
+**/dist/
+build/
+**/build/
+out/
+**/out/
+
+# Logs & databases
+logs/
+**/logs/
+*.log
+*.sqlite
+*.db
+agrisoil.db
+
+# Documentação temporária/obsoleta
+**/RESUMO_*.md
+**/STATUS_*.md
+**/CHECKLIST_*.md
+**/*_PROXIMAS_ACOES.md
+**/*_SETUP_VISUAL.md
+
+# IDE/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+.coverage
+
+# Docker/containers
+**/certs/
+
+# Misc
+*.tmp
+*.bak

@@ -1,0 +1,62 @@
+# Alertmanager Configuration - AgriSoil
+global:
+  resolve_timeout: 5m
+
+route:
+  group_by: ['alertname', 'severity']
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 12h
+  receiver: 'default-receiver'
+  
+  routes:
+    # Alertas críticos - enviar imediatamente
+    - match:
+        severity: critical
+      receiver: 'critical-receiver'
+      repeat_interval: 4h
+    
+    # Alertas de warning - agrupar mais
+    - match:
+        severity: warning
+      receiver: 'warning-receiver'
+      repeat_interval: 24h
+
+receivers:
+  - name: 'default-receiver'
+    webhook_configs:
+      - url: 'http://app:8000/api/alertmanager/webhook'
+        send_resolved: true
+
+  - name: 'critical-receiver'
+    # Webhook para alertas críticos
+    webhook_configs:
+      - url: 'http://app:8000/api/alertmanager/webhook'
+        send_resolved: true
+    
+    # Email (configure se quiser)
+    # email_configs:
+    #   - to: 'admin@agrisoil.com'
+    #     from: 'alertmanager@agrisoil.com'
+    #     smarthost: 'smtp.gmail.com:587'
+    #     auth_username: 'your-email@gmail.com'
+    #     auth_password: 'your-app-password'
+    
+    # Slack (configure se quiser)
+    # slack_configs:
+    #   - api_url: 'https://hooks.slack.com/services/YOUR/WEBHOOK/URL'
+    #     channel: '#agrisoil-alerts'
+    #     title: '🚨 Alerta Crítico - AgriSoil'
+
+  - name: 'warning-receiver'
+    webhook_configs:
+      - url: 'http://app:8000/api/alertmanager/webhook'
+        send_resolved: true
+
+inhibit_rules:
+  # Se API está down, não enviar alertas de latência
+  - source_match:
+      alertname: 'APIDown'
+    target_match:
+      alertname: 'HighLatency'
+    equal: ['component']
