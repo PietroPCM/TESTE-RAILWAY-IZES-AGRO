@@ -12,6 +12,7 @@ from app.models.database import SensorDB, LeituraDB
 from app.models.sensor import Sensor as SensorSchema
 from app.models.leitura import Leitura as LeituraSchema
 from app.repositories.sensor_repository import SensorRepository, LeituraRepository
+from app.security import assert_tenant_access, verificar_acesso_cliente_path, verificar_admin
 from app.services.sensor_service import processar_leitura
 from pydantic import BaseModel
 
@@ -38,6 +39,7 @@ class SensorCadastro(BaseModel):
 @router.post("/cadastrar", status_code=status.HTTP_201_CREATED)
 async def cadastrar_sensor_admin(
     sensor_data: SensorCadastro,
+    _admin=Depends(verificar_admin),
     db: Session = Depends(get_db)
 ):
     """
@@ -118,6 +120,7 @@ async def cadastrar_sensor_admin(
 async def atualizar_status_sensor(
     sensor_id: str,
     status_data: dict = Body(...),
+    _admin=Depends(verificar_admin),
     db: Session = Depends(get_db)
 ):
     """Ativa ou desativa um sensor"""
@@ -155,6 +158,7 @@ async def atualizar_status_sensor(
 @router.delete("/{sensor_id}")
 async def deletar_sensor(
     sensor_id: str,
+    _admin=Depends(verificar_admin),
     db: Session = Depends(get_db)
 ):
     """Deleta um sensor e todas suas leituras"""
@@ -196,10 +200,18 @@ def registrar_sensor(
     cliente: str,
     sensor_id: str,
     sensor: SensorSchema,
+    payload: dict = Depends(verificar_acesso_cliente_path),
     db: Session = Depends(get_db)
 ):
     """Registrar novo sensor no sistema"""
     try:
+        if sensor.cliente_id != cliente:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="cliente_id do corpo deve ser igual ao cliente da URL"
+            )
+        assert_tenant_access(payload, cliente)
+
         # Verificar se já existe
         sensor_existente = SensorRepository.buscar_por_id(db, sensor_id)
         if sensor_existente:
@@ -234,6 +246,7 @@ def registrar_leitura(
     cliente: str,
     sensor_id: str,
     leitura: LeituraSchema,
+    _payload: dict = Depends(verificar_acesso_cliente_path),
     db: Session = Depends(get_db)
 ):
     """Registra uma leitura de sensor e aplica regras de negócio"""
@@ -243,6 +256,11 @@ def registrar_leitura(
         # Verificar se sensor existe
         sensor = SensorRepository.buscar_por_id(db, sensor_id)
         if not sensor:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Sensor não encontrado"
+            )
+        if sensor.cliente_id != cliente:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Sensor não encontrado"
@@ -291,6 +309,7 @@ def registrar_leitura(
 def listar_sensores(
     cliente: str,
     apenas_ativos: bool = True,
+    _payload: dict = Depends(verificar_acesso_cliente_path),
     db: Session = Depends(get_db)
 ):
     """Listar todos os sensores de um cliente"""
@@ -329,6 +348,7 @@ def listar_sensores(
 def detalhes_sensor(
     cliente: str,
     sensor_id: str,
+    _payload: dict = Depends(verificar_acesso_cliente_path),
     db: Session = Depends(get_db)
 ):
     """Buscar detalhes de um sensor específico"""
@@ -383,6 +403,7 @@ def historico_leituras(
     sensor_id: str,
     dias: int = 7,
     limit: int = 100,
+    _payload: dict = Depends(verificar_acesso_cliente_path),
     db: Session = Depends(get_db)
 ):
     """Buscar histórico de leituras de um sensor"""

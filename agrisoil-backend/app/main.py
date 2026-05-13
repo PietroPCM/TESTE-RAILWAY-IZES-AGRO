@@ -17,6 +17,7 @@ from contextlib import asynccontextmanager
 import logging
 import time
 import asyncio
+from uuid import uuid4
 import sentry_sdk
 from sentry_sdk.integrations.fastapi import FastApiIntegration
 from prometheus_fastapi_instrumentator import Instrumentator
@@ -261,6 +262,7 @@ if settings.prometheus_enabled:
 async def log_requests(request: Request, call_next):
     """Log estruturado de requisições HTTP"""
     start_time = time.time()
+    request_id = request.headers.get("X-Request-ID") or uuid4().hex
     
     # Executar requisição
     try:
@@ -272,6 +274,7 @@ async def log_requests(request: Request, call_next):
     # Calcular tempo de processamento
     process_time = time.time() - start_time
     response.headers["X-Process-Time"] = str(process_time)
+    response.headers["X-Request-ID"] = request_id
     
     # Log estruturado
     log_data = {
@@ -279,6 +282,7 @@ async def log_requests(request: Request, call_next):
         "path": request.url.path,
         "status_code": response.status_code,
         "process_time": f"{process_time:.3f}s",
+        "request_id": request_id,
         "client_ip": request.client.host if request.client else "unknown"
     }
     

@@ -30,7 +30,7 @@ from app.models.database import (
     ZonaManejoDB,
 )
 from app.models.regra_alerta import AcaoRecomendada
-from app.security import obter_usuario_atual
+from app.security import get_current_payload, payload_cliente_id, payload_is_admin
 
 router = APIRouter(prefix="/api/alertas-v2", tags=["Alertas Estrategicos - 10 Camadas"])
 logger = logging.getLogger(__name__)
@@ -335,12 +335,14 @@ async def listar_alertas_estrategicos(
     score_prioridade_min: Optional[int] = Query(None, ge=0, le=100),
     limite_dias: int = Query(7, ge=1, le=90),
     ordenar_por: str = Query("prioridade", description="prioridade, tempo, impacto, localizacao"),
-    usuario=Depends(obter_usuario_atual),
+    usuario=Depends(get_current_payload),
     db: Session = Depends(get_db),
 ):
     """Listar alertas estrategicos derivados dos alertas reais."""
     desde = datetime.utcnow() - timedelta(days=limite_dias)
     query = db.query(AlertaDB).filter(AlertaDB.criado_em >= desde)
+    if not payload_is_admin(usuario):
+        query = query.filter(AlertaDB.cliente_id == payload_cliente_id(usuario))
 
     if status and status != StatusAlerta.EM_EXECUCAO:
         query = query.filter(AlertaDB.status == STATUS_V2_TO_DB[status])
@@ -392,11 +394,13 @@ async def listar_alertas_estrategicos(
 async def confirmar_execucao(
     alerta_id: str,
     confirmacao: ConfirmacaoExecucao,
-    usuario=Depends(obter_usuario_atual),
+    usuario=Depends(get_current_payload),
     db: Session = Depends(get_db),
 ):
     """Registrar confirmacao de execucao do alerta."""
     alerta = _obter_alerta_ou_404(db, alerta_id)
+    if not payload_is_admin(usuario) and alerta.cliente_id != payload_cliente_id(usuario):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Alerta nao encontrado")
     execucao = AlertaExecucaoDB(
         alerta_id=alerta.id,
         produtor_executou=confirmacao.produtor_executou,
@@ -428,11 +432,13 @@ async def confirmar_execucao(
 async def registrar_excecao(
     alerta_id: str,
     excecao: ExcecaoAlerta,
-    usuario=Depends(obter_usuario_atual),
+    usuario=Depends(get_current_payload),
     db: Session = Depends(get_db),
 ):
     """Registrar situacao atipica ou override agronomico."""
     alerta = _obter_alerta_ou_404(db, alerta_id)
+    if not payload_is_admin(usuario) and alerta.cliente_id != payload_cliente_id(usuario):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Alerta nao encontrado")
     excecao_db = AlertaExcecaoDB(
         alerta_id=alerta.id,
         situacao_atipica=excecao.situacao_atipica,
@@ -463,11 +469,13 @@ async def registrar_excecao(
 async def obter_padroes_aprendidos(
     zona_id: str,
     parametro: Optional[str] = None,
-    usuario=Depends(obter_usuario_atual),
+    usuario=Depends(get_current_payload),
     db: Session = Depends(get_db),
 ):
     """Calcular padroes simples a partir do historico real de alertas da zona."""
     query = db.query(AlertaDB).join(SensorDB, SensorDB.sensor_id == AlertaDB.sensor_id).filter(SensorDB.local_especifico == zona_id)
+    if not payload_is_admin(usuario):
+        query = query.filter(AlertaDB.cliente_id == payload_cliente_id(usuario))
     if parametro:
         try:
             query = query.filter(AlertaDB.tipo == TipoAlerta(parametro))
@@ -499,13 +507,21 @@ async def obter_padroes_aprendidos(
 
 @router.get("/dashboard/executivo", response_model=dict)
 async def dashboard_executivo(
-    usuario=Depends(obter_usuario_atual),
+    usuario=Depends(get_current_payload),
     db: Session = Depends(get_db),
 ):
     """Dashboard executivo baseado em alertas e confirmacoes reais."""
     desde = datetime.utcnow() - timedelta(hours=24)
-    alertas = db.query(AlertaDB).filter(AlertaDB.criado_em >= desde).all()
-    execucoes = db.query(AlertaExecucaoDB).filter(AlertaExecucaoDB.criado_em >= desde).all()
+    alertas_query = db.query(AlertaDB).filter(AlertaDB.criado_em >= desde)
+    if not payload_is_admin(usuario):
+        alertas_query = alertas_query.filter(AlertaDB.cliente_id == payload_cliente_id(usuario))
+    alertas = alertas_query.all()
+    execucoes_query = db.query(AlertaExecucaoDB).filter(AlertaExecucaoDB.criado_em >= desde)
+    if not payload_is_admin(usuario):
+        execucoes_query = execucoes_query.join(AlertaDB, AlertaExecucaoDB.alerta_id == AlertaDB.id).filter(
+            AlertaDB.cliente_id == payload_cliente_id(usuario)
+        )
+    execucoes = execucoes_query.all()
     estrategicos = [_alerta_estrategico(db, alerta, ranking=index + 1) for index, alerta in enumerate(alertas)]
     top_5 = sorted(estrategicos, key=lambda item: item["camada_2_prioridade"]["score_prioridade"], reverse=True)[:5]
 
@@ -547,11 +563,13 @@ async def dashboard_executivo(
 @router.get("/{alerta_id}/auditoria", response_model=AuditoriaCompleta)
 async def obter_auditoria_completa(
     alerta_id: str,
-    usuario=Depends(obter_usuario_atual),
+    usuario=Depends(get_current_payload),
     db: Session = Depends(get_db),
 ):
     """Retornar auditoria completa de um alerta real."""
     alerta = _obter_alerta_ou_404(db, alerta_id)
+    if not payload_is_admin(usuario) and alerta.cliente_id != payload_cliente_id(usuario):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Alerta nao encontrado")
     execucao = _ultima_execucao(db, alerta.id)
     logger.debug("Auditoria do alerta %s consultada por %s", alerta_id, usuario)
     return AuditoriaCompleta(**_auditoria_dict(alerta, execucao))

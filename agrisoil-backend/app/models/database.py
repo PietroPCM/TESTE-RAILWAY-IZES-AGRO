@@ -2,7 +2,7 @@
 Modelos SQLAlchemy para persistência no banco de dados
 Inclui entidades do Smart Data Models para agricultura completa
 """
-from sqlalchemy import Column, String, Float, Boolean, DateTime, ForeignKey, Integer, Text, JSON, Enum
+from sqlalchemy import Column, String, Float, Boolean, DateTime, ForeignKey, Integer, Text, JSON, Enum, Index, UniqueConstraint
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app.db import Base
@@ -38,6 +38,10 @@ class TipoAlerta(str, enum.Enum):
 class SensorDB(Base):
     """Tabela de sensores"""
     __tablename__ = "sensores"
+    __table_args__ = (
+        Index("ix_sensores_cliente_ativo", "cliente_id", "ativo"),
+        Index("ix_sensores_cliente_local", "cliente_id", "local_especifico"),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     sensor_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -68,6 +72,10 @@ class SensorDB(Base):
 class LeituraDB(Base):
     """Tabela de leituras de sensores"""
     __tablename__ = "leituras"
+    __table_args__ = (
+        Index("ix_leituras_cliente_sensor_timestamp", "cliente_id", "sensor_id", "timestamp"),
+        Index("ix_leituras_cliente_alerta_timestamp", "cliente_id", "alerta_ativo", "timestamp"),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     sensor_id = Column(String(100), ForeignKey("sensores.sensor_id"), nullable=False, index=True)
@@ -117,6 +125,11 @@ class LeituraDB(Base):
 class AlertaDB(Base):
     """Tabela de alertas - histórico e gestão de alertas"""
     __tablename__ = "alertas"
+    __table_args__ = (
+        Index("ix_alertas_cliente_status_criado", "cliente_id", "status", "criado_em"),
+        Index("ix_alertas_cliente_severidade_tipo", "cliente_id", "severidade", "tipo"),
+        Index("ux_alertas_hash_deduplicacao", "hash_deduplicacao", unique=True),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     
@@ -161,6 +174,9 @@ class AlertaDB(Base):
 class UsuarioDB(Base):
     """Tabela de usuários"""
     __tablename__ = "usuarios"
+    __table_args__ = (
+        Index("ix_usuarios_cliente_role_ativo", "cliente_id", "role", "ativo"),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -202,6 +218,9 @@ class UsuarioDB(Base):
 class ClienteDB(Base):
     """Tabela de clientes/organizacoes atendidas pelo sistema."""
     __tablename__ = "clientes"
+    __table_args__ = (
+        Index("ix_clientes_ativo_estado", "ativo", "estado"),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     cliente_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -227,6 +246,11 @@ class ClienteDB(Base):
 class ZonaManejoDB(Base):
     """Tabela de zonas de manejo dentro dos talhoes."""
     __tablename__ = "zonas_manejo"
+    __table_args__ = (
+        UniqueConstraint("parcel_id", "nome", name="uq_zonas_manejo_parcel_nome"),
+        Index("ix_zonas_cliente_ativo", "cliente_id", "ativo"),
+        Index("ix_zonas_prop_ativo", "prop_id", "ativo"),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     zona_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -255,6 +279,9 @@ class ZonaManejoDB(Base):
 class FaseAtualDB(Base):
     """Tabela com o estado fenologico atual detectado por zona."""
     __tablename__ = "fases_atuais"
+    __table_args__ = (
+        Index("ix_fases_zona_detectado", "zona_id", "detectado_em"),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     zona_id = Column(String(100), ForeignKey("zonas_manejo.zona_id"), nullable=False, index=True)
@@ -282,6 +309,9 @@ class FaseAtualDB(Base):
 class HistoricoFaseDB(Base):
     """Historico de transicoes fenologicas por zona."""
     __tablename__ = "historico_fases"
+    __table_args__ = (
+        Index("ix_historico_fases_zona_transicao", "zona_id", "data_transicao"),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     zona_id = Column(String(100), ForeignKey("zonas_manejo.zona_id"), nullable=False, index=True)
@@ -298,6 +328,9 @@ class HistoricoFaseDB(Base):
 class InfraestruturaDB(Base):
     """Infraestrutura real disponivel em cada propriedade."""
     __tablename__ = "infraestruturas"
+    __table_args__ = (
+        Index("ix_infra_ativo_irrigacao", "ativo", "possui_irrigacao"),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     propriedade_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -329,6 +362,9 @@ class InfraestruturaDB(Base):
 class AlertaExecucaoDB(Base):
     """Confirmacao operacional de execucao de um alerta estrategico."""
     __tablename__ = "alertas_execucoes"
+    __table_args__ = (
+        Index("ix_alertas_execucoes_alerta_criado", "alerta_id", "criado_em"),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     alerta_id = Column(Integer, ForeignKey("alertas.id"), nullable=False, index=True)
@@ -348,6 +384,9 @@ class AlertaExecucaoDB(Base):
 class AlertaExcecaoDB(Base):
     """Registro de situacoes atipicas e overrides agronomicos."""
     __tablename__ = "alertas_excecoes"
+    __table_args__ = (
+        Index("ix_alertas_excecoes_alerta_criado", "alerta_id", "criado_em"),
+    )
 
     id = Column(Integer, primary_key=True, index=True)
     alerta_id = Column(Integer, ForeignKey("alertas.id"), nullable=False, index=True)
@@ -371,6 +410,9 @@ class AlertaExcecaoDB(Base):
 class AgriFarmDB(Base):
     """Tabela de Fazendas/Propriedades Rurais"""
     __tablename__ = "agri_farms"
+    __table_args__ = (
+        Index("ix_agri_farms_cliente_ativo", "cliente_id", "ativo"),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     farm_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -414,6 +456,10 @@ class AgriFarmDB(Base):
 class AgriParcelDB(Base):
     """Tabela de Talhões/Parcelas dentro de uma Fazenda"""
     __tablename__ = "agri_parcels"
+    __table_args__ = (
+        Index("ix_agri_parcels_cliente_ativo", "cliente_id", "ativo"),
+        Index("ix_agri_parcels_farm_ativo", "farm_id", "ativo"),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     parcel_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -498,6 +544,9 @@ class AgriCropDB(Base):
 class AgriParcelRecordDB(Base):
     """Tabela de Registros de Condições dos Talhões"""
     __tablename__ = "agri_parcel_records"
+    __table_args__ = (
+        Index("ix_agri_records_cliente_parcel_timestamp", "cliente_id", "parcel_id", "timestamp"),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     record_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -539,6 +588,10 @@ class AgriParcelRecordDB(Base):
 class AgriParcelOperationDB(Base):
     """Tabela de Operações Realizadas nos Talhões"""
     __tablename__ = "agri_parcel_operations"
+    __table_args__ = (
+        Index("ix_agri_operations_cliente_status", "cliente_id", "status"),
+        Index("ix_agri_operations_parcel_status", "parcel_id", "status"),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     operation_id = Column(String(100), unique=True, index=True, nullable=False)
@@ -588,6 +641,9 @@ class AgriParcelOperationDB(Base):
 class AgriFertilizeDB(Base):
     """Tabela de Detalhes de Fertilização"""
     __tablename__ = "agri_fertilizes"
+    __table_args__ = (
+        Index("ix_agri_fertilizes_cliente_produto", "cliente_id", "product_name"),
+    )
     
     id = Column(Integer, primary_key=True, index=True)
     fertilize_id = Column(String(100), unique=True, index=True, nullable=False)
