@@ -18,6 +18,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from app.config import settings
 from app.db import SessionLocal, Base, engine
+from app.models.database import UsuarioDB
+from app.security import hash_password
 
 
 def seed_culturas(session: Session):
@@ -442,6 +444,32 @@ def seed_regioes(session: Session):
     print("\nParâmetros por região documentados!")
 
 
+def seed_admin_user(session: Session):
+    """Inserir usuÃ¡rio administrador de teste"""
+    print("\nVerificando usuario administrador de teste...")
+
+    existing = session.query(UsuarioDB).filter(
+        UsuarioDB.email == "admin@agrisoil.com"
+    ).first()
+
+    if existing:
+        print("  - admin@agrisoil.com ja existe")
+        return
+
+    admin = UsuarioDB(
+        user_id="admin",
+        email="admin@agrisoil.com",
+        nome="Administrador",
+        senha_hash=hash_password("admin123"),
+        cliente_id="agrisoil",
+        role="admin",
+        ativo=True,
+    )
+    session.add(admin)
+    session.commit()
+    print("  ok Usuario admin criado com sucesso")
+
+
 def main():
     """Executar seeding do banco de dados"""
     
@@ -464,6 +492,7 @@ def main():
         seed_regioes(session)
         
         # Fechar sessão
+        seed_admin_user(session)
         session.close()
         
         print("\n" + "="*70)

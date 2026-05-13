@@ -9,26 +9,29 @@ from typing import List, Union
 import os
 from dotenv import load_dotenv
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENV_FILE = os.path.join(BASE_DIR, ".env")
+
 # Carregar .env com fallback de encoding para evitar erros em Windows
 # IMPORTANTE: Não sobrescrever variáveis já definidas pelo ambiente (docker-compose)
 try:
-    load_dotenv(override=False)
+    load_dotenv(dotenv_path=ENV_FILE, override=False)
 except UnicodeDecodeError:
     # Fallback para arquivos salvos em Latin-1/Windows-1252
-    load_dotenv(override=False, encoding="latin-1")
+    load_dotenv(dotenv_path=ENV_FILE, override=False, encoding="latin-1")
 
 
 class Settings(BaseSettings):
     """Configurações da aplicação - Production Ready"""
     
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         case_sensitive=False,
         extra="ignore"
     )
     
     # Banco de dados
-    database_url: str = Field(default="postgresql://user:password@localhost/agrisoil")
+    database_url: str = Field(default="")
     database_pool_size: int = 20
     database_max_overflow: int = 40
     database_pool_timeout: int = 30

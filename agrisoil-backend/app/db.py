@@ -11,21 +11,23 @@ import logging
 from app.config import settings
 
 logger = logging.getLogger(__name__)
+database_url = "postgresql+psycopg://postgres:123123@localhost:5432/agrisoil"
+print("DB DRIVER: psycopg v3")
 
 # Base class para todos os modelos
 Base = declarative_base()
 
 # Criar engine com pool de conexões otimizado para produção
 # SQLite requer configuração diferente de PostgreSQL
-if settings.database_url.startswith("sqlite"):
+if database_url.startswith("sqlite"):
     engine = create_engine(
-        settings.database_url,
+        database_url,
         connect_args={"check_same_thread": False},  # Necessário para SQLite
         echo=settings.debug,  # Log SQL em debug mode
     )
 else:
     engine = create_engine(
-        settings.database_url,
+        database_url,
         poolclass=QueuePool,
         pool_size=settings.database_pool_size,
         max_overflow=settings.database_max_overflow,
