@@ -25,13 +25,29 @@ celery_app.conf.update(
     enable_utc=True,
     task_track_started=True,
     task_time_limit=300,  # 5 minutos
-    worker_prefetch_multiplier=4,
-    worker_max_tasks_per_child=1000,
+    task_soft_time_limit=240,
+    task_acks_late=True,
+    task_reject_on_worker_lost=True,
+    task_default_retry_delay=30,
+    task_routes={
+        "processar_alerta_async": {"queue": "sensores"},
+        "enviar_push_async": {"queue": "notificacoes"},
+        "limpar_dados_antigos": {"queue": "manutencao"},
+    },
+    worker_prefetch_multiplier=1,
+    worker_max_tasks_per_child=500,
 )
 
 
-@celery_app.task(name="processar_alerta_async")
-def processar_alerta_async(leitura_id: int, usuario_id: int):
+@celery_app.task(
+    name="processar_alerta_async",
+    bind=True,
+    autoretry_for=(Exception,),
+    retry_backoff=True,
+    retry_jitter=True,
+    retry_kwargs={"max_retries": 5},
+)
+def processar_alerta_async(self, leitura_id: int, usuario_id: int = 0):
     """
     Processar alerta em background
     Libera o webhook para responder imediatamente
@@ -78,8 +94,15 @@ def processar_alerta_async(leitura_id: int, usuario_id: int):
         db.close()
 
 
-@celery_app.task(name="enviar_push_async")
-def enviar_push_async(token: str, titulo: str, mensagem: str, dados: dict = None):
+@celery_app.task(
+    name="enviar_push_async",
+    bind=True,
+    autoretry_for=(Exception,),
+    retry_backoff=True,
+    retry_jitter=True,
+    retry_kwargs={"max_retries": 3},
+)
+def enviar_push_async(self, token: str, titulo: str, mensagem: str, dados: dict = None):
     """
     Enviar push notification em background
     """
@@ -98,8 +121,15 @@ def enviar_push_async(token: str, titulo: str, mensagem: str, dados: dict = None
         raise
 
 
-@celery_app.task(name="limpar_dados_antigos")
-def limpar_dados_antigos():
+@celery_app.task(
+    name="limpar_dados_antigos",
+    bind=True,
+    autoretry_for=(Exception,),
+    retry_backoff=True,
+    retry_jitter=True,
+    retry_kwargs={"max_retries": 2},
+)
+def limpar_dados_antigos(self):
     """
     Task periódica para limpar dados antigos
     Rodar 1x por dia

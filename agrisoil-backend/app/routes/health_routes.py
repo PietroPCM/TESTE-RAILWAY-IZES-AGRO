@@ -72,7 +72,7 @@ async def health_check() -> Dict[str, Any]:
     # 4. Celery
     try:
         from app.celery_worker import celery_app
-        inspect = celery_app.control.inspect()
+        inspect = celery_app.control.inspect(timeout=1.0)
         active_workers = inspect.active()
         if active_workers:
             services["celery"] = {

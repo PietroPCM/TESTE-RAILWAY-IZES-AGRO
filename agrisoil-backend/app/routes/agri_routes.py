@@ -10,10 +10,15 @@ import logging
 from app.db import get_db
 from app.models.agri_models import *
 from app.repositories.agri_repository import *
+from app.security import get_current_payload, verificar_acesso_cliente
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/api/agri", tags=["Gestão Agrícola"])
+router = APIRouter(
+    prefix="/api/agri",
+    tags=["Gestão Agrícola"],
+    dependencies=[Depends(get_current_payload)],
+)
 
 
 # ============================================================================
@@ -84,6 +89,7 @@ async def buscar_fazenda(
 async def listar_fazendas_cliente(
     cliente_id: str,
     apenas_ativas: bool = Query(True, description="Retornar apenas fazendas ativas"),
+    _payload: dict = Depends(verificar_acesso_cliente),
     db: Session = Depends(get_db)
 ):
     """Lista todas as fazendas de um cliente"""
@@ -197,6 +203,7 @@ async def buscar_talhao(
 )
 async def listar_talhoes_cliente(
     cliente_id: str,
+    _payload: dict = Depends(verificar_acesso_cliente),
     db: Session = Depends(get_db)
 ):
     """Lista todos os talhões de um cliente"""
@@ -509,6 +516,7 @@ async def listar_operacoes_cliente(
     operation_type: Optional[str] = Query(None, description="Filtrar por tipo"),
     status: Optional[str] = Query(None, description="Filtrar por status"),
     limit: int = Query(100, description="Quantidade máxima"),
+    _payload: dict = Depends(verificar_acesso_cliente),
     db: Session = Depends(get_db)
 ):
     """Lista todas as operações de um cliente"""
@@ -643,6 +651,7 @@ async def buscar_fertilizante(
 async def listar_fertilizantes_cliente(
     cliente_id: str,
     nome: Optional[str] = Query(None, description="Filtrar por nome"),
+    _payload: dict = Depends(verificar_acesso_cliente),
     db: Session = Depends(get_db)
 ):
     """Lista todos os fertilizantes cadastrados por um cliente"""

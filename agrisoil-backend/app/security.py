@@ -128,6 +128,66 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
     return user_id
 
 
+async def get_current_payload(credentials: HTTPAuthorizationCredentials = Depends(security)) -> dict:
+    """Retornar payload JWT validado para decisoes de tenant/role."""
+    payload = decode_access_token(credentials.credentials)
+    if not payload.get("sub"):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token sem identificacao de usuario",
+        )
+    return payload
+
+
+def payload_role(payload: dict) -> str:
+    return (payload.get("role") or "").lower()
+
+
+def payload_cliente_id(payload: dict) -> Optional[str]:
+    return payload.get("cliente_id") or payload.get("tenant_id") or payload.get("sub")
+
+
+def payload_is_admin(payload: dict) -> bool:
+    email = (payload.get("email") or "").lower()
+    return bool(
+        payload.get("is_admin")
+        or payload.get("admin")
+        or payload_role(payload) == "admin"
+        or email == "admin@agrisoil.com"
+    )
+
+
+def assert_tenant_access(payload: dict, cliente_id: str) -> None:
+    """Garantir que o token pode acessar exatamente o cliente solicitado."""
+    if payload_is_admin(payload):
+        return
+
+    token_cliente_id = payload_cliente_id(payload)
+    if not token_cliente_id or token_cliente_id != cliente_id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Acesso negado para este cliente",
+        )
+
+
+async def verificar_acesso_cliente(
+    cliente_id: str,
+    payload: dict = Depends(get_current_payload),
+) -> dict:
+    """Dependency para rotas com path param `cliente_id`."""
+    assert_tenant_access(payload, cliente_id)
+    return payload
+
+
+async def verificar_acesso_cliente_path(
+    cliente: str,
+    payload: dict = Depends(get_current_payload),
+) -> dict:
+    """Dependency para rotas legadas com path param `cliente`."""
+    assert_tenant_access(payload, cliente)
+    return payload
+
+
 # Alias em PT-BR para compatibilidade com rotas existentes
 async def obter_usuario_atual(credentials: HTTPAuthorizationCredentials = Depends(security)) -> str:
     """
@@ -165,7 +225,7 @@ async def verify_token(credentials: HTTPAuthorizationCredentials = Depends(secur
     token = credentials.credentials
     payload = decode_access_token(token)
     
-    cliente_id: str = payload.get("sub")
+    cliente_id: str = payload_cliente_id(payload)
     if cliente_id is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

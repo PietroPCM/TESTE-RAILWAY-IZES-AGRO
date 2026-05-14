@@ -1,313 +1,268 @@
 """
-ROTAS DE INFRAESTRUTURA DE PROPRIEDADES
-Gerenciar equipamentos e recursos disponíveis para contextualizar alertas
+Rotas de infraestrutura de propriedades.
+Gerencia equipamentos e recursos disponiveis para contextualizar alertas.
 """
+
+import logging
+from statistics import mean
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from typing import List
-import logging
 
 from app.db import get_db
-from app.security import obter_usuario_atual
+from app.models.database import InfraestruturaDB
 from app.models.infraestrutura import (
     InfraestruturaPropiedade,
-    TipoIrrigacao,
-    TipoAplicacao,
-    FonteAgua,
     RecomendacaoContextualizada,
+    adaptar_recomendacao_calcario,
     adaptar_recomendacao_irrigacao,
-    adaptar_recomendacao_calcario
 )
+from app.security import obter_usuario_atual
 
 router = APIRouter(prefix="/api/infraestrutura", tags=["Infraestrutura de Propriedades"])
 logger = logging.getLogger(__name__)
 
 
-# ============================================================================
-# CADASTRAR/ATUALIZAR INFRAESTRUTURA
-# ============================================================================
+def _enum_list(values):
+    return [getattr(value, "value", value) for value in (values or [])]
+
+
+def _enum_value(value):
+    return getattr(value, "value", value)
+
+
+def _infra_to_model(infra: InfraestruturaDB) -> InfraestruturaPropiedade:
+    return InfraestruturaPropiedade(
+        propriedade_id=infra.propriedade_id,
+        produtor_nome=infra.produtor_nome,
+        possui_irrigacao=infra.possui_irrigacao,
+        sistemas_irrigacao=infra.sistemas_irrigacao or [],
+        area_irrigada_ha=infra.area_irrigada_ha,
+        fonte_agua=infra.fonte_agua,
+        capacidade_agua_m3_dia=infra.capacidade_agua_m3_dia,
+        equipamentos_aplicacao=infra.equipamentos_aplicacao or [],
+        possui_hangar_aeronave=infra.possui_hangar_aeronave,
+        possui_maquinario_proprio=infra.possui_maquinario_proprio,
+        possui_armazem=infra.possui_armazem,
+        capacidade_armazem_ton=infra.capacidade_armazem_ton,
+        possui_silo=infra.possui_silo,
+        possui_energia_eletrica=infra.possui_energia_eletrica,
+        possui_geradores=infra.possui_geradores,
+        limitacoes=infra.limitacoes or [],
+        depende_terceiros_para=infra.depende_terceiros_para or [],
+        custo_medio_terceiros=infra.custo_medio_terceiros or {},
+    )
+
+
+def _payload_infra(infraestrutura: InfraestruturaPropiedade) -> dict:
+    return {
+        "propriedade_id": infraestrutura.propriedade_id,
+        "produtor_nome": infraestrutura.produtor_nome,
+        "possui_irrigacao": infraestrutura.possui_irrigacao,
+        "sistemas_irrigacao": _enum_list(infraestrutura.sistemas_irrigacao),
+        "area_irrigada_ha": infraestrutura.area_irrigada_ha,
+        "fonte_agua": _enum_value(infraestrutura.fonte_agua),
+        "capacidade_agua_m3_dia": infraestrutura.capacidade_agua_m3_dia,
+        "equipamentos_aplicacao": _enum_list(infraestrutura.equipamentos_aplicacao),
+        "possui_hangar_aeronave": infraestrutura.possui_hangar_aeronave,
+        "possui_maquinario_proprio": infraestrutura.possui_maquinario_proprio,
+        "possui_armazem": infraestrutura.possui_armazem,
+        "capacidade_armazem_ton": infraestrutura.capacidade_armazem_ton,
+        "possui_silo": infraestrutura.possui_silo,
+        "possui_energia_eletrica": infraestrutura.possui_energia_eletrica,
+        "possui_geradores": infraestrutura.possui_geradores,
+        "limitacoes": infraestrutura.limitacoes or [],
+        "depende_terceiros_para": infraestrutura.depende_terceiros_para or [],
+        "custo_medio_terceiros": infraestrutura.custo_medio_terceiros or {},
+        "ativo": True,
+    }
+
+
+def _obter_infra_ou_404(db: Session, propriedade_id: str) -> InfraestruturaDB:
+    infra = db.query(InfraestruturaDB).filter(
+        InfraestruturaDB.propriedade_id == propriedade_id,
+        InfraestruturaDB.ativo.is_(True),
+    ).first()
+    if not infra:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Infraestrutura nao encontrada")
+    return infra
+
+
+def _avisos(infraestrutura: InfraestruturaPropiedade) -> list[str]:
+    avisos = []
+    if not infraestrutura.possui_irrigacao:
+        avisos.append("Sem sistema de irrigacao: recomendacoes serao adaptadas para alternativas viaveis")
+    if not infraestrutura.possui_maquinario_proprio:
+        avisos.append("Sem maquinario proprio: custos de terceirizacao serao considerados")
+    if infraestrutura.limitacoes:
+        avisos.append(f"{len(infraestrutura.limitacoes)} limitacoes cadastradas serao consideradas nas recomendacoes")
+    return avisos
+
 
 @router.post("/propriedade", response_model=dict)
 async def cadastrar_infraestrutura(
     infraestrutura: InfraestruturaPropiedade,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Cadastrar ou atualizar infraestrutura da propriedade
-    
-    Usado para contextualizar alertas:
-    - Se não tem irrigação, não recebe alerta de "ligar pivô"
-    - Se não tem calcareadeira, recomenda terceirização
-    - Se depende de terceiros, calcula custos
-    """
-    try:
-        # TODO: Salvar no banco
-        # infra_db = InfraestruturaDB(**infraestrutura.dict())
-        # db.add(infra_db)
-        # db.commit()
-        
-        # Validações inteligentes
-        avisos = []
-        
-        if not infraestrutura.possui_irrigacao:
-            avisos.append("⚠️ Sem sistema de irrigação: Alertas serão adaptados para recomendar alternativas")
-        
-        if not infraestrutura.possui_maquinario_proprio:
-            avisos.append("💰 Sem maquinário próprio: Custos de terceirização serão incluídos nas recomendações")
-        
-        if infraestrutura.limitacoes:
-            avisos.append(f"📋 {len(infraestrutura.limitacoes)} limitações cadastradas: Sistema considerará nas recomendações")
-        
-        logger.info(f"Infraestrutura cadastrada para {infraestrutura.propriedade_id}")
-        
-        return {
-            "sucesso": True,
-            "propriedade_id": infraestrutura.propriedade_id,
-            "mensagem": "Infraestrutura cadastrada com sucesso",
-            "avisos": avisos,
-            "proximos_passos": [
-                "Alertas agora serão contextualizados para sua realidade",
-                "Recomendações vão considerar equipamentos disponíveis",
-                "Custos de terceirização incluídos quando necessário"
-            ]
-        }
-        
-    except Exception as e:
-        logger.error(f"Erro ao cadastrar infraestrutura: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao cadastrar infraestrutura"
-        )
+    """Cadastrar ou atualizar infraestrutura da propriedade."""
+    payload = _payload_infra(infraestrutura)
+    infra_db = db.query(InfraestruturaDB).filter(
+        InfraestruturaDB.propriedade_id == infraestrutura.propriedade_id,
+    ).first()
 
+    if infra_db:
+        for field, value in payload.items():
+            setattr(infra_db, field, value)
+    else:
+        infra_db = InfraestruturaDB(**payload)
+        db.add(infra_db)
 
-# ============================================================================
-# CONSULTAR INFRAESTRUTURA
-# ============================================================================
+    db.commit()
+    db.refresh(infra_db)
+
+    logger.info("Infraestrutura salva para %s por %s", infraestrutura.propriedade_id, usuario)
+    return {
+        "sucesso": True,
+        "propriedade_id": infraestrutura.propriedade_id,
+        "mensagem": "Infraestrutura cadastrada com sucesso",
+        "avisos": _avisos(infraestrutura),
+        "proximos_passos": [
+            "Alertas agora serao contextualizados para a realidade da propriedade",
+            "Recomendacoes vao considerar equipamentos disponiveis",
+            "Custos de terceirizacao entram quando necessarios",
+        ],
+    }
+
 
 @router.get("/propriedade/{propriedade_id}", response_model=InfraestruturaPropiedade)
 async def obter_infraestrutura(
     propriedade_id: str,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Obter infraestrutura cadastrada de uma propriedade
-    """
-    try:
-        # TODO: Buscar no banco
-        
-        # Mock para exemplo
-        return InfraestruturaPropiedade(
-            propriedade_id=propriedade_id,
-            produtor_nome="João Silva",
-            possui_irrigacao=False,
-            sistemas_irrigacao=[TipoIrrigacao.NAO_POSSUI],
-            area_irrigada_ha=None,
-            fonte_agua=None,
-            capacidade_agua_m3_dia=None,
-            equipamentos_aplicacao=[TipoAplicacao.PULVERIZADOR_COSTAL],
-            possui_hangar_aeronave=False,
-            possui_maquinario_proprio=False,
-            possui_armazem=False,
-            possui_energia_eletrica=True,
-            limitacoes=[
-                "Sem trator próprio",
-                "Depende de chuva para umidade"
-            ],
-            depende_terceiros_para=["pulverização", "distribuição de calcário"],
-            custo_medio_terceiros={
-                "irrigacao": 45.0,
-                "pulverizacao": 35.0,
-                "distribuicao_calcario": 50.0
-            }
-        )
-        
-    except Exception as e:
-        logger.error(f"Erro ao obter infraestrutura: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Infraestrutura não encontrada"
-        )
+    """Obter infraestrutura cadastrada de uma propriedade."""
+    logger.debug("Infraestrutura %s consultada por %s", propriedade_id, usuario)
+    return _infra_to_model(_obter_infra_ou_404(db, propriedade_id))
 
-
-# ============================================================================
-# SIMULAR RECOMENDAÇÃO CONTEXTUALIZADA
-# ============================================================================
 
 @router.post("/simular-recomendacao", response_model=RecomendacaoContextualizada)
 async def simular_recomendacao(
     propriedade_id: str,
-    tipo_acao: str,  # "irrigar" ou "aplicar_calcario"
+    tipo_acao: str,
     area_ha: float,
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Simular como seria a recomendação baseada na infraestrutura
-    
-    Exemplo: "Como seria a recomendação de irrigação para minha propriedade?"
-    """
-    try:
-        # TODO: Buscar infraestrutura do banco
-        # Mock
-        infraestrutura = InfraestruturaPropiedade(
-            propriedade_id=propriedade_id,
-            produtor_nome="João Silva",
-            possui_irrigacao=False,
-            sistemas_irrigacao=[TipoIrrigacao.NAO_POSSUI],
-            area_irrigada_ha=None,
-            fonte_agua=None,
-            capacidade_agua_m3_dia=None,
-            equipamentos_aplicacao=[TipoAplicacao.PULVERIZADOR_COSTAL],
-            possui_maquinario_proprio=False,
-            possui_armazem=False,
-            possui_energia_eletrica=True,
-            depende_terceiros_para=["irrigação", "distribuição de calcário"],
-            custo_medio_terceiros={
-                "irrigacao": 45.0,
-                "distribuicao_calcario": 50.0
-            }
-        )
-        
-        if tipo_acao == "irrigar":
-            return adaptar_recomendacao_irrigacao(infraestrutura, area_ha)
-        elif tipo_acao == "aplicar_calcario":
-            return adaptar_recomendacao_calcario(infraestrutura, area_ha)
-        else:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail=f"Tipo de ação '{tipo_acao}' não suportado"
-            )
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Erro ao simular recomendação: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao simular recomendação"
-        )
+    """Simular recomendacao baseada na infraestrutura real cadastrada."""
+    if area_ha <= 0:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="area_ha deve ser maior que zero")
 
+    infraestrutura = _infra_to_model(_obter_infra_ou_404(db, propriedade_id))
+    logger.debug("Simulacao %s para %s por %s", tipo_acao, propriedade_id, usuario)
 
-# ============================================================================
-# CHECKLIST DE INFRAESTRUTURA
-# ============================================================================
+    if tipo_acao == "irrigar":
+        return adaptar_recomendacao_irrigacao(infraestrutura, area_ha)
+    if tipo_acao == "aplicar_calcario":
+        return adaptar_recomendacao_calcario(infraestrutura, area_ha)
+
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Tipo de acao '{tipo_acao}' nao suportado")
+
 
 @router.get("/checklist", response_model=dict)
-async def checklist_infraestrutura(
-    usuario = Depends(obter_usuario_atual)
-):
-    """
-    Checklist para ajudar produtor a cadastrar infraestrutura
-    """
+async def checklist_infraestrutura(usuario=Depends(obter_usuario_atual)):
+    """Checklist para ajudar produtor a cadastrar infraestrutura."""
     return {
-        "titulo": "O que você possui na sua propriedade?",
+        "titulo": "O que voce possui na sua propriedade?",
         "categorias": [
             {
-                "categoria": "💧 Irrigação",
+                "categoria": "Irrigacao",
                 "perguntas": [
-                    "Você possui algum sistema de irrigação?",
-                    "Qual tipo? (Pivô central, aspersão, gotejamento, etc)",
+                    "Voce possui algum sistema de irrigacao?",
+                    "Qual tipo? Pivo central, aspersao, gotejamento etc.",
                     "Quantos hectares consegue irrigar?",
-                    "De onde vem a água? (Poço, rio, represa, etc)",
-                    "Quantos m³ de água consegue usar por dia?"
-                ]
+                    "De onde vem a agua?",
+                    "Quantos m3 de agua consegue usar por dia?",
+                ],
             },
             {
-                "categoria": "🚜 Equipamentos",
+                "categoria": "Equipamentos",
                 "perguntas": [
-                    "Possui trator próprio?",
+                    "Possui trator proprio?",
                     "Possui pulverizador? Qual tipo?",
-                    "Possui distribuidor de adubo/calcário?",
+                    "Possui distribuidor de adubo ou calcario?",
                     "Possui plantadeira/semeadora?",
-                    "Possui colheitadeira?"
-                ]
+                    "Possui colheitadeira?",
+                ],
             },
             {
-                "categoria": "🏗️ Infraestrutura",
+                "categoria": "Infraestrutura",
                 "perguntas": [
-                    "Possui armazém? Qual capacidade?",
+                    "Possui armazem? Qual capacidade?",
                     "Possui silo?",
-                    "Possui energia elétrica?",
-                    "Possui geradores?"
-                ]
+                    "Possui energia eletrica?",
+                    "Possui geradores?",
+                ],
             },
             {
-                "categoria": "💰 Terceirização",
+                "categoria": "Terceirizacao",
                 "perguntas": [
-                    "Quais serviços você contrata de terceiros?",
-                    "Quanto custa em média (por hectare)?",
-                    "Há limitações (ex: só disponível em certas épocas)?"
-                ]
-            }
+                    "Quais servicos voce contrata de terceiros?",
+                    "Quanto custa em media por hectare?",
+                    "Ha limitacoes de epoca, agenda ou disponibilidade?",
+                ],
+            },
         ],
-        "dica": "Quanto mais completo o cadastro, mais precisas serão as recomendações do sistema!"
+        "dica": "Quanto mais completo o cadastro, mais precisas serao as recomendacoes do sistema.",
     }
 
 
-# ============================================================================
-# ESTATÍSTICAS DE INFRAESTRUTURA
-# ============================================================================
-
 @router.get("/estatisticas", response_model=dict)
 async def estatisticas_infraestrutura(
-    usuario = Depends(obter_usuario_atual),
-    db: Session = Depends(get_db)
+    usuario=Depends(obter_usuario_atual),
+    db: Session = Depends(get_db),
 ):
-    """
-    Estatísticas de infraestrutura da região
-    
-    Ajuda produtor a entender:
-    - Quantos % dos produtores têm irrigação
-    - Custos médios de terceirização na região
-    - Equipamentos mais comuns
-    """
-    try:
-        # TODO: Query agregada no banco
-        
+    """Estatisticas agregadas de infraestrutura cadastrada."""
+    infraestruturas = db.query(InfraestruturaDB).filter(InfraestruturaDB.ativo.is_(True)).all()
+    total = len(infraestruturas)
+    if total == 0:
         return {
-            "regiao": "Região Sul - PR",
-            "total_propriedades": 150,
-            
-            "irrigacao": {
-                "possui_algum_sistema": "35%",
-                "tipos_mais_comuns": [
-                    "Pivô central (18%)",
-                    "Aspersão (12%)",
-                    "Gotejamento (5%)"
-                ],
-                "investimento_medio": "R$ 120.000 (pivô para 50ha)"
-            },
-            
-            "terceirizacao": {
-                "servicos_mais_terceirizados": [
-                    "Pulverização (78%)",
-                    "Distribuição de calcário (65%)",
-                    "Colheita (45%)",
-                    "Irrigação (12%)"
-                ],
-                "custos_medios_regiao": {
-                    "irrigacao_ha": 45.0,
-                    "pulverizacao_ha": 35.0,
-                    "distribuicao_calcario_ha": 50.0,
-                    "colheita_ha": 180.0
-                }
-            },
-            
-            "equipamentos": {
-                "trator_proprio": "42%",
-                "pulverizador_proprio": "38%",
-                "distribuidor_proprio": "25%"
-            },
-            
-            "dica": "Você pode comparar sua infraestrutura com a média regional para identificar oportunidades de investimento ou parceria."
+            "total_propriedades": 0,
+            "irrigacao": {"possui_algum_sistema_percentual": 0, "tipos_mais_comuns": []},
+            "terceirizacao": {"servicos_mais_terceirizados": [], "custos_medios": {}},
+            "equipamentos": {"maquinario_proprio_percentual": 0, "armazem_percentual": 0},
         }
-        
-    except Exception as e:
-        logger.error(f"Erro ao obter estatísticas: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Erro ao obter estatísticas"
-        )
+
+    def percentual(condicao):
+        return round((sum(1 for item in infraestruturas if condicao(item)) / total) * 100, 2)
+
+    servicos = {}
+    custos = {}
+    tipos_irrigacao = {}
+    for infra in infraestruturas:
+        for tipo in infra.sistemas_irrigacao or []:
+            tipos_irrigacao[tipo] = tipos_irrigacao.get(tipo, 0) + 1
+        for servico in infra.depende_terceiros_para or []:
+            servicos[servico] = servicos.get(servico, 0) + 1
+        for nome, valor in (infra.custo_medio_terceiros or {}).items():
+            custos.setdefault(nome, []).append(float(valor))
+
+    custos_medios = {nome: round(mean(valores), 2) for nome, valores in custos.items()}
+
+    logger.debug("Estatisticas de infraestrutura consultadas por %s", usuario)
+    return {
+        "total_propriedades": total,
+        "irrigacao": {
+            "possui_algum_sistema_percentual": percentual(lambda item: item.possui_irrigacao),
+            "tipos_mais_comuns": sorted(tipos_irrigacao, key=tipos_irrigacao.get, reverse=True)[:5],
+        },
+        "terceirizacao": {
+            "servicos_mais_terceirizados": sorted(servicos, key=servicos.get, reverse=True)[:8],
+            "custos_medios": custos_medios,
+        },
+        "equipamentos": {
+            "maquinario_proprio_percentual": percentual(lambda item: item.possui_maquinario_proprio),
+            "armazem_percentual": percentual(lambda item: item.possui_armazem),
+            "energia_eletrica_percentual": percentual(lambda item: item.possui_energia_eletrica),
+        },
+    }
