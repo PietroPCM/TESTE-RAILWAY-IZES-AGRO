@@ -18,8 +18,8 @@ MODO_AGRO_GERAL = "agro_geral"
 MODO_AGRO_COM_DADOS = "agro_com_dados"
 
 RESPOSTA_FORA_ESCOPO = (
-    "Eu sou o assistente agro do IZES. Posso ajudar com sensores, solo, "
-    "alertas, leituras e manejo da lavoura."
+    "Eu sou o assistente agro do IZES. Posso ajudar com plantio, solo, "
+    "sensores, alertas, animais e manejo da lavoura."
 )
 
 AVISO_DOSE = "Não aplique dose exata sem análise de solo ou agrônomo."
@@ -33,12 +33,21 @@ def _normalizar_texto(texto: str) -> str:
 def classificar_escopo_pergunta(pergunta: str) -> str:
     """Classifica pergunta sem depender de OpenAI ou contexto do banco."""
     texto = _normalizar_texto(pergunta)
-    termos_dados = {
-        "sensor", "sensores", "leitura", "leituras", "alerta", "alertas",
-        "dashboard", "agora", "desse sensor", "deste sensor", "meu sensor",
-        "minha leitura", "risco desse", "risco deste", "principal risco",
-        "umidade", "ph", "temperatura", "condutividade", "nitrogenio",
-        "fosforo", "potassio", "npk",
+    termos_dados_explicitos = {
+        "desse sensor", "deste sensor", "esse sensor", "este sensor",
+        "meu sensor", "minha leitura", "minhas leituras", "ultima leitura",
+        "ultimas leituras", "meus dados", "meu dado", "meu solo",
+        "minha lavoura", "meu talhao", "meu dashboard", "dashboard",
+        "com base no sensor", "com base nesse sensor", "com base neste sensor",
+        "com base na leitura", "com base nos dados", "analise minha",
+        "analise meus", "analise a leitura", "analise o sensor",
+        "esse alerta", "este alerta", "meu alerta", "alerta e grave",
+        "risco desse", "risco deste", "principal risco desse",
+        "principal risco deste", "o que minha leitura indica",
+        "meus dados estao bons", "como esta minha lavoura",
+        "esse potassio baixo", "este potassio baixo", "meu potassio baixo",
+        "esse nitrogenio baixo", "este nitrogenio baixo", "meu nitrogenio baixo",
+        "esse ph", "este ph", "meu ph",
     }
     termos_agro = {
         "agro", "agricola", "agricultura", "agronom", "campo", "rural",
@@ -50,8 +59,11 @@ def classificar_escopo_pergunta(pergunta: str) -> str:
         "nitrogenio", "fosforo", "potassio", "npk", "praga", "pragas",
         "fungo", "fungos", "doenca", "ervas daninhas", "milho", "soja",
         "feijao", "arroz", "trigo", "cafe", "mandioca", "cana", "algodao",
-        "horta", "hortalica", "tomate", "pastagem", "gado", "chuva",
-        "seca", "geada", "clima", "inseto", "lagarta", "pulgao",
+        "horta", "hortalica", "hortalicas", "tomate", "fruta", "frutas",
+        "pastagem", "gado", "pecuaria", "animal", "animais", "vaca",
+        "vacas", "bezerro", "bezerros", "boi", "leite", "reproducao",
+        "inseminacao", "ordenha", "chuva", "seca", "geada", "clima",
+        "inseto", "lagarta", "pulgao", "produtividade",
     }
     termos_fora = {
         "capital", "italia", "franca", "copa", "futebol", "politica",
@@ -59,18 +71,26 @@ def classificar_escopo_pergunta(pergunta: str) -> str:
         "programacao", "receita", "filme", "musica",
     }
 
-    if any(termo in texto for termo in termos_agro):
-        if any(termo in texto for termo in termos_dados):
-            return MODO_AGRO_COM_DADOS
-        return MODO_AGRO_GERAL
-
-    if any(termo in texto for termo in termos_dados):
+    if any(termo in texto for termo in termos_dados_explicitos):
         return MODO_AGRO_COM_DADOS
+
+    if any(termo in texto for termo in termos_agro):
+        return MODO_AGRO_GERAL
 
     if any(termo in texto for termo in termos_fora):
         return MODO_FORA_ESCOPO
 
     return MODO_FORA_ESCOPO
+
+
+def buscar_conhecimento_agro(pergunta: str, modo: str) -> list:
+    """
+    Ponto de extensão para RAG futuro.
+
+    Hoje não há base técnica indexada neste backend; portanto a função retorna
+    lista vazia para não fingir que existem documentos consultados.
+    """
+    return []
 
 
 class ServicoOpenAI:
@@ -106,6 +126,8 @@ class ServicoOpenAI:
             RespostaIA com análise e recomendações
         """
         modo_pergunta = classificar_escopo_pergunta(contexto.usuario_pergunta)
+        if modo_pergunta == MODO_AGRO_GERAL:
+            contexto = self._contexto_agro_geral(contexto)
 
         if modo_pergunta == MODO_FORA_ESCOPO:
             return self._resposta_fora_escopo(contexto, pergunta_id)
@@ -166,26 +188,21 @@ class ServicoOpenAI:
     def _montar_prompt(self, contexto: ContextoIA, modo_pergunta: Optional[str] = None) -> str:
         """Monta prompt estruturado para ChatGPT"""
         modo = modo_pergunta or classificar_escopo_pergunta(contexto.usuario_pergunta)
-        dados = {
-            "modo": modo,
-            "cliente_id": contexto.cliente_id,
-            "sensor_id_foco": contexto.sensor_id,
-            "pergunta": contexto.usuario_pergunta,
-            "sensores_relevantes": [sensor.model_dump(mode="json") for sensor in contexto.sensores_relevantes],
-            "alertas_ativos": [alerta.model_dump(mode="json") for alerta in contexto.alertas_ativos],
-            "alertas_historico_30_dias": [alerta.model_dump(mode="json") for alerta in contexto.alertas_historico_30_dias],
-            "clima_atual": contexto.clima_atual,
-            "clima_ultimos_7_dias": {
-                sensor_id: clima.model_dump(mode="json")
-                for sensor_id, clima in contexto.clima_ultimos_7_dias.items()
-            },
-            "previsao_7_dias": contexto.previsao_7_dias,
-            "plano_agronomo": contexto.plano_agronomo,
-            "cultura": contexto.cultura,
-            "fase_desenvolvimento": contexto.fase_desenvolvimento,
-            "prioridades": contexto.prioridades,
-            "timestamp_coleta": contexto.timestamp_coleta.isoformat(),
-        }
+        dados = self._dados_para_prompt(contexto, modo)
+
+        if modo == MODO_AGRO_GERAL:
+            instrucao_modo = (
+                "- Modo agro_geral: responda uma dúvida agro/rural geral para pequeno produtor.\n"
+                "- Não use dados de sensor, leitura, alerta, pH, NPK, cidade, fazenda ou talhão do cliente.\n"
+                "- Não invente dados reais; responda com orientação técnica geral e prática.\n"
+                "- Se a pergunta exigir recomendação exata, diga que precisa de análise de solo, região, cultura, fase e agrônomo."
+            )
+        else:
+            instrucao_modo = (
+                "- Modo agro_com_dados: analise somente sensores, leituras, avaliações e alertas reais fornecidos.\n"
+                "- Não invente dados ausentes.\n"
+                "- Explique o risco principal e o que fazer agora em linguagem simples."
+            )
 
         return f"""
 ANÁLISE AGRÍCOLA IZES - RESPONDA SOMENTE COM JSON VÁLIDO
@@ -211,25 +228,55 @@ Formato JSON obrigatório:
   "confianca_geral": 0.0
 }}
 
+Regras do modo:
+{instrucao_modo}
+
 Regras obrigatórias:
-- Se o modo for agro_geral, responda orientação agrícola geral sem exigir sensor.
-- Se o modo for agro_com_dados, use sensores, leituras, avaliações e alertas reais quando existirem.
 - Use no máximo 5 a 8 linhas no campo resposta_texto.
 - Frases curtas, linguagem simples, sem relatório técnico.
-- Não responda conhecimento geral fora do domínio agro/sensores/solo/lavoura/app.
+- Não responda conhecimento geral fora do domínio agro/rural/sensores/solo/lavoura/app.
 - Não invente fazenda, sensor, leitura, cultura, clima, cidade, talhão, histórico, alerta ou cliente.
-- Se não houver dado real do cliente/sensor, diga que não tem leitura real para esse caso.
-- Use as avaliações e alertas já calculados quando existirem.
 - Não recomende dose exata de fertilizante/corretivo sem cultura, área, análise de solo e validação técnica.
 - Recomende agrônomo ou análise laboratorial quando a decisão exigir validação técnica.
-- Se faltar dado, diga exatamente qual dado faltou e não complete por suposição.
+- Se faltar dado real no modo agro_com_dados, diga exatamente qual dado faltou e não complete por suposição.
 """.strip()
+
+    def _dados_para_prompt(self, contexto: ContextoIA, modo: str) -> dict:
+        if modo == MODO_AGRO_GERAL:
+            return {
+                "modo": modo,
+                "pergunta": contexto.usuario_pergunta,
+                "conhecimento_agro": buscar_conhecimento_agro(contexto.usuario_pergunta, modo),
+            }
+
+        return {
+            "modo": modo,
+            "cliente_id": contexto.cliente_id,
+            "sensor_id_foco": contexto.sensor_id,
+            "pergunta": contexto.usuario_pergunta,
+            "sensores_relevantes": [sensor.model_dump(mode="json") for sensor in contexto.sensores_relevantes],
+            "alertas_ativos": [alerta.model_dump(mode="json") for alerta in contexto.alertas_ativos],
+            "alertas_historico_30_dias": [alerta.model_dump(mode="json") for alerta in contexto.alertas_historico_30_dias],
+            "clima_atual": contexto.clima_atual,
+            "clima_ultimos_7_dias": {
+                sensor_id: clima.model_dump(mode="json")
+                for sensor_id, clima in contexto.clima_ultimos_7_dias.items()
+            },
+            "previsao_7_dias": contexto.previsao_7_dias,
+            "plano_agronomo": contexto.plano_agronomo,
+            "cultura": contexto.cultura,
+            "fase_desenvolvimento": contexto.fase_desenvolvimento,
+            "prioridades": contexto.prioridades,
+            "timestamp_coleta": contexto.timestamp_coleta.isoformat(),
+        }
 
     def _prompt_sistema(self) -> str:
         return (
-            "Você é a IA agrícola do IZES para apoio à decisão no campo. "
-            "Responda apenas com JSON válido, curto, em português claro e usando somente os dados recebidos. "
-            "Recuse perguntas fora de escopo agro/sensores/solo/lavoura/app. "
+            "Você é o assistente agro do IZES para agricultura, pecuária, solo, sensores e manejo. "
+            "Responda apenas com JSON válido, curto, em português claro e respeitando o modo da pergunta. "
+            "No modo agro_geral, não use nem invente dados de sensor, leitura, alerta, fazenda, cidade ou talhão. "
+            "No modo agro_com_dados, use somente os dados reais fornecidos. "
+            "Recuse perguntas fora de escopo agro/rural/sensores/solo/lavoura/app. "
             "Não dê dose exata de fertilizante ou corretivo sem cultura, área, análise de solo e validação técnica. "
             "Deixe claro que a resposta é orientação e não substitui laudo agronômico."
         )
@@ -247,8 +294,20 @@ Regras obrigatórias:
             bool(contexto.alertas_ativos),
             bool(contexto.alertas_historico_30_dias),
         ])
+
+    def _contexto_agro_geral(self, contexto: ContextoIA) -> ContextoIA:
+        """Remove qualquer dado real do cliente para dúvida agro/rural geral."""
+        return ContextoIA(
+            cliente_id=contexto.cliente_id,
+            sensor_id=None,
+            usuario_pergunta=contexto.usuario_pergunta,
+            tokens_estimado=0,
+        )
     
-    def _dados_consultados(self, contexto: ContextoIA) -> list:
+    def _dados_consultados(self, contexto: ContextoIA, modo: Optional[str] = None) -> list:
+        if modo == MODO_AGRO_GERAL:
+            return ["conhecimento_agro_geral"]
+
         dados = []
         if contexto.sensores_relevantes:
             dados.append("sensores")
@@ -372,27 +431,15 @@ Regras obrigatórias:
         )
 
     def _resposta_agro_geral_fallback(self, contexto: ContextoIA, pergunta_id: str) -> RespostaIA:
-        pergunta = self._normalizar(contexto.usuario_pergunta)
-        if "milho" in pergunta:
-            situacao = "Para plantar milho, comece pelo solo, semente certa e época indicada na sua região."
-            risco = "Sem análise de solo, a adubação pode ficar fraca ou exagerada."
-            passos = [
-                "Preparar o solo e corrigir acidez se a análise indicar.",
-                "Escolher semente adaptada e plantar na época recomendada.",
-                "Acompanhar pragas, mato, umidade e nutrição da lavoura.",
-            ]
-            acao = "Planejar o plantio do milho com análise de solo e semente adequada."
-            motivo = "Milho responde bem a solo corrigido, boa semente e manejo no começo."
-        else:
-            situacao = "Posso orientar de forma geral, mas não tenho leitura real para esse caso."
-            risco = "Sem dados do talhão, a recomendação deve ser usada só como orientação inicial."
-            passos = [
-                "Verificar solo, cultura e fase da lavoura.",
-                "Coletar análise de solo antes de adubar ou corrigir.",
-                "Consultar um agrônomo para decisão de dose.",
-            ]
-            acao = "Usar orientação geral e coletar dados reais antes de decidir manejo."
-            motivo = "A pergunta é agro, mas não veio com leitura real do campo."
+        situacao = "A pergunta é agro/rural geral e será respondida sem usar sensores do cliente."
+        risco = "Para recomendação exata, faltam região, cultura/fase, área e análise técnica."
+        passos = [
+            "Descrever cultura, criação ou problema do campo.",
+            "Usar análise de solo ou orientação técnica para decisões exatas.",
+            "Ativar OpenAI para resposta agro geral mais completa.",
+        ]
+        acao = "Responder como orientação agro geral, sem dados de sensor."
+        motivo = "A pergunta não pediu análise de leitura, sensor ou alerta."
 
         return self._montar_resposta_segura(
             contexto=contexto,
@@ -471,6 +518,7 @@ Regras obrigatórias:
         modelo: str,
         tokens_usados: int = 0,
     ) -> RespostaIA:
+        dados_consultados = self._dados_consultados(contexto, modo)
         return RespostaIA(
             pergunta_id=pergunta_id,
             cliente_id=contexto.cliente_id,
@@ -479,10 +527,10 @@ Regras obrigatórias:
             resposta_estruturada={
                 "modo": modo,
                 "origem": origem,
-                "dados_reais": bool(self._dados_consultados(contexto) != ["pergunta_usuario"]),
+                "dados_reais": dados_consultados not in (["pergunta_usuario"], ["conhecimento_agro_geral"]),
             },
             recomendacao=recomendacao,
-            dados_consultados=self._dados_consultados(contexto),
+            dados_consultados=dados_consultados,
             atencoes=atencoes[:3],
             proximos_passos=proximos_passos[:3],
             confianca_geral=max(0.0, min(float(confianca), 1.0)),

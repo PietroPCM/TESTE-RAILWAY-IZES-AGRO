@@ -32,26 +32,28 @@ Use ambiente de teste sem `OPENAI_API_KEY`.
 
 O endpoint `POST /api/ia/chat` classifica a pergunta antes de chamar a OpenAI:
 
-- `fora_escopo`: pergunta geral sem relação com agro. Não chama OpenAI.
-- `agro_geral`: dúvida agro válida, como plantio, solo, cultura, praga ou adubação. Pode responder sem sensor.
-- `agro_com_dados`: pergunta que pede risco/leitura/sensor/alerta. Usa dados reais quando existirem.
+- `fora_escopo`: pergunta sem relação com agro/rural. Não chama OpenAI e não busca sensor.
+- `agro_geral`: dúvida agro/rural válida, como plantio, pecuária, solo, cultura, praga, adubação, irrigação ou manejo. Pode responder sem sensor.
+- `agro_com_dados`: pergunta que pede análise de risco/leitura/sensor/alerta/dashboard/dados do cliente. Usa dados reais quando existirem.
 
 O fallback:
 
-- usa sensores reais carregados do banco configurado quando a pergunta depende de dados;
+- usa sensores reais carregados do banco configurado somente quando a pergunta pede dados;
 - usa última leitura disponível;
 - usa avaliações agronômicas já calculadas;
 - usa alertas ativos;
-- responde dúvida agro geral mesmo sem sensor, sem inventar dado real;
+- responde dúvida agro geral sem buscar sensor, sem inventar dado real;
 - deixa claro que é orientação, não laudo agronômico;
 - não recomenda dose exata de fertilizante/corretivo.
 
-Exemplo de pergunta válida:
+Exemplo de pergunta com dados do sensor:
 
 ```text
-POST /api/ia/chat?cliente_id=cliente_teste&sensor_id=sensor_teste_001&pergunta=Qual o risco agora?
+POST /api/ia/chat?cliente_id=cliente_teste&sensor_id=sensor_teste_001&pergunta=Qual o principal risco desse sensor?
 X-App-Token: app_teste_local
 ```
+
+Resposta esperada: análise curta usando leitura, avaliação e alerta reais do sensor. Se não houver leitura real, a resposta deve dizer que não há dados suficientes.
 
 Exemplo de pergunta agro geral:
 
@@ -60,7 +62,18 @@ POST /api/ia/chat?cliente_id=cliente_teste&pergunta=Como plantar milho?
 X-App-Token: app_teste_local
 ```
 
-Resposta esperada: orientação curta sobre preparo do solo, época, semente, análise de solo, pragas e irrigação, sem inventar fazenda, sensor ou leitura.
+Também são agro geral:
+
+```text
+O que é milho?
+Como plantar soja?
+Como funciona reprodução de vaca?
+Como melhorar pastagem?
+```
+
+Resposta esperada: orientação curta e prática, sem buscar sensor, sem mencionar pH, NPK, potássio, nitrogênio, alerta, fazenda ou leitura do cliente.
+
+Regra crítica: `cliente_id` ou `sensor_id` existir não muda uma pergunta geral para análise com dados. A pergunta é quem decide o modo.
 
 Exemplo de pergunta fora de escopo:
 
@@ -72,14 +85,24 @@ X-App-Token: app_teste_local
 Resposta esperada:
 
 ```text
-Eu sou o assistente agro do IZES. Posso ajudar com sensores, solo, alertas, leituras e manejo da lavoura.
+Eu sou o assistente agro do IZES. Posso ajudar com plantio, solo, sensores, alertas, animais e manejo da lavoura.
 ```
 
 ## Testar com OpenAI configurada
 
 Depois de configurar `OPENAI_API_KEY` e `OPENAI_MODEL`, usar o mesmo endpoint pelo Swagger.
 
-A resposta enviada para OpenAI usa somente o contexto recebido do backend:
+A resposta enviada para OpenAI depende do modo:
+
+No modo `agro_geral`, a OpenAI recebe:
+
+- pergunta do usuário;
+- modo `agro_geral`;
+- lista vazia de conhecimento RAG por enquanto.
+
+No modo `agro_geral`, a OpenAI não recebe sensores, leituras, alertas, pH, NPK, fazenda, cidade ou talhão do cliente.
+
+No modo `agro_com_dados`, a OpenAI recebe somente o contexto real carregado:
 
 - sensores relevantes;
 - última leitura por sensor;
@@ -99,6 +122,7 @@ Como saber se caiu em fallback:
 - `modelo` vem como `fallback-local` quando a OpenAI não foi usada ou falhou;
 - `tokens_usados` vem como `0`;
 - `resposta_estruturada.origem` vem como `fallback_local`;
+- em pergunta agro geral, `dados_consultados` vem como `["conhecimento_agro_geral"]`;
 - se não houver leitura, alerta ou avaliação em pergunta com sensor, `resposta_estruturada.modo` vem como `agro_com_dados` e a resposta informa que não há leitura real;
 - se a pergunta for fora de escopo, `resposta_estruturada.modo` vem como `fora_escopo`.
 
@@ -108,9 +132,17 @@ A IA não pode inventar fazenda, sensor, leitura, cultura, clima, cidade, talhã
 
 Se `cliente_id` não existir, o endpoint deve retornar cliente não encontrado.
 Se `sensor_id` não existir para o cliente, o endpoint deve retornar sensor não encontrado.
-Se não houver leitura, alertas ou avaliações em pergunta que depende de sensor, a resposta deve informar que não há dados suficientes.
-Perguntas agro gerais, como `Como plantar milho?`, podem ser respondidas sem sensor como orientação geral.
+Se não houver leitura, alertas ou avaliações em pergunta que depende de sensor/dados, a resposta deve informar que não há dados suficientes.
+Perguntas agro gerais, como `Como plantar milho?`, `Como plantar soja?` e `Como funciona reprodução de vaca?`, devem ser respondidas sem sensor como orientação geral.
 Mocks, exemplos de Swagger e dados de documentação não contam como dados reais.
+
+## RAG futuro
+
+O código deixa um ponto de extensão `buscar_conhecimento_agro(pergunta, modo)`.
+
+Hoje ele retorna lista vazia, porque ainda não existe base técnica indexada. Isso evita fingir que o backend consultou documentos.
+
+Próximo passo técnico: plugar documentos agronômicos confiáveis nesse ponto para melhorar precisão. Isso não é requisito para a OpenAI responder dúvidas agro básicas agora.
 
 ## Ações manuais necessárias
 
@@ -118,7 +150,7 @@ Mocks, exemplos de Swagger e dados de documentação não contam como dados reai
 - Confirmar `OPENAI_API_KEY` no Railway; sem isso, `/api/ia/chat` funciona em fallback local, mas não chama OpenAI.
 - Conferir `OPENAI_MODEL`, `OPENAI_TEMPERATURE` e `OPENAI_MAX_TOKENS` se quiser controlar modelo/custo/tamanho de resposta; sem isso, valem os defaults do backend.
 - Fazer redeploy depois de alterar variáveis; sem redeploy, a API pode continuar com configuração anterior.
-- Criar sensor e leitura de teste antes de chamar IA; sem sensores reais para o `cliente_id`, `/api/ia/chat` retorna que não encontrou sensor.
+- Criar sensor e leitura de teste antes de chamar perguntas com dados; perguntas agro gerais não precisam de sensor.
 - Monitorar uso e custos da OpenAI API após habilitar a chave.
 - Não commitar `.env` nem valores reais de chave/token.
 

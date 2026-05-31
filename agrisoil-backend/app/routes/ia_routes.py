@@ -99,22 +99,29 @@ async def chat_ia(
         if modo_pergunta == MODO_FORA_ESCOPO:
             contexto = ContextoIA(
                 cliente_id=cliente_id,
-                sensor_id=sensor_id,
+                sensor_id=None,
                 usuario_pergunta=pergunta,
             )
             resposta = await ServicoOpenAI().analisar_contexto(contexto, pergunta_id)
             return resposta
 
-        # 1. Montar contexto
-        logger.debug("Montando contexto IA...")
-        contexto = await servico_contexto_ia.montar_contexto(
-            cliente_id=cliente_id,
-            pergunta=pergunta,
-            sensor_id=sensor_id,
-            usar_cache=True,
-            db=db,
-            exigir_cliente=modo_pergunta != MODO_AGRO_GERAL,
-        )
+        if modo_pergunta == MODO_AGRO_GERAL:
+            contexto = ContextoIA(
+                cliente_id=cliente_id,
+                sensor_id=None,
+                usuario_pergunta=pergunta,
+            )
+        else:
+            # 1. Montar contexto apenas quando a pergunta pede dados reais
+            logger.debug("Montando contexto IA com dados reais...")
+            contexto = await servico_contexto_ia.montar_contexto(
+                cliente_id=cliente_id,
+                pergunta=pergunta,
+                sensor_id=sensor_id,
+                usar_cache=True,
+                db=db,
+                exigir_cliente=True,
+            )
         
         logger.debug(f"Contexto montado: {contexto.tokens_estimado} tokens")
         
