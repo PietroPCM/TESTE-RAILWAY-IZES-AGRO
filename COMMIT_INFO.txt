@@ -1,0 +1,95 @@
+================================================================================
+  COMMIT INFO - TESTE DE SINCRONIZAÇÃO REPOSITÓRIOS
+================================================================================
+
+Data: 31 de maio de 2026
+Autor: Desenvolvimento IZES-AGRO
+
+================================================================================
+INFORMAÇÕES DOS COMMITS RECENTES
+================================================================================
+
+COMMIT: 63a6be8 (HEAD)
+Mensagem: "fix: atualizações finais em IA routes, openai_service e testes"
+Data: Atual
+
+Arquivos alterados:
+  - TESTE_IA.md (novo arquivo com documentação)
+  - agrisoil-backend/app/routes/ia_routes.py
+  - agrisoil-backend/app/services/openai_service.py
+  - agrisoil-backend/tests/test_ia_fallback.py
+
+Detalhes:
+  - Melhorias na classificação de perguntas em ia_routes
+  - Refinamentos em openai_service para fallback mais robusto
+  - Testes atualizados para cobertura completa
+  - Documentação TESTE_IA.md revisada e atualizada
+
+Mudanças: 4 arquivos alterados, 358 inserções, 106 remoções
+
+================================================================================
+COMMIT: 7d08496
+Mensagem: "Corrige classificação do chat IA agro"
+
+================================================================================
+COMMIT: 1e3254a
+Mensagem: "feat: teste de IA e integração Railway"
+
+Arquivos alterados:
+  - agrisoil-backend/app/models/contratos.py
+  - agrisoil-backend/app/routes/ia_routes.py
+  - agrisoil-backend/app/services/contexto_ia.py
+  - agrisoil-backend/app/services/openai_service.py
+  - agrisoil-backend/tests/test_ia_fallback.py
+  - TESTE_IA.md (novo arquivo)
+
+Mudanças: 6 arquivos alterados, 633 inserções, 135 remoções
+
+================================================================================
+STATUS DOS REPOSITÓRIOS
+================================================================================
+
+✅ TESTE-RAILWAY-IZES-AGRO (railway/main)
+   Hash: 63a6be8
+   URL: https://github.com/PietroPCM/TESTE-RAILWAY-IZES-AGRO.git
+   Status: Sincronizado (Produção)
+
+✅ IZES-AGRO (origin/main)
+   Hash: 63a6be8
+   URL: https://github.com/sofiaalamini/IZES-AGRO.git
+   Status: Sincronizado
+
+✅ Local (main)
+   Hash: 63a6be8
+   Status: Sincronizado
+
+================================================================================
+RESUMO DAS MUDANÇAS
+================================================================================
+
+Total de arquivos afetados: 6
+Total de inserções: 943
+Total de remoções: 146
+
+Principais melhorias:
+  1. Sistema robusto de fallback para IA (sem OpenAI)
+  2. Classificação inteligente de perguntas (fora_escopo, agro_geral, agro_com_dados)
+  3. Documentação completa de testes
+  4. Cobertura de testes aprimorada
+  5. Integração Railway preparada
+
+================================================================================
+TESTE DE SINCRONIZAÇÃO
+================================================================================
+
+Este arquivo foi criado para verificar se os commits aparecem corretamente
+no repositório https://github.com/sofiaalamini/IZES-AGRO.
+
+Se você vê este arquivo no GitHub, significa que:
+✓ O commit foi bem-sucedido
+✓ O push para origin/main foi bem-sucedido
+✓ Os repositórios estão sincronizados
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================
