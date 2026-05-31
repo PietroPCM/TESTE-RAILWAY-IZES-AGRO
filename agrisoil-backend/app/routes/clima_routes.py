@@ -1,16 +1,63 @@
 """
 Rotas da API de Clima
 """
+import httpx
 from fastapi import APIRouter, HTTPException, Query, Header
 from typing import List, Optional
 import logging
 from app.models.sensor import Sensor, LocalizacaoSensor, ClienteConfig
-from app.models.clima import RespostaMobileClima, ClimaCompletoSensor
+from app.models.clima import (
+    ClimaCompletoSensor,
+    RespostaClimaAtualLocalizacao,
+    RespostaMobileClima,
+)
 from app.services.clima_service import servico_clima
+from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/clima", tags=["clima"])
+
+
+@router.get("/atual", response_model=RespostaClimaAtualLocalizacao)
+async def obter_clima_atual_por_localizacao(
+    lat: float = Query(..., ge=-90, le=90, description="Latitude da localizacao"),
+    lon: float = Query(..., ge=-180, le=180, description="Longitude da localizacao"),
+    provedor: Optional[str] = Query(None, description="Provedor: openweathermap ou weatherapi"),
+):
+    """
+    Obtem clima atual, resumo de previsao e alerta agricola por latitude/longitude.
+
+    Exemplo:
+    GET /api/clima/atual?lat=-24.9555&lon=-53.4552
+    """
+    try:
+        return await servico_clima.obter_clima_por_coordenadas(
+            latitude=lat,
+            longitude=lon,
+            provedor=provedor,
+        )
+    except ValueError as exc:
+        logger.error("Erro de configuracao do clima: %s", exc)
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except httpx.HTTPStatusError as exc:
+        logger.error("Erro HTTP do provedor de clima: %s", exc)
+        raise HTTPException(
+            status_code=502,
+            detail="Falha ao consultar o provedor de clima.",
+        ) from exc
+    except httpx.RequestError as exc:
+        logger.error("Erro de conexao com o provedor de clima: %s", exc)
+        raise HTTPException(
+            status_code=502,
+            detail="Nao foi possivel conectar ao provedor de clima.",
+        ) from exc
+    except Exception as exc:
+        logger.error("Erro inesperado ao obter clima por localizacao: %s", exc)
+        raise HTTPException(
+            status_code=500,
+            detail="Erro interno ao consultar o clima atual.",
+        ) from exc
 
 
 @router.post("/sensor/registrar", response_model=Sensor)
@@ -262,5 +309,5 @@ async def health_check():
     return {
         "status": "ok",
         "servico": "API de Clima",
-        "timestamp": str(__import__('datetime').datetime.now())
+        "timestamp": utc_iso(__import__('datetime').datetime.utcnow())
     }

@@ -1,9 +1,11 @@
 """
 Modelos de Sensor com Localização
 """
-from pydantic import BaseModel
+from pydantic import BaseModel, model_serializer
 from typing import Optional
 from datetime import datetime
+
+from app.utils.datetime_utils import serialize_utc_payload
 
 
 class LocalizacaoSensor(BaseModel):
@@ -29,6 +31,10 @@ class Sensor(BaseModel):
 
     class Config:
         from_attributes = True
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        return serialize_utc_payload(handler(self))
 
 
 class ClienteConfig(BaseModel):

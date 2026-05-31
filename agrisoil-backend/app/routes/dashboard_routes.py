@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 
 from app.db import get_db
 from app.repositories.sensor_repository import SensorRepository, LeituraRepository
+from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
 
@@ -57,7 +58,7 @@ async def dashboard_sensores(
                 "total_sensores": 0,
                 "sensores": [],
                 "alertas_ativos": 0,
-                "atualizado_em": datetime.utcnow().isoformat()
+                "atualizado_em": utc_iso(datetime.utcnow())
             }
         
         # Buscar dados de cada sensor
@@ -78,7 +79,7 @@ async def dashboard_sensores(
                 "municipio": sensor.municipio or "N/A",
                 "estado": sensor.estado or "N/A",
                 "ultima_leitura": {
-                    "timestamp": ultima_leitura.timestamp.isoformat() if ultima_leitura else None,
+                    "timestamp": utc_iso(ultima_leitura.timestamp) if ultima_leitura else None,
                     "temperatura": ultima_leitura.temperatura if ultima_leitura else None,
                     "umidade": ultima_leitura.umidade if ultima_leitura else None,
                     "ph": ultima_leitura.ph if ultima_leitura else None,
@@ -92,7 +93,7 @@ async def dashboard_sensores(
             "total_sensores": len(sensores),
             "sensores": sensores_data,
             "alertas_ativos": total_alertas,
-            "atualizado_em": datetime.utcnow().isoformat()
+            "atualizado_em": utc_iso(datetime.utcnow())
         }
     
     except Exception as e:

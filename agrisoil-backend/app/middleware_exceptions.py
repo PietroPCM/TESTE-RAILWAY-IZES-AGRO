@@ -10,6 +10,7 @@ from datetime import datetime
 from typing import Union
 
 from app.exceptions import AgriSoilException, RateLimitError
+from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger("agrisoil")
 
@@ -33,7 +34,7 @@ async def global_exception_handler(request: Request, exc: Exception) -> JSONResp
         content={
             "error_code": "INTERNAL_SERVER_ERROR",
             "message": "Erro interno do servidor",
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": utc_iso(datetime.utcnow()),
             "path": request.url.path,
         }
     )
@@ -62,7 +63,7 @@ async def agrisoil_exception_handler(request: Request, exc: AgriSoilException) -
             "error_code": exc.error_code,
             "message": exc.message,
             "details": exc.details,
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": utc_iso(datetime.utcnow()),
             "path": request.url.path,
         }
     )
@@ -95,7 +96,7 @@ async def validation_error_handler(request: Request, exc: RequestValidationError
             "error_code": "VALIDATION_ERROR",
             "message": "Erro de validação dos dados",
             "errors": errors,
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": utc_iso(datetime.utcnow()),
             "path": request.url.path,
         }
     )
@@ -117,7 +118,7 @@ async def rate_limit_handler(request: Request, exc: RateLimitError) -> JSONRespo
         content={
             "error_code": "RATE_LIMIT_EXCEEDED",
             "message": "Muitas requisições. Tente novamente mais tarde.",
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": utc_iso(datetime.utcnow()),
             "path": request.url.path,
         }
     )

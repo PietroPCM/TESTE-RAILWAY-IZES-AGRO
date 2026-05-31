@@ -9,7 +9,7 @@ from typing import Optional
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, model_serializer
 from sqlalchemy.orm import Session
 
 from app.db import get_db
@@ -25,6 +25,7 @@ from app.models.database import (
     ZonaManejoDB,
 )
 from app.security import obter_usuario_atual, verificar_admin
+from app.utils.datetime_utils import utc_iso
 
 router = APIRouter(prefix="/api/clientes", tags=["Clientes"])
 logger = logging.getLogger(__name__)
@@ -90,6 +91,14 @@ class ClienteResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        return {
+            **handler(self),
+            "data_criacao": utc_iso(self.data_criacao),
+            "data_atualizacao": utc_iso(self.data_atualizacao),
+        }
 
 
 def _usuario_cliente_id(usuario) -> Optional[str]:
@@ -351,6 +360,6 @@ async def obter_resumo_cliente(
         "saude_sistema": {
             "status": "bom" if percentual_saude >= 90 else "atencao",
             "percentual": percentual_saude,
-            "ultima_verificacao": datetime.utcnow(),
+            "ultima_verificacao": utc_iso(datetime.utcnow()),
         },
     }

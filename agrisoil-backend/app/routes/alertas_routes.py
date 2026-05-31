@@ -11,6 +11,7 @@ from app.db import get_db
 from app.models.regra_alerta import AlertaGerado, AcaoRecomendada
 from app.security import obter_usuario_atual
 from app.services.motor_regras_contextualizado import MotorRegras
+from app.utils.datetime_utils import serialize_utc_payload, utc_iso
 
 router = APIRouter(prefix="/api/alertas", tags=["Alertas"])
 logger = logging.getLogger(__name__)
@@ -79,7 +80,7 @@ async def listar_alertas(
             }
         ]
         
-        return {
+        return serialize_utc_payload({
             "total": len(alertas),
             "usuario": usuario,
             "filtros_aplicados": {
@@ -89,7 +90,7 @@ async def listar_alertas(
                 "limite_dias": limite_dias
             },
             "alertas": alertas
-        }
+        })
         
     except Exception as e:
         logger.error(f"Erro ao listar alertas: {e}")
@@ -124,7 +125,7 @@ async def obter_alerta_detalhes(
         #     .filter(AlertaGerado.id == alerta_id)\
         #     .first()
         
-        return {
+        return serialize_utc_payload({
             "id": alerta_id,
             "zona_id": "zona_soja_01",
             "sensor_id": "sensor_ph_001",
@@ -157,7 +158,7 @@ async def obter_alerta_detalhes(
                     "motivo": "Alerta gerado automaticamente pelo MotorRegras"
                 }
             ]
-        }
+        })
         
     except HTTPException:
         raise
@@ -208,7 +209,7 @@ async def atualizar_status_alerta(
             "novo_status": novo_status,
             "atualizado_por": usuario,
             "motivo": motivo,
-            "timestamp": datetime.now(),
+            "timestamp": utc_iso(datetime.utcnow()),
             "mensagem": f"Alerta {novo_status} com sucesso"
         }
         
@@ -259,14 +260,14 @@ async def obter_alertas_zona(
             }
         ]
         
-        return {
+        return serialize_utc_payload({
             "zona_id": zona_id,
             "total_alertas": len(alertas),
             "alertas_novo": sum(1 for a in alertas if a["status"] == "novo"),
             "alertas_reconhecido": 0,
             "alertas_resolvido": 0,
             "alertas": alertas
-        }
+        })
         
     except Exception as e:
         logger.error(f"Erro ao obter alertas da zona: {e}")
@@ -305,12 +306,12 @@ async def obter_alertas_sensor(
             }
         ]
         
-        return {
+        return serialize_utc_payload({
             "sensor_id": sensor_id,
             "total_alertas": len(alertas),
             "alertas_pendentes": sum(1 for a in alertas if a["status"] in ["novo", "reconhecido"]),
             "alertas": alertas
-        }
+        })
         
     except Exception as e:
         logger.error(f"Erro ao obter alertas do sensor: {e}")
@@ -346,7 +347,7 @@ async def silenciar_alerta(
             "silenciado": True,
             "silenciado_por_horas": horas,
             "silenciado_por": usuario,
-            "data_reaparecimento": datetime.now(),
+            "data_reaparecimento": utc_iso(datetime.utcnow()),
             "mensagem": "Alerta silenciado temporariamente"
         }
         

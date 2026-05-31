@@ -1,84 +1,79 @@
 """
-Redis Cache para performance
-10x mais rápido no dashboard
+Redis cache opcional para performance.
 """
 
-import redis
-from typing import Optional, Any
 import json
 import logging
+from typing import Any, Optional
+
+import redis
+
 from app.config import settings
 
 logger = logging.getLogger(__name__)
 
 
 class RedisCache:
-    """Cliente Redis singleton para cache"""
-    
+    """Cliente Redis singleton para cache."""
+
     _instance = None
-    
+
     def __new__(cls):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
             try:
+                if settings.environment in {"development", "dev", "local", "test", "testing"}:
+                    logger.info("Redis desabilitado no ambiente local.")
+                    cls._instance.client = None
+                    return cls._instance
                 cls._instance.client = redis.Redis(
                     host=settings.redis_host,
                     port=settings.redis_port,
                     db=settings.redis_db,
                     password=settings.redis_password if settings.redis_password else None,
                     decode_responses=True,
-                    socket_timeout=5,
-                    socket_connect_timeout=5,
+                    socket_timeout=2,
+                    socket_connect_timeout=2,
                     retry_on_timeout=True,
                 )
-                # Testar conexão
-                cls._instance.client.ping()
-                logger.info(" Redis conectado com sucesso")
-            except Exception as e:
-                logger.warning(f" Redis não disponível: {e}. Cache desabilitado.")
+                logger.info("Cliente Redis configurado")
+            except Exception as exc:
+                logger.warning("Redis nao disponivel: %s. Cache desabilitado.", exc)
                 cls._instance.client = None
         return cls._instance
-    
+
     def get(self, key: str) -> Optional[Any]:
-        """Buscar valor do cache"""
         if not self.client:
             return None
         try:
             value = self.client.get(key)
             if value:
                 return json.loads(value)
-        except Exception as e:
-            logger.error(f" Erro ao buscar cache {key}: {e}")
+        except Exception as exc:
+            logger.error("Erro ao buscar cache %s: %s", key, exc)
         return None
-    
+
     def set(self, key: str, value: Any, ttl: int = 300):
-        """Salvar no cache com TTL em segundos"""
         if not self.client:
             return False
         try:
-            self.client.setex(
-                key,
-                ttl,
-                json.dumps(value, default=str)
-            )
+            self.client.setex(key, ttl, json.dumps(value, default=str))
             return True
-        except Exception as e:
-            logger.error(f" Erro ao salvar cache {key}: {e}")
+        except Exception as exc:
+            logger.error("Erro ao salvar cache %s: %s", key, exc)
             return False
-    
+
     def delete(self, key: str):
-        """Remover do cache"""
         if not self.client:
             return False
         try:
             self.client.delete(key)
             return True
-        except Exception as e:
-            logger.error(f" Erro ao deletar cache {key}: {e}")
+        except Exception as exc:
+            logger.error("Erro ao deletar cache %s: %s", key, exc)
             return False
-    
+
     def clear_pattern(self, pattern: str):
-        """Limpar todas as keys que correspondem ao pattern"""
         if not self.client:
             return False
         try:
@@ -86,10 +81,9 @@ class RedisCache:
             if keys:
                 self.client.delete(*keys)
             return True
-        except Exception as e:
-            logger.error(f" Erro ao limpar pattern {pattern}: {e}")
+        except Exception as exc:
+            logger.error("Erro ao limpar pattern %s: %s", pattern, exc)
             return False
 
 
-# Instância global
 cache = RedisCache()

@@ -7,9 +7,11 @@ Modelos dos 5 Contratos JSON Fixos
 - RESPOSTA_IA (IA Response)
 """
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_serializer
 from typing import List, Optional, Dict, Any
 from datetime import datetime, timedelta
+
+from app.utils.datetime_utils import serialize_utc_payload
 
 
 # ============================================================================
@@ -398,6 +400,10 @@ class RespostaIA(BaseModel):
                 "confianca_geral": 0.92
             }
         }
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        return serialize_utc_payload(handler(self))
 
 
 # ============================================================================

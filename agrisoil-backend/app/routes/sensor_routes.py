@@ -14,6 +14,7 @@ from app.models.leitura import Leitura as LeituraSchema
 from app.repositories.sensor_repository import SensorRepository, LeituraRepository
 from app.security import assert_tenant_access, verificar_acesso_cliente_path, verificar_admin
 from app.services.sensor_service import processar_leitura
+from app.utils.datetime_utils import utc_iso
 from pydantic import BaseModel, Field, field_validator
 from app.security import verificar_sensor_api_key
 
@@ -487,7 +488,7 @@ def registrar_leitura_manual(
             "leitura_id": leitura_db.id,
             "sensor_id": sensor_id,
             "cliente_id": cliente,
-            "timestamp": leitura_db.timestamp.isoformat() if leitura_db.timestamp else None,
+            "timestamp": utc_iso(leitura_db.timestamp),
             "dashboard_app": f"/api/dashboard/cliente/{cliente}/sensores",
             **resultado,
         }
@@ -528,7 +529,7 @@ def listar_sensores(
                         "municipio": s.municipio,
                         "estado": s.estado
                     },
-                    "criado_em": s.criado_em.isoformat() if s.criado_em else None
+                    "criado_em": utc_iso(s.criado_em)
                 }
                 for s in sensores
             ]
@@ -575,9 +576,9 @@ def detalhes_sensor(
                 "estado": sensor.estado,
                 "local_especifico": sensor.local_especifico
             },
-            "criado_em": sensor.criado_em.isoformat() if sensor.criado_em else None,
+            "criado_em": utc_iso(sensor.criado_em),
             "ultima_leitura": {
-                "timestamp": ultima_leitura.timestamp.isoformat() if ultima_leitura else None,
+                "timestamp": utc_iso(ultima_leitura.timestamp) if ultima_leitura else None,
                 "ph": ultima_leitura.ph if ultima_leitura else None,
                 "umidade": ultima_leitura.umidade if ultima_leitura else None,
                 "temperatura": ultima_leitura.temperatura if ultima_leitura else None,
@@ -622,7 +623,7 @@ def historico_leituras(
             "total": len(leituras),
             "leituras": [
                 {
-                    "timestamp": l.timestamp.isoformat(),
+                    "timestamp": utc_iso(l.timestamp),
                     "ph": l.ph,
                     "umidade": l.umidade,
                     "temperatura": l.temperatura,

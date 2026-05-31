@@ -16,6 +16,7 @@ from app.rules.potassium_rules import avaliar_potassio
 from app.models.leitura import Leitura
 from app.models.database import TipoAlerta
 from app.services.alerta_service import criar_alerta_automatico, resolver_alertas_automaticamente
+from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
 
@@ -104,7 +105,7 @@ def processar_leitura(
     resultado = {
         "sensor_id": sensor_id,
         "cliente": cliente,
-        "timestamp": datetime.now().isoformat(),
+        "timestamp": utc_iso(datetime.utcnow()),
         "valores_lidos": {
             "ph": leitura.ph,
             "umidade": leitura.soilMoisture,

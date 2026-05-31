@@ -52,6 +52,7 @@ class OpenWeatherMapProvider(ProvadorClimaBase):
             data = response.json()
             
             return DadosClimaAtual(
+                cidade=data.get("name"),
                 temperatura_celsius=data["main"]["temp"],
                 temperatura_maxima=data["main"]["temp_max"],
                 temperatura_minima=data["main"]["temp_min"],
@@ -157,6 +158,7 @@ class WeatherAPIProvider(ProvadorClimaBase):
             current = data["current"]
             
             return DadosClimaAtual(
+                cidade=data.get("location", {}).get("name"),
                 temperatura_celsius=current["temp_c"],
                 temperatura_maxima=None,
                 temperatura_minima=None,

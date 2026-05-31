@@ -10,6 +10,7 @@ from app.db import engine
 from app.config import settings
 from sqlalchemy import text
 from typing import Dict, Any
+from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api", tags=["health"])
@@ -92,7 +93,7 @@ async def health_check() -> Dict[str, Any]:
     
     response_data = {
         "status": overall_status,
-        "timestamp": datetime.now().isoformat(),
+        "timestamp": utc_iso(datetime.utcnow()),
         "services": services
     }
     
@@ -137,7 +138,7 @@ async def deep_health_check() -> dict:
     return {
         "status": overall_status,
         "database": db_status,
-        "timestamp": datetime.utcnow().isoformat()
+        "timestamp": utc_iso(datetime.utcnow())
     }
 
 
@@ -151,5 +152,5 @@ async def status_check() -> dict:
         "version": "2.0.0",
         "environment": settings.environment,
         "status": "running",
-        "timestamp": datetime.utcnow().isoformat()
+        "timestamp": utc_iso(datetime.utcnow())
     }

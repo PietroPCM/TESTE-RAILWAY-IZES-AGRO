@@ -7,7 +7,17 @@ from datetime import datetime, timedelta
 from typing import Optional, List, Dict
 import httpx
 from app.config import settings
-from app.models.clima import ClimaCompletoSensor, DadosClimaAtual, PrevisaoClima, RespostaMobileClima
+from app.models.clima import (
+    AlertaClimaResumo,
+    ClimaAtualResumo,
+    ClimaCompletoSensor,
+    DadosClimaAtual,
+    LocalizacaoClimaAtual,
+    PrevisaoClima,
+    PrevisaoResumoClima,
+    RespostaClimaAtualLocalizacao,
+    RespostaMobileClima,
+)
 from app.services.clima_provider import obter_provador_clima
 
 logger = logging.getLogger(__name__)
@@ -80,6 +90,53 @@ class ServicoClima:
         except Exception as e:
             logger.error(f"Erro ao obter clima para sensor {sensor_id}: {str(e)}")
             raise
+
+    async def obter_clima_por_coordenadas(
+        self,
+        latitude: float,
+        longitude: float,
+        provedor: str = None,
+        api_key: str = None
+    ) -> RespostaClimaAtualLocalizacao:
+        """Obtem clima atual e resumo agricola para latitude/longitude."""
+
+        provador = obter_provador_clima(provedor, api_key)
+        clima_atual = await provador.obter_clima_atual(latitude, longitude)
+        previsao = await provador.obter_previsao(latitude, longitude)
+
+        risco_geada = self._calcular_risco_geada(clima_atual) >= 60
+        risco_seca = self._calcular_risco_seca(clima_atual) >= 60
+        mensagem_alerta = self._montar_mensagem_alerta(clima_atual, risco_geada, risco_seca)
+
+        previsao_resumo = None
+        if previsao:
+            primeira_previsao = previsao[0]
+            previsao_resumo = PrevisaoResumoClima(
+                resumo=primeira_previsao.descricao,
+                probabilidade_chuva=primeira_previsao.precipitacao_probabilidade,
+                precipitacao_mm=primeira_previsao.precipitacao_mm,
+            )
+
+        return RespostaClimaAtualLocalizacao(
+            localizacao=LocalizacaoClimaAtual(
+                latitude=latitude,
+                longitude=longitude,
+                cidade=clima_atual.cidade,
+            ),
+            clima_atual=ClimaAtualResumo(
+                temperatura=clima_atual.temperatura_celsius,
+                sensacao_termica=clima_atual.sensacao_termica,
+                umidade=clima_atual.umidade_relativa,
+                descricao=clima_atual.descricao,
+                vento=clima_atual.velocidade_vento,
+            ),
+            previsao_resumo=previsao_resumo,
+            alerta_clima=AlertaClimaResumo(
+                risco_geada=risco_geada,
+                risco_seca=risco_seca,
+                mensagem=mensagem_alerta,
+            ),
+        )
     
     def _calcular_risco_geada(self, clima: DadosClimaAtual) -> float:
         """Calcula índice de risco de geada (0-100%)"""
@@ -128,6 +185,21 @@ class ServicoClima:
             alertas.append(f"🌧️ Chuva intensa: {clima.precipitacao}mm")
         
         return " | ".join(alertas) if alertas else None
+
+    def _montar_mensagem_alerta(
+        self,
+        clima: DadosClimaAtual,
+        risco_geada: bool,
+        risco_seca: bool
+    ) -> str:
+        alerta = self._gerar_alerta_clima(
+            clima,
+            100.0 if risco_geada else 0.0,
+            100.0 if risco_seca else 0.0,
+        )
+        if alerta:
+            return alerta
+        return "Condicoes climaticas estaveis no momento."
     
     def _gerar_recomendacoes(self, clima: ClimaCompletoSensor) -> List[str]:
         """Gera recomendações agrícolas baseadas no clima"""
@@ -138,7 +210,7 @@ class ServicoClima:
             recomendacoes.append("🌾 Proteger plantas sensíveis ao frio")
             recomendacoes.append("💨 Preparar sistemas de proteção contra geada")
         
-        if clima.clima_atual.temperatura_celsius > settings.ALERTA_TEMP_MAX:
+        if clima.clima_atual.temperatura_celsius > settings.alerta_temp_max:
             recomendacoes.append("💧 Aumentar frequência de irrigação")
             recomendacoes.append("☀️ Considerar sombreamento das plantas")
         
@@ -147,7 +219,7 @@ class ServicoClima:
             recomendacoes.append("💧 Aplicar irrigação suplementar")
             recomendacoes.append("🌾 Aumentar cobertura do solo")
         
-        if clima.clima_atual.umidade_relativa > settings.ALERTA_UMIDADE_MAX:
+        if clima.clima_atual.umidade_relativa > settings.alerta_umidade_max:
             recomendacoes.append("🍄 Monitorar doenças fúngicas")
             recomendacoes.append("💨 Melhorar ventilação/drenagem")
         
@@ -219,7 +291,7 @@ class ServicoClima:
                         logger.info(f"Dados de clima enviados com sucesso para {webhook_url}")
                         return True
                     except httpx.RequestError as e:
-                        if tentativa == settings.MAX_TENTATIVAS_WEBHOOK - 1:
+                        if tentativa == settings.max_tentativas_webhook - 1:
                             raise
                         logger.warning(f"Tentativa {tentativa + 1} falhou: {str(e)}")
                         await httpx.AsyncClient().aclose()

@@ -29,6 +29,7 @@ from app.models.leitura import Leitura as LeituraSchema
 from app.services.sensor_service import processar_leitura
 from app.metrics import registrar_leitura_sensor
 from app.security import verificar_sensor_api_key
+from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/webhook", tags=["Webhook IoT"])
@@ -336,7 +337,7 @@ async def receber_leitura_sensor(
             "leitura_id": leitura.id,
             "sensor_id": sensor.sensor_id,
             "cliente_id": sensor.cliente_id,
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": utc_iso(datetime.utcnow()),
             "alerta_ativo": leitura.alerta_ativo,
             "nivel_critico": leitura.nivel_critico,
             "alertas_criados": resultado.get("alertas_criados", []),
@@ -383,7 +384,7 @@ async def verificar_status_sensor(
         "ativo": sensor.ativo,
         "nome": sensor.nome,
         "cliente_id": sensor.cliente_id,
-        "ultima_leitura": ultima_leitura.timestamp.isoformat() if ultima_leitura else None,
+        "ultima_leitura": utc_iso(ultima_leitura.timestamp) if ultima_leitura else None,
         "intervalo_envio_recomendado": "60s"  # 1 minuto
     }
 
@@ -408,7 +409,7 @@ async def health_check(db: Session = Depends(get_db)):
         logger.info("Health check OK")
         return {
             "status": "healthy",
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": utc_iso(datetime.utcnow()),
             "service": "agrisoil-webhook",
             "database": "connected"
         }
@@ -418,7 +419,7 @@ async def health_check(db: Session = Depends(get_db)):
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail={
                 "status": "unhealthy",
-                "timestamp": datetime.utcnow().isoformat(),
+                "timestamp": utc_iso(datetime.utcnow()),
                 "error": "Database connection failed"
             }
         )

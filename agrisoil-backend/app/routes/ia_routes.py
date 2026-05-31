@@ -12,6 +12,7 @@ import json
 
 from app.models.contratos import RespostaIA, RecomendacaoIA, ContextoIA
 from app.services.contexto_ia import servico_contexto_ia
+from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
 
@@ -119,7 +120,7 @@ async def chat_ia(
             "pergunta_id": pergunta_id,
             "pergunta": pergunta,
             "resposta": resposta.dict(),
-            "timestamp": datetime.now().isoformat()
+            "timestamp": utc_iso(datetime.utcnow())
         })
         
         logger.info(f"✓ IA respondeu: confiança {resposta.confianca_geral:.0%}")

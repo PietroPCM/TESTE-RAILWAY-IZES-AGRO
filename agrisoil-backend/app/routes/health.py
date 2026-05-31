@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 
 from app.db import SessionLocal
 from app.logging_config import setup_logging
+from app.utils.datetime_utils import utc_iso
 
 logger = setup_logging()
 router = APIRouter(prefix="/health", tags=["Health Check"])
@@ -44,7 +45,7 @@ async def health_ping():
     """
     return {
         "status": HealthStatus.OK,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": utc_iso(datetime.utcnow()),
         "message": "AgriSoil Backend está online"
     }
 
@@ -65,7 +66,7 @@ async def health_ready(db: Session = Depends(get_db)):
     """
     health_status = {
         "status": HealthStatus.OK,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": utc_iso(datetime.utcnow()),
         "checks": {
             "app": {"status": HealthStatus.OK},
             "database": {"status": HealthStatus.OK},
@@ -103,7 +104,7 @@ async def health_db(db: Session = Depends(get_db)):
     
     result = {
         "status": HealthStatus.OK,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": utc_iso(datetime.utcnow()),
         "database": {
             "type": "PostgreSQL",
             "status": HealthStatus.OK,
@@ -152,6 +153,6 @@ async def health_live():
     """
     return {
         "status": HealthStatus.OK,
-        "timestamp": datetime.utcnow().isoformat(),
+        "timestamp": utc_iso(datetime.utcnow()),
         "message": "Application is alive"
     }
