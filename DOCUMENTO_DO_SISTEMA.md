@@ -155,6 +155,15 @@ O sistema ja possui tabelas/modelos para:
 - operacoes agricolas;
 - fertilizantes.
 
+Atualizacao operacional:
+
+- `DATABASE_URL` deve ser configurada por variavel de ambiente.
+- Nao existe fallback seguro para banco; sem `DATABASE_URL`, o backend falha antes de iniciar conexoes.
+- O dialect padrao para PostgreSQL foi alinhado para `postgresql+psycopg` com `psycopg` v3.
+- `create_all()` e seeds nao rodam automaticamente por padrao.
+- `AUTO_CREATE_TABLES` e `AUTO_RUN_SEEDS` devem ser habilitadas explicitamente apenas em ambiente controlado.
+- O fluxo de teste sem sensor fisico esta disponivel em `POST /api/sensores/manual` e `POST /api/sensores/{cliente}/{sensor_id}/leitura-manual`, protegidos por `SENSOR_API_KEY`.
+
 ### 5.3 Alertas
 
 Os alertas sao criados quando o motor de regras identifica uma leitura problematica. O sistema possui deduplicacao para evitar criar o mesmo alerta repetidamente no mesmo dia para o mesmo sensor, tipo e severidade.

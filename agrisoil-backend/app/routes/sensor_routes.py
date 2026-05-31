@@ -14,7 +14,8 @@ from app.models.leitura import Leitura as LeituraSchema
 from app.repositories.sensor_repository import SensorRepository, LeituraRepository
 from app.security import assert_tenant_access, verificar_acesso_cliente_path, verificar_admin
 from app.services.sensor_service import processar_leitura
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
+from app.security import verificar_sensor_api_key
 
 router = APIRouter(prefix="/api/sensores", tags=["Sensores"])
 logger = logging.getLogger(__name__)
@@ -36,6 +37,44 @@ class SensorCadastro(BaseModel):
     configuracao: Optional[dict] = None
 
 
+class LeituraManual(BaseModel):
+    """Payload para leitura manual/teste via Swagger."""
+    timestamp: Optional[datetime] = Field(default=None, description="Opcional; se omitido usa horário atual UTC")
+    ph: Optional[float] = Field(None, ge=0, le=14)
+    umidade: Optional[float] = Field(None, ge=0, le=100)
+    temperatura: Optional[float] = Field(None, ge=-50, le=100)
+    condutividade: Optional[float] = Field(None, ge=0, le=10)
+    nitrogenio: Optional[float] = Field(None, ge=0, le=500)
+    fosforo: Optional[float] = Field(None, ge=0, le=500)
+    potassio: Optional[float] = Field(None, ge=0, le=500)
+    soilMoisture: Optional[float] = Field(None, ge=0, le=100)
+    temperature: Optional[float] = Field(None, ge=-50, le=100)
+    electricalConductivity: Optional[float] = Field(None, ge=0, le=10)
+    nitrogen: Optional[float] = Field(None, ge=0, le=500)
+    phosphorus: Optional[float] = Field(None, ge=0, le=500)
+    potassium: Optional[float] = Field(None, ge=0, le=500)
+
+    @field_validator("timestamp", mode="before")
+    @classmethod
+    def parse_timestamp(cls, value):
+        if value in (None, ""):
+            return None
+        if isinstance(value, datetime):
+            return value
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+
+    def to_leitura_schema(self) -> LeituraSchema:
+        return LeituraSchema(
+            ph=self.ph,
+            soilMoisture=self.umidade if self.umidade is not None else self.soilMoisture,
+            temperature=self.temperatura if self.temperatura is not None else self.temperature,
+            electricalConductivity=self.condutividade if self.condutividade is not None else self.electricalConductivity,
+            nitrogen=self.nitrogenio if self.nitrogenio is not None else self.nitrogen,
+            phosphorus=self.fosforo if self.fosforo is not None else self.phosphorus,
+            potassium=self.potassio if self.potassio is not None else self.potassium,
+        )
+
+
 @router.post("/cadastrar", status_code=status.HTTP_201_CREATED)
 async def cadastrar_sensor_admin(
     sensor_data: SensorCadastro,
@@ -49,7 +88,6 @@ async def cadastrar_sensor_admin(
     vinculados posteriormente a hardware físico via webhook.
     """
     try:
-        # Verificar se já existe
         sensor_existente = db.query(SensorDB).filter(SensorDB.sensor_id == sensor_data.id).first()
         if sensor_existente:
             raise HTTPException(
@@ -57,8 +95,6 @@ async def cadastrar_sensor_admin(
                 detail=f"Sensor {sensor_data.id} já cadastrado"
             )
         
-        # Criar sensor
-        local_especifico = sensor_data.local_especifico or sensor_data.localizacao
         novo_sensor = SensorDB(
             sensor_id=sensor_data.id,
             cliente_id=sensor_data.cliente_id,
@@ -69,16 +105,16 @@ async def cadastrar_sensor_admin(
             propriedade=sensor_data.propriedade,
             municipio=sensor_data.municipio,
             estado=sensor_data.estado,
-            local_especifico=local_especifico,
+            local_especifico=sensor_data.local_especifico or sensor_data.localizacao,
             ativo=True,
             criado_em=datetime.utcnow()
         )
-        
+
         db.add(novo_sensor)
         db.commit()
         db.refresh(novo_sensor)
         
-        logger.info(f"✅ Sensor {sensor_data.id} cadastrado com sucesso via admin")
+        logger.info(f"Sensor {sensor_data.id} cadastrado com sucesso via admin")
         
         return {
             "message": "Sensor cadastrado com sucesso",
@@ -104,15 +140,90 @@ async def cadastrar_sensor_admin(
                 "header": "X-API-Key: [sua_api_key]"
             }
         }
-    
+
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"❌ Erro ao cadastrar sensor: {e}", exc_info=True)
+        logger.error("Erro ao cadastrar sensor", exc_info=True)
         db.rollback()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Erro ao cadastrar sensor: {str(e)}"
+        )
+
+
+@router.post("/manual", status_code=status.HTTP_201_CREATED)
+async def cadastrar_sensor_manual(
+    sensor_data: SensorCadastro,
+    _api_key: str = Depends(verificar_sensor_api_key),
+    db: Session = Depends(get_db)
+):
+    """
+    Cadastra sensor manual/teste pelo Swagger.
+
+    Requer header `X-API-Key` com `SENSOR_API_KEY`. Não exige JWT admin para
+    permitir preparação de ambientes de teste sem sensor físico.
+    """
+    try:
+        sensor_existente = db.query(SensorDB).filter(SensorDB.sensor_id == sensor_data.id).first()
+        if sensor_existente:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail=f"Sensor {sensor_data.id} já cadastrado"
+            )
+
+        novo_sensor = SensorDB(
+            sensor_id=sensor_data.id,
+            cliente_id=sensor_data.cliente_id,
+            nome=sensor_data.nome,
+            tipo=sensor_data.tipo,
+            latitude=sensor_data.latitude,
+            longitude=sensor_data.longitude,
+            propriedade=sensor_data.propriedade,
+            municipio=sensor_data.municipio,
+            estado=sensor_data.estado,
+            local_especifico=sensor_data.local_especifico or sensor_data.localizacao,
+            ativo=True,
+            criado_em=datetime.utcnow()
+        )
+
+        db.add(novo_sensor)
+        db.commit()
+        db.refresh(novo_sensor)
+
+        return {
+            "message": "Sensor manual cadastrado com sucesso",
+            "sensor": {
+                "id": novo_sensor.sensor_id,
+                "sensor_id": novo_sensor.sensor_id,
+                "cliente_id": novo_sensor.cliente_id,
+                "nome": novo_sensor.nome,
+                "tipo": novo_sensor.tipo,
+                "ativo": novo_sensor.ativo,
+                "localizacao": {
+                    "latitude": novo_sensor.latitude,
+                    "longitude": novo_sensor.longitude,
+                    "propriedade": novo_sensor.propriedade,
+                    "municipio": novo_sensor.municipio,
+                    "estado": novo_sensor.estado,
+                    "local_especifico": novo_sensor.local_especifico,
+                },
+            },
+            "proximos_passos": {
+                "enviar_leitura_manual": f"/api/sensores/{novo_sensor.cliente_id}/{novo_sensor.sensor_id}/leitura-manual",
+                "enviar_leitura_iot": f"/webhook/sensor/{novo_sensor.sensor_id}",
+                "dashboard_app": f"/api/dashboard/cliente/{novo_sensor.cliente_id}/sensores",
+            },
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error("Erro ao cadastrar sensor manual", exc_info=True)
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Erro ao cadastrar sensor manual: {str(e)}"
         )
 
 
@@ -277,7 +388,6 @@ def registrar_leitura(
             nivel_critico=False
         )
         
-        # Processar leitura com motor de regras (agora com DB e ID da leitura)
         resultado = processar_leitura(
             sensor_id=sensor_id, 
             cliente=cliente, 
@@ -286,7 +396,6 @@ def registrar_leitura(
             leitura_id=leitura_db.id
         )
         
-        # Atualizar leitura com avaliações
         leitura_db.alerta_ativo = resultado["alerta_ativo"]
         leitura_db.nivel_critico = resultado["nivel_critico"]
         db.commit()
@@ -299,9 +408,98 @@ def registrar_leitura(
         raise
     except Exception as e:
         logger.error(f"Erro ao processar leitura: {e}", exc_info=True)
+        db.rollback()
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Erro ao processar leitura: {str(e)}"
+        )
+
+
+@router.post("/{cliente}/{sensor_id}/leitura-manual")
+def registrar_leitura_manual(
+    cliente: str,
+    sensor_id: str,
+    leitura_manual: LeituraManual,
+    _api_key: str = Depends(verificar_sensor_api_key),
+    db: Session = Depends(get_db)
+):
+    """
+    Registra uma leitura manual/teste simulando sensor IoT.
+
+    Requer header `X-API-Key` com `SENSOR_API_KEY`.
+    """
+    try:
+        sensor = SensorRepository.buscar_por_id(db, sensor_id)
+        if not sensor or sensor.cliente_id != cliente:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Sensor não encontrado"
+            )
+        if not sensor.ativo:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Sensor desativado"
+            )
+
+        leitura = leitura_manual.to_leitura_schema()
+        leitura_db = LeituraRepository.salvar_leitura(
+            db=db,
+            sensor_id=sensor_id,
+            cliente_id=cliente,
+            leitura=leitura,
+            avaliacoes={},
+            alerta_ativo=False,
+            nivel_critico=False
+        )
+        if leitura_manual.timestamp:
+            leitura_db.timestamp = leitura_manual.timestamp
+            db.commit()
+            db.refresh(leitura_db)
+
+        resultado = processar_leitura(
+            sensor_id=sensor_id,
+            cliente=cliente,
+            leitura=leitura,
+            db=db,
+            leitura_id=leitura_db.id
+        )
+
+        avaliacoes = resultado.get("avaliacoes", {})
+        leitura_db.ph_nivel = avaliacoes.get("ph", {}).get("nivel")
+        leitura_db.ph_mensagem = avaliacoes.get("ph", {}).get("mensagem")
+        leitura_db.umidade_nivel = avaliacoes.get("umidade", {}).get("nivel")
+        leitura_db.umidade_mensagem = avaliacoes.get("umidade", {}).get("mensagem")
+        leitura_db.temperatura_nivel = avaliacoes.get("temperatura", {}).get("nivel")
+        leitura_db.temperatura_mensagem = avaliacoes.get("temperatura", {}).get("mensagem")
+        leitura_db.nitrogenio_nivel = avaliacoes.get("nitrogenio", {}).get("nivel")
+        leitura_db.nitrogenio_mensagem = avaliacoes.get("nitrogenio", {}).get("mensagem")
+        leitura_db.fosforo_nivel = avaliacoes.get("fosforo", {}).get("nivel")
+        leitura_db.fosforo_mensagem = avaliacoes.get("fosforo", {}).get("mensagem")
+        leitura_db.potassio_nivel = avaliacoes.get("potassio", {}).get("nivel")
+        leitura_db.potassio_mensagem = avaliacoes.get("potassio", {}).get("mensagem")
+        leitura_db.alerta_ativo = resultado.get("alerta_ativo", False)
+        leitura_db.nivel_critico = resultado.get("nivel_critico", False)
+        db.commit()
+
+        return {
+            "status": "sucesso",
+            "message": "Leitura manual processada com sucesso",
+            "leitura_id": leitura_db.id,
+            "sensor_id": sensor_id,
+            "cliente_id": cliente,
+            "timestamp": leitura_db.timestamp.isoformat() if leitura_db.timestamp else None,
+            "dashboard_app": f"/api/dashboard/cliente/{cliente}/sensores",
+            **resultado,
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error("Erro ao registrar leitura manual", exc_info=True)
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Erro ao registrar leitura manual: {str(e)}"
         )
 
 

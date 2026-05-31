@@ -28,18 +28,11 @@ from app.models.database import SensorDB as Sensor, LeituraDB as Leitura
 from app.models.leitura import Leitura as LeituraSchema
 from app.services.sensor_service import processar_leitura
 from app.metrics import registrar_leitura_sensor
-from app.config import settings
+from app.security import verificar_sensor_api_key
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/webhook", tags=["Webhook IoT"])
 limiter = Limiter(key_func=get_remote_address)
-
-# API Key para autenticação dos sensores.
-SENSOR_API_KEY = settings.sensor_api_key
-if not SENSOR_API_KEY:
-    logger.error("⚠️ SENSOR_API_KEY não configurada.")
-    SENSOR_API_KEY = "dev_sensor_api_key"  # Fallback apenas em dev
-
 
 class LeituraSensorSchema(BaseModel):
     """Schema validado para leituras de sensores IoT"""
@@ -100,17 +93,6 @@ class DadosSensorIoT:
         self.potassio = potassio
 
 
-def validar_api_key(x_api_key: str = Header(...)):
-    """Valida API Key enviada no header X-API-Key"""
-    if x_api_key != SENSOR_API_KEY:
-        logger.warning(f"🚨 Tentativa de acesso com API Key inválida: {x_api_key}")
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="API Key inválida"
-        )
-    return x_api_key
-
-
 def descrever_localizacao_sensor(sensor: Sensor) -> str:
     """Retorna uma localização legível usando os campos existentes no banco."""
     return (
@@ -165,7 +147,7 @@ async def receber_leitura_sensor(
     sensor_id: str,
     dados: LeituraSensorSchema,
     db: Session = Depends(get_db),
-    api_key: str = Depends(validar_api_key)
+    api_key: str = Depends(verificar_sensor_api_key)
 ):
     """
     Recebe e processa dados de um sensor IoT.
@@ -380,7 +362,7 @@ async def receber_leitura_sensor(
 async def verificar_status_sensor(
     sensor_id: str,
     db: Session = Depends(get_db),
-    api_key: str = Depends(validar_api_key)
+    api_key: str = Depends(verificar_sensor_api_key)
 ):
     """Permite sensor verificar se está cadastrado e configurado corretamente"""
     

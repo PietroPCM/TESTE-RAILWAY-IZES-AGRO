@@ -5,6 +5,8 @@
     "buildCommand": "docker build -t agrisoil-backend ."
   },
   "deploy": {
+    "healthcheckPath": "/health/live",
+    "healthcheckTimeout": 30,
     "restartPolicyType": "on_failure",
     "restartPolicyMaxRetries": 5
   }

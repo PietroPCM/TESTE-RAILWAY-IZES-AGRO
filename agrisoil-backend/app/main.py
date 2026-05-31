@@ -84,48 +84,52 @@ async def lifespan(app: FastAPI):
     """
     # Startup
     logger.info("Inicializando AgriSoil Backend...")
-    logger.info(f"🌍 Ambiente: {settings.environment}")
-    logger.info(f"🔒 HTTPS forçado: {settings.force_https}")
-    logger.info("🚀 VERSÃO COM SEED AUTOMÁTICO - BUILD 2026-02-02-v3")
+    logger.info("Ambiente: %s", settings.environment)
+    logger.info("HTTPS forçado: %s", settings.force_https)
+    logger.info(
+        "AUTO_CREATE_TABLES=%s AUTO_RUN_SEEDS=%s",
+        settings.auto_create_tables,
+        settings.auto_run_seeds,
+    )
     
-    # Criar tabelas no banco (com retry para Railway)
-    try:
-        logger.info("📋 Iniciando importação de modelos...")
-        from app.models.database import SensorDB, LeituraDB, AlertaDB, UsuarioDB
-        from app.db import Base
-        logger.info(f"Modelos importados. Tabelas no metadata: {list(Base.metadata.tables.keys())}")
-        
-        for attempt in range(1, 6):
-            try:
-                logger.info(f"Tentativa {attempt}/5 de criar tabelas...")
-                await init_db()
-                logger.info("TABELAS CRIADAS - INICIANDO SEED ")
-                
-                # Popular dados iniciais logo após criar tabelas
-                logger.info("🌱 Verificando necessidade de popular dados iniciais...")
-                from app.seed_startup import run_startup_seeds
-                from app.db import SessionLocal
-                
-                db = SessionLocal()
+    if settings.auto_create_tables:
+        try:
+            logger.info("AUTO_CREATE_TABLES habilitado; create_all será executado.")
+            for attempt in range(1, 6):
                 try:
-                    await run_startup_seeds(db)
-                    logger.info("✅ Verificação de seeds concluída")
-                except Exception as seed_error:
-                    logger.error(f"❌ Erro ao executar seeds: {seed_error}", exc_info=True)
-                finally:
-                    db.close()
-                
-                break
-            except Exception as e:
-                logger.warning(f"Tentativa {attempt}/5 falhou: {type(e).__name__}: {e}")
-                if attempt < 5:
-                    await asyncio.sleep(3)
-                else:
-                    logger.warning("Banco ainda indisponível após 5 tentativas. App seguirá sem bloquear.")
-    except ImportError as e:
-        logger.error(f"Erro ao importar modelos: {e}", exc_info=True)
-    except Exception as e:
-        logger.error(f"Falha ao inicializar BD no startup: {type(e).__name__}: {e}", exc_info=True)
+                    logger.info("Tentativa %s/5 de criar tabelas...", attempt)
+                    await init_db()
+                    logger.info("Inicialização explícita de tabelas concluída.")
+                    break
+                except Exception as e:
+                    logger.warning("Tentativa %s/5 falhou: %s", attempt, type(e).__name__)
+                    if attempt < 5:
+                        await asyncio.sleep(3)
+                    else:
+                        raise
+        except Exception as e:
+            logger.error("Falha ao criar tabelas no startup: %s", type(e).__name__, exc_info=True)
+            raise
+    else:
+        logger.info("AUTO_CREATE_TABLES desabilitado; startup não alterará schema.")
+
+    if settings.auto_run_seeds:
+        try:
+            logger.info("AUTO_RUN_SEEDS habilitado; seeds serão executados.")
+            from app.seed_startup import run_startup_seeds
+            from app.db import SessionLocal
+
+            db = SessionLocal()
+            try:
+                await run_startup_seeds(db)
+                logger.info("Seeds explícitos concluídos.")
+            finally:
+                db.close()
+        except Exception as seed_error:
+            logger.error("Erro ao executar seeds no startup: %s", type(seed_error).__name__, exc_info=True)
+            raise
+    else:
+        logger.info("AUTO_RUN_SEEDS desabilitado; startup não populará dados.")
     
     # Inicializar Redis Cache (não-bloqueante)
     try:
@@ -207,11 +211,26 @@ def custom_openapi():
             "scheme": "bearer",
             "bearerFormat": "JWT",
             "description": "Insira o token JWT obtido no login (sem 'Bearer ')"
+        },
+        "SensorApiKey": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "X-API-Key",
+            "description": "Chave de sensores/testes configurada em SENSOR_API_KEY"
         }
     }
     
     # Aplicar segurança globalmente (cada rota pode sobrescrever)
     openapi_schema["security"] = [{"BearerAuth": []}]
+
+    for path, methods in openapi_schema.get("paths", {}).items():
+        for method, operation in methods.items():
+            if method not in {"get", "post", "put", "patch", "delete"}:
+                continue
+            if path.startswith("/webhook") or path == "/api/sensores/manual" or path.endswith("/leitura-manual"):
+                operation["security"] = [{"SensorApiKey": []}]
+            elif path.startswith("/auth/") or path in {"/", "/docs", "/redoc", "/openapi.json", "/api/health", "/api/health/ping", "/health/ping", "/health/live"}:
+                operation["security"] = []
     
     app.openapi_schema = openapi_schema
     return app.openapi_schema

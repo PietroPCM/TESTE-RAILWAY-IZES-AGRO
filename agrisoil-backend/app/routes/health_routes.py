@@ -7,6 +7,7 @@ from fastapi import APIRouter, status, Response
 from datetime import datetime
 import logging
 from app.db import engine
+from app.config import settings
 from sqlalchemy import text
 from typing import Dict, Any
 
@@ -148,7 +149,7 @@ async def status_check() -> dict:
     return {
         "application": "AgriSoil Backend",
         "version": "2.0.0",
-        "environment": "production",
+        "environment": settings.environment,
         "status": "running",
         "timestamp": datetime.utcnow().isoformat()
     }

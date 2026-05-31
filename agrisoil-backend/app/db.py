@@ -11,8 +11,28 @@ import logging
 from app.config import settings
 
 logger = logging.getLogger(__name__)
-database_url = "postgresql+psycopg://postgres:123123@localhost:5432/agrisoil"
-print("DB DRIVER: psycopg v3")
+
+
+def _normalize_database_url(url: str) -> str:
+    """Normalize Railway/Supabase Postgres URLs for SQLAlchemy + psycopg v3."""
+    if url.startswith("postgres://"):
+        return "postgresql+psycopg://" + url.removeprefix("postgres://")
+    if url.startswith("postgresql://"):
+        return "postgresql+psycopg://" + url.removeprefix("postgresql://")
+    if url.startswith("postgresql+psycopg2://"):
+        return "postgresql+psycopg://" + url.removeprefix("postgresql+psycopg2://")
+    return url
+
+
+def _get_database_url() -> str:
+    if not settings.database_url:
+        raise RuntimeError(
+            "DATABASE_URL não configurada. Defina a variável de ambiente antes de iniciar o backend."
+        )
+    return _normalize_database_url(settings.database_url)
+
+
+database_url = _get_database_url()
 
 # Base class para todos os modelos
 Base = declarative_base()
@@ -70,20 +90,20 @@ def get_db():
 
 
 async def init_db():
-    """Inicializar banco de dados (criar todas as tabelas)"""
+    """Inicializar banco de dados sob chamada explícita."""
     try:
         # Importar modelos para registrar tabelas no metadata
-        logger.info(f" Tabelas antes do import: {list(Base.metadata.tables.keys())}")
+        logger.info("Carregando metadata SQLAlchemy para inicialização explícita do banco.")
         
         from app.models.database import SensorDB, LeituraDB, AlertaDB, UsuarioDB  # noqa: F401
-        logger.info(f" Modelos importados. Total: {len(Base.metadata.tables)} tabelas")
+        logger.info("Modelos importados. Total: %s tabelas", len(Base.metadata.tables))
         
-        logger.info(" Executando create_all()...")
+        logger.info("Executando create_all() por configuração explícita.")
         Base.metadata.create_all(bind=engine)
         
-        logger.info(" Banco de dados inicializado com sucesso")
+        logger.info("Banco de dados inicializado com sucesso")
     except Exception as e:
-        logger.error(f" Erro ao inicializar BD: {type(e).__name__}: {e}", exc_info=True)
+        logger.error("Erro ao inicializar BD: %s", type(e).__name__, exc_info=True)
         raise
 
 

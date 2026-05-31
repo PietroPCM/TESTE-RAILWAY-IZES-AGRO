@@ -60,3 +60,7 @@ coverage/
 # Misc
 *.tmp
 *.bak
+
+# Knowledge base and custom instructions
+brain/
+AGENTS.md

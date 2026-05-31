@@ -258,6 +258,49 @@ O código usa SQLAlchemy e espera uma variável:
 DATABASE_URL=postgresql://usuario:senha@host:5432/banco
 ```
 
+O backend não possui mais fallback hardcoded de banco. Se `DATABASE_URL` não estiver configurada, a aplicação falha com erro claro e sem imprimir segredo.
+
+Para Railway/teste real, veja:
+
+```text
+DEPLOY_RAILWAY.md
+TESTE_SWAGGER.md
+```
+
+## Segurança de startup
+
+Por padrão, o startup não cria schema e não executa seeds:
+
+```env
+AUTO_CREATE_TABLES=false
+AUTO_RUN_SEEDS=false
+```
+
+Em banco novo de teste, é possível habilitar temporariamente:
+
+```env
+AUTO_CREATE_TABLES=true
+AUTO_RUN_SEEDS=false
+```
+
+Não habilite criação automática de tabelas ou seeds em banco real sem autorização, backup e plano de migração.
+
+## Teste manual sem sensor físico
+
+O Swagger permite preparar dados de teste protegidos por `SENSOR_API_KEY`:
+
+```text
+POST /api/sensores/manual
+POST /api/sensores/{cliente}/{sensor_id}/leitura-manual
+GET  /api/dashboard/cliente/{cliente_id}/sensores
+```
+
+Use o header:
+
+```text
+X-API-Key: valor configurado em SENSOR_API_KEY
+```
+
 O caminho mais provável para o projeto é usar **Supabase**, já que ele entrega PostgreSQL gerenciado.
 
 Nesse caso, basta apontar o `DATABASE_URL` para a string de conexão do Supabase.

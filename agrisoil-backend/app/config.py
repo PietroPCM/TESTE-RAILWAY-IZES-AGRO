@@ -4,7 +4,7 @@ Usando Pydantic Settings para validação e type safety
 """
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field, field_validator
+from pydantic import AliasChoices, Field, field_validator, model_validator
 from typing import List, Union
 import os
 from dotenv import load_dotenv
@@ -31,14 +31,14 @@ class Settings(BaseSettings):
     )
     
     # Banco de dados
-    database_url: str = Field(default="")
+    database_url: str = Field(default="", validation_alias="DATABASE_URL")
     database_pool_size: int = 20
     database_max_overflow: int = 40
     database_pool_timeout: int = 30
     database_pool_recycle: int = 3600
     
     # Segurança
-    secret_key: str = Field(default="change-me-in-production")
+    secret_key: str = Field(default="", validation_alias="SECRET_KEY")
     jwt_algorithm: str = "HS256"
     jwt_expiration_hours: int = 24
     access_token_expire_minutes: int = 30
@@ -50,9 +50,12 @@ class Settings(BaseSettings):
     openai_max_tokens: int = 2000
     
     # Ambiente
-    environment: str = Field(default="development")
+    app_env: str = Field(default="production", validation_alias=AliasChoices("APP_ENV", "ENVIRONMENT"))
+    environment: str = Field(default="production", validation_alias=AliasChoices("ENVIRONMENT", "APP_ENV"))
     debug: bool = Field(default=False)
     log_level: str = Field(default="INFO")
+    auto_create_tables: bool = Field(default=False, validation_alias="AUTO_CREATE_TABLES")
+    auto_run_seeds: bool = Field(default=False, validation_alias="AUTO_RUN_SEEDS")
     
     # Cache
     cache_ttl_dashboard: int = 600  # 10 minutos
@@ -120,10 +123,39 @@ class Settings(BaseSettings):
     firebase_credentials_path: str = Field(default="firebase-credentials.json")
     
     # Sensor API Key
-    sensor_api_key: str = Field(default="dev_sensor_api_key")
+    sensor_api_key: str = Field(default="", validation_alias="SENSOR_API_KEY")
     
     # HTTPS
     force_https: bool = Field(default=False, validation_alias="FORCE_HTTPS")
+
+    @model_validator(mode="after")
+    def validate_safe_defaults(self):
+        env = (self.app_env or self.environment or "production").lower()
+        local_envs = {"development", "dev", "local", "test", "testing"}
+
+        # Keep both names aligned because older code reads settings.environment.
+        self.environment = env
+        self.app_env = env
+
+        if env not in local_envs:
+            missing = []
+            if not self.secret_key:
+                missing.append("SECRET_KEY")
+            if not self.sensor_api_key:
+                missing.append("SENSOR_API_KEY")
+            if missing:
+                raise ValueError(
+                    "Configuração insegura: defina " + ", ".join(missing) +
+                    " para ambientes não locais."
+                )
+
+        if env in local_envs:
+            if not self.secret_key:
+                self.secret_key = "local-dev-secret-key-change-before-production"
+            if not self.sensor_api_key:
+                self.sensor_api_key = "local-dev-sensor-api-key"
+
+        return self
 
 
 settings = Settings()

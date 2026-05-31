@@ -8,7 +8,7 @@ from typing import Optional
 import jwt
 import bcrypt
 import logging
-from fastapi import Depends, HTTPException, status
+from fastapi import Depends, Header, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from app.config import settings
 
@@ -345,3 +345,20 @@ def require_role(*allowed_roles: str):
         return payload
     
     return verificar_role
+
+
+def verificar_sensor_api_key(x_api_key: str = Header(..., alias="X-API-Key")) -> str:
+    """Validar API key de sensor/teste sem registrar o valor recebido."""
+    if not settings.sensor_api_key:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="SENSOR_API_KEY não configurada",
+        )
+
+    if x_api_key != settings.sensor_api_key:
+        logger.warning("Tentativa de acesso com API key de sensor inválida")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="API Key inválida",
+        )
+    return x_api_key

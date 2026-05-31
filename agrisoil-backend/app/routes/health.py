@@ -6,7 +6,7 @@ from datetime import datetime
 from typing import Dict, Any
 from fastapi import APIRouter, status, Depends
 from sqlalchemy import text
-from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import Session
 
 from app.db import SessionLocal
 from app.logging_config import setup_logging
@@ -29,7 +29,7 @@ async def get_db():
     try:
         yield db
     finally:
-        await db.close()
+        db.close()
 
 
 @router.get(
@@ -55,7 +55,7 @@ async def health_ping():
     summary="Readiness probe",
     description="Verifica se a aplicação está pronta para receber requisições (Kubernetes)"
 )
-async def health_ready(db: AsyncSession = Depends(get_db)):
+async def health_ready(db: Session = Depends(get_db)):
     """
     Readiness probe para Kubernetes/Railway
     Verifica:
@@ -74,7 +74,7 @@ async def health_ready(db: AsyncSession = Depends(get_db)):
     
     # Verificar banco de dados
     try:
-        result = await db.execute(text("SELECT 1"))
+        db.execute(text("SELECT 1"))
         logger.debug("Database health check passed")
     except Exception as e:
         logger.error(f"Database health check failed: {e}")
@@ -92,7 +92,7 @@ async def health_ready(db: AsyncSession = Depends(get_db)):
     summary="Database health check",
     description="Verifica conectividade e performance do banco de dados"
 )
-async def health_db(db: AsyncSession = Depends(get_db)):
+async def health_db(db: Session = Depends(get_db)):
     """
     Verificação detalhada do banco de dados
     - Conectividade
@@ -115,7 +115,7 @@ async def health_db(db: AsyncSession = Depends(get_db)):
     try:
         # Medir latência
         start = time.time()
-        await db.execute(text("SELECT 1 as health_check"))
+        db.execute(text("SELECT 1 as health_check"))
         latency = (time.time() - start) * 1000
         
         result["database"]["latency_ms"] = round(latency, 2)
