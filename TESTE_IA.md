@@ -30,13 +30,19 @@ Nunca registre valores reais dessas variáveis.
 
 Use ambiente de teste sem `OPENAI_API_KEY`.
 
-O endpoint `POST /api/ia/chat` continua respondendo com fallback local quando houver sensores/leitura/alertas no banco de teste. O fallback:
+O endpoint `POST /api/ia/chat` classifica a pergunta antes de chamar a OpenAI:
 
-- usa sensores reais carregados do banco configurado;
+- `fora_escopo`: pergunta geral sem relação com agro. Não chama OpenAI.
+- `agro_geral`: dúvida agro válida, como plantio, solo, cultura, praga ou adubação. Pode responder sem sensor.
+- `agro_com_dados`: pergunta que pede risco/leitura/sensor/alerta. Usa dados reais quando existirem.
+
+O fallback:
+
+- usa sensores reais carregados do banco configurado quando a pergunta depende de dados;
 - usa última leitura disponível;
 - usa avaliações agronômicas já calculadas;
 - usa alertas ativos;
-- recusa perguntas fora do escopo agro/sensores/solo/lavoura/app;
+- responde dúvida agro geral mesmo sem sensor, sem inventar dado real;
 - deixa claro que é orientação, não laudo agronômico;
 - não recomenda dose exata de fertilizante/corretivo.
 
@@ -46,6 +52,15 @@ Exemplo de pergunta válida:
 POST /api/ia/chat?cliente_id=cliente_teste&sensor_id=sensor_teste_001&pergunta=Qual o risco agora?
 X-App-Token: app_teste_local
 ```
+
+Exemplo de pergunta agro geral:
+
+```text
+POST /api/ia/chat?cliente_id=cliente_teste&pergunta=Como plantar milho?
+X-App-Token: app_teste_local
+```
+
+Resposta esperada: orientação curta sobre preparo do solo, época, semente, análise de solo, pragas e irrigação, sem inventar fazenda, sensor ou leitura.
 
 Exemplo de pergunta fora de escopo:
 
@@ -76,14 +91,15 @@ Como saber se usou OpenAI:
 
 - `modelo` vem com o modelo configurado, por exemplo `gpt-4-turbo` ou outro valor de `OPENAI_MODEL`;
 - `tokens_usados` vem maior que `0`;
-- `resposta_estruturada.modo` vem como `openai`.
+- `resposta_estruturada.origem` vem como `openai`;
+- `resposta_estruturada.modo` vem como `agro_geral` ou `agro_com_dados`.
 
 Como saber se caiu em fallback:
 
 - `modelo` vem como `fallback-local` quando a OpenAI não foi usada ou falhou;
 - `tokens_usados` vem como `0`;
-- `resposta_estruturada.modo` vem como `fallback_local`;
-- se não houver leitura, alerta ou avaliação, `resposta_estruturada.modo` vem como `dados_insuficientes`;
+- `resposta_estruturada.origem` vem como `fallback_local`;
+- se não houver leitura, alerta ou avaliação em pergunta com sensor, `resposta_estruturada.modo` vem como `agro_com_dados` e a resposta informa que não há leitura real;
 - se a pergunta for fora de escopo, `resposta_estruturada.modo` vem como `fora_escopo`.
 
 ## Regra de não inventar dados
@@ -92,7 +108,8 @@ A IA não pode inventar fazenda, sensor, leitura, cultura, clima, cidade, talhã
 
 Se `cliente_id` não existir, o endpoint deve retornar cliente não encontrado.
 Se `sensor_id` não existir para o cliente, o endpoint deve retornar sensor não encontrado.
-Se não houver leitura, alertas ou avaliações, a resposta deve informar que não há dados suficientes.
+Se não houver leitura, alertas ou avaliações em pergunta que depende de sensor, a resposta deve informar que não há dados suficientes.
+Perguntas agro gerais, como `Como plantar milho?`, podem ser respondidas sem sensor como orientação geral.
 Mocks, exemplos de Swagger e dados de documentação não contam como dados reais.
 
 ## Ações manuais necessárias

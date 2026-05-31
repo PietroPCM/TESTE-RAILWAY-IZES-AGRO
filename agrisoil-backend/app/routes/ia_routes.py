@@ -19,6 +19,12 @@ from app.services.contexto_ia import (
     SensorIANaoEncontrado,
     servico_contexto_ia,
 )
+from app.services.openai_service import (
+    MODO_AGRO_GERAL,
+    MODO_FORA_ESCOPO,
+    ServicoOpenAI,
+    classificar_escopo_pergunta,
+)
 from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
@@ -88,6 +94,17 @@ async def chat_ia(
             f"pergunta='{pergunta[:50]}...'"
         )
         
+        modo_pergunta = classificar_escopo_pergunta(pergunta)
+
+        if modo_pergunta == MODO_FORA_ESCOPO:
+            contexto = ContextoIA(
+                cliente_id=cliente_id,
+                sensor_id=sensor_id,
+                usuario_pergunta=pergunta,
+            )
+            resposta = await ServicoOpenAI().analisar_contexto(contexto, pergunta_id)
+            return resposta
+
         # 1. Montar contexto
         logger.debug("Montando contexto IA...")
         contexto = await servico_contexto_ia.montar_contexto(
@@ -95,17 +112,11 @@ async def chat_ia(
             pergunta=pergunta,
             sensor_id=sensor_id,
             usar_cache=True,
-            db=db
+            db=db,
+            exigir_cliente=modo_pergunta != MODO_AGRO_GERAL,
         )
         
         logger.debug(f"Contexto montado: {contexto.tokens_estimado} tokens")
-        
-        # 2. Validar contexto
-        if not contexto.sensores_relevantes:
-            raise HTTPException(
-                status_code=404,
-                detail="Nenhum sensor encontrado para este cliente"
-            )
         
         # 3. Chamar IA (por enquanto, resposta simulada)
         logger.debug("Enviando para IA...")

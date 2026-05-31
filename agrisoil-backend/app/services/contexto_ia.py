@@ -51,7 +51,8 @@ class ServicoContextoIA:
         pergunta: str,
         sensor_id: Optional[str] = None,
         usar_cache: bool = True,
-        db: Optional[Session] = None
+        db: Optional[Session] = None,
+        exigir_cliente: bool = True
     ) -> ContextoIA:
         """
         Monta CONTEXTO_IA completo para IA processar
@@ -78,7 +79,7 @@ class ServicoContextoIA:
                 logger.info("✓ Contexto IA retornado do cache")
                 return contexto["dados"]
         
-        if db and not await self._cliente_existe(cliente_id, db):
+        if db and exigir_cliente and not await self._cliente_existe(cliente_id, db):
             raise ClienteIANaoEncontrado("Cliente não encontrado.")
 
         # Montar novo contexto

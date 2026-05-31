@@ -4,6 +4,8 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from fastapi import HTTPException
+
 os.environ.setdefault("APP_ENV", "test")
 os.environ.setdefault("DATABASE_URL", "sqlite:///:memory:")
 
@@ -21,8 +23,16 @@ from app.models.database import (
     StatusAlerta,
     TipoAlerta,
 )
+from app.routes.ia_routes import chat_ia
 from app.services.contexto_ia import ClienteIANaoEncontrado, SensorIANaoEncontrado, ServicoContextoIA
-from app.services.openai_service import RESPOSTA_FORA_ESCOPO, ServicoOpenAI
+from app.services.openai_service import (
+    MODO_AGRO_COM_DADOS,
+    MODO_AGRO_GERAL,
+    MODO_FORA_ESCOPO,
+    RESPOSTA_FORA_ESCOPO,
+    ServicoOpenAI,
+    classificar_escopo_pergunta,
+)
 
 
 def test_openai_service_returns_safe_fallback_without_api_key(monkeypatch):
@@ -85,6 +95,12 @@ def test_openai_prompt_uses_existing_context_fields_only(monkeypatch):
     assert "RESPONDA SOMENTE COM JSON VÁLIDO" in prompt
     assert "Não invente" in prompt
     assert "sensor_001" in prompt
+
+
+def test_classifica_perguntas_em_tres_modos():
+    assert classificar_escopo_pergunta("Qual capital da Itália?") == MODO_FORA_ESCOPO
+    assert classificar_escopo_pergunta("Como plantar milho?") == MODO_AGRO_GERAL
+    assert classificar_escopo_pergunta("Qual o principal risco desse sensor agora?") == MODO_AGRO_COM_DADOS
 
 
 def test_contexto_ia_loads_real_sensor_reading_and_alert_from_db():
@@ -193,6 +209,151 @@ def test_pergunta_fora_de_escopo_nao_chama_openai_e_nao_inventa_dados(monkeypatc
     assert resposta.modelo == "sem-openai"
 
 
+def test_pergunta_agro_geral_chama_openai_sem_exigir_sensor(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "fake-key")
+    service = ServicoOpenAI()
+    service.disponivel = True
+    service.model = "modelo-teste"
+
+    payload = {
+        "resposta_texto": (
+            "Situação: Para plantar milho, prepare o solo e escolha boa semente.\n\n"
+            "Risco: Sem análise de solo, a adubação pode errar.\n\n"
+            "O que fazer agora:\n1. Fazer análise de solo.\n2. Plantar na época certa.\n3. Monitorar pragas.\n\n"
+            "Atenção: Não aplique dose exata sem análise de solo ou agrônomo."
+        ),
+        "recomendacao": {
+            "acao": "Planejar o plantio com análise de solo.",
+            "motivo": "Milho precisa de solo corrigido e boa semente.",
+            "riscos_se_nao_fizer": "Pode perder produtividade.",
+            "beneficios": "Melhora o início da lavoura.",
+        },
+        "atencoes": ["Não inventar dados do cliente."],
+        "proximos_passos": ["Fazer análise de solo.", "Escolher semente.", "Monitorar pragas."],
+        "confianca_geral": 0.78,
+    }
+
+    class RespostaFake:
+        choices = [type("Choice", (), {"message": type("Message", (), {"content": json_dumps(payload)})()})()]
+        usage = type("Usage", (), {"total_tokens": 111})()
+
+    class ClienteFake:
+        class chat:
+            class completions:
+                @staticmethod
+                def create(**kwargs):
+                    assert kwargs["response_format"] == {"type": "json_object"}
+                    assert "Modo da pergunta: agro_geral" in kwargs["messages"][1]["content"]
+                    return RespostaFake()
+
+    service.client = ClienteFake()
+    contexto = ContextoIA(
+        cliente_id="cliente_teste",
+        usuario_pergunta="Como plantar milho?",
+        sensores_relevantes=[],
+    )
+
+    resposta = asyncio.run(service.analisar_contexto(contexto, "pergunta_milho"))
+
+    assert resposta.resposta_estruturada["modo"] == MODO_AGRO_GERAL
+    assert resposta.resposta_estruturada["origem"] == "openai"
+    assert resposta.tokens_usados == 111
+    assert "milho" in resposta.resposta_texto.lower()
+    assert "fazenda" not in resposta.resposta_texto.lower()
+    assert "sensor_" not in resposta.resposta_texto.lower()
+    assert len(resposta.proximos_passos) <= 3
+
+
+def test_pergunta_agro_geral_sem_openai_tem_fallback_util(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "")
+    service = ServicoOpenAI()
+    contexto = ContextoIA(
+        cliente_id="cliente_teste",
+        usuario_pergunta="Como plantar milho?",
+        sensores_relevantes=[],
+    )
+
+    resposta = asyncio.run(service.analisar_contexto(contexto, "pergunta_milho_fallback"))
+
+    assert resposta.resposta_estruturada["modo"] == MODO_AGRO_GERAL
+    assert resposta.modelo == "fallback-local"
+    assert "milho" in resposta.resposta_texto.lower()
+    assert "leitura real" not in resposta.resposta_texto.lower()
+    assert len(resposta.proximos_passos) <= 3
+
+
+def test_rota_chat_fora_escopo_nao_chama_openai_nem_banco(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "fake-key")
+
+    resposta = asyncio.run(
+        chat_ia(
+            cliente_id="cliente_qualquer",
+            pergunta="Qual capital da Itália?",
+            sensor_id=None,
+            x_app_token="token_teste",
+            db=None,
+        )
+    )
+
+    assert resposta.resposta_texto == RESPOSTA_FORA_ESCOPO
+    assert resposta.resposta_estruturada["modo"] == MODO_FORA_ESCOPO
+    assert resposta.modelo == "sem-openai"
+    assert resposta.tokens_usados == 0
+
+
+def test_rota_chat_agro_geral_nao_exige_cliente_ou_sensor(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "")
+    Base.metadata.create_all(bind=engine)
+    db = SessionLocal()
+    try:
+        resposta = asyncio.run(
+            chat_ia(
+                cliente_id="cliente_sem_cadastro_agro_geral",
+                pergunta="Como plantar milho?",
+                sensor_id=None,
+                x_app_token="token_teste",
+                db=db,
+            )
+        )
+
+        assert resposta.resposta_estruturada["modo"] == MODO_AGRO_GERAL
+        assert resposta.modelo == "fallback-local"
+        assert "milho" in resposta.resposta_texto.lower()
+        assert resposta.tokens_usados == 0
+    finally:
+        db.close()
+
+
+def test_rota_chat_com_dados_exige_cliente_real(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "")
+    Base.metadata.create_all(bind=engine)
+    db = SessionLocal()
+    cliente_id = "cliente_rota_inexistente_ia"
+    try:
+        db.query(AlertaDB).filter(AlertaDB.cliente_id == cliente_id).delete()
+        db.query(LeituraDB).filter(LeituraDB.cliente_id == cliente_id).delete()
+        db.query(SensorDB).filter(SensorDB.cliente_id == cliente_id).delete()
+        db.query(ClienteDB).filter(ClienteDB.cliente_id == cliente_id).delete()
+        db.commit()
+
+        try:
+            asyncio.run(
+                chat_ia(
+                    cliente_id=cliente_id,
+                    pergunta="Qual o principal risco desse sensor agora?",
+                    sensor_id=None,
+                    x_app_token="token_teste",
+                    db=db,
+                )
+            )
+            assert False, "Cliente inexistente deveria retornar HTTP 404"
+        except HTTPException as exc:
+            assert exc.status_code == 404
+            assert exc.detail == "Cliente não encontrado."
+    finally:
+        db.close()
+
+
 def test_contexto_ia_cliente_inexistente_retorna_erro_claro():
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
@@ -260,7 +421,7 @@ def test_sensor_real_sem_leitura_retorna_dados_insuficientes(monkeypatch):
     service = ServicoOpenAI()
     contexto = ContextoIA(
         cliente_id="cliente_teste",
-        usuario_pergunta="Como está o solo?",
+        usuario_pergunta="Qual o principal risco desse sensor agora?",
         sensores_relevantes=[
             SensorInfo(
                 sensor_id="sensor_sem_leitura",
@@ -274,8 +435,8 @@ def test_sensor_real_sem_leitura_retorna_dados_insuficientes(monkeypatch):
 
     resposta = asyncio.run(service.analisar_contexto(contexto, "pergunta_sem_dados"))
 
-    assert resposta.resposta_estruturada["modo"] == "dados_insuficientes"
-    assert "não há dados suficientes" in resposta.resposta_texto.lower()
+    assert resposta.resposta_estruturada["modo"] == MODO_AGRO_COM_DADOS
+    assert "não tenho leitura real" in resposta.resposta_texto.lower()
     assert resposta.modelo == "sem-openai"
 
 
@@ -336,7 +497,8 @@ def test_openai_resposta_estruturada_limpa_com_cliente_real_simulado(monkeypatch
 
     assert resposta.modelo == "modelo-teste"
     assert resposta.tokens_usados == 123
-    assert resposta.resposta_estruturada["modo"] == "openai"
+    assert resposta.resposta_estruturada["modo"] == MODO_AGRO_COM_DADOS
+    assert resposta.resposta_estruturada["origem"] == "openai"
     assert resposta.recomendacao.acao == "Conferir leitura e validar em campo."
     assert len(resposta.atencoes) <= 3
     assert len(resposta.proximos_passos) <= 3
@@ -371,6 +533,7 @@ def test_openai_json_invalido_usa_fallback_seguro(monkeypatch):
     assert resposta.modelo == "fallback-local"
     assert resposta.tokens_usados == 0
     assert resposta.resposta_estruturada["modo"] == "fallback_local"
+    assert resposta.resposta_estruturada["origem"] == "fallback_local"
 
 
 def json_dumps(payload):
