@@ -228,9 +228,13 @@ class DashboardMobileResponse(BaseModel):
 class SensorInfo(BaseModel):
     """Info do sensor para contexto IA"""
     sensor_id: str
+    nome: Optional[str] = None
     propriedade: str
     tipo: str = Field(description="Ex: 'solo', 'ar', 'hybrid'")
+    local_especifico: Optional[str] = None
     localizacao: Dict[str, Any] = Field(..., description="lat, lon, municipio, estado")
+    ultima_leitura: Optional[Dict[str, Any]] = None
+    avaliacoes: Dict[str, Any] = Field(default_factory=dict)
 
 
 class ClimaHistoricoSemana(BaseModel):

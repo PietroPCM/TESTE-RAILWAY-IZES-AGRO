@@ -2,14 +2,15 @@
 Rotas do Dashboard Mobile - Com dados reais do banco
 """
 
-from fastapi import APIRouter, HTTPException, Header, Depends, Query
+from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
-from typing import Optional
 import logging
 from datetime import datetime, timedelta
 
 from app.db import get_db
+from app.models.database import AlertaDB, SensorDB, StatusAlerta, SeveridadeAlerta
 from app.repositories.sensor_repository import SensorRepository, LeituraRepository
+from app.security import verificar_app_internal_token
 from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
@@ -17,19 +18,7 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/dashboard", tags=["dashboard-mobile"])
 
 
-def validar_app_token(x_app_token: str = Header(...)) -> str:
-    """
-    Valida token da app mobile
-    
-    TODO: Implementar validação real contra BD
-    Por agora aceita qualquer token iniciado com 'app_'
-    """
-    if not x_app_token.startswith("app_"):
-        raise HTTPException(
-            status_code=401,
-            detail="Token inválido. Use header X-App-Token"
-        )
-    return x_app_token
+validar_app_token = verificar_app_internal_token
 
 
 @router.get("/cliente/{cliente_id}/sensores")
@@ -102,17 +91,47 @@ async def dashboard_sensores(
 
 
 @router.get("/cliente/{cliente_id}/resumo")
-async def dashboard_resumo(cliente_id: str):
+async def dashboard_resumo(
+    cliente_id: str,
+    db: Session = Depends(get_db),
+):
     """
-    Resumo do dashboard com estatísticas gerais para o painel admin (Demo)
+    Resumo do dashboard com estatísticas reais disponíveis no banco.
     """
-    return {
-        "total_clientes": 1,
-        "total_fazendas": 1,
-        "total_talhoes": 2,
-        "total_sensores": 5,
-        "sensores_ativos": 4,
-        "alertas_criticos": 1,
-        "alertas_ativos": 3,
-        "operacoes_pendentes": 0
-    }
+    try:
+        sensores_query = db.query(SensorDB).filter(SensorDB.cliente_id == cliente_id)
+        total_sensores = sensores_query.count()
+        sensores_ativos = sensores_query.filter(SensorDB.ativo.is_(True)).count()
+        propriedades = {
+            sensor.propriedade
+            for sensor in sensores_query.all()
+            if sensor.propriedade
+        }
+
+        desde = datetime.utcnow() - timedelta(days=7)
+        alertas_query = db.query(AlertaDB).filter(AlertaDB.cliente_id == cliente_id)
+        alertas_ativos = alertas_query.filter(AlertaDB.status == StatusAlerta.ATIVO).count()
+        alertas_criticos = alertas_query.filter(
+            AlertaDB.status == StatusAlerta.ATIVO,
+            AlertaDB.severidade == SeveridadeAlerta.CRITICO,
+        ).count()
+        alertas_ultimos_7_dias = alertas_query.filter(AlertaDB.criado_em >= desde).count()
+
+        return {
+            "cliente_id": cliente_id,
+            "total_clientes": 1 if total_sensores or alertas_query.first() else 0,
+            "total_fazendas": len(propriedades),
+            "total_talhoes": None,
+            "total_sensores": total_sensores,
+            "sensores_ativos": sensores_ativos,
+            "alertas_criticos": alertas_criticos,
+            "alertas_ativos": alertas_ativos,
+            "alertas_ultimos_7_dias": alertas_ultimos_7_dias,
+            "operacoes_pendentes": 0,
+            "dados_reais": True,
+            "observacao": "Resumo calculado a partir de sensores e alertas existentes no banco.",
+            "atualizado_em": utc_iso(datetime.utcnow()),
+        }
+    except Exception as e:
+        logger.error(f"Erro ao buscar resumo do dashboard: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Erro ao buscar resumo do dashboard")

@@ -149,10 +149,17 @@ POST /alertas/reconhecer-todos
 O módulo de IA usa contexto agrícola para responder perguntas e gerar recomendações.
 
 Hoje o código está preparado para OpenAI via `OPENAI_API_KEY`.
+Se `OPENAI_API_KEY` não estiver configurada, o endpoint usa fallback local seguro sem chamada externa.
 
 ```text
 POST /api/ia/chat
 GET  /api/ia/historico/{cliente_id}
+```
+
+Documentação de teste local:
+
+```text
+TESTE_IA.md
 ```
 
 ### Clima, Plantio e Gestão Agrícola
@@ -301,6 +308,8 @@ Use o header:
 X-API-Key: valor configurado em SENSOR_API_KEY
 ```
 
+Endpoints internos do app que usam `X-App-Token`, como `/api/ia/chat`, exigem correspondência exata com `APP_INTERNAL_TOKEN`. Em produção/staging, configure essa variável no Railway sem registrar o valor no repositório.
+
 O caminho mais provável para o projeto é usar **Supabase**, já que ele entrega PostgreSQL gerenciado.
 
 Nesse caso, basta apontar o `DATABASE_URL` para a string de conexão do Supabase.
@@ -327,12 +336,24 @@ Exemplo básico:
 DATABASE_URL=postgresql://usuario:senha@host:5432/banco
 SECRET_KEY=troque-essa-chave
 SENSOR_API_KEY=chave-dos-sensores
+APP_INTERNAL_TOKEN=token-interno-do-app
 ENVIRONMENT=development
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4-turbo
 REDIS_HOST=localhost
 SENTRY_DSN=
 ```
+
+`ALLOWED_HOSTS` ainda não é consumida por esta versão do backend; hosts confiáveis estão definidos no código e devem ser fechados em produção futura.
+
+## Ações manuais necessárias
+
+- Configurar variáveis obrigatórias no Railway: `DATABASE_URL`, `SECRET_KEY`, `SENSOR_API_KEY`, `APP_INTERNAL_TOKEN` e `APP_ENV`; sem isso, o backend pode não subir ou endpoints protegidos podem falhar.
+- Configurar `OPENAI_API_KEY` para IA com OpenAI real; sem isso, `/api/ia/chat` usa fallback local seguro.
+- Configurar `OPENAI_MODEL`, `OPENAI_TEMPERATURE` e `OPENAI_MAX_TOKENS` se quiser controlar comportamento/custo da IA; sem isso, valem os defaults do código.
+- Fazer redeploy após alterar variáveis no Railway; sem redeploy, a aplicação pode continuar com configuração anterior.
+- Testar `/health/live`, `/docs`, sensor manual, leitura manual, dashboard e `/api/ia/chat` após redeploy.
+- Não commitar `.env`, chaves, tokens, URLs reais ou arquivos de credenciais.
 
 > Login/autenticação ainda será modificado, então essa parte não deve ser tratada como final.
 

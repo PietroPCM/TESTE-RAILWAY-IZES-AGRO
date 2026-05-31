@@ -185,6 +185,10 @@ O sistema possui servico de IA em `app/services/openai_service.py`. A ideia e mo
 
 Hoje a documentacao antiga fala em Gemini em alguns pontos, mas o codigo atual esta preparado para OpenAI via `OPENAI_API_KEY`.
 
+Se `OPENAI_API_KEY` nao estiver configurada, o backend deve responder com fallback local seguro, usando somente os dados ja existentes no contexto e sem chamada externa para OpenAI.
+
+O contexto de IA usa sensores reais, ultima leitura, avaliacoes calculadas e alertas ativos quando esses dados existem no banco configurado. A IA deve deixar claro que a resposta e orientacao de apoio e nao substitui laudo agronomico.
+
 Esse modulo entrega:
 
 - resposta textual;

@@ -90,9 +90,10 @@ async def login(credentials: UserLogin, db: Session = Depends(get_db)):
 @router.post("/register", response_model=UserResponse, summary="Registrar novo usuário")
 async def register(user: UserCreate, db: Session = Depends(get_db)):
     """
-    Registrar novo usuário
-    
-    **Nota:** Em produção, adicionar validações e salvar no banco
+    Registrar novo usuário.
+
+    Cadastro público sempre cria usuário com role segura `viewer`.
+    Roles privilegiadas devem ser atribuídas por fluxo administrativo autenticado.
     """
     logger.info(f"📝 Registro de novo usuário: {user.email}")
     
@@ -115,7 +116,7 @@ async def register(user: UserCreate, db: Session = Depends(get_db)):
         nome=user.nome,
         senha_hash=hashed_password,
         cliente_id=user.cliente_id,
-        role=user.role.value if hasattr(user, 'role') else "viewer",
+        role="viewer",
         ativo=True
     )
     db.add(new_user)

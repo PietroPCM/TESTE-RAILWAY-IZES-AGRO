@@ -130,4 +130,13 @@ O sensor precisa estar previamente cadastrado.
 - Não use `AUTO_CREATE_TABLES=true` em banco real sem autorização.
 - Não use `AUTO_RUN_SEEDS=true` em banco real sem autorização.
 - Não exponha `SENSOR_API_KEY` no app público.
+- Configure `APP_INTERNAL_TOKEN` para testar endpoints com `X-App-Token`.
 - Não registre valores reais de segredo em documentação ou memória.
+
+## Ações manuais necessárias
+
+- Confirmar `SENSOR_API_KEY` no Railway e usar o mesmo valor no header `X-API-Key`; sem isso, criação manual de sensor/leitura falha.
+- Criar sensor manual antes de enviar leitura manual; sem sensor cadastrado, a leitura é recusada.
+- Enviar pelo menos uma leitura manual para popular dashboard e contexto da IA.
+- Conferir `GET /api/dashboard/cliente/{cliente_id}/sensores` após enviar leitura; sem leitura, o dashboard pode retornar sensor sem `ultima_leitura`.
+- Não commitar `.env` nem valores reais de chave/token.

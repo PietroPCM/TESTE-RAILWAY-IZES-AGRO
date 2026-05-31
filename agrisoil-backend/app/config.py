@@ -124,6 +124,7 @@ class Settings(BaseSettings):
     
     # Sensor API Key
     sensor_api_key: str = Field(default="", validation_alias="SENSOR_API_KEY")
+    app_internal_token: str = Field(default="", validation_alias="APP_INTERNAL_TOKEN")
     
     # HTTPS
     force_https: bool = Field(default=False, validation_alias="FORCE_HTTPS")
@@ -154,6 +155,8 @@ class Settings(BaseSettings):
                 self.secret_key = "local-dev-secret-key-change-before-production"
             if not self.sensor_api_key:
                 self.sensor_api_key = "local-dev-sensor-api-key"
+            if not self.app_internal_token:
+                self.app_internal_token = "app_teste_local"
 
         return self
 

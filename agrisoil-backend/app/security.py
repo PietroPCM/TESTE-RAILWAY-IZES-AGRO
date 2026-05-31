@@ -5,6 +5,7 @@ Production-ready com PyJWT e bcrypt
 
 from datetime import datetime, timedelta, timezone
 from typing import Optional
+import hmac
 import jwt
 import bcrypt
 import logging
@@ -200,17 +201,41 @@ async def obter_usuario_atual(credentials: HTTPAuthorizationCredentials = Depend
 async def get_current_app_token(credentials: HTTPAuthorizationCredentials = Depends(security)) -> str:
     """
     Dependency: Validar token de aplicação móvel
-    Simples validação - em produção, verificar contra BD
     """
     token = credentials.credentials
-    
-    if not token.startswith("app_"):
+
+    if not settings.app_internal_token:
+        logger.error("APP_INTERNAL_TOKEN não configurado para validação de token interno")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Token interno da aplicação não configurado",
+        )
+
+    if not hmac.compare_digest(token, settings.app_internal_token):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Token de aplicação inválido"
         )
     
     return token
+
+
+def verificar_app_internal_token(x_app_token: str = Header(..., description="Token interno do app")) -> str:
+    """Validar header X-App-Token sem aceitar prefixos genéricos."""
+    if not settings.app_internal_token:
+        logger.error("APP_INTERNAL_TOKEN não configurado para validação de X-App-Token")
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Token interno da aplicação não configurado",
+        )
+
+    if not hmac.compare_digest(x_app_token, settings.app_internal_token):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token inválido. Use header X-App-Token",
+        )
+
+    return x_app_token
 
 
 async def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)) -> str:

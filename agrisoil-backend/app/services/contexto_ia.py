@@ -7,14 +7,18 @@ import logging
 from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 from uuid import uuid4
+from sqlalchemy import desc
+from sqlalchemy.orm import Session
 from app.models.contratos import (
     ContextoIA,
     SensorInfo,
+    DecisaoAlerta,
     ClimaHistoricoSemana,
     AlertaHistorico,
     ClimaBruto,
     ClimaProcessado
 )
+from app.models.database import AlertaDB, LeituraDB, SensorDB, StatusAlerta
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +41,8 @@ class ServicoContextoIA:
         cliente_id: str,
         pergunta: str,
         sensor_id: Optional[str] = None,
-        usar_cache: bool = True
+        usar_cache: bool = True,
+        db: Optional[Session] = None
     ) -> ContextoIA:
         """
         Monta CONTEXTO_IA completo para IA processar
@@ -57,7 +62,7 @@ class ServicoContextoIA:
         )
         
         # Verificar cache
-        chave_cache = f"{cliente_id}:{sensor_id}:{hash(pergunta)}"
+        chave_cache = f"{cliente_id}:{sensor_id}:{hash(pergunta)}:{bool(db)}"
         if usar_cache and chave_cache in self.cache_contexto:
             contexto = self.cache_contexto[chave_cache]
             if contexto["expira_em"] > datetime.now():
@@ -65,12 +70,12 @@ class ServicoContextoIA:
                 return contexto["dados"]
         
         # Montar novo contexto
-        sensores_relevantes = await self._buscar_sensores_relevantes(cliente_id, sensor_id)
+        sensores_relevantes = await self._buscar_sensores_relevantes(cliente_id, sensor_id, db)
         clima_atual = await self._buscar_clima_atual(sensores_relevantes)
         clima_7_dias = await self._buscar_clima_historico(sensores_relevantes, dias=7)
         previsao_7_dias = await self._buscar_previsao(sensores_relevantes)
-        alertas_ativos = await self._buscar_alertas_ativos(cliente_id)
-        alertas_historico = await self._buscar_alertas_historico(cliente_id, dias=30)
+        alertas_ativos = await self._buscar_alertas_ativos(cliente_id, db)
+        alertas_historico = await self._buscar_alertas_historico(cliente_id, dias=30, db=db)
         plano_agronomo = await self._buscar_plano_agronomo(cliente_id)
         conversas_anteriores = await self._buscar_conversas_anteriores(cliente_id, dias=30)
         
@@ -124,42 +129,43 @@ class ServicoContextoIA:
     async def _buscar_sensores_relevantes(
         self,
         cliente_id: str,
-        sensor_id: Optional[str] = None
+        sensor_id: Optional[str] = None,
+        db: Optional[Session] = None
     ) -> List[SensorInfo]:
         """Busca sensores relevantes do cliente"""
-        sensores = []
-        
-        # TODO: Buscar do BD via db_service
-        # Por enquanto, exemplo hardcoded
+        if not db:
+            logger.info("Contexto IA sem sessão de banco; nenhum sensor real será carregado.")
+            return []
+
+        query = db.query(SensorDB).filter(SensorDB.cliente_id == cliente_id, SensorDB.ativo == True)
         if sensor_id:
+            query = query.filter(SensorDB.sensor_id == sensor_id)
+
+        sensores_db = query.order_by(desc(SensorDB.criado_em)).limit(10).all()
+        sensores = []
+
+        for sensor in sensores_db:
+            ultima = db.query(LeituraDB).filter(
+                LeituraDB.sensor_id == sensor.sensor_id
+            ).order_by(desc(LeituraDB.timestamp)).first()
+
             sensores.append(SensorInfo(
-                sensor_id=sensor_id,
-                propriedade="Fazenda São João",
-                tipo="solo",
+                sensor_id=sensor.sensor_id,
+                nome=sensor.nome,
+                propriedade=sensor.propriedade or "Não informado",
+                tipo=sensor.tipo or "solo",
+                local_especifico=sensor.local_especifico,
                 localizacao={
-                    "latitude": -15.7801,
-                    "longitude": -48.0896,
-                    "municipio": "Brasília",
-                    "estado": "DF"
-                }
+                    "latitude": sensor.latitude,
+                    "longitude": sensor.longitude,
+                    "municipio": sensor.municipio,
+                    "estado": sensor.estado,
+                    "local_especifico": sensor.local_especifico,
+                },
+                ultima_leitura=self._serializar_leitura(ultima) if ultima else None,
+                avaliacoes=self._serializar_avaliacoes(ultima) if ultima else {},
             ))
-        else:
-            # Buscar todos do cliente
-            sensores = [
-                SensorInfo(
-                    sensor_id=f"sensor_{i:03d}",
-                    propriedade=f"Propriedade {i}",
-                    tipo="solo",
-                    localizacao={
-                        "latitude": -15.7801,
-                        "longitude": -48.0896,
-                        "municipio": "Brasília",
-                        "estado": "DF"
-                    }
-                )
-                for i in range(1, 4)  # 3 sensores exemplo
-            ]
-        
+
         return sensores
     
     async def _buscar_clima_atual(
@@ -167,15 +173,6 @@ class ServicoContextoIA:
         sensores: List[SensorInfo]
     ) -> Optional[Dict[str, Any]]:
         """Busca clima atual dos sensores"""
-        # TODO: Buscar do BD
-        if sensores:
-            return {
-                "temperatura": 22.5,
-                "umidade": 65,
-                "chuva_probabilidade": 30,
-                "condicao": "nublado",
-                "timestamp": datetime.now().isoformat()
-            }
         return None
     
     async def _buscar_clima_historico(
@@ -184,80 +181,65 @@ class ServicoContextoIA:
         dias: int = 7
     ) -> Dict[str, ClimaHistoricoSemana]:
         """Busca histórico de clima dos últimos N dias"""
-        historico = {}
-        
-        # TODO: Buscar do BD
-        for sensor in sensores:
-            historico[sensor.sensor_id] = ClimaHistoricoSemana(
-                temperatura_media=21.2,
-                temperatura_min=18.5,
-                temperatura_max=26.3,
-                umidade_media=62,
-                umidade_min=45,
-                umidade_max=85,
-                chuva_total_mm=2.3,
-                dias_com_chuva=1,
-                dias_sem_chuva=6,
-                vento_medio_kmh=8.5,
-                previsao_proximos_dias=[]
-            )
-        
-        return historico
+        return {}
     
     async def _buscar_previsao(
         self,
         sensores: List[SensorInfo]
     ) -> List[Dict[str, Any]]:
         """Busca previsão para os próximos 7 dias"""
-        # TODO: Buscar do provedor de clima
-        return [
-            {
-                "dia": "2026-01-21",
-                "temperatura_max": 28,
-                "temperatura_min": 19,
-                "chuva_probabilidade": 20,
-                "condicao": "ensolarado"
-            },
-            {
-                "dia": "2026-01-22",
-                "temperatura_max": 29,
-                "temperatura_min": 20,
-                "chuva_probabilidade": 50,
-                "condicao": "nublado"
-            }
-        ]
+        return []
     
     async def _buscar_alertas_ativos(
         self,
-        cliente_id: str
-    ) -> List[Dict[str, Any]]:
+        cliente_id: str,
+        db: Optional[Session] = None
+    ) -> List[DecisaoAlerta]:
         """Busca alertas ativos do cliente"""
-        # TODO: Buscar do BD
+        if not db:
+            return []
+
+        alertas = db.query(AlertaDB).filter(
+            AlertaDB.cliente_id == cliente_id,
+            AlertaDB.status == StatusAlerta.ATIVO
+        ).order_by(desc(AlertaDB.criado_em)).limit(20).all()
+
         return [
-            {
-                "tipo": "seca",
-                "severidade": "alta",
-                "mensagem": "Risco de seca detectado",
-                "desde": datetime.now().isoformat(),
-                "ativa": True
-            }
+            DecisaoAlerta(
+                tipo=getattr(alerta.tipo, "value", alerta.tipo),
+                severidade=getattr(alerta.severidade, "value", alerta.severidade),
+                mensagem=alerta.mensagem,
+                ativa=True,
+                desde=alerta.criado_em or datetime.now(),
+            )
+            for alerta in alertas
         ]
     
     async def _buscar_alertas_historico(
         self,
         cliente_id: str,
-        dias: int = 30
+        dias: int = 30,
+        db: Optional[Session] = None
     ) -> List[AlertaHistorico]:
         """Busca histórico de alertas dos últimos N dias"""
-        # TODO: Buscar do BD
+        if not db:
+            return []
+
+        data_inicial = datetime.now() - timedelta(days=dias)
+        alertas = db.query(AlertaDB).filter(
+            AlertaDB.cliente_id == cliente_id,
+            AlertaDB.criado_em >= data_inicial
+        ).order_by(desc(AlertaDB.criado_em)).limit(50).all()
+
         return [
             AlertaHistorico(
-                tipo="seca",
-                severidade="alta",
-                desde=datetime.now() - timedelta(days=5),
-                ate=datetime.now() - timedelta(days=3),
-                acao_tomada="Aumentou irrigação"
+                tipo=getattr(alerta.tipo, "value", alerta.tipo),
+                severidade=getattr(alerta.severidade, "value", alerta.severidade),
+                desde=alerta.criado_em or datetime.now(),
+                ate=alerta.resolvido_em,
+                acao_tomada=alerta.observacao,
             )
+            for alerta in alertas
         ]
     
     async def _buscar_plano_agronomo(
@@ -265,19 +247,7 @@ class ServicoContextoIA:
         cliente_id: str
     ) -> Optional[Dict[str, Any]]:
         """Busca plano agronômico do cliente"""
-        # TODO: Buscar do BD
-        return {
-            "cultura": "Milho",
-            "fase": "V6 (6 folhas)",
-            "data_plantio": "2025-12-15",
-            "data_colheita_prevista": "2026-04-15",
-            "ciclo_dias": 120,
-            "proximo_evento": {
-                "data": "2026-01-25",
-                "acao": "Aplicar nitrogênio",
-                "detalhes": "200kg/ha de ureia"
-            }
-        }
+        return None
     
     async def _buscar_conversas_anteriores(
         self,
@@ -285,14 +255,7 @@ class ServicoContextoIA:
         dias: int = 30
     ) -> List[Dict[str, Any]]:
         """Busca histórico de conversas IA dos últimos N dias"""
-        # TODO: Buscar do BD
-        return [
-            {
-                "data": (datetime.now() - timedelta(days=3)).isoformat(),
-                "pergunta": "Quanto vai chover essa semana?",
-                "resposta": "Previsão de 20-30mm distribuídos em 2 dias"
-            }
-        ]
+        return []
     
     def _calcular_prioridades(
         self,
@@ -303,7 +266,7 @@ class ServicoContextoIA:
         """Calcula prioridades baseado no contexto"""
         prioridades = {
             "é_critico": any(
-                a.get("severidade") == "critica" 
+                self._valor_alerta(a, "severidade") in {"critica", "critico"}
                 for a in alertas_ativos
             ),
             "é_tempo_sensivel": any(
@@ -315,6 +278,12 @@ class ServicoContextoIA:
         }
         
         return prioridades
+
+    def _valor_alerta(self, alerta: Any, campo: str) -> Any:
+        """Lê campo de alerta aceitando dict ou modelo Pydantic."""
+        if isinstance(alerta, dict):
+            return alerta.get(campo)
+        return getattr(alerta, campo, None)
     
     def _estimar_tokens(self, contexto_dict: Dict[str, Any]) -> int:
         """
@@ -326,6 +295,46 @@ class ServicoContextoIA:
         # ~4 chars por token
         tokens = len(contexto_str.encode('utf-8')) // 4
         return tokens
+
+    def _serializar_leitura(self, leitura: Optional[LeituraDB]) -> Optional[Dict[str, Any]]:
+        """Serializa ultima leitura real sem inventar campos."""
+        if not leitura:
+            return None
+
+        return {
+            "timestamp": leitura.timestamp.isoformat() if leitura.timestamp else None,
+            "ph": leitura.ph,
+            "umidade": leitura.umidade,
+            "temperatura": leitura.temperatura,
+            "condutividade": leitura.condutividade,
+            "nitrogenio": leitura.nitrogenio,
+            "fosforo": leitura.fosforo,
+            "potassio": leitura.potassio,
+            "alerta_ativo": leitura.alerta_ativo,
+            "nivel_critico": leitura.nivel_critico,
+        }
+
+    def _serializar_avaliacoes(self, leitura: Optional[LeituraDB]) -> Dict[str, Any]:
+        """Serializa avaliacoes agronomicas ja calculadas na leitura."""
+        if not leitura:
+            return {}
+
+        avaliacoes = {}
+        for campo, nivel, mensagem in [
+            ("ph", leitura.ph_nivel, leitura.ph_mensagem),
+            ("umidade", leitura.umidade_nivel, leitura.umidade_mensagem),
+            ("temperatura", leitura.temperatura_nivel, leitura.temperatura_mensagem),
+            ("nitrogenio", leitura.nitrogenio_nivel, leitura.nitrogenio_mensagem),
+            ("fosforo", leitura.fosforo_nivel, leitura.fosforo_mensagem),
+            ("potassio", leitura.potassio_nivel, leitura.potassio_mensagem),
+        ]:
+            if nivel or mensagem:
+                avaliacoes[campo] = {
+                    "nivel": nivel,
+                    "mensagem": mensagem,
+                }
+
+        return avaliacoes
     
     def limpar_cache(self):
         """Limpa cache expirado"""

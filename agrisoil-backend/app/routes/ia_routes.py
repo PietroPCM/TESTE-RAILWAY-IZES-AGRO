@@ -4,13 +4,16 @@ POST /api/ia/chat - Chat com IA agrícola
 GET /api/ia/historico/{cliente_id} - Histórico de conversas
 """
 
-from fastapi import APIRouter, HTTPException, Header, Query, Depends
+from fastapi import APIRouter, HTTPException, Query, Depends
+from sqlalchemy.orm import Session
 from typing import Optional, List
 import logging
 from datetime import datetime
 import json
 
 from app.models.contratos import RespostaIA, RecomendacaoIA, ContextoIA
+from app.db import get_db
+from app.security import verificar_app_internal_token
 from app.services.contexto_ia import servico_contexto_ia
 from app.utils.datetime_utils import utc_iso
 
@@ -20,16 +23,6 @@ router = APIRouter(prefix="/api/ia", tags=["ia-agronomica"])
 
 # Histórico em memória (TODO: Persistir em BD)
 historico_conversas = {}
-
-
-def validar_app_token(x_app_token: str = Header(...)) -> str:
-    """Valida token da app mobile"""
-    if not x_app_token.startswith("app_"):
-        raise HTTPException(
-            status_code=401,
-            detail="Token inválido. Use header X-App-Token"
-        )
-    return x_app_token
 
 
 @router.post(
@@ -42,7 +35,8 @@ async def chat_ia(
     cliente_id: str = Query(..., description="ID do cliente"),
     pergunta: str = Query(..., description="Pergunta do usuário"),
     sensor_id: Optional[str] = Query(None, description="(Opcional) ID do sensor específico"),
-    x_app_token: str = Depends(validar_app_token)
+    x_app_token: str = Depends(verificar_app_internal_token),
+    db: Session = Depends(get_db)
 ):
     """
     Chat com IA Agrícola
@@ -96,7 +90,8 @@ async def chat_ia(
             cliente_id=cliente_id,
             pergunta=pergunta,
             sensor_id=sensor_id,
-            usar_cache=True
+            usar_cache=True,
+            db=db
         )
         
         logger.debug(f"Contexto montado: {contexto.tokens_estimado} tokens")
@@ -146,7 +141,7 @@ async def chat_ia(
 async def historico_conversas_ia(
     cliente_id: str,
     limite: int = Query(20, ge=1, le=100, description="Número máximo de conversas"),
-    x_app_token: str = Depends(validar_app_token)
+    x_app_token: str = Depends(verificar_app_internal_token)
 ):
     """
     Retorna histórico de conversas do cliente com IA
@@ -194,7 +189,7 @@ async def historico_conversas_ia(
 )
 async def limpar_historico_ia(
     cliente_id: str,
-    x_app_token: str = Depends(validar_app_token)
+    x_app_token: str = Depends(verificar_app_internal_token)
 ):
     """Limpa todo o histórico de conversas do cliente"""
     if cliente_id in historico_conversas:
