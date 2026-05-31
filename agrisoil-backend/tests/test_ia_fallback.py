@@ -2,9 +2,11 @@ import asyncio
 import os
 import sys
 from datetime import datetime
+from io import BytesIO
 from pathlib import Path
 
 from fastapi import HTTPException
+from fastapi.testclient import TestClient
 
 os.environ.setdefault("APP_ENV", "test")
 os.environ.setdefault("DATABASE_URL", "sqlite:///:memory:")
@@ -25,6 +27,7 @@ from app.models.database import (
 )
 from app.routes.ia_routes import chat_ia
 import app.services.openai_service as openai_service_module
+from app.main import app
 from app.services.contexto_ia import ClienteIANaoEncontrado, SensorIANaoEncontrado, ServicoContextoIA
 from app.services.openai_service import (
     MODO_AGRO_COM_DADOS,
@@ -34,6 +37,9 @@ from app.services.openai_service import (
     ServicoOpenAI,
     classificar_escopo_pergunta,
 )
+
+
+client = TestClient(app)
 
 
 def test_openai_service_returns_safe_fallback_without_api_key(monkeypatch):
@@ -705,3 +711,50 @@ def json_dumps(payload):
     import json
 
     return json.dumps(payload, ensure_ascii=False)
+
+
+def test_analisar_imagem_retorna_400_quando_arquivo_nao_e_imagem(monkeypatch):
+    monkeypatch.setattr(settings, "app_internal_token", "app_teste_local")
+
+    response = client.post(
+        "/api/ia/analisar-imagem",
+        headers={"X-App-Token": "app_teste_local"},
+        files={"imagem": ("arquivo.txt", BytesIO(b"texto puro"), "text/plain")},
+    )
+
+    assert response.status_code == 400
+    assert response.json()["detail"] == "O arquivo enviado deve ser uma imagem válida."
+
+
+def test_analisar_imagem_valida_retorna_campo_resposta(monkeypatch):
+    monkeypatch.setattr(settings, "app_internal_token", "app_teste_local")
+
+    async def analisar_imagem_fake(self, image_bytes, mime_type):
+        assert mime_type == "image/png"
+        assert image_bytes.startswith(b"\x89PNG")
+        return "Imagem com folha verde sobre fundo claro."
+
+    monkeypatch.setattr(ServicoOpenAI, "analisar_imagem", analisar_imagem_fake)
+
+    response = client.post(
+        "/api/ia/analisar-imagem",
+        headers={"X-App-Token": "app_teste_local"},
+        files={"imagem": ("folha.png", BytesIO(b"\x89PNG\r\n\x1a\nconteudo"), "image/png")},
+    )
+
+    assert response.status_code == 200
+    assert response.json() == {"resposta": "Imagem com folha verde sobre fundo claro."}
+
+
+def test_analisar_imagem_sem_openai_api_key_retorna_erro_claro(monkeypatch):
+    monkeypatch.setattr(settings, "app_internal_token", "app_teste_local")
+    monkeypatch.setattr(settings, "openai_api_key", "")
+
+    response = client.post(
+        "/api/ia/analisar-imagem",
+        headers={"X-App-Token": "app_teste_local"},
+        files={"imagem": ("folha.png", BytesIO(b"\x89PNG\r\n\x1a\nconteudo"), "image/png")},
+    )
+
+    assert response.status_code == 503
+    assert response.json()["detail"] == "OPENAI_API_KEY não configurada no backend."

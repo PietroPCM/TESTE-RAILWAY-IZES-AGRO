@@ -4,14 +4,14 @@ POST /api/ia/chat - Chat com IA agrícola
 GET /api/ia/historico/{cliente_id} - Histórico de conversas
 """
 
-from fastapi import APIRouter, HTTPException, Query, Depends
+from fastapi import APIRouter, HTTPException, Query, Depends, File, UploadFile
 from sqlalchemy.orm import Session
 from typing import Optional, List
 import logging
 from datetime import datetime
 import json
 
-from app.models.contratos import RespostaIA, RecomendacaoIA, ContextoIA
+from app.models.contratos import RespostaIA, RecomendacaoIA, ContextoIA, RespostaAnaliseImagemIA
 from app.db import get_db
 from app.security import verificar_app_internal_token
 from app.services.contexto_ia import (
@@ -22,6 +22,7 @@ from app.services.contexto_ia import (
 from app.services.openai_service import (
     MODO_AGRO_GERAL,
     MODO_FORA_ESCOPO,
+    OpenAIImageAnalysisError,
     ServicoOpenAI,
     classificar_escopo_pergunta,
 )
@@ -33,6 +34,45 @@ router = APIRouter(prefix="/api/ia", tags=["ia-agronomica"])
 
 # Histórico em memória (TODO: Persistir em BD)
 historico_conversas = {}
+
+
+@router.post(
+    "/analisar-imagem",
+    response_model=RespostaAnaliseImagemIA,
+    summary="Analisar imagem com IA",
+    description="Recebe uma imagem do app, envia para a OpenAI com visão e retorna uma descrição textual objetiva."
+)
+async def analisar_imagem_ia(
+    imagem: UploadFile = File(..., description="Arquivo de imagem enviado pelo app"),
+    x_app_token: str = Depends(verificar_app_internal_token),
+):
+    if not imagem.content_type or not imagem.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="O arquivo enviado deve ser uma imagem válida.")
+
+    try:
+        conteudo = await imagem.read()
+        if not conteudo:
+            raise HTTPException(status_code=400, detail="A imagem enviada está vazia.")
+
+        resposta = await ServicoOpenAI().analisar_imagem(
+            image_bytes=conteudo,
+            mime_type=imagem.content_type,
+        )
+        return RespostaAnaliseImagemIA(resposta=resposta)
+    except HTTPException:
+        raise
+    except OpenAIImageAnalysisError as exc:
+        detalhe = str(exc)
+        status_code = 503 if "OPENAI_API_KEY" in detalhe else 502
+        raise HTTPException(status_code=status_code, detail=detalhe) from exc
+    except Exception as exc:
+        logger.error("Erro ao analisar imagem na rota IA: %s", exc, exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail="Erro interno ao processar a imagem enviada."
+        ) from exc
+    finally:
+        await imagem.close()
 
 
 @router.post(

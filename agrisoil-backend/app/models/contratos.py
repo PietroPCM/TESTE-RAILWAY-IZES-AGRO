@@ -404,6 +404,11 @@ class RespostaIA(BaseModel):
         return serialize_utc_payload(handler(self))
 
 
+class RespostaAnaliseImagemIA(BaseModel):
+    """Resposta simples para anÃ¡lise de imagem da IA."""
+    resposta: str = Field(..., description="Texto objetivo com a anÃ¡lise da imagem")
+
+
 # ============================================================================
 # Exports
 # ============================================================================
@@ -413,6 +418,7 @@ __all__ = [
     "ClimaProcessado",
     "ClimaMobile",
     "ContextoIA",
+    "RespostaAnaliseImagemIA",
     "RespostaIA",
     "DashboardMobileResponse",
 ]

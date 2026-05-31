@@ -2,6 +2,7 @@
 Serviço de Integração com Izes IA (powered by OpenAI/ChatGPT)
 """
 
+import base64
 import logging
 from openai import OpenAI
 from app.config import settings
@@ -23,6 +24,15 @@ RESPOSTA_FORA_ESCOPO = (
 )
 
 AVISO_DOSE = "Não aplique dose exata sem análise de solo ou agrônomo."
+PROMPT_ANALISE_IMAGEM = (
+    "Analise a imagem enviada pelo usuário. Descreva de forma objetiva o que aparece nela. "
+    "Se parecer algo agrícola, planta, solo, praga ou doença, explique apenas sinais visuais observáveis, "
+    "sem inventar diagnóstico."
+)
+
+
+class OpenAIImageAnalysisError(Exception):
+    """Erro amigável para análise de imagem com OpenAI."""
 
 
 def _normalizar_texto(texto: str) -> str:
@@ -184,7 +194,57 @@ class ServicoOpenAI:
             if modo_pergunta == MODO_AGRO_GERAL:
                 return self._resposta_agro_geral_fallback(contexto, pergunta_id)
             return self._resposta_fallback(contexto, pergunta_id, motivo="OpenAI indisponível")
-    
+
+    async def analisar_imagem(self, image_bytes: bytes, mime_type: str) -> str:
+        """Envia uma imagem para a OpenAI com visão e retorna a análise textual."""
+        if not settings.openai_api_key:
+            raise OpenAIImageAnalysisError("OPENAI_API_KEY não configurada no backend.")
+
+        if not image_bytes:
+            raise OpenAIImageAnalysisError("A imagem enviada está vazia.")
+
+        image_base64 = base64.b64encode(image_bytes).decode("utf-8")
+        vision_model = (settings.openai_vision_model or "gpt-4o-mini").strip() or "gpt-4o-mini"
+
+        try:
+            response = self.client.chat.completions.create(
+                model=vision_model,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "Você analisa imagens para o app IZES. "
+                            "Responda em português do Brasil, de forma objetiva e sem inventar diagnóstico."
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": PROMPT_ANALISE_IMAGEM},
+                            {
+                                "type": "image_url",
+                                "image_url": {
+                                    "url": f"data:{mime_type};base64,{image_base64}",
+                                },
+                            },
+                        ],
+                    },
+                ],
+                temperature=0.2,
+                max_tokens=min(settings.openai_max_tokens, 400),
+            )
+        except Exception as exc:
+            logger.error("Erro ao analisar imagem com OpenAI: %s", type(exc).__name__, exc_info=True)
+            raise OpenAIImageAnalysisError(
+                "Não foi possível analisar a imagem com a OpenAI no momento."
+            ) from exc
+
+        resposta = (response.choices[0].message.content or "").strip() if response.choices else ""
+        if not resposta:
+            raise OpenAIImageAnalysisError("A OpenAI não retornou texto para a imagem enviada.")
+
+        return resposta
+
     def _montar_prompt(self, contexto: ContextoIA, modo_pergunta: Optional[str] = None) -> str:
         """Monta prompt estruturado para ChatGPT"""
         modo = modo_pergunta or classificar_escopo_pergunta(contexto.usuario_pergunta)

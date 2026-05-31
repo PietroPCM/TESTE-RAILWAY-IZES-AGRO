@@ -46,6 +46,7 @@ class Settings(BaseSettings):
     # OpenAI / ChatGPT
     openai_api_key: str = Field(default="")
     openai_model: str = "gpt-4-turbo"
+    openai_vision_model: str = "gpt-4o-mini"
     openai_temperature: float = 0.7
     openai_max_tokens: int = 2000
     
