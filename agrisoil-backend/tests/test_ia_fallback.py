@@ -14,14 +14,15 @@ from app.db import Base, SessionLocal, engine
 from app.models.contratos import ContextoIA, DecisaoAlerta, SensorInfo
 from app.models.database import (
     AlertaDB,
+    ClienteDB,
     LeituraDB,
     SensorDB,
     SeveridadeAlerta,
     StatusAlerta,
     TipoAlerta,
 )
-from app.services.contexto_ia import ServicoContextoIA
-from app.services.openai_service import ServicoOpenAI
+from app.services.contexto_ia import ClienteIANaoEncontrado, SensorIANaoEncontrado, ServicoContextoIA
+from app.services.openai_service import RESPOSTA_FORA_ESCOPO, ServicoOpenAI
 
 
 def test_openai_service_returns_safe_fallback_without_api_key(monkeypatch):
@@ -56,9 +57,11 @@ def test_openai_service_returns_safe_fallback_without_api_key(monkeypatch):
 
     assert resposta.modelo == "fallback-local"
     assert resposta.requer_validacao_humana is True
-    assert "não substitui laudo agronômico" in resposta.resposta_texto
+    assert "Atenção:" in resposta.resposta_texto
+    assert "Não aplique dose exata" in resposta.resposta_texto
     assert "ultima_leitura" in resposta.dados_consultados
     assert resposta.tokens_usados == 0
+    assert len([linha for linha in resposta.resposta_texto.splitlines() if linha.strip()]) <= 8
 
 
 def test_openai_prompt_uses_existing_context_fields_only(monkeypatch):
@@ -79,7 +82,7 @@ def test_openai_prompt_uses_existing_context_fields_only(monkeypatch):
 
     prompt = service._montar_prompt(contexto)
 
-    assert "USE SOMENTE OS DADOS ABAIXO" in prompt
+    assert "RESPONDA SOMENTE COM JSON VÁLIDO" in prompt
     assert "Não invente" in prompt
     assert "sensor_001" in prompt
 
@@ -152,3 +155,225 @@ def test_contexto_ia_loads_real_sensor_reading_and_alert_from_db():
         assert contexto.alertas_ativos[0].tipo == "umidade"
     finally:
         db.close()
+
+
+def test_pergunta_fora_de_escopo_nao_chama_openai_e_nao_inventa_dados(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "fake-key")
+    service = ServicoOpenAI()
+    service.disponivel = True
+
+    class ClienteQueFalha:
+        class chat:
+            class completions:
+                @staticmethod
+                def create(**kwargs):
+                    raise AssertionError("OpenAI não deveria ser chamada para pergunta fora de escopo")
+
+    service.client = ClienteQueFalha()
+    contexto = ContextoIA(
+        cliente_id="cliente_teste",
+        usuario_pergunta="Qual capital da Itália?",
+        sensores_relevantes=[
+            SensorInfo(
+                sensor_id="sensor_001",
+                nome="Sensor teste",
+                propriedade="Propriedade teste",
+                tipo="solo",
+                localizacao={},
+                ultima_leitura={"umidade": 22.0},
+            )
+        ],
+    )
+
+    resposta = asyncio.run(service.analisar_contexto(contexto, "pergunta_fora_escopo"))
+
+    assert resposta.resposta_texto == RESPOSTA_FORA_ESCOPO
+    assert resposta.resposta_estruturada["modo"] == "fora_escopo"
+    assert "Itália" not in resposta.resposta_texto
+    assert resposta.modelo == "sem-openai"
+
+
+def test_contexto_ia_cliente_inexistente_retorna_erro_claro():
+    Base.metadata.create_all(bind=engine)
+    db = SessionLocal()
+    cliente_id = "cliente_inexistente_ia"
+    try:
+        db.query(AlertaDB).filter(AlertaDB.cliente_id == cliente_id).delete()
+        db.query(LeituraDB).filter(LeituraDB.cliente_id == cliente_id).delete()
+        db.query(SensorDB).filter(SensorDB.cliente_id == cliente_id).delete()
+        db.query(ClienteDB).filter(ClienteDB.cliente_id == cliente_id).delete()
+        db.commit()
+
+        try:
+            asyncio.run(
+                ServicoContextoIA().montar_contexto(
+                    cliente_id=cliente_id,
+                    pergunta="Como está o solo?",
+                    usar_cache=False,
+                    db=db,
+                )
+            )
+            assert False, "Cliente inexistente deveria gerar erro"
+        except ClienteIANaoEncontrado as exc:
+            assert "Cliente não encontrado" in str(exc)
+    finally:
+        db.close()
+
+
+def test_contexto_ia_sensor_inexistente_retorna_erro_claro():
+    Base.metadata.create_all(bind=engine)
+    db = SessionLocal()
+    cliente_id = "cliente_sensor_inexistente_ia"
+    try:
+        db.query(ClienteDB).filter(ClienteDB.cliente_id == cliente_id).delete()
+        db.query(SensorDB).filter(SensorDB.cliente_id == cliente_id).delete()
+        db.commit()
+        db.add(ClienteDB(
+            cliente_id=cliente_id,
+            nome="Cliente IA",
+            email="cliente-sensor-inexistente@example.test",
+            responsavel_nome="Responsavel IA",
+            responsavel_email="resp-sensor-inexistente@example.test",
+            ativo=True,
+        ))
+        db.commit()
+
+        try:
+            asyncio.run(
+                ServicoContextoIA().montar_contexto(
+                    cliente_id=cliente_id,
+                    pergunta="Como está o solo?",
+                    sensor_id="sensor_nao_existe",
+                    usar_cache=False,
+                    db=db,
+                )
+            )
+            assert False, "Sensor inexistente deveria gerar erro"
+        except SensorIANaoEncontrado as exc:
+            assert "Sensor não encontrado" in str(exc)
+    finally:
+        db.close()
+
+
+def test_sensor_real_sem_leitura_retorna_dados_insuficientes(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "")
+    service = ServicoOpenAI()
+    contexto = ContextoIA(
+        cliente_id="cliente_teste",
+        usuario_pergunta="Como está o solo?",
+        sensores_relevantes=[
+            SensorInfo(
+                sensor_id="sensor_sem_leitura",
+                nome="Sensor sem leitura",
+                propriedade="Propriedade teste",
+                tipo="solo",
+                localizacao={},
+            )
+        ],
+    )
+
+    resposta = asyncio.run(service.analisar_contexto(contexto, "pergunta_sem_dados"))
+
+    assert resposta.resposta_estruturada["modo"] == "dados_insuficientes"
+    assert "não há dados suficientes" in resposta.resposta_texto.lower()
+    assert resposta.modelo == "sem-openai"
+
+
+def test_openai_resposta_estruturada_limpa_com_cliente_real_simulado(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "")
+    service = ServicoOpenAI()
+    service.disponivel = True
+    service.model = "modelo-teste"
+
+    payload = {
+        "resposta_texto": (
+            "Situação:\nUmidade baixa na última leitura.\n\n"
+            "Risco:\nPode faltar água no solo.\n\n"
+            "O que fazer agora:\n1. Conferir o dashboard.\n2. Verificar o sensor em campo.\n3. Registrar nova leitura.\n\n"
+            "Atenção:\nNão aplique dose exata sem análise de solo ou agrônomo."
+        ),
+        "recomendacao": {
+            "acao": "Conferir leitura e validar em campo.",
+            "motivo": "Há leitura real com umidade baixa.",
+            "riscos_se_nao_fizer": "O solo pode seguir seco.",
+            "beneficios": "Ajuda a decidir com dado real.",
+        },
+        "atencoes": ["Não substitui laudo agronômico.", "Não aplicar dose exata."],
+        "proximos_passos": ["Conferir dashboard.", "Verificar sensor.", "Registrar nova leitura."],
+        "confianca_geral": 0.82,
+    }
+
+    class RespostaFake:
+        choices = [type("Choice", (), {"message": type("Message", (), {"content": json_dumps(payload)})()})()]
+        usage = type("Usage", (), {"total_tokens": 123})()
+
+    class ClienteFake:
+        class chat:
+            class completions:
+                @staticmethod
+                def create(**kwargs):
+                    assert kwargs["response_format"] == {"type": "json_object"}
+                    return RespostaFake()
+
+    service.client = ClienteFake()
+    contexto = ContextoIA(
+        cliente_id="cliente_teste",
+        usuario_pergunta="Qual o risco no solo agora?",
+        sensores_relevantes=[
+            SensorInfo(
+                sensor_id="sensor_001",
+                nome="Sensor teste",
+                propriedade="Propriedade teste",
+                tipo="solo",
+                localizacao={},
+                ultima_leitura={"umidade": 22.0},
+                avaliacoes={"umidade": {"nivel": "critico", "mensagem": "Solo seco"}},
+            )
+        ],
+    )
+
+    resposta = asyncio.run(service.analisar_contexto(contexto, "pergunta_openai"))
+
+    assert resposta.modelo == "modelo-teste"
+    assert resposta.tokens_usados == 123
+    assert resposta.resposta_estruturada["modo"] == "openai"
+    assert resposta.recomendacao.acao == "Conferir leitura e validar em campo."
+    assert len(resposta.atencoes) <= 3
+    assert len(resposta.proximos_passos) <= 3
+    assert len([linha for linha in resposta.resposta_texto.splitlines() if linha.strip()]) <= 8
+
+
+def test_openai_json_invalido_usa_fallback_seguro(monkeypatch):
+    monkeypatch.setattr(settings, "openai_api_key", "")
+    service = ServicoOpenAI()
+    contexto = ContextoIA(
+        cliente_id="cliente_teste",
+        usuario_pergunta="Qual o risco no solo agora?",
+        sensores_relevantes=[
+            SensorInfo(
+                sensor_id="sensor_001",
+                nome="Sensor teste",
+                propriedade="Propriedade teste",
+                tipo="solo",
+                localizacao={},
+                ultima_leitura={"umidade": 22.0},
+            )
+        ],
+    )
+
+    resposta = service._resposta_openai_estruturada(
+        contexto=contexto,
+        pergunta_id="pergunta_json_invalido",
+        resposta_texto="resposta sem json",
+        tokens_usados=50,
+    )
+
+    assert resposta.modelo == "fallback-local"
+    assert resposta.tokens_usados == 0
+    assert resposta.resposta_estruturada["modo"] == "fallback_local"
+
+
+def json_dumps(payload):
+    import json
+
+    return json.dumps(payload, ensure_ascii=False)

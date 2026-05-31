@@ -8,8 +8,17 @@ from app.config import settings
 from app.models.contratos import ContextoIA, RespostaIA, RecomendacaoIA
 from datetime import datetime
 import json
+import unicodedata
 
 logger = logging.getLogger(__name__)
+
+
+RESPOSTA_FORA_ESCOPO = (
+    "Eu sou o assistente agro do IZES. Posso ajudar com sensores, solo, "
+    "alertas, leituras e manejo da lavoura."
+)
+
+AVISO_DOSE = "Não aplique dose exata sem análise de solo ou agrônomo."
 
 
 class ServicoOpenAI:
@@ -44,7 +53,12 @@ class ServicoOpenAI:
         Returns:
             RespostaIA com análise e recomendações
         """
-        
+        if not self.pergunta_dentro_escopo(contexto.usuario_pergunta):
+            return self._resposta_fora_escopo(contexto, pergunta_id)
+
+        if not self._contexto_tem_dados_suficientes(contexto):
+            return self._resposta_dados_insuficientes(contexto, pergunta_id)
+
         if not self.disponivel:
             logger.info("Izes IA sem OpenAI configurada; retornando fallback local.")
             return self._resposta_fallback(contexto, pergunta_id, motivo="OPENAI_API_KEY ausente")
@@ -69,7 +83,8 @@ class ServicoOpenAI:
                     }
                 ],
                 temperature=settings.openai_temperature,
-                max_tokens=settings.openai_max_tokens,
+                max_tokens=min(settings.openai_max_tokens, 700),
+                response_format={"type": "json_object"},
             )
             
             # Extrair resposta
@@ -78,27 +93,11 @@ class ServicoOpenAI:
             
             logger.info(f"Resposta Izes: {len(resposta_texto)} caracteres, {tokens_usados} tokens")
             
-            # Estruturar resposta
-            return RespostaIA(
+            return self._resposta_openai_estruturada(
+                contexto=contexto,
                 pergunta_id=pergunta_id,
-                cliente_id=contexto.cliente_id,
-                sensor_id=contexto.sensor_id,
                 resposta_texto=resposta_texto,
-                resposta_estruturada={
-                    "modo": "openai",
-                    "dados_reais": True,
-                    "aviso": "Orientação técnica preliminar; não substitui laudo agronômico."
-                },
-                recomendacao=self._extrair_recomendacao(resposta_texto),
-                dados_consultados=self._dados_consultados(contexto),
-                atencoes=self._extrair_atencoes(resposta_texto),
-                proximos_passos=self._extrair_passos(resposta_texto),
-                confianca_geral=0.80,
-                requer_validacao_humana=True,
-                modelo=self.model,
                 tokens_usados=tokens_usados,
-                tempo_resposta_segundos=0,
-                criado_em=datetime.now()
             )
             
         except Exception as e:
@@ -128,7 +127,7 @@ class ServicoOpenAI:
         }
 
         return f"""
-ANÁLISE AGRÍCOLA IZES - USE SOMENTE OS DADOS ABAIXO
+ANÁLISE AGRÍCOLA IZES - RESPONDA SOMENTE COM JSON VÁLIDO
 
 Dados disponíveis em JSON:
 {json.dumps(dados, ensure_ascii=False, indent=2, default=str)}
@@ -136,29 +135,70 @@ Dados disponíveis em JSON:
 Pergunta do usuário:
 {contexto.usuario_pergunta}
 
-Formato obrigatório da resposta:
-1. Situação: explique em linguagem simples o que os dados mostram.
-2. Risco: descreva os riscos agronômicos e a urgência.
-3. Recomendação: indique ações práticas e seguras.
-4. Próximos passos: diga o que monitorar ou confirmar.
-5. Limitações: informe dados ausentes e deixe claro que é orientação, não laudo agronômico.
+Formato JSON obrigatório:
+{{
+  "resposta_texto": "Situação:\\n...\\n\\nRisco:\\n...\\n\\nO que fazer agora:\\n1. ...\\n2. ...\\n3. ...\\n\\nAtenção:\\nNão aplique dose exata sem análise de solo ou agrônomo.",
+  "recomendacao": {{
+    "acao": "uma frase objetiva",
+    "motivo": "uma frase simples",
+    "riscos_se_nao_fizer": "uma frase simples",
+    "beneficios": "uma frase simples"
+  }},
+  "atencoes": ["até 3 itens curtos"],
+  "proximos_passos": ["até 3 itens curtos"],
+  "confianca_geral": 0.0
+}}
 
 Regras obrigatórias:
-- Não invente sensor, leitura, alerta, cultura, clima, área ou histórico que não esteja no JSON.
+- Use no máximo 5 a 8 linhas no campo resposta_texto.
+- Frases curtas, linguagem simples, sem relatório técnico.
+- Não responda conhecimento geral fora do domínio agro/sensores/solo/lavoura/app.
+- Não invente fazenda, sensor, leitura, cultura, clima, cidade, talhão, histórico, alerta ou cliente.
 - Use as avaliações e alertas já calculados quando existirem.
 - Não recomende dose exata de fertilizante/corretivo sem cultura, área, análise de solo e validação técnica.
 - Recomende agrônomo ou análise laboratorial quando a decisão exigir validação técnica.
-- Se faltar dado, diga exatamente qual dado faltou.
+- Se faltar dado, diga exatamente qual dado faltou e não complete por suposição.
 """.strip()
 
     def _prompt_sistema(self) -> str:
         return (
             "Você é a IA agrícola do IZES para apoio à decisão no campo. "
-            "Responda em português claro, com prudência agronômica, usando apenas os dados recebidos. "
-            "Separe situação, risco, recomendação, próximos passos e limitações. "
+            "Responda apenas com JSON válido, curto, em português claro e usando somente os dados recebidos. "
+            "Recuse perguntas fora de escopo agro/sensores/solo/lavoura/app. "
             "Não dê dose exata de fertilizante ou corretivo sem cultura, área, análise de solo e validação técnica. "
             "Deixe claro que a resposta é orientação e não substitui laudo agronômico."
         )
+
+    def pergunta_dentro_escopo(self, pergunta: str) -> bool:
+        texto = self._normalizar(pergunta)
+        termos_agro = {
+            "agro", "agricola", "agricultura", "lavoura", "solo", "sensor", "sensores",
+            "leitura", "leituras", "alerta", "alertas", "manejo", "irrigacao", "irrigar", "umidade",
+            "ph", "temperatura", "condutividade", "nitrogenio", "fosforo", "potassio",
+            "npk", "adubo", "adubacao", "fertilizante", "corretivo", "plantio", "colheita",
+            "cultura", "talhao", "fazenda", "dashboard", "app", "risco", "seca", "geada",
+            "praga", "fungo", "chuva", "clima",
+        }
+        termos_fora = {
+            "capital", "italia", "franca", "pais", "politica", "presidente", "matematica",
+            "curiosidade", "historia geral", "futebol", "receita", "programacao",
+        }
+
+        if any(termo in texto for termo in termos_fora) and not any(termo in texto for termo in termos_agro):
+            return False
+        return any(termo in texto for termo in termos_agro)
+
+    def _normalizar(self, texto: str) -> str:
+        sem_acento = unicodedata.normalize("NFKD", texto or "")
+        return "".join(ch for ch in sem_acento if not unicodedata.combining(ch)).lower()
+
+    def _contexto_tem_dados_suficientes(self, contexto: ContextoIA) -> bool:
+        return any([
+            any(sensor.ultima_leitura for sensor in contexto.sensores_relevantes),
+            any(sensor.avaliacoes for sensor in contexto.sensores_relevantes),
+            bool(contexto.alertas_ativos),
+            bool(contexto.alertas_historico_30_dias),
+        ])
     
     def _dados_consultados(self, contexto: ContextoIA) -> list:
         dados = []
@@ -205,20 +245,18 @@ Regras obrigatórias:
 
         if riscos:
             risco_texto = " ".join(riscos)
-            urgencia = "Verifique os pontos sinalizados antes de tomar decisão operacional."
         else:
             risco_texto = "Não há alerta ativo ou avaliação crítica disponível no contexto recebido."
-            urgencia = "Continue monitorando e envie novas leituras para melhorar a análise."
 
-        resposta_texto = (
-            f"Situação: {situacao}\n\n"
-            f"Risco: {risco_texto}\n\n"
-            "Recomendação: use esta resposta como triagem. Confira a última leitura no dashboard, "
-            "compare com o histórico e valide em campo antes de executar manejo.\n\n"
-            f"Urgência: {urgencia}\n\n"
-            "Limitações: a OpenAI não foi usada nesta resposta. Esta orientação não substitui laudo agronômico. "
-            "Não recomendo dose exata de fertilizante ou corretivo sem cultura, área, análise de solo "
-            "e validação de um profissional responsável."
+        proximos_passos = [
+            "Conferir última leitura e alertas no dashboard.",
+            "Coletar nova leitura se os dados estiverem antigos.",
+            "Chamar agrônomo se houver alerta crítico.",
+        ]
+        resposta_texto = self._formatar_resposta_curta(
+            situacao=situacao,
+            risco=risco_texto,
+            passos=proximos_passos,
         )
 
         return RespostaIA(
@@ -243,13 +281,9 @@ Regras obrigatórias:
             dados_consultados=self._dados_consultados(contexto),
             atencoes=[
                 "Orientação preliminar; não substitui laudo agronômico.",
-                "Não usar para dose exata sem análise de solo e validação técnica.",
+                AVISO_DOSE,
             ],
-            proximos_passos=[
-                "Conferir última leitura e alertas no dashboard.",
-                "Coletar nova leitura se os dados estiverem antigos.",
-                "Acionar agrônomo quando houver alerta crítico ou decisão de adubação/correção.",
-            ],
+            proximos_passos=proximos_passos,
             confianca_geral=0.55 if sensores_com_leitura or alertas else 0.35,
             requer_validacao_humana=True,
             modelo="fallback-local",
@@ -258,50 +292,144 @@ Regras obrigatórias:
             criado_em=datetime.now()
         )
 
-    def _extrair_recomendacao(self, resposta_texto: str) -> RecomendacaoIA:
-        """Extrai estrutura de RecomendacaoIA da resposta"""
-        
-        # Tenta extrair ação (primeira linha com "ação" ou "recomend")
-        linhas = resposta_texto.split('\n')
-        acao = "Ver análise completa acima"
-        
-        for linha in linhas:
-            if any(palavra in linha.lower() for palavra in ['ação:', 'recomendo:', 'aplique']):
-                acao = linha.replace('Ação:', '').replace('ação:', '').strip()
-                break
-        
-        return RecomendacaoIA(
-            acao=acao[:200],  # Primeiros 200 caracteres
-            confianca=0.80,
-            motivo="Análise de IA com dados disponíveis no contexto IZES",
-            riscos_se_nao_fizer="Ver análise completa para detalhes",
-            beneficios="Otimização da produção e saúde da planta"
+    def _resposta_dados_insuficientes(self, contexto: ContextoIA, pergunta_id: str) -> RespostaIA:
+        passos = [
+            "Registrar uma leitura real do sensor.",
+            "Verificar se há alertas no dashboard.",
+            "Enviar nova pergunta depois da coleta.",
+        ]
+        return self._montar_resposta_segura(
+            contexto=contexto,
+            pergunta_id=pergunta_id,
+            resposta_texto=self._formatar_resposta_curta(
+                situacao="Sensor encontrado, mas sem leitura, alerta ou avaliação disponível.",
+                risco="Não há dados suficientes para orientar manejo.",
+                passos=passos,
+            ),
+            modo="dados_insuficientes",
+            recomendacao=RecomendacaoIA(
+                acao="Coletar uma leitura real antes de decidir manejo.",
+                confianca=0.3,
+                motivo="O contexto não tem leitura, alerta ou avaliação.",
+                riscos_se_nao_fizer="A decisão pode ser tomada sem base real.",
+                beneficios="A análise passa a usar dados reais do campo.",
+            ),
+            atencoes=[AVISO_DOSE],
+            proximos_passos=passos,
+            confianca=0.3,
+            modelo="sem-openai",
         )
-    
-    def _extrair_atencoes(self, resposta_texto: str) -> list:
-        """Extrai pontos de atenção da resposta"""
-        atencoes = []
-        
-        # Palavras-chave que indicam atenção
-        linhas = resposta_texto.split('\n')
-        for linha in linhas:
-            if any(palavra in linha.lower() for palavra in ['cuidado', 'atenção', 'risco', 'monitorar', 'evitar']):
-                atencao_limpa = linha.replace('Atenção:', '').replace('atenção:', '').strip()
-                if atencao_limpa and len(atencao_limpa) > 10:
-                    atencoes.append(atencao_limpa[:150])
-        
-        return atencoes[:3] if atencoes else []
-    
-    def _extrair_passos(self, resposta_texto: str) -> list:
-        """Extrai próximos passos da resposta"""
-        passos = []
-        
-        # Procura por listas numeradas ou próximas passos
-        linhas = resposta_texto.split('\n')
-        for linha in linhas:
-            if any(prefixo in linha for prefixo in ['1.', '2.', '3.', '-', '*', 'Próximo:', 'Depois:']):
-                passo_limpo = linha.lstrip('123456789. -* ').strip()
-                if passo_limpo and len(passo_limpo) > 10:
-                    passos.append(passo_limpo[:150])
-        
-        return passos[:5] if passos else ["Monitorar os parâmetros nos próximos dias"]
+
+    def _resposta_openai_estruturada(
+        self,
+        contexto: ContextoIA,
+        pergunta_id: str,
+        resposta_texto: str,
+        tokens_usados: int,
+    ) -> RespostaIA:
+        try:
+            payload = json.loads(resposta_texto)
+            resposta_curta = self._limitar_texto(str(payload["resposta_texto"]), max_linhas=8, max_chars=900)
+            recomendacao_raw = payload.get("recomendacao") or {}
+            recomendacao = RecomendacaoIA(
+                acao=self._frase_curta(recomendacao_raw.get("acao"), "Validar dados no dashboard antes do manejo."),
+                confianca=float(payload.get("confianca_geral", 0.8)),
+                motivo=self._frase_curta(recomendacao_raw.get("motivo"), "Baseado apenas no contexto real recebido."),
+                riscos_se_nao_fizer=self._frase_curta(recomendacao_raw.get("riscos_se_nao_fizer"), "Pode haver decisão sem validação."),
+                beneficios=self._frase_curta(recomendacao_raw.get("beneficios"), "Reduz risco de agir com dado incompleto."),
+            )
+            atencoes = self._lista_curta(payload.get("atencoes"), fallback=[AVISO_DOSE])
+            proximos_passos = self._lista_curta(payload.get("proximos_passos"), fallback=["Conferir dados no dashboard."])
+            return self._montar_resposta_segura(
+                contexto=contexto,
+                pergunta_id=pergunta_id,
+                resposta_texto=resposta_curta,
+                modo="openai",
+                recomendacao=recomendacao,
+                atencoes=atencoes,
+                proximos_passos=proximos_passos,
+                confianca=recomendacao.confianca,
+                modelo=self.model,
+                tokens_usados=tokens_usados,
+            )
+        except (KeyError, TypeError, ValueError, json.JSONDecodeError):
+            logger.warning("OpenAI retornou JSON inválido para IA; usando fallback local seguro.")
+            return self._resposta_fallback(contexto, pergunta_id, motivo="Resposta OpenAI inválida")
+
+    def _montar_resposta_segura(
+        self,
+        contexto: ContextoIA,
+        pergunta_id: str,
+        resposta_texto: str,
+        modo: str,
+        recomendacao: RecomendacaoIA,
+        atencoes: list,
+        proximos_passos: list,
+        confianca: float,
+        modelo: str,
+        tokens_usados: int = 0,
+    ) -> RespostaIA:
+        return RespostaIA(
+            pergunta_id=pergunta_id,
+            cliente_id=contexto.cliente_id,
+            sensor_id=contexto.sensor_id,
+            resposta_texto=resposta_texto,
+            resposta_estruturada={"modo": modo, "dados_reais": modo != "fora_escopo"},
+            recomendacao=recomendacao,
+            dados_consultados=self._dados_consultados(contexto),
+            atencoes=atencoes[:3],
+            proximos_passos=proximos_passos[:3],
+            confianca_geral=max(0.0, min(float(confianca), 1.0)),
+            requer_validacao_humana=True,
+            modelo=modelo,
+            tokens_usados=tokens_usados,
+            tempo_resposta_segundos=0,
+            criado_em=datetime.now()
+        )
+
+    def _resposta_fora_escopo(self, contexto: ContextoIA, pergunta_id: str) -> RespostaIA:
+        return self._montar_resposta_segura(
+            contexto=contexto,
+            pergunta_id=pergunta_id,
+            resposta_texto=RESPOSTA_FORA_ESCOPO,
+            modo="fora_escopo",
+            recomendacao=RecomendacaoIA(
+                acao="Fazer uma pergunta sobre sensores, solo, alertas, leituras ou manejo.",
+                confianca=1.0,
+                motivo="A pergunta está fora do escopo do assistente agro.",
+                riscos_se_nao_fizer="A dúvida fora de escopo não será analisada pelo IZES.",
+                beneficios="Mantém o assistente focado em dados reais do campo.",
+            ),
+            atencoes=[],
+            proximos_passos=[],
+            confianca=1.0,
+            modelo="sem-openai",
+        )
+
+    def _formatar_resposta_curta(self, situacao: str, risco: str, passos: list) -> str:
+        passos = passos[:3]
+        linhas = [
+            f"Situação: {self._limitar_texto(situacao, max_linhas=1, max_chars=220)}",
+            "",
+            f"Risco: {self._limitar_texto(risco, max_linhas=1, max_chars=260)}",
+            "",
+            "O que fazer agora:",
+        ]
+        linhas.extend(f"{idx}. {self._limitar_texto(passo, max_linhas=1, max_chars=120)}" for idx, passo in enumerate(passos, 1))
+        linhas.extend(["", f"Atenção: {AVISO_DOSE}"])
+        return "\n".join(linhas)
+
+    def _frase_curta(self, valor: object, fallback: str) -> str:
+        texto = str(valor or fallback).strip()
+        return self._limitar_texto(texto, max_linhas=1, max_chars=160)
+
+    def _lista_curta(self, valor: object, fallback: list) -> list:
+        if not isinstance(valor, list):
+            valor = fallback
+        itens = [self._frase_curta(item, "") for item in valor if str(item or "").strip()]
+        return (itens or fallback)[:3]
+
+    def _limitar_texto(self, texto: str, max_linhas: int, max_chars: int) -> str:
+        linhas = [linha.strip() for linha in str(texto or "").splitlines() if linha.strip()]
+        limitado = "\n".join(linhas[:max_linhas]).strip()
+        return limitado[:max_chars].rstrip()

@@ -14,7 +14,11 @@ import json
 from app.models.contratos import RespostaIA, RecomendacaoIA, ContextoIA
 from app.db import get_db
 from app.security import verificar_app_internal_token
-from app.services.contexto_ia import servico_contexto_ia
+from app.services.contexto_ia import (
+    ClienteIANaoEncontrado,
+    SensorIANaoEncontrado,
+    servico_contexto_ia,
+)
 from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
@@ -41,8 +45,8 @@ async def chat_ia(
     """
     Chat com IA Agrícola
     
-    A IA recebe contexto completo (clima, alertas, histórico, plano agronômico)
-    e responde de forma inteligente e contextualizada.
+    A IA recebe somente contexto agrícola real disponível no banco e responde
+    de forma curta, segura e contextualizada.
     
     Query Parameters:
     - cliente_id: ID do cliente (obrigatório)
@@ -61,16 +65,16 @@ async def chat_ia(
     Exemplo de resposta:
     ```json
     {
-      "pergunta_id": "conv_cliente_agritech_abc123",
-      "resposta_texto": "Sim, recomendo irrigação imediata...",
+      "pergunta_id": "conv_cliente_abc123",
+      "resposta_texto": "Situação:\nHá leitura real do sensor.\n\nRisco:\nUmidade baixa exige atenção.\n\nO que fazer agora:\n1. Conferir dashboard.\n2. Coletar nova leitura.\n3. Validar em campo.\n\nAtenção:\nNão aplique dose exata sem análise de solo ou agrônomo.",
       "recomendacao": {
-        "acao": "Irrigar por 2-3 horas",
-        "confianca": 0.92,
-        "motivo": "Risco de seca 50%, solo seco, planta em fase crítica"
+        "acao": "Conferir leitura e validar em campo.",
+        "confianca": 0.80,
+        "motivo": "Resposta baseada no contexto real disponível."
       },
-      "atencoes": ["Chuva prevista amanhã", "Temperatura pode cair"],
-      "proximos_passos": ["Ligar irrigação", "Monitorar próximas 3h"],
-      "confianca_geral": 0.92
+      "atencoes": ["Não substitui laudo agronômico."],
+      "proximos_passos": ["Conferir dashboard", "Coletar nova leitura"],
+      "confianca_geral": 0.80
     }
     ```
     """
@@ -122,6 +126,10 @@ async def chat_ia(
         
         return resposta
         
+    except ClienteIANaoEncontrado:
+        raise HTTPException(status_code=404, detail="Cliente não encontrado.")
+    except SensorIANaoEncontrado:
+        raise HTTPException(status_code=404, detail="Sensor não encontrado.")
     except HTTPException:
         raise
     except Exception as e:

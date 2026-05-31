@@ -19,8 +19,17 @@ from app.models.contratos import (
     ClimaProcessado
 )
 from app.models.database import AlertaDB, LeituraDB, SensorDB, StatusAlerta
+from app.models.database import ClienteDB
 
 logger = logging.getLogger(__name__)
+
+
+class ClienteIANaoEncontrado(ValueError):
+    """Cliente informado não existe no contexto persistido da IA."""
+
+
+class SensorIANaoEncontrado(ValueError):
+    """Sensor informado não existe para o cliente no contexto persistido da IA."""
 
 
 class ServicoContextoIA:
@@ -69,8 +78,14 @@ class ServicoContextoIA:
                 logger.info("✓ Contexto IA retornado do cache")
                 return contexto["dados"]
         
+        if db and not await self._cliente_existe(cliente_id, db):
+            raise ClienteIANaoEncontrado("Cliente não encontrado.")
+
         # Montar novo contexto
         sensores_relevantes = await self._buscar_sensores_relevantes(cliente_id, sensor_id, db)
+        if db and sensor_id and not sensores_relevantes:
+            raise SensorIANaoEncontrado("Sensor não encontrado para este cliente.")
+
         clima_atual = await self._buscar_clima_atual(sensores_relevantes)
         clima_7_dias = await self._buscar_clima_historico(sensores_relevantes, dias=7)
         previsao_7_dias = await self._buscar_previsao(sensores_relevantes)
@@ -125,6 +140,20 @@ class ServicoContextoIA:
         
         logger.info(f"✓ Contexto IA montado: {tokens_estimado} tokens estimados")
         return contexto
+
+    async def _cliente_existe(self, cliente_id: str, db: Session) -> bool:
+        """Confirma cliente real sem criar dados artificiais."""
+        cliente = db.query(ClienteDB).filter(
+            ClienteDB.cliente_id == cliente_id,
+            ClienteDB.ativo == True
+        ).first()
+        if cliente:
+            return True
+
+        return db.query(SensorDB).filter(
+            SensorDB.cliente_id == cliente_id,
+            SensorDB.ativo == True
+        ).first() is not None
     
     async def _buscar_sensores_relevantes(
         self,

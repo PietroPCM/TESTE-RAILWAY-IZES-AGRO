@@ -305,28 +305,22 @@ class ContextoIA(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "cliente_id": "cliente_agritech",
-                "usuario_pergunta": "Devo irrigar agora?",
+                "cliente_id": "cliente_real",
+                "usuario_pergunta": "Qual o risco no solo agora?",
                 "sensores_relevantes": [
                     {
-                        "sensor_id": "sensor_001",
-                        "propriedade": "Fazenda São João",
+                        "sensor_id": "sensor_real_001",
+                        "propriedade": "Propriedade cadastrada no banco",
                         "tipo": "solo",
-                        "localizacao": {"lat": -15.7801, "lon": -48.0896}
+                        "ultima_leitura": {"umidade": 22.0}
                     }
                 ],
-                "clima_ultimos_7_dias": {
-                    "sensor_001": {
-                        "temperatura_media": 21.2,
-                        "umidade_media": 62,
-                        "chuva_total_mm": 2.3
-                    }
-                },
+                "clima_ultimos_7_dias": {},
                 "alertas_ativos": [
                     {
-                        "tipo": "seca",
+                        "tipo": "umidade",
                         "severidade": "alta",
-                        "mensagem": "Risco de seca detectado"
+                        "mensagem": "Alerta real cadastrado no banco"
                     }
                 ]
             }
@@ -389,19 +383,19 @@ class RespostaIA(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "pergunta_id": "conv_cliente_agritech_abc123",
-                "cliente_id": "cliente_agritech",
-                "resposta_texto": "Sim, recomendo irrigação imediata. O clima dos últimos 7 dias mostrou apenas 2.3mm de chuva...",
+                "pergunta_id": "conv_cliente_real_abc123",
+                "cliente_id": "cliente_real",
+                "resposta_texto": "Situação: Há leitura real do sensor.\n\nRisco: Umidade baixa exige atenção.\n\nO que fazer agora:\n1. Conferir dashboard.\n2. Coletar nova leitura.\n3. Validar em campo.\n\nAtenção: Não aplique dose exata sem análise de solo ou agrônomo.",
                 "recomendacao": {
-                    "acao": "Irrigar por 2-3 horas",
-                    "confianca": 0.92,
-                    "motivo": "Risco de seca 50%, solo seco, planta em fase crítica",
-                    "riscos_se_nao_fizer": "Murcha de plantas, perdida de produtividade",
-                    "beneficios": "Recuperação rápida, produtividade normal"
+                    "acao": "Conferir leitura e validar em campo.",
+                    "confianca": 0.80,
+                    "motivo": "Baseado apenas no contexto real recebido.",
+                    "riscos_se_nao_fizer": "Pode haver decisão sem validação.",
+                    "beneficios": "Reduz risco de agir com dado incompleto."
                 },
-                "atencoes": ["Chuva prevista amanhã", "Temperatura pode cair"],
-                "proximos_passos": ["Ligar irrigação", "Monitorar próximas 3h"],
-                "confianca_geral": 0.92
+                "atencoes": ["Não substitui laudo agronômico."],
+                "proximos_passos": ["Conferir dashboard", "Coletar nova leitura"],
+                "confianca_geral": 0.80
             }
         }
 
