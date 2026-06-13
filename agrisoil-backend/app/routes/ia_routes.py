@@ -20,7 +20,9 @@ from app.services.contexto_ia import (
     servico_contexto_ia,
 )
 from app.services.openai_service import (
+    MODO_AGRO_COM_DADOS,
     MODO_AGRO_GERAL,
+    MODO_ESCLARECIMENTO,
     MODO_FORA_ESCOPO,
     OpenAIImageAnalysisError,
     ServicoOpenAI,
@@ -134,26 +136,26 @@ async def chat_ia(
             f"pergunta='{pergunta[:50]}...'"
         )
         
-        modo_pergunta = classificar_escopo_pergunta(pergunta)
+        # 1. Interpretar a intenção usando também cliente_id e sensor_id.
+        #    Perguntas curtas/informais/contextuais não caem mais em fora_escopo
+        #    quando há contexto adequado.
+        modo_pergunta = classificar_escopo_pergunta(pergunta, cliente_id, sensor_id)
+        logger.info(f"IA Chat: intenção classificada como '{modo_pergunta}'")
 
-        if modo_pergunta == MODO_FORA_ESCOPO:
+        # 2. Modos que não dependem dos dados reais do cliente.
+        if modo_pergunta in (MODO_FORA_ESCOPO, MODO_ESCLARECIMENTO, MODO_AGRO_GERAL):
             contexto = ContextoIA(
                 cliente_id=cliente_id,
                 sensor_id=None,
                 usuario_pergunta=pergunta,
             )
-            resposta = await ServicoOpenAI().analisar_contexto(contexto, pergunta_id)
-            return resposta
-
-        if modo_pergunta == MODO_AGRO_GERAL:
-            contexto = ContextoIA(
-                cliente_id=cliente_id,
-                sensor_id=None,
-                usuario_pergunta=pergunta,
+            return await ServicoOpenAI().analisar_contexto(
+                contexto, pergunta_id, modo=modo_pergunta
             )
-        else:
-            # 1. Montar contexto apenas quando a pergunta pede dados reais
-            logger.debug("Montando contexto IA com dados reais...")
+
+        # 3. Modo agro_com_dados: montar contexto com dados reais do cliente.
+        logger.debug("Montando contexto IA com dados reais...")
+        try:
             contexto = await servico_contexto_ia.montar_contexto(
                 cliente_id=cliente_id,
                 pergunta=pergunta,
@@ -162,12 +164,21 @@ async def chat_ia(
                 db=db,
                 exigir_cliente=True,
             )
-        
+        except (ClienteIANaoEncontrado, SensorIANaoEncontrado):
+            raise
+        except Exception as e:
+            # Falha do banco/contexto não deve derrubar o endpoint.
+            logger.error(f"Erro ao montar contexto IA; retornando erro controlado: {e}", exc_info=True)
+            raise HTTPException(
+                status_code=503,
+                detail="Não foi possível consultar os dados do cliente agora. Tente novamente em instantes.",
+            )
+
         logger.debug(f"Contexto montado: {contexto.tokens_estimado} tokens")
-        
-        # 3. Chamar IA (por enquanto, resposta simulada)
+
+        # 4. Chamar IA com o modo já decidido.
         logger.debug("Enviando para IA...")
-        resposta = await _chamar_ia(contexto, pergunta_id)
+        resposta = await _chamar_ia(contexto, pergunta_id, modo=modo_pergunta)
         
         # 4. Salvar no histórico
         if cliente_id not in historico_conversas:
@@ -277,19 +288,19 @@ async def limpar_historico_ia(
 # Funções Auxiliares
 # ============================================================================
 
-async def _chamar_ia(contexto: ContextoIA, pergunta_id: str) -> RespostaIA:
+async def _chamar_ia(contexto: ContextoIA, pergunta_id: str, modo: Optional[str] = None) -> RespostaIA:
     """
     Chama IA Izes (powered by OpenAI) com contexto agrícola
-    
+
     Raises:
         HTTPException: Se Izes não estiver disponível
     """
-    
+
     try:
         from app.services.openai_service import ServicoOpenAI
-        
+
         servico = ServicoOpenAI()
-        resposta = await servico.analisar_contexto(contexto, pergunta_id)
+        resposta = await servico.analisar_contexto(contexto, pergunta_id, modo=modo)
         
         if resposta:
             logger.info(f"Resposta Izes para {pergunta_id}")
