@@ -30,7 +30,12 @@ _BM25_B = 0.75
 # Limites de contexto
 MAX_CHUNKS_PADRAO = 3
 MAX_CHARS_CONTEXTO = 3500
-SCORE_MINIMO = 0.5
+SCORE_MINIMO = 1.5
+# Fração do melhor score abaixo da qual um chunk é considerado fraco/incidental.
+FRACAO_RELATIVA_MINIMA = 0.45
+# Peso do casamento em campos de alto sinal (título, tema, subtema, cultura).
+PESO_CAMPOS = 3.0
+PESO_PARAMETRO = 2.5
 
 
 def _default_index_path() -> Path:
@@ -104,6 +109,7 @@ class RecuperadorRAG:
         self._chunks = chunks
         self._tokens_por_chunk = []
         self._tf_por_chunk = []
+        self._campos_tokens = []  # tokens de titulo/tema/subtema/cultura (alto sinal)
         self._df = {}
 
         for chunk in chunks:
@@ -115,6 +121,17 @@ class RecuperadorRAG:
             self._tf_por_chunk.append(tf)
             for token in tf:
                 self._df[token] = self._df.get(token, 0) + 1
+
+            tema = chunk.get("tema") or []
+            if isinstance(tema, str):
+                tema = [tema]
+            campos = " ".join([
+                str(chunk.get("titulo") or ""),
+                " ".join(str(t) for t in tema),
+                str(chunk.get("subtema") or ""),
+                str(chunk.get("cultura") or ""),
+            ])
+            self._campos_tokens.append(set(tokenizar(campos)))
 
         total = len(chunks)
         self._avg_len = (
@@ -155,10 +172,16 @@ class RecuperadorRAG:
         *,
         top_k: int = MAX_CHUNKS_PADRAO,
         cultura: Optional[str] = None,
+        parametros: Optional[List[str]] = None,
         max_chars: int = MAX_CHARS_CONTEXTO,
         score_minimo: float = SCORE_MINIMO,
     ) -> List[ResultadoRAG]:
-        """Recupera os chunks mais relevantes. Nunca lança exceção ao chamador."""
+        """Recupera os chunks mais relevantes. Nunca lança exceção ao chamador.
+
+        Combina BM25 do corpo com peso em campos de alto sinal (título, tema,
+        subtema, cultura) e reforço por parâmetro (pH, umidade, NPK...). Aplica
+        limiar absoluto e relativo para descartar fontes apenas incidentais.
+        """
         try:
             self._carregar_se_preciso()
             if not self._chunks:
@@ -169,24 +192,42 @@ class RecuperadorRAG:
                 return []
 
             cultura_norm = normalizar(cultura or "")
+            termos_param = set()
+            for p in (parametros or []):
+                termos_param.update(tokenizar(p))
+            termos_set = set(termos)
 
             candidatos: List[ResultadoRAG] = []
             for idx, chunk in enumerate(self._chunks):
                 score = self._score_bm25(idx, termos)
                 if score <= 0:
                     continue
-                # Leve reforço quando a cultura combina explicitamente.
+                campos = self._campos_tokens[idx]
+                # Alto sinal: termos da pergunta presentes em título/tema/cultura.
+                acertos_campos = len(termos_set & campos)
+                if acertos_campos:
+                    score += PESO_CAMPOS * acertos_campos
+                # Reforço quando o parâmetro pedido aparece nos campos do chunk.
+                if termos_param and (termos_param & campos):
+                    score += PESO_PARAMETRO * len(termos_param & campos)
+                # Reforço quando a cultura combina explicitamente.
                 if cultura_norm and cultura_norm in normalizar(chunk.get("cultura", "")):
                     score *= 1.25
                 candidatos.append(ResultadoRAG(chunk=chunk, score=score))
 
             candidatos.sort(key=lambda r: r.score, reverse=True)
+            if not candidatos:
+                return []
+
+            # Limiar relativo: descarta o que está muito abaixo do melhor.
+            corte_relativo = candidatos[0].score * FRACAO_RELATIVA_MINIMA
+            limiar = max(score_minimo, corte_relativo)
 
             selecionados: List[ResultadoRAG] = []
             documentos_usados: Dict[str, int] = {}
             total_chars = 0
             for resultado in candidatos:
-                if resultado.score < score_minimo:
+                if resultado.score < limiar:
                     break
                 doc_id = resultado.documento_id
                 # Remoção de duplicidade: no máx. 2 chunks por documento.
@@ -226,6 +267,9 @@ def recuperar_conhecimento(
     *,
     top_k: int = MAX_CHUNKS_PADRAO,
     cultura: Optional[str] = None,
+    parametros: Optional[List[str]] = None,
 ) -> List[ResultadoRAG]:
     """Atalho de alto nível usado pelo serviço de IA."""
-    return get_retriever().recuperar(pergunta, top_k=top_k, cultura=cultura)
+    return get_retriever().recuperar(
+        pergunta, top_k=top_k, cultura=cultura, parametros=parametros
+    )

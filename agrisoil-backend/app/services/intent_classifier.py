@@ -34,13 +34,17 @@ def _norm(texto: str) -> str:
     return sem_acento.lower().strip()
 
 
-# Entidades que se referem à situação real do cliente (áreas/dispositivos).
-ENTIDADES_DADOS = {
+# Entidades fortes: referem-se claramente à situação real do cliente.
+ENTIDADES_FORTES = {
     "area", "areas", "canteiro", "canteiros", "talhao", "talhoes", "talhoe",
     "estufa", "estufas", "propriedade", "propriedades", "lavoura", "lavouras",
-    "plantacao", "plantio", "horta", "hortas", "sensor", "sensores", "leitura",
-    "leituras", "ponto", "pontos", "cultivo", "roca", "roça",
+    "plantacao", "plantio", "horta", "hortas", "leitura", "leituras",
+    "cultivo", "roca", "roça",
 }
+# Entidades fracas: também aparecem em perguntas de conhecimento geral
+# ("como sensores funcionam?"). Só viram dados com posse/dêixis/status.
+ENTIDADES_FRACAS = {"sensor", "sensores", "ponto", "pontos"}
+ENTIDADES_DADOS = ENTIDADES_FORTES | ENTIDADES_FRACAS
 
 # Culturas: agro, mas só viram "com dados" se houver posse/status/dêixis.
 CULTURAS = {
@@ -85,11 +89,13 @@ FRASES_IRRIGACAO_DADOS = (
 
 # Padrões de pergunta de conhecimento geral.
 FRASES_GERAL = (
-    "o que e", "o que significa", "como funciona", "como plantar",
-    "como se planta", "para que serve", "qual a importancia",
-    "qual e a importancia", "como identificar", "como medir", "como calcular",
-    "por que", "porque calibrar", "substitui analise", "substitui a analise",
-    "como funciona a", "quais sao as limitacoes", "como funciona o",
+    "o que e", "o que significa", "como funciona", "como funcionam",
+    "como plantar", "como se planta", "para que serve", "para que servem",
+    "qual a importancia", "qual e a importancia", "como identificar",
+    "como medir", "como calcular", "por que", "porque calibrar",
+    "substitui analise", "substitui a analise", "como funciona a",
+    "quais sao as limitacoes", "qual a limitacao", "qual e a limitacao",
+    "como funciona o", "explique", "explica",
 )
 
 # Termos agro amplos (conhecimento geral).
@@ -104,6 +110,12 @@ TERMOS_AGRO = {
     "pecuaria", "animal", "animais", "vaca", "vacas", "boi", "leite",
     "reproducao", "ordenha", "geada", "seca", "clima", "lagarta", "pulgao",
     "produtividade", "fenologia",
+}
+
+# Sinais de comparação/superlativo.
+COMPARATIVOS = {
+    "qual", "quais", "pior", "melhor", "maior", "menor", "mais", "menos",
+    "compara", "comparar", "compare",
 }
 
 # Sinais externos fortes (fora do agro).
@@ -147,12 +159,14 @@ def classificar(
 
     tem_externo = _tem_termo(texto, TERMOS_FORA)
     tem_entidade = _tem_termo(texto, ENTIDADES_DADOS)
+    tem_entidade_forte = _tem_termo(texto, ENTIDADES_FORTES)
     tem_cultura = _tem_termo(texto, CULTURAS)
     tem_agro = tem_entidade or tem_cultura or _tem_termo(texto, TERMOS_AGRO)
     tem_possessivo = _tem_termo(texto, POSSESSIVOS)
     tem_deixis = _tem_termo(texto, DEIXIS)
     tem_status = _tem_frase(texto, FRASES_STATUS)
     tem_irrigacao_dados = _tem_frase(texto, FRASES_IRRIGACAO_DADOS)
+    tem_comparacao = bool(set(re.findall(r"[a-z0-9-]+", texto)) & COMPARATIVOS)
     eh_geral = _tem_frase(texto, FRASES_GERAL)
 
     # 1) Claramente fora do escopo agro.
@@ -173,9 +187,10 @@ def classificar(
     intencao_dados = (
         tem_irrigacao_dados
         or (tem_possessivo and (tem_entidade or tem_cultura or tem_status or tem_agro))
-        or (tem_entidade and not eh_geral)
+        or (tem_entidade_forte and not eh_geral)
         or (tem_deixis and (tem_entidade or tem_cultura or tem_agro))
         or (tem_status and (tem_entidade or tem_cultura or tem_possessivo))
+        or (tem_comparacao and (tem_entidade or tem_cultura) and not eh_geral)
     )
     if intencao_dados:
         return MODO_AGRO_COM_DADOS
@@ -190,7 +205,9 @@ def classificar(
     if tem_agro or eh_geral:
         return MODO_AGRO_GERAL
 
-    # 6) Sem sinais claros: favorecer agro quando há contexto do cliente.
-    if cliente_id or sensor_id:
-        return MODO_ESCLARECIMENTO
+    # 6) Sem sinais claros: com sensor/cliente, favorecer a visão de dados reais
+    #    (não pedir esclarecimento só porque a frase é curta). Sem contexto algum,
+    #    fica fora de escopo.
+    if sensor_id or cliente_id:
+        return MODO_AGRO_COM_DADOS
     return MODO_FORA_ESCOPO

@@ -97,10 +97,13 @@ def test_openai_prompt_uses_existing_context_fields_only(monkeypatch):
         ],
     )
 
-    prompt = service._montar_prompt(contexto)
+    from app.services.ia.decisao import decidir
+
+    decisao = decidir(contexto.usuario_pergunta, cliente_id="cliente_teste", sensor_id="sensor_001")
+    prompt = service._montar_prompt(contexto, decisao)
 
     assert "RESPONDA SOMENTE COM JSON VÁLIDO" in prompt
-    assert "Não invente" in prompt
+    assert "DADOS REAIS DO CLIENTE" in prompt
     assert "sensor_001" in prompt
 
 
@@ -634,7 +637,8 @@ def test_openai_resposta_estruturada_limpa_com_cliente_real_simulado(monkeypatch
     assert resposta.modelo == "modelo-teste"
     assert resposta.tokens_usados == 123
     assert resposta.resposta_estruturada["modo"] == MODO_AGRO_COM_DADOS
-    assert resposta.resposta_estruturada["origem"] == "openai"
+    # origem reflete os recursos: havia dados reais do sensor.
+    assert resposta.resposta_estruturada["origem"].startswith("openai_com_dados")
     assert resposta.recomendacao.acao == "Conferir leitura e validar em campo."
     assert len(resposta.atencoes) <= 3
     assert len(resposta.proximos_passos) <= 3
@@ -659,16 +663,19 @@ def test_openai_json_invalido_usa_fallback_seguro(monkeypatch):
         ],
     )
 
+    from app.services.openai_service import decisao_basica
+
     resposta = service._resposta_openai_estruturada(
         contexto=contexto,
         pergunta_id="pergunta_json_invalido",
         resposta_texto="resposta sem json",
         tokens_usados=50,
+        decisao=decisao_basica(MODO_AGRO_COM_DADOS),
     )
 
     assert resposta.modelo == "fallback-local"
     assert resposta.tokens_usados == 0
-    assert resposta.resposta_estruturada["modo"] == "fallback_local"
+    # JSON inválido -> fallback local: a origem reflete o fallback.
     assert resposta.resposta_estruturada["origem"] == "fallback_local"
 
 

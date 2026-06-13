@@ -8,6 +8,7 @@ Nunca chama OpenAI real, nunca conecta em banco real.
 import asyncio
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -70,10 +71,10 @@ def _seed_agrisoil(db, com_leituras=True):
         db.commit()
 
 
-def _montar(db, pergunta, sensor_id=None, cliente_id=CLIENTE):
+def _montar(db, pergunta, sensor_id=None, cliente_id=CLIENTE, decisao=None):
     return asyncio.run(ServicoContextoIA().montar_contexto(
         cliente_id=cliente_id, pergunta=pergunta, sensor_id=sensor_id,
-        usar_cache=False, db=db, exigir_cliente=True,
+        usar_cache=False, db=db, exigir_cliente=True, decisao=decisao,
     ))
 
 
@@ -214,20 +215,31 @@ def _payload_valido():
     }, ensure_ascii=False)
 
 
-def _servico_com_client(monkeypatch, captura, content=None):
+def _ids_do_prompt(prompt):
+    """Extrai os documento_id presentes na seção de conhecimento do prompt."""
+    sec = prompt.split("CONHECIMENTO TÉCNICO RECUPERADO", 1)[-1]
+    return re.findall(r'"documento_id":\s*"([^"]+)"', sec)
+
+
+def _servico_com_client(monkeypatch, captura, content=None, declarar_fontes=False):
     monkeypatch.setattr(settings, "openai_api_key", "fake-key")
     servico = ServicoOpenAI()
     servico.disponivel = True
     servico.model = "modelo-teste"
-    content = content or _payload_valido()
 
     class _Client:
         class chat:
             class completions:
                 @staticmethod
                 def create(**kwargs):
-                    captura["prompt"] = kwargs["messages"][1]["content"]
-                    return _FakeResp(content)
+                    prompt = kwargs["messages"][1]["content"]
+                    captura["prompt"] = prompt
+                    payload = json.loads(content or _payload_valido())
+                    if declarar_fontes:
+                        # O modelo declara como usados os documentos enviados.
+                        payload["documento_ids_utilizados"] = _ids_do_prompt(prompt)
+                    captura["documento_ids"] = payload.get("documento_ids_utilizados", [])
+                    return _FakeResp(json.dumps(payload, ensure_ascii=False))
 
     servico.client = _Client()
     return servico
@@ -237,18 +249,23 @@ def test_agro_com_dados_usa_sensores_e_rag(monkeypatch):
     db = SessionLocal()
     try:
         _seed_agrisoil(db)
-        ctx = _montar(db, "Qual canteiro precisa de mais atenção?")
+        from app.services.ia.decisao import decidir
+        decisao = decidir("Qual canteiro precisa de mais atenção?", cliente_id=CLIENTE)
+        ctx = _montar(db, "Qual canteiro precisa de mais atenção?", decisao=decisao)
         captura = {}
-        servico = _servico_com_client(monkeypatch, captura)
-        resp = asyncio.run(servico.analisar_contexto(ctx, "pid", modo=MODO_AGRO_COM_DADOS))
+        servico = _servico_com_client(monkeypatch, captura, declarar_fontes=True)
+        resp = asyncio.run(servico.analisar_contexto(ctx, "pid", decisao=decisao))
         prompt = captura["prompt"]
-        # Dados reais dos dois canteiros entram no prompt.
+        # Dados reais dos canteiros entram no prompt; área de soja é excluída.
         assert "27.4" in prompt and "41.8" in prompt
+        assert "area-soja-01" not in prompt
         assert "DADOS REAIS DO CLIENTE" in prompt
         assert "CONHECIMENTO TÉCNICO RECUPERADO" in prompt
         assert resp.resposta_estruturada["modo"] == MODO_AGRO_COM_DADOS
-        assert resp.resposta_estruturada["origem"] == "openai"
-        assert resp.fontes, "esperava fontes técnicas do RAG"
+        assert resp.resposta_estruturada["origem"].startswith("openai_com_dados")
+        # Só fontes realmente declaradas/validadas aparecem (subconjunto do recuperado).
+        for f in resp.fontes:
+            assert f["documento_id"] in captura["documento_ids"]
         # Encerramento contextual presente.
         assert "é só pedir" in resp.resposta_texto.lower()
     finally:

@@ -370,14 +370,12 @@ class RespostaIA(BaseModel):
     confianca_geral: float = Field(..., ge=0.0, le=1.0, description="Confiança geral da resposta")
     requer_validacao_humana: bool = Field(default=False, description="Precisa revisar antes de agir?")
     
-    # Validade
-    validade: Dict[str, Any] = Field(
-        default_factory=lambda: {
-            "ate": datetime.now() + timedelta(hours=1),
-            "razao": "Previsão muda frequentemente"
-        }
-    )
-    
+    # Validade (depende do tipo de resposta; pode ser None quando não se aplica)
+    validade: Optional[Dict[str, Any]] = None
+
+    # Recursos efetivamente usados para construir a resposta
+    recursos_utilizados: List[str] = Field(default_factory=list)
+
     # Metadata
     modelo: str = Field(default="gpt-4-turbo", description="Modelo de IA usado")
     tokens_usados: int = 0

@@ -52,7 +52,8 @@ class ServicoContextoIA:
         sensor_id: Optional[str] = None,
         usar_cache: bool = True,
         db: Optional[Session] = None,
-        exigir_cliente: bool = True
+        exigir_cliente: bool = True,
+        decisao=None,
     ) -> ContextoIA:
         """
         Monta CONTEXTO_IA completo para IA processar
@@ -86,6 +87,16 @@ class ServicoContextoIA:
         sensores_relevantes = await self._buscar_sensores_relevantes(cliente_id, sensor_id, db)
         if db and sensor_id and not sensores_relevantes:
             raise SensorIANaoEncontrado("Sensor não encontrado para este cliente.")
+
+        # Filtrar sensores pela entidade pedida (canteiro/estufa/cultura...),
+        # apenas em consulta geral (sem sensor_id explícito).
+        if decisao is not None and not sensor_id and sensores_relevantes:
+            try:
+                from app.services.ia.selecao import filtrar_sensores
+                resultado = filtrar_sensores(sensores_relevantes, decisao)
+                sensores_relevantes = resultado.sensores
+            except Exception as exc:  # pragma: no cover - proteção defensiva
+                logger.warning("Falha ao filtrar sensores por entidade (%s); usando todos.", type(exc).__name__)
 
         clima_atual = await self._buscar_clima_atual(sensores_relevantes)
         clima_7_dias = await self._buscar_clima_historico(sensores_relevantes, dias=7)

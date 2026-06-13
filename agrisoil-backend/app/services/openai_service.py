@@ -1,12 +1,13 @@
 """
 Serviço de Integração com Izes IA (powered by OpenAI/ChatGPT)
 
-Fluxo:
-    pergunta -> classificação de intenção (intent_classifier)
-             -> decisão sobre dados do cliente / uso do RAG
-             -> montagem controlada do contexto (dados reais x conhecimento técnico)
-             -> chamada do modelo (com fallback seguro)
-             -> resposta natural, com fontes rastreáveis e encerramento contextual.
+Fluxo estrutural:
+    decisão de intenção (DecisaoIntencao, calculada UMA vez na rota)
+      -> recursos reunidos pela rota (dados do cliente, clima, RAG)
+      -> este serviço monta o contexto separado (dados x clima x conhecimento),
+         chama o modelo (com fallback seguro) e calcula, de forma central:
+         origem, validade, confiança, fontes realmente usadas e segurança da
+         recomendação, com encerramento contextual adequado.
 """
 
 import base64
@@ -16,16 +17,21 @@ from app.config import settings
 from app.models.contratos import ContextoIA, RespostaIA, RecomendacaoIA
 from datetime import datetime
 import json
+import re
 import unicodedata
 from typing import List, Optional
 
-from app.services import intent_classifier
-from app.services.intent_classifier import (
+from app.services.ia.decisao import (
+    DecisaoIntencao,
     MODO_AGRO_COM_DADOS,
     MODO_AGRO_GERAL,
+    MODO_CLIMA,
     MODO_ESCLARECIMENTO,
     MODO_FORA_ESCOPO,
 )
+from app.services.ia import metadados
+from app.services.ia.selecao import destacar
+from app.services import intent_classifier
 from app.services.rag.retriever import ResultadoRAG, recuperar_conhecimento
 
 logger = logging.getLogger(__name__)
@@ -42,8 +48,15 @@ PROMPT_ANALISE_IMAGEM = (
     "sem inventar diagnóstico."
 )
 
-# Quantidade máxima de chunks de conhecimento técnico no contexto.
 MAX_CHUNKS_RAG = 3
+
+# Verbos imperativos fortes que não devem aparecer numa recomendação baseada em
+# leitura isolada (segurança da recomendação).
+_PADROES_IMPERATIVOS = re.compile(
+    r"\b(irrigue|irrig(ar|ue) agora|aplique|adube|fa(ç|c)a calagem|"
+    r"pulverize|use \d|aplicar \d)\b",
+    re.IGNORECASE,
+)
 
 
 class OpenAIImageAnalysisError(Exception):
@@ -60,29 +73,38 @@ def classificar_escopo_pergunta(
     cliente_id: Optional[str] = None,
     sensor_id: Optional[str] = None,
 ) -> str:
-    """Classifica a pergunta usando o classificador de intenção.
-
-    Mantém compatibilidade com chamadas antigas (apenas ``pergunta``) e usa
-    ``cliente_id`` / ``sensor_id`` para desambiguar perguntas curtas, informais
-    ou contextuais.
-    """
+    """Compatibilidade: classifica a pergunta em um dos modos (string)."""
     return intent_classifier.classificar(pergunta, cliente_id=cliente_id, sensor_id=sensor_id)
+
+
+def decisao_basica(modo: str) -> DecisaoIntencao:
+    """Constrói uma decisão mínima a partir apenas do modo (compatibilidade)."""
+    if modo == MODO_FORA_ESCOPO:
+        return DecisaoIntencao(modo=modo, dominio="fora_escopo", necessita_openai=False)
+    if modo == MODO_ESCLARECIMENTO:
+        return DecisaoIntencao(modo=modo, dominio="esclarecimento",
+                               necessita_openai=False, necessita_esclarecimento=True)
+    if modo == MODO_AGRO_GERAL:
+        return DecisaoIntencao(modo=modo, dominio="agro_geral", necessita_rag=True)
+    if modo == MODO_CLIMA:
+        return DecisaoIntencao(modo=modo, dominio="clima", necessita_clima=True)
+    return DecisaoIntencao(modo=MODO_AGRO_COM_DADOS, dominio="dados_propriedade",
+                           necessita_dados_cliente=True, necessita_rag=True)
 
 
 def buscar_conhecimento_agro(
     pergunta: str,
     modo: str,
     cultura: Optional[str] = None,
+    parametros: Optional[List[str]] = None,
 ) -> List[ResultadoRAG]:
-    """Recupera conhecimento técnico do índice RAG local.
-
-    Retorna lista vazia (sem derrubar o fluxo) quando não há conteúdo relevante
-    ou o índice está ausente. Nunca inventa fonte.
-    """
+    """Recupera conhecimento técnico do índice RAG local (vazio se irrelevante)."""
     if modo == MODO_FORA_ESCOPO:
         return []
     try:
-        return recuperar_conhecimento(pergunta, top_k=MAX_CHUNKS_RAG, cultura=cultura)
+        return recuperar_conhecimento(
+            pergunta, top_k=MAX_CHUNKS_RAG, cultura=cultura, parametros=parametros
+        )
     except Exception as exc:  # pragma: no cover - proteção defensiva
         logger.warning("RAG indisponível (%s); seguindo sem conhecimento técnico.", type(exc).__name__)
         return []
@@ -92,15 +114,12 @@ class ServicoOpenAI:
     """Integração com Izes IA (utiliza OpenAI como backend)"""
 
     def __init__(self):
-        """Inicializa cliente Izes"""
         self.client = None
         self.model = (settings.openai_model or "gpt-4-turbo").strip() or "gpt-4-turbo"
-
         if not settings.openai_api_key:
             logger.info("Izes IA rodando em modo fallback local: OPENAI_API_KEY não configurada.")
             self.disponivel = False
             return
-
         self.client = OpenAI(api_key=settings.openai_api_key)
         self.disponivel = True
         logger.info(f"Izes IA {self.model} configurado")
@@ -110,49 +129,53 @@ class ServicoOpenAI:
         contexto: ContextoIA,
         pergunta_id: str,
         modo: Optional[str] = None,
+        decisao: Optional[DecisaoIntencao] = None,
+        clima_dados: Optional[dict] = None,
+        clima_indisponivel: bool = False,
     ) -> RespostaIA:
-        """Chama Izes IA para analisar contexto agrícola.
+        """Gera a resposta a partir da decisão de intenção e dos recursos reunidos."""
+        if decisao is None:
+            modo_efetivo = modo or classificar_escopo_pergunta(
+                contexto.usuario_pergunta,
+                cliente_id=contexto.cliente_id,
+                sensor_id=contexto.sensor_id,
+            )
+            decisao = decisao_basica(modo_efetivo)
 
-        Args:
-            contexto: Contexto montado com dados da propriedade (se houver).
-            pergunta_id: ID da pergunta para rastreamento.
-            modo: Modo já decidido pela rota (com cliente_id/sensor_id). Se None,
-                  é recalculado a partir do texto e do sensor do contexto.
-        """
-        modo_pergunta = modo or classificar_escopo_pergunta(
-            contexto.usuario_pergunta,
-            cliente_id=contexto.cliente_id,
-            sensor_id=contexto.sensor_id,
-        )
-
-        if modo_pergunta == MODO_FORA_ESCOPO:
+        if decisao.modo == MODO_FORA_ESCOPO:
             return self._resposta_fora_escopo(contexto, pergunta_id)
 
-        if modo_pergunta == MODO_ESCLARECIMENTO:
+        if decisao.modo == MODO_ESCLARECIMENTO:
             return self._resposta_esclarecimento(contexto, pergunta_id)
 
-        if modo_pergunta == MODO_AGRO_GERAL:
+        if decisao.modo == MODO_CLIMA and not decisao.necessita_dados_cliente:
+            return self._resposta_clima(contexto, pergunta_id, decisao, clima_dados, clima_indisponivel)
+
+        if decisao.modo == MODO_AGRO_GERAL:
             contexto = self._contexto_agro_geral(contexto)
 
-        if modo_pergunta == MODO_AGRO_COM_DADOS and not self._contexto_tem_dados_suficientes(contexto):
-            return self._resposta_dados_insuficientes(contexto, pergunta_id)
+        if decisao.modo == MODO_AGRO_COM_DADOS and not self._contexto_tem_dados_suficientes(contexto):
+            if not decisao.necessita_clima:
+                return self._resposta_dados_insuficientes(contexto, pergunta_id)
 
-        # Recuperação de conhecimento técnico (RAG), separada dos dados reais.
-        resultados_rag = buscar_conhecimento_agro(
-            contexto.usuario_pergunta, modo_pergunta, cultura=contexto.cultura
-        )
+        resultados_rag = []
+        if decisao.necessita_rag:
+            resultados_rag = buscar_conhecimento_agro(
+                contexto.usuario_pergunta, decisao.modo,
+                cultura=contexto.cultura, parametros=decisao.parametros,
+            )
 
         if not self.disponivel:
             logger.info("Izes IA sem OpenAI configurada; retornando fallback local.")
-            if modo_pergunta == MODO_AGRO_GERAL:
-                return self._resposta_agro_geral_fallback(contexto, pergunta_id, resultados_rag)
+            if decisao.modo == MODO_AGRO_GERAL:
+                return self._resposta_agro_geral_fallback(contexto, pergunta_id, decisao, resultados_rag)
             return self._resposta_fallback(
-                contexto, pergunta_id, motivo="OPENAI_API_KEY ausente", resultados_rag=resultados_rag
+                contexto, pergunta_id, decisao, motivo="OPENAI_API_KEY ausente",
+                resultados_rag=resultados_rag, clima_dados=clima_dados,
             )
 
         try:
-            prompt = self._montar_prompt(contexto, modo_pergunta, resultados_rag)
-
+            prompt = self._montar_prompt(contexto, decisao, resultados_rag, clima_dados)
             logger.info(f"Chamando Izes para {pergunta_id}...")
             response = self.client.chat.completions.create(
                 model=self.model,
@@ -164,62 +187,44 @@ class ServicoOpenAI:
                 max_tokens=min(settings.openai_max_tokens, 700),
                 response_format={"type": "json_object"},
             )
-
             resposta_texto = response.choices[0].message.content
             tokens_usados = response.usage.total_tokens if response.usage else 0
             logger.info(f"Resposta Izes: {len(resposta_texto)} caracteres, {tokens_usados} tokens")
-
             return self._resposta_openai_estruturada(
-                contexto=contexto,
-                pergunta_id=pergunta_id,
-                resposta_texto=resposta_texto,
-                tokens_usados=tokens_usados,
-                modo=modo_pergunta,
-                resultados_rag=resultados_rag,
+                contexto=contexto, pergunta_id=pergunta_id, resposta_texto=resposta_texto,
+                tokens_usados=tokens_usados, decisao=decisao, resultados_rag=resultados_rag,
+                clima_dados=clima_dados,
             )
-
         except Exception as e:
             logger.error("Erro ao chamar OpenAI; usando fallback local: %s", type(e).__name__)
-            if modo_pergunta == MODO_AGRO_GERAL:
-                return self._resposta_agro_geral_fallback(contexto, pergunta_id, resultados_rag)
+            if decisao.modo == MODO_AGRO_GERAL:
+                return self._resposta_agro_geral_fallback(contexto, pergunta_id, decisao, resultados_rag)
             return self._resposta_fallback(
-                contexto, pergunta_id, motivo="OpenAI indisponível", resultados_rag=resultados_rag
+                contexto, pergunta_id, decisao, motivo="OpenAI indisponível",
+                resultados_rag=resultados_rag, clima_dados=clima_dados,
             )
 
     async def analisar_imagem(self, image_bytes: bytes, mime_type: str) -> str:
         """Envia uma imagem para a OpenAI com visão e retorna a análise textual."""
         if not settings.openai_api_key:
             raise OpenAIImageAnalysisError("OPENAI_API_KEY não configurada no backend.")
-
         if not image_bytes:
             raise OpenAIImageAnalysisError("A imagem enviada está vazia.")
 
         image_base64 = base64.b64encode(image_bytes).decode("utf-8")
         vision_model = (settings.openai_vision_model or "gpt-4o-mini").strip() or "gpt-4o-mini"
-
         try:
             response = self.client.chat.completions.create(
                 model=vision_model,
                 messages=[
-                    {
-                        "role": "system",
-                        "content": (
-                            "Você analisa imagens para o app IZES. "
-                            "Responda em português do Brasil, de forma objetiva e sem inventar diagnóstico."
-                        ),
-                    },
-                    {
-                        "role": "user",
-                        "content": [
-                            {"type": "text", "text": PROMPT_ANALISE_IMAGEM},
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": f"data:{mime_type};base64,{image_base64}",
-                                },
-                            },
-                        ],
-                    },
+                    {"role": "system", "content": (
+                        "Você analisa imagens para o app IZES. "
+                        "Responda em português do Brasil, de forma objetiva e sem inventar diagnóstico."
+                    )},
+                    {"role": "user", "content": [
+                        {"type": "text", "text": PROMPT_ANALISE_IMAGEM},
+                        {"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{image_base64}"}},
+                    ]},
                 ],
                 temperature=0.2,
                 max_tokens=min(settings.openai_max_tokens, 400),
@@ -233,24 +238,19 @@ class ServicoOpenAI:
         resposta = (response.choices[0].message.content or "").strip() if response.choices else ""
         if not resposta:
             raise OpenAIImageAnalysisError("A OpenAI não retornou texto para a imagem enviada.")
-
         return resposta
 
     # ----------------------------------------------------------- montagem
     def _montar_prompt(
         self,
         contexto: ContextoIA,
-        modo_pergunta: Optional[str] = None,
+        decisao: DecisaoIntencao,
         resultados_rag: Optional[List[ResultadoRAG]] = None,
+        clima_dados: Optional[dict] = None,
     ) -> str:
-        """Monta prompt estruturado, separando dados reais e conhecimento técnico."""
-        modo = modo_pergunta or classificar_escopo_pergunta(
-            contexto.usuario_pergunta,
-            cliente_id=contexto.cliente_id,
-            sensor_id=contexto.sensor_id,
-        )
-        dados = self._dados_para_prompt(contexto, modo)
+        """Monta o prompt separando dados reais, clima e conhecimento técnico."""
         resultados_rag = resultados_rag or []
+        dados = self._dados_para_prompt(contexto, decisao.modo)
 
         conhecimento = [
             {
@@ -260,72 +260,82 @@ class ServicoOpenAI:
                 "ano": r.chunk.get("ano"),
                 "paginas": r.fonte().get("paginas"),
                 "tema": r.chunk.get("tema"),
-                "confiabilidade": r.chunk.get("confiabilidade"),
                 "trecho": r.chunk.get("texto"),
             }
             for r in resultados_rag
         ]
-        fontes = [r.fonte() for r in resultados_rag]
 
-        if modo == MODO_AGRO_GERAL:
+        if decisao.modo == MODO_AGRO_GERAL:
             instrucao_modo = (
-                "- Modo agro_geral: responda uma dúvida agro/rural geral para pequeno produtor.\n"
+                "- Modo agro_geral: responda dúvida agro/rural geral.\n"
                 "- Não use dados de sensor, leitura, alerta, pH, NPK, cidade, fazenda ou talhão do cliente.\n"
-                "- Use o CONHECIMENTO TÉCNICO RECUPERADO quando existir; se não houver, responda com orientação geral segura.\n"
-                "- Não invente dados reais; se faltar base específica, diga que é orientação geral."
+                "- Use o CONHECIMENTO TÉCNICO RECUPERADO quando existir; senão, orientação geral segura."
             )
         else:
             instrucao_modo = (
-                "- Modo agro_com_dados: analise somente os DADOS REAIS fornecidos (sensores, leituras, avaliações, alertas).\n"
-                "- Separe claramente medição (dado real) de interpretação e de referência técnica (RAG).\n"
-                "- Compare os sensores/áreas quando a pergunta pedir e diga qual merece mais atenção.\n"
-                "- Não invente dados ausentes; explique o risco principal e o que fazer agora em linguagem simples."
+                "- Modo agro_com_dados: analise somente os DADOS REAIS fornecidos.\n"
+                "- Separe medição (dado real) de interpretação e de referência técnica (RAG/clima).\n"
+                "- Se a pergunta for comparativa, comece dizendo qual entidade se destaca e por quê, usando os valores.\n"
+                "- Não inclua entidades não solicitadas; não invente dados ausentes."
             )
 
-        return f"""
-ANÁLISE AGRÍCOLA IZES - RESPONDA SOMENTE COM JSON VÁLIDO
-Modo da pergunta: {modo}
+        partes = [
+            "ANÁLISE AGRÍCOLA IZES - RESPONDA SOMENTE COM JSON VÁLIDO",
+            f"Modo da pergunta: {decisao.modo}",
+            f"Entidade pedida: {decisao.tipo_entidade or '-'} | Comparação: {decisao.comparacao} | Parâmetros: {decisao.parametros}",
+            "",
+            "PERGUNTA DO USUÁRIO:",
+            contexto.usuario_pergunta,
+            "",
+            "DADOS REAIS DO CLIENTE (somente o que foi efetivamente consultado):",
+            json.dumps(dados, ensure_ascii=False, indent=2, default=str),
+        ]
+        destaque = self._destaque_comparativo(contexto, decisao)
+        if destaque:
+            partes += ["", "DESTAQUE CALCULADO (a partir dos dados reais; use estes valores na resposta):",
+                       json.dumps(destaque, ensure_ascii=False, indent=2, default=str)]
+        if clima_dados:
+            partes += ["", "CLIMA (serviço climático real):",
+                       json.dumps(clima_dados, ensure_ascii=False, indent=2, default=str)]
+        partes += [
+            "",
+            "CONHECIMENTO TÉCNICO RECUPERADO (use apenas estes trechos; não cite outra fonte):",
+            json.dumps(conhecimento, ensure_ascii=False, indent=2, default=str),
+            "",
+            "Formato JSON obrigatório:",
+            "{",
+            '  "resposta_texto": "Situação:\\n...\\n\\nRisco:\\n...\\n\\nO que fazer agora:\\n1. ...\\n2. ...\\n3. ...\\n\\nAtenção:\\nNão aplique dose exata sem análise de solo ou agrônomo.",',
+            '  "recomendacao": {"acao": "uma frase objetiva", "motivo": "uma frase simples", "riscos_se_nao_fizer": "uma frase", "beneficios": "uma frase"},',
+            '  "atencoes": ["até 3 itens curtos"],',
+            '  "proximos_passos": ["até 3 itens curtos"],',
+            '  "confianca_geral": 0.0,',
+            '  "documento_ids_utilizados": ["apenas os documento_id do CONHECIMENTO que você realmente usou"]',
+            "}",
+            "",
+            "Regras do modo:",
+            instrucao_modo,
+            "",
+            "Regras obrigatórias:",
+            "- Máximo de 5 a 8 linhas em resposta_texto; frases curtas e simples.",
+            "- Não cite documento que não esteja em CONHECIMENTO TÉCNICO RECUPERADO.",
+            "- documento_ids_utilizados deve conter SOMENTE ids presentes no CONHECIMENTO acima; se não usou nenhum, retorne lista vazia.",
+            "- Não trate sensor como análise laboratorial; admita incerteza e limitações.",
+            "- Não ordene irrigação, calagem ou dose com base em leitura isolada; recomende avaliar antes (recência, profundidade, tipo de solo, cultura, fase, chuva).",
+            "- confianca_geral entre 0 e 1, coerente com a certeza real.",
+            "- Se faltar dado real no modo agro_com_dados, diga exatamente qual dado faltou.",
+        ]
+        return "\n".join(partes).strip()
 
-PERGUNTA DO USUÁRIO:
-{contexto.usuario_pergunta}
-
-DADOS REAIS DO CLIENTE (somente o que foi efetivamente consultado):
-{json.dumps(dados, ensure_ascii=False, indent=2, default=str)}
-
-CONHECIMENTO TÉCNICO RECUPERADO (use apenas estes trechos; não cite outra fonte):
-{json.dumps(conhecimento, ensure_ascii=False, indent=2, default=str)}
-
-FONTES DISPONÍVEIS (corresponderão ao que você usar):
-{json.dumps(fontes, ensure_ascii=False, indent=2, default=str)}
-
-Formato JSON obrigatório:
-{{
-  "resposta_texto": "Situação:\\n...\\n\\nRisco:\\n...\\n\\nO que fazer agora:\\n1. ...\\n2. ...\\n3. ...\\n\\nAtenção:\\nNão aplique dose exata sem análise de solo ou agrônomo.",
-  "recomendacao": {{
-    "acao": "uma frase objetiva",
-    "motivo": "uma frase simples",
-    "riscos_se_nao_fizer": "uma frase simples",
-    "beneficios": "uma frase simples"
-  }},
-  "atencoes": ["até 3 itens curtos"],
-  "proximos_passos": ["até 3 itens curtos"],
-  "confianca_geral": 0.0
-}}
-
-Regras do modo:
-{instrucao_modo}
-
-Regras obrigatórias:
-- Use no máximo 5 a 8 linhas no campo resposta_texto.
-- Frases curtas, linguagem simples, sem relatório técnico.
-- Não responda conhecimento geral fora do domínio agro/rural/sensores/solo/lavoura/app.
-- Não invente fazenda, sensor, leitura, cultura, clima, cidade, talhão, histórico, alerta ou cliente.
-- Não cite documento que não esteja em CONHECIMENTO TÉCNICO RECUPERADO.
-- Não trate sensor como análise laboratorial; admita incerteza e limitações.
-- Não recomende dose exata de fertilizante/corretivo sem cultura, área, análise de solo e validação técnica.
-- Recomende agrônomo ou análise laboratorial quando a decisão exigir validação técnica.
-- Se faltar dado real no modo agro_com_dados, diga exatamente qual dado faltou e não complete por suposição.
-""".strip()
+    def _destaque_comparativo(self, contexto: ContextoIA, decisao: DecisaoIntencao) -> Optional[dict]:
+        """Calcula, a partir dos dados reais, qual entidade se destaca (comparação)."""
+        if not getattr(decisao, "comparacao", False):
+            return None
+        parametro = getattr(decisao, "parametro_foco", None) or "umidade"
+        preferir_menor = getattr(decisao, "extremo", "menor") != "maior"
+        sensores = [s for s in contexto.sensores_relevantes if s.ultima_leitura]
+        if len(sensores) < 1:
+            return None
+        return destacar(sensores, parametro, preferir_menor=preferir_menor)
 
     def _dados_para_prompt(self, contexto: ContextoIA, modo: str) -> dict:
         if modo == MODO_AGRO_GERAL:
@@ -334,22 +344,15 @@ Regras obrigatórias:
                 "pergunta": contexto.usuario_pergunta,
                 "observacao": "Sem dados do cliente neste modo; usar apenas conhecimento técnico geral.",
             }
-
         return {
             "modo": modo,
             "cliente_id": contexto.cliente_id,
             "sensor_id_foco": contexto.sensor_id,
             "pergunta": contexto.usuario_pergunta,
-            "sensores_relevantes": [sensor.model_dump(mode="json") for sensor in contexto.sensores_relevantes],
-            "alertas_ativos": [alerta.model_dump(mode="json") for alerta in contexto.alertas_ativos],
-            "alertas_historico_30_dias": [alerta.model_dump(mode="json") for alerta in contexto.alertas_historico_30_dias],
+            "sensores_relevantes": [s.model_dump(mode="json") for s in contexto.sensores_relevantes],
+            "alertas_ativos": [a.model_dump(mode="json") for a in contexto.alertas_ativos],
+            "alertas_historico_30_dias": [a.model_dump(mode="json") for a in contexto.alertas_historico_30_dias],
             "clima_atual": contexto.clima_atual,
-            "clima_ultimos_7_dias": {
-                sensor_id: clima.model_dump(mode="json")
-                for sensor_id, clima in contexto.clima_ultimos_7_dias.items()
-            },
-            "previsao_7_dias": contexto.previsao_7_dias,
-            "plano_agronomo": contexto.plano_agronomo,
             "cultura": contexto.cultura,
             "fase_desenvolvimento": contexto.fase_desenvolvimento,
             "prioridades": contexto.prioridades,
@@ -358,13 +361,12 @@ Regras obrigatórias:
 
     def _prompt_sistema(self) -> str:
         return (
-            "Você é o assistente agro do IZES para agricultura, pecuária, solo, sensores e manejo. "
+            "Você é o assistente agro do IZES para agricultura, pecuária, solo, sensores, clima e manejo. "
             "Responda apenas com JSON válido, curto, em português claro e respeitando o modo da pergunta. "
             "No modo agro_geral, não use nem invente dados de sensor, leitura, alerta, fazenda, cidade ou talhão. "
             "No modo agro_com_dados, use somente os dados reais fornecidos e separe medição de interpretação. "
             "Use apenas o conhecimento técnico recuperado fornecido; nunca cite documento que não foi recuperado. "
-            "Recuse perguntas fora de escopo agro/rural/sensores/solo/lavoura/app. "
-            "Não dê dose exata de fertilizante ou corretivo sem cultura, área, análise de solo e validação técnica. "
+            "Não dê ordem de irrigação, calagem ou dose com base em leitura isolada. "
             "Deixe claro que a resposta é orientação e não substitui laudo agronômico."
         )
 
@@ -376,62 +378,80 @@ Regras obrigatórias:
 
     def _contexto_tem_dados_suficientes(self, contexto: ContextoIA) -> bool:
         return any([
-            any(sensor.ultima_leitura for sensor in contexto.sensores_relevantes),
-            any(sensor.avaliacoes for sensor in contexto.sensores_relevantes),
+            any(s.ultima_leitura for s in contexto.sensores_relevantes),
+            any(s.avaliacoes for s in contexto.sensores_relevantes),
             bool(contexto.alertas_ativos),
             bool(contexto.alertas_historico_30_dias),
         ])
 
     def _contexto_agro_geral(self, contexto: ContextoIA) -> ContextoIA:
-        """Remove qualquer dado real do cliente para dúvida agro/rural geral."""
         return ContextoIA(
-            cliente_id=contexto.cliente_id,
-            sensor_id=None,
-            usuario_pergunta=contexto.usuario_pergunta,
-            tokens_estimado=0,
+            cliente_id=contexto.cliente_id, sensor_id=None,
+            usuario_pergunta=contexto.usuario_pergunta, tokens_estimado=0,
         )
 
     def _dados_consultados(self, contexto: ContextoIA, modo: Optional[str] = None) -> list:
         if modo == MODO_AGRO_GERAL:
             return ["conhecimento_agro_geral"]
-
         dados = []
         if contexto.sensores_relevantes:
             dados.append("sensores")
-            if any(sensor.ultima_leitura for sensor in contexto.sensores_relevantes):
+            if any(s.ultima_leitura for s in contexto.sensores_relevantes):
                 dados.append("ultima_leitura")
-            if any(sensor.avaliacoes for sensor in contexto.sensores_relevantes):
+            if any(s.avaliacoes for s in contexto.sensores_relevantes):
                 dados.append("avaliacoes_agronomicas")
         if contexto.alertas_ativos:
             dados.append("alertas_ativos")
         if contexto.alertas_historico_30_dias:
             dados.append("historico_alertas")
-        if contexto.clima_atual or contexto.clima_ultimos_7_dias or contexto.previsao_7_dias:
+        if contexto.clima_atual:
             dados.append("clima")
-        if contexto.plano_agronomo or contexto.cultura or contexto.fase_desenvolvimento:
+        if contexto.cultura or contexto.fase_desenvolvimento:
             dados.append("cultura")
         return dados or ["pergunta_usuario"]
 
+    # ---------------------------------------------------- fontes realmente usadas
+    def _fontes_validadas(
+        self, resultados_rag: Optional[List[ResultadoRAG]], ids_declarados: Optional[list]
+    ) -> list:
+        """Expõe apenas fontes recuperadas E declaradas como usadas pelo modelo."""
+        if not resultados_rag:
+            return []
+        ids_disponiveis = {r.chunk.get("documento_id") for r in resultados_rag}
+        if ids_declarados is None:
+            # Sem declaração confiável: não inventar uso.
+            return []
+        usados = {str(i) for i in ids_declarados} & ids_disponiveis
+        fontes, vistos = [], set()
+        for r in resultados_rag:
+            doc = r.chunk.get("documento_id")
+            if doc not in usados:
+                continue
+            fonte = r.fonte()
+            chave = (fonte.get("documento_id"), fonte.get("paginas"))
+            if chave in vistos:
+                continue
+            vistos.add(chave)
+            fontes.append(fonte)
+        return fontes
+
     # ------------------------------------------------------- encerramento
-    def _encerramento_contextual(self, modo: str, contexto: ContextoIA, tem_dados: bool) -> str:
-        """Sugestão final útil e contextual, terminando com 'É só pedir.'.
-
-        Não é usado em erros técnicos, fora de escopo ou esclarecimento.
-        """
+    def _encerramento_contextual(self, modo: str, contexto: ContextoIA, tem_dados: bool, usou_clima: bool) -> str:
         seed = abs(hash(contexto.usuario_pergunta or "")) % 2
-
+        if usou_clima:
+            opcoes = [
+                "Posso cruzar essa previsão com a umidade atual dos seus sensores e indicar o melhor momento de irrigar. É só pedir.",
+                "Se quiser, acompanho a previsão da semana e aviso o que planejar para as suas áreas. É só pedir.",
+            ]
+            return opcoes[seed]
         if modo == MODO_AGRO_GERAL:
             opcoes = [
                 "Posso relacionar isso com a sua cultura, região ou com os dados dos seus sensores. É só pedir.",
                 "Se quiser, comparo isso com as leituras atuais das suas áreas e mostro o que vale acompanhar. É só pedir.",
             ]
             return opcoes[seed]
-
         if not tem_dados:
-            return (
-                "Posso analisar melhor quando você informar a área, o canteiro ou o sensor desejado. É só pedir."
-            )
-
+            return "Posso analisar melhor quando você informar a área, o canteiro ou o sensor desejado. É só pedir."
         varios = len(contexto.sensores_relevantes) > 1
         if varios:
             opcoes = [
@@ -445,367 +465,427 @@ Regras obrigatórias:
             ]
         return opcoes[seed]
 
-    def _aplicar_encerramento(
-        self, resposta_texto: str, modo: str, contexto: ContextoIA, tem_dados: bool
-    ) -> str:
-        if modo not in (MODO_AGRO_COM_DADOS, MODO_AGRO_GERAL):
+    def _aplicar_encerramento(self, resposta_texto, modo, contexto, tem_dados, usou_clima=False):
+        if modo not in (MODO_AGRO_COM_DADOS, MODO_AGRO_GERAL, MODO_CLIMA):
             return resposta_texto
-        encerramento = self._encerramento_contextual(modo, contexto, tem_dados)
         texto = (resposta_texto or "").rstrip()
         if "é só pedir" in texto.lower():
             return texto
-        return f"{texto}\n\n{encerramento}"
+        return f"{texto}\n\n{self._encerramento_contextual(modo, contexto, tem_dados, usou_clima)}"
+
+    # ------------------------------------------- segurança da recomendação
+    def _suavizar_recomendacao(self, payload: dict, baseado_em_leitura_isolada: bool) -> bool:
+        """Detecta/suaviza ordens fortes baseadas em base insuficiente.
+
+        Retorna True se houve ajuste (a confiança será penalizada).
+        """
+        if not baseado_em_leitura_isolada:
+            return False
+        ajustou = False
+        rec = payload.get("recomendacao") or {}
+        acao = str(rec.get("acao") or "")
+        if _PADROES_IMPERATIVOS.search(acao):
+            rec["acao"] = "Avaliar em campo antes de irrigar ou aplicar insumo, considerando recência da leitura, tipo de solo, cultura e fase."
+            payload["recomendacao"] = rec
+            ajustou = True
+        texto = str(payload.get("resposta_texto") or "")
+        if _PADROES_IMPERATIVOS.search(texto):
+            payload["resposta_texto"] = _PADROES_IMPERATIVOS.sub("considere avaliar/irrigar com cautela", texto)
+            ajustou = True
+        if ajustou:
+            atencoes = payload.get("atencoes") or []
+            if not isinstance(atencoes, list):
+                atencoes = []
+            atencoes.append("Recomendação preliminar: confirme em campo antes de agir.")
+            payload["atencoes"] = atencoes
+        return ajustou
 
     # --------------------------------------------------------- respostas
-    def _resposta_fallback(
-        self,
-        contexto: ContextoIA,
-        pergunta_id: str,
-        motivo: str,
-        resultados_rag: Optional[List[ResultadoRAG]] = None,
+    def _resposta_openai_estruturada(
+        self, contexto, pergunta_id, resposta_texto, tokens_usados, decisao,
+        resultados_rag=None, clima_dados=None,
     ) -> RespostaIA:
-        """Resposta local segura quando OpenAI não está configurada ou indisponível."""
-        sensores_com_leitura = [
-            sensor for sensor in contexto.sensores_relevantes if sensor.ultima_leitura
-        ]
+        try:
+            payload = json.loads(resposta_texto)
+            tem_dados = self._contexto_tem_dados_suficientes(contexto)
+            leitura_isolada = (
+                decisao.modo == MODO_AGRO_COM_DADOS
+                and len([s for s in contexto.sensores_relevantes if s.ultima_leitura]) <= 1
+                and not contexto.alertas_ativos
+            )
+            recomendacao_suavizada = self._suavizar_recomendacao(payload, leitura_isolada)
+
+            resposta_curta = self._limitar_texto(str(payload["resposta_texto"]), max_linhas=7, max_chars=820)
+            recomendacao_raw = payload.get("recomendacao") or {}
+            ids_declarados = payload.get("documento_ids_utilizados")
+            if not isinstance(ids_declarados, list):
+                ids_declarados = None
+            fontes = self._fontes_validadas(resultados_rag, ids_declarados)
+
+            penalidades = {
+                "dados_ausentes": decisao.modo == MODO_AGRO_COM_DADOS and not tem_dados,
+                "rag_fraco": decisao.necessita_rag and not fontes,
+                "clima_indisponivel": decisao.necessita_clima and not clima_dados,
+                "requer_validacao": recomendacao_suavizada,
+            }
+            confianca = metadados.normalizar_confianca(
+                payload.get("confianca_geral"), penalidades=penalidades
+            )
+            recomendacao = RecomendacaoIA(
+                acao=self._frase_curta(recomendacao_raw.get("acao"), "Validar dados no dashboard antes do manejo."),
+                confianca=confianca,
+                motivo=self._frase_curta(recomendacao_raw.get("motivo"), "Baseado apenas no contexto real recebido."),
+                riscos_se_nao_fizer=self._frase_curta(recomendacao_raw.get("riscos_se_nao_fizer"), "Pode haver decisão sem validação."),
+                beneficios=self._frase_curta(recomendacao_raw.get("beneficios"), "Reduz risco de agir com dado incompleto."),
+            )
+            atencoes = self._lista_curta(payload.get("atencoes"), fallback=[AVISO_DOSE])
+            proximos = self._lista_curta(payload.get("proximos_passos"), fallback=["Conferir dados no dashboard."])
+            return self._montar_resposta_segura(
+                contexto=contexto, pergunta_id=pergunta_id, resposta_texto=resposta_curta,
+                decisao=decisao, recomendacao=recomendacao, atencoes=atencoes,
+                proximos_passos=proximos, confianca=confianca, modelo=self.model,
+                tokens_usados=tokens_usados, fontes=fontes, clima_dados=clima_dados,
+                usou_openai=True,
+            )
+        except (KeyError, TypeError, ValueError, json.JSONDecodeError):
+            logger.warning("OpenAI retornou JSON inválido para IA; usando fallback local seguro.")
+            if decisao.modo == MODO_AGRO_GERAL:
+                return self._resposta_agro_geral_fallback(contexto, pergunta_id, decisao, resultados_rag)
+            return self._resposta_fallback(
+                contexto, pergunta_id, decisao, motivo="Resposta OpenAI inválida",
+                resultados_rag=resultados_rag, clima_dados=clima_dados,
+            )
+
+    def _montar_resposta_segura(
+        self, contexto, pergunta_id, resposta_texto, decisao, recomendacao,
+        atencoes, proximos_passos, confianca, modelo, tokens_usados=0,
+        fontes=None, clima_dados=None, usou_openai=True, origem_forcada=None,
+    ) -> RespostaIA:
+        modo = decisao.modo
+        dados_consultados = self._dados_consultados(contexto, modo)
+        tem_dados = self._contexto_tem_dados_suficientes(contexto)
+        usou_dados = modo == MODO_AGRO_COM_DADOS and tem_dados
+        usou_clima = bool(clima_dados)
+        usou_rag = bool(fontes)
+
+        origem = origem_forcada or metadados.calcular_origem(
+            usou_openai=usou_openai, usou_dados=usou_dados, usou_clima=usou_clima,
+            usou_rag=usou_rag, fallback=not usou_openai,
+        )
+        validade = metadados.calcular_validade(
+            modo, usou_clima=usou_clima, tem_dados=tem_dados,
+            timestamp_leitura=self._timestamp_leitura(contexto),
+        )
+        recursos = self._recursos_utilizados(usou_dados, usou_clima, usou_rag, usou_openai)
+        resposta_texto = self._aplicar_encerramento(resposta_texto, modo, contexto, tem_dados, usou_clima)
+
+        return RespostaIA(
+            pergunta_id=pergunta_id, cliente_id=contexto.cliente_id, sensor_id=contexto.sensor_id,
+            resposta_texto=resposta_texto,
+            resposta_estruturada={
+                "modo": modo, "origem": origem,
+                "dados_reais": usou_dados,
+                "recursos_utilizados": recursos,
+            },
+            recomendacao=recomendacao,
+            dados_consultados=dados_consultados,
+            atencoes=atencoes[:3], proximos_passos=proximos_passos[:3],
+            fontes=fontes or [], recursos_utilizados=recursos,
+            confianca_geral=max(0.0, min(float(confianca), 1.0)),
+            requer_validacao_humana=True, modelo=modelo, tokens_usados=tokens_usados,
+            tempo_resposta_segundos=0, validade=validade, criado_em=datetime.now(),
+        )
+
+    def _recursos_utilizados(self, usou_dados, usou_clima, usou_rag, usou_openai) -> list:
+        recursos = []
+        if usou_dados:
+            recursos.append("dados_cliente")
+        if usou_clima:
+            recursos.append("clima")
+        if usou_rag:
+            recursos.append("rag")
+        if usou_openai:
+            recursos.append("openai")
+        return recursos
+
+    def _timestamp_leitura(self, contexto: ContextoIA) -> Optional[datetime]:
+        for s in contexto.sensores_relevantes:
+            leitura = s.ultima_leitura or {}
+            ts = leitura.get("timestamp")
+            if ts:
+                try:
+                    return datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+                except (ValueError, TypeError):
+                    return None
+        return None
+
+    def _resposta_fallback(self, contexto, pergunta_id, decisao, motivo,
+                           resultados_rag=None, clima_dados=None) -> RespostaIA:
+        sensores_com_leitura = [s for s in contexto.sensores_relevantes if s.ultima_leitura]
         alertas = contexto.alertas_ativos
 
-        situacao = (
-            f"Foram encontrados {len(contexto.sensores_relevantes)} sensor(es) relevante(s)"
-            f" e {len(sensores_com_leitura)} com leitura recente disponível."
-        )
+        destaque = self._destaque_comparativo(contexto, decisao)
+        if destaque and len(destaque["comparados"]) >= 1:
+            d = destaque["destaque"]
+            criterio = "menor" if destaque["criterio"] == "menor" else "maior"
+            nome = d.get("nome") or d.get("sensor_id")
+            situacao = (
+                f"Comparando o parâmetro {destaque['parametro']}, {nome} se destaca "
+                f"com o {criterio} valor ({d['valor']}). Merece acompanhamento mais próximo."
+            )
+        else:
+            situacao = (
+                f"Foram encontrados {len(contexto.sensores_relevantes)} sensor(es) relevante(s)"
+                f" e {len(sensores_com_leitura)} com leitura recente disponível."
+            )
         if alertas:
             situacao += f" Há {len(alertas)} alerta(s) ativo(s) no contexto."
 
         riscos = []
         for alerta in alertas[:3]:
             riscos.append(f"{alerta.tipo or 'alerta'} ({alerta.severidade or 'sem severidade'}): {alerta.mensagem}")
-
         for sensor in sensores_com_leitura[:3]:
             for parametro, avaliacao in (sensor.avaliacoes or {}).items():
                 nivel = avaliacao.get("nivel")
-                mensagem = avaliacao.get("mensagem")
                 if nivel and nivel not in {"ok", "ideal"}:
-                    riscos.append(f"{sensor.sensor_id} - {parametro}: {nivel}. {mensagem or ''}".strip())
+                    riscos.append(f"{sensor.sensor_id} - {parametro}: {nivel}. {avaliacao.get('mensagem') or ''}".strip())
+        risco_texto = " ".join(riscos) if riscos else "Não há alerta ativo ou avaliação crítica no contexto recebido."
 
-        if riscos:
-            risco_texto = " ".join(riscos)
-        else:
-            risco_texto = "Não há alerta ativo ou avaliação crítica disponível no contexto recebido."
-
-        proximos_passos = [
+        proximos = [
             "Conferir última leitura e alertas no dashboard.",
             "Coletar nova leitura se os dados estiverem antigos.",
             "Chamar agrônomo se houver alerta crítico.",
         ]
-        resposta_texto = self._formatar_resposta_curta(
-            situacao=situacao,
-            risco=risco_texto,
-            passos=proximos_passos,
+        texto = self._formatar_resposta_curta(situacao=situacao, risco=risco_texto, passos=proximos)
+        confianca = metadados.normalizar_confianca(
+            0.55 if sensores_com_leitura or alertas else None,
+            penalidades={"dados_ausentes": not (sensores_com_leitura or alertas)},
         )
-        resposta_texto = self._aplicar_encerramento(
-            resposta_texto, MODO_AGRO_COM_DADOS, contexto, tem_dados=True
-        )
-
-        return RespostaIA(
-            pergunta_id=pergunta_id,
-            cliente_id=contexto.cliente_id,
-            sensor_id=contexto.sensor_id,
-            resposta_texto=resposta_texto,
-            resposta_estruturada={
-                "modo": "fallback_local",
-                "origem": "fallback_local",
-                "motivo": motivo,
-                "dados_reais": bool(self._dados_consultados(contexto) != ["pergunta_usuario"]),
-                "sensores_consultados": len(contexto.sensores_relevantes),
-                "sensores_com_leitura": len(sensores_com_leitura),
-                "alertas_ativos": len(alertas),
-            },
+        return self._montar_resposta_segura(
+            contexto=contexto, pergunta_id=pergunta_id, resposta_texto=texto, decisao=decisao,
             recomendacao=RecomendacaoIA(
                 acao="Validar os dados no dashboard e monitorar novas leituras antes de executar manejo.",
-                confianca=0.55 if sensores_com_leitura or alertas else 0.35,
+                confianca=confianca,
                 motivo="Resposta local baseada apenas nos dados já disponíveis no contexto.",
                 riscos_se_nao_fizer="Decisão de manejo sem validação pode gerar ação inadequada.",
-                beneficios="Reduz risco de agir com dados incompletos."
+                beneficios="Reduz risco de agir com dados incompletos.",
             ),
-            dados_consultados=self._dados_consultados(contexto),
-            atencoes=[
-                "Orientação preliminar; não substitui laudo agronômico.",
-                AVISO_DOSE,
-            ],
-            proximos_passos=proximos_passos,
-            fontes=self._fontes(resultados_rag),
-            confianca_geral=0.55 if sensores_com_leitura or alertas else 0.35,
-            requer_validacao_humana=True,
-            modelo="fallback-local",
-            tokens_usados=0,
-            tempo_resposta_segundos=0,
-            criado_em=datetime.now()
+            atencoes=["Orientação preliminar; não substitui laudo agronômico.", AVISO_DOSE],
+            proximos_passos=proximos, confianca=confianca, modelo="fallback-local",
+            fontes=[], clima_dados=clima_dados, usou_openai=False, origem_forcada="fallback_local",
         )
 
-    def _resposta_dados_insuficientes(self, contexto: ContextoIA, pergunta_id: str) -> RespostaIA:
+    def _resposta_dados_insuficientes(self, contexto, pergunta_id) -> RespostaIA:
         passos = [
             "Registrar uma leitura real do sensor.",
             "Verificar se há alertas no dashboard.",
             "Enviar nova pergunta depois da coleta.",
         ]
+        decisao = DecisaoIntencao(modo=MODO_AGRO_COM_DADOS, dominio="dados_propriedade",
+                                  necessita_dados_cliente=True)
         return self._montar_resposta_segura(
-            contexto=contexto,
-            pergunta_id=pergunta_id,
+            contexto=contexto, pergunta_id=pergunta_id,
             resposta_texto=self._formatar_resposta_curta(
                 situacao="Não tenho leitura real para esse caso.",
-                risco="Não há dados suficientes para orientar manejo.",
-                passos=passos,
-            ),
-            modo=MODO_AGRO_COM_DADOS,
-            origem="fallback_local",
+                risco="Não há dados suficientes para orientar manejo.", passos=passos),
+            decisao=decisao,
             recomendacao=RecomendacaoIA(
                 acao="Coletar uma leitura real antes de decidir manejo.",
-                confianca=0.3,
+                confianca=metadados.normalizar_confianca(None, penalidades={"dados_ausentes": True}),
                 motivo="O contexto não tem leitura, alerta ou avaliação.",
                 riscos_se_nao_fizer="A decisão pode ser tomada sem base real.",
-                beneficios="A análise passa a usar dados reais do campo.",
-            ),
-            atencoes=[AVISO_DOSE],
-            proximos_passos=passos,
-            confianca=0.3,
-            modelo="sem-openai",
-            tem_dados=False,
+                beneficios="A análise passa a usar dados reais do campo."),
+            atencoes=[AVISO_DOSE], proximos_passos=passos,
+            confianca=metadados.normalizar_confianca(None, penalidades={"dados_ausentes": True}),
+            modelo="sem-openai", fontes=[], usou_openai=False, origem_forcada="fallback_local",
         )
 
-    def _resposta_agro_geral_fallback(
-        self,
-        contexto: ContextoIA,
-        pergunta_id: str,
-        resultados_rag: Optional[List[ResultadoRAG]] = None,
-    ) -> RespostaIA:
-        situacao = "A pergunta é agro/rural geral e será respondida sem usar sensores do cliente."
-        risco = "Para recomendação exata, faltam região, cultura/fase, área e análise técnica."
+    def _resposta_agro_geral_fallback(self, contexto, pergunta_id, decisao, resultados_rag=None) -> RespostaIA:
         passos = [
             "Descrever cultura, criação ou problema do campo.",
             "Usar análise de solo ou orientação técnica para decisões exatas.",
             "Ativar OpenAI para resposta agro geral mais completa.",
         ]
-        acao = "Responder como orientação agro geral, sem dados de sensor."
-        motivo = "A pergunta não pediu análise de leitura, sensor ou alerta."
-
         return self._montar_resposta_segura(
-            contexto=contexto,
-            pergunta_id=pergunta_id,
+            contexto=contexto, pergunta_id=pergunta_id,
             resposta_texto=self._formatar_resposta_curta(
-                situacao=situacao,
-                risco=risco,
-                passos=passos,
-            ),
-            modo=MODO_AGRO_GERAL,
-            origem="fallback_local",
+                situacao="A pergunta é agro/rural geral e será respondida sem usar sensores do cliente.",
+                risco="Para recomendação exata, faltam região, cultura/fase, área e análise técnica.",
+                passos=passos),
+            decisao=DecisaoIntencao(modo=MODO_AGRO_GERAL, dominio="agro_geral", necessita_rag=True),
             recomendacao=RecomendacaoIA(
-                acao=acao,
-                confianca=0.55,
-                motivo=motivo,
+                acao="Responder como orientação agro geral, sem dados de sensor.",
+                confianca=metadados.normalizar_confianca(0.55),
+                motivo="A pergunta não pediu análise de leitura, sensor ou alerta.",
                 riscos_se_nao_fizer="Pode perder produtividade por preparo ou manejo inadequado.",
-                beneficios="Ajuda a começar com mais segurança e menos desperdício.",
-            ),
-            atencoes=[AVISO_DOSE],
-            proximos_passos=passos,
-            confianca=0.55,
-            modelo="fallback-local",
-            resultados_rag=resultados_rag,
+                beneficios="Ajuda a começar com mais segurança e menos desperdício."),
+            atencoes=[AVISO_DOSE], proximos_passos=passos,
+            confianca=metadados.normalizar_confianca(0.55), modelo="fallback-local",
+            fontes=[], usou_openai=False, origem_forcada="fallback_local",
         )
 
-    def _resposta_openai_estruturada(
-        self,
-        contexto: ContextoIA,
-        pergunta_id: str,
-        resposta_texto: str,
-        tokens_usados: int,
-        modo: str = MODO_AGRO_COM_DADOS,
-        resultados_rag: Optional[List[ResultadoRAG]] = None,
-    ) -> RespostaIA:
-        try:
-            payload = json.loads(resposta_texto)
-            # Reserva 1 linha para o encerramento contextual (mantém o total <= 8).
-            resposta_curta = self._limitar_texto(str(payload["resposta_texto"]), max_linhas=7, max_chars=820)
-            recomendacao_raw = payload.get("recomendacao") or {}
-            recomendacao = RecomendacaoIA(
-                acao=self._frase_curta(recomendacao_raw.get("acao"), "Validar dados no dashboard antes do manejo."),
-                confianca=float(payload.get("confianca_geral", 0.8)),
-                motivo=self._frase_curta(recomendacao_raw.get("motivo"), "Baseado apenas no contexto real recebido."),
-                riscos_se_nao_fizer=self._frase_curta(recomendacao_raw.get("riscos_se_nao_fizer"), "Pode haver decisão sem validação."),
-                beneficios=self._frase_curta(recomendacao_raw.get("beneficios"), "Reduz risco de agir com dado incompleto."),
+    def _resposta_clima(self, contexto, pergunta_id, decisao, clima_dados, clima_indisponivel) -> RespostaIA:
+        if clima_indisponivel or not clima_dados:
+            texto = (
+                "Situação: O serviço de previsão do tempo está indisponível agora.\n\n"
+                "Risco: Não tenho como confirmar a previsão neste momento.\n\n"
+                "O que fazer agora:\n1. Tentar novamente em alguns minutos.\n"
+                "2. Conferir uma fonte oficial de clima.\n3. Evitar decidir irrigação só por previsão."
             )
-            atencoes = self._lista_curta(payload.get("atencoes"), fallback=[AVISO_DOSE])
-            proximos_passos = self._lista_curta(payload.get("proximos_passos"), fallback=["Conferir dados no dashboard."])
-            return self._montar_resposta_segura(
-                contexto=contexto,
-                pergunta_id=pergunta_id,
-                resposta_texto=resposta_curta,
-                modo=modo,
-                origem="openai",
-                recomendacao=recomendacao,
-                atencoes=atencoes,
-                proximos_passos=proximos_passos,
-                confianca=recomendacao.confianca,
-                modelo=self.model,
-                tokens_usados=tokens_usados,
-                resultados_rag=resultados_rag,
-            )
-        except (KeyError, TypeError, ValueError, json.JSONDecodeError):
-            logger.warning("OpenAI retornou JSON inválido para IA; usando fallback local seguro.")
-            if modo == MODO_AGRO_GERAL:
-                return self._resposta_agro_geral_fallback(contexto, pergunta_id, resultados_rag)
-            return self._resposta_fallback(
-                contexto, pergunta_id, motivo="Resposta OpenAI inválida", resultados_rag=resultados_rag
+            return RespostaIA(
+                pergunta_id=pergunta_id, cliente_id=contexto.cliente_id, sensor_id=contexto.sensor_id,
+                resposta_texto=texto,
+                resposta_estruturada={"modo": MODO_CLIMA, "origem": "servico_climatico",
+                                      "dados_reais": False, "recursos_utilizados": ["clima"]},
+                recomendacao=RecomendacaoIA(
+                    acao="Tentar novamente quando o serviço de clima voltar.",
+                    confianca=metadados.normalizar_confianca(None, penalidades={"clima_indisponivel": True}),
+                    motivo="A consulta ao serviço climático falhou.",
+                    riscos_se_nao_fizer="Decidir sem previsão confiável pode levar a erro.",
+                    beneficios="Evita agir sobre uma previsão inventada."),
+                dados_consultados=["pergunta_usuario"], atencoes=["Não invento previsão do tempo."],
+                proximos_passos=["Tentar novamente em instantes."], fontes=[],
+                recursos_utilizados=["clima"],
+                confianca_geral=metadados.normalizar_confianca(None, penalidades={"clima_indisponivel": True}),
+                requer_validacao_humana=False, modelo="servico-climatico", tokens_usados=0,
+                tempo_resposta_segundos=0, validade=None, criado_em=datetime.now(),
             )
 
-    def _fontes(self, resultados_rag: Optional[List[ResultadoRAG]]) -> list:
-        """Retorna apenas fontes que realmente entraram no contexto (sem duplicar)."""
-        if not resultados_rag:
-            return []
-        fontes = []
-        vistos = set()
-        for resultado in resultados_rag:
-            fonte = resultado.fonte()
-            chave = (fonte.get("documento_id"), fonte.get("paginas"))
-            if chave in vistos:
-                continue
-            vistos.add(chave)
-            fontes.append(fonte)
-        return fontes
+        # Há dados de clima. Usa OpenAI para formatar se disponível; senão, determinístico.
+        if self.disponivel:
+            try:
+                prompt = self._montar_prompt(contexto, decisao, [], clima_dados)
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[{"role": "system", "content": self._prompt_sistema()},
+                              {"role": "user", "content": prompt}],
+                    temperature=settings.openai_temperature,
+                    max_tokens=min(settings.openai_max_tokens, 600),
+                    response_format={"type": "json_object"},
+                )
+                payload = json.loads(response.choices[0].message.content)
+                tokens = response.usage.total_tokens if response.usage else 0
+                texto = self._limitar_texto(str(payload["resposta_texto"]), max_linhas=7, max_chars=820)
+                rec = payload.get("recomendacao") or {}
+                confianca = metadados.normalizar_confianca(payload.get("confianca_geral"))
+                return self._resposta_clima_final(
+                    contexto, pergunta_id, texto,
+                    RecomendacaoIA(
+                        acao=self._frase_curta(rec.get("acao"), "Planejar o manejo conforme a previsão."),
+                        confianca=confianca,
+                        motivo=self._frase_curta(rec.get("motivo"), "Baseado na previsão climática consultada."),
+                        riscos_se_nao_fizer=self._frase_curta(rec.get("riscos_se_nao_fizer"), "Pode ser surpreendido pelo tempo."),
+                        beneficios=self._frase_curta(rec.get("beneficios"), "Ajuda a planejar o campo.")),
+                    self._lista_curta(payload.get("atencoes"), ["Previsão pode mudar."]),
+                    self._lista_curta(payload.get("proximos_passos"), ["Acompanhar a previsão."]),
+                    confianca, self.model, tokens, clima_dados, usou_openai=True,
+                )
+            except Exception:
+                logger.warning("Falha ao formatar clima com OpenAI; usando resumo determinístico.")
 
-    def _montar_resposta_segura(
-        self,
-        contexto: ContextoIA,
-        pergunta_id: str,
-        resposta_texto: str,
-        modo: str,
-        origem: str,
-        recomendacao: RecomendacaoIA,
-        atencoes: list,
-        proximos_passos: list,
-        confianca: float,
-        modelo: str,
-        tokens_usados: int = 0,
-        resultados_rag: Optional[List[ResultadoRAG]] = None,
-        tem_dados: Optional[bool] = None,
-    ) -> RespostaIA:
-        dados_consultados = self._dados_consultados(contexto, modo)
-        fontes = self._fontes(resultados_rag)
-        if tem_dados is None:
-            tem_dados = self._contexto_tem_dados_suficientes(contexto)
-        resposta_texto = self._aplicar_encerramento(resposta_texto, modo, contexto, tem_dados)
+        # Determinístico a partir do clima_dados
+        atual = (clima_dados or {}).get("clima_atual") or {}
+        prev = (clima_dados or {}).get("previsao_resumo") or {}
+        local = (clima_dados or {}).get("localizacao") or {}
+        prob = prev.get("probabilidade_chuva")
+        texto = (
+            f"Situação: Clima em {local.get('cidade') or 'sua região'}: "
+            f"{atual.get('descricao') or 'condições atuais'}, {atual.get('temperatura', '?')}°C.\n\n"
+            f"Risco: Probabilidade de chuva próxima: {prob if prob is not None else 'não informada'}%.\n\n"
+            "O que fazer agora:\n1. Considerar a previsão no planejamento.\n"
+            "2. Conferir a umidade do solo antes de irrigar.\n3. Reavaliar com nova atualização."
+        )
+        return self._resposta_clima_final(
+            contexto, pergunta_id, texto,
+            RecomendacaoIA(
+                acao="Planejar o manejo considerando a previsão e a umidade do solo.",
+                confianca=metadados.normalizar_confianca(0.6),
+                motivo="Baseado na previsão climática consultada.",
+                riscos_se_nao_fizer="Pode ser pego de surpresa pelo tempo.",
+                beneficios="Ajuda a planejar irrigação e operações."),
+            ["A previsão pode mudar; reavalie."], ["Acompanhar a próxima atualização."],
+            metadados.normalizar_confianca(0.6), "servico-climatico", 0, clima_dados, usou_openai=False,
+        )
+
+    def _resposta_clima_final(self, contexto, pergunta_id, texto, recomendacao, atencoes,
+                              proximos, confianca, modelo, tokens, clima_dados, usou_openai) -> RespostaIA:
+        texto = self._aplicar_encerramento(texto, MODO_CLIMA, contexto, tem_dados=False, usou_clima=True)
+        origem = metadados.calcular_origem(usou_openai=usou_openai, usou_clima=True,
+                                           apenas_clima=not usou_openai)
         return RespostaIA(
-            pergunta_id=pergunta_id,
-            cliente_id=contexto.cliente_id,
-            sensor_id=contexto.sensor_id,
-            resposta_texto=resposta_texto,
-            resposta_estruturada={
-                "modo": modo,
-                "origem": origem,
-                "dados_reais": dados_consultados not in (["pergunta_usuario"], ["conhecimento_agro_geral"]),
-            },
-            recomendacao=recomendacao,
-            dados_consultados=dados_consultados,
-            atencoes=atencoes[:3],
-            proximos_passos=proximos_passos[:3],
-            fontes=fontes,
+            pergunta_id=pergunta_id, cliente_id=contexto.cliente_id, sensor_id=contexto.sensor_id,
+            resposta_texto=texto,
+            resposta_estruturada={"modo": MODO_CLIMA, "origem": origem, "dados_reais": False,
+                                  "recursos_utilizados": (["openai"] if usou_openai else []) + ["clima"]},
+            recomendacao=recomendacao, dados_consultados=["clima"],
+            atencoes=atencoes[:3], proximos_passos=proximos[:3], fontes=[],
+            recursos_utilizados=(["clima", "openai"] if usou_openai else ["clima"]),
             confianca_geral=max(0.0, min(float(confianca), 1.0)),
-            requer_validacao_humana=True,
-            modelo=modelo,
-            tokens_usados=tokens_usados,
+            requer_validacao_humana=True, modelo=modelo, tokens_usados=tokens,
             tempo_resposta_segundos=0,
-            criado_em=datetime.now()
+            validade=metadados.calcular_validade(MODO_CLIMA, usou_clima=True),
+            criado_em=datetime.now(),
         )
 
-    def _resposta_esclarecimento(self, contexto: ContextoIA, pergunta_id: str) -> RespostaIA:
-        """Pergunta ambígua sem contexto suficiente: pede um esclarecimento objetivo."""
+    def _resposta_esclarecimento(self, contexto, pergunta_id) -> RespostaIA:
         pergunta = (
             "Você quer uma visão geral de todas as áreas ou a análise de um sensor específico? "
             "Qual área, canteiro ou sensor você deseja analisar?"
         )
         return RespostaIA(
-            pergunta_id=pergunta_id,
-            cliente_id=contexto.cliente_id,
-            sensor_id=contexto.sensor_id,
+            pergunta_id=pergunta_id, cliente_id=contexto.cliente_id, sensor_id=contexto.sensor_id,
             resposta_texto=pergunta,
-            resposta_estruturada={
-                "modo": MODO_ESCLARECIMENTO,
-                "origem": "regra_contextual",
-                "dados_reais": False,
-            },
+            resposta_estruturada={"modo": MODO_ESCLARECIMENTO, "origem": "regra_contextual",
+                                  "dados_reais": False, "recursos_utilizados": []},
             recomendacao=RecomendacaoIA(
                 acao="Informar a área, o canteiro ou o sensor que deseja analisar.",
-                confianca=0.5,
+                confianca=metadados.normalizar_confianca(0.5),
                 motivo="A pergunta está ambígua e não há contexto suficiente para responder com segurança.",
                 riscos_se_nao_fizer="Sem o alvo, a análise pode usar dados que não são os desejados.",
-                beneficios="Garante que a análise use exatamente a área ou sensor certo.",
-            ),
-            dados_consultados=["pergunta_usuario"],
-            atencoes=[],
-            proximos_passos=[],
-            fontes=[],
-            confianca_geral=0.5,
-            requer_validacao_humana=False,
-            modelo="regra-contextual",
-            tokens_usados=0,
-            tempo_resposta_segundos=0,
-            criado_em=datetime.now(),
+                beneficios="Garante que a análise use exatamente a área ou sensor certo."),
+            dados_consultados=["pergunta_usuario"], atencoes=[], proximos_passos=[], fontes=[],
+            recursos_utilizados=[], confianca_geral=metadados.normalizar_confianca(0.5),
+            requer_validacao_humana=False, modelo="regra-contextual", tokens_usados=0,
+            tempo_resposta_segundos=0, validade=None, criado_em=datetime.now(),
         )
 
-    def _resposta_fora_escopo(self, contexto: ContextoIA, pergunta_id: str) -> RespostaIA:
+    def _resposta_fora_escopo(self, contexto, pergunta_id) -> RespostaIA:
         return RespostaIA(
-            pergunta_id=pergunta_id,
-            cliente_id=contexto.cliente_id,
-            sensor_id=contexto.sensor_id,
+            pergunta_id=pergunta_id, cliente_id=contexto.cliente_id, sensor_id=contexto.sensor_id,
             resposta_texto=RESPOSTA_FORA_ESCOPO,
-            resposta_estruturada={
-                "modo": MODO_FORA_ESCOPO,
-                "origem": "sem_openai",
-                "dados_reais": False,
-            },
+            resposta_estruturada={"modo": MODO_FORA_ESCOPO, "origem": "fora_escopo",
+                                  "dados_reais": False, "recursos_utilizados": []},
             recomendacao=RecomendacaoIA(
-                acao="Fazer uma pergunta sobre sensores, solo, alertas, leituras ou manejo.",
-                confianca=1.0,
+                acao="Fazer uma pergunta sobre sensores, solo, alertas, leituras, clima ou manejo.",
+                confianca=metadados.normalizar_confianca(1.0),
                 motivo="A pergunta está fora do escopo do assistente agro.",
                 riscos_se_nao_fizer="A dúvida fora de escopo não será analisada pelo IZES.",
-                beneficios="Mantém o assistente focado em dados reais do campo.",
-            ),
-            dados_consultados=["pergunta_usuario"],
-            atencoes=[],
-            proximos_passos=[],
-            fontes=[],
-            confianca_geral=1.0,
-            requer_validacao_humana=False,
-            modelo="sem-openai",
-            tokens_usados=0,
-            tempo_resposta_segundos=0,
-            criado_em=datetime.now(),
+                beneficios="Mantém o assistente focado em dados reais do campo."),
+            dados_consultados=["pergunta_usuario"], atencoes=[], proximos_passos=[], fontes=[],
+            recursos_utilizados=[], confianca_geral=1.0,
+            requer_validacao_humana=False, modelo="sem-openai", tokens_usados=0,
+            tempo_resposta_segundos=0, validade=None, criado_em=datetime.now(),
         )
 
-    def _formatar_resposta_curta(self, situacao: str, risco: str, passos: list) -> str:
+    def _formatar_resposta_curta(self, situacao, risco, passos) -> str:
         passos = passos[:3]
         linhas = [
-            f"Situação: {self._limitar_texto(situacao, max_linhas=1, max_chars=220)}",
-            "",
-            f"Risco: {self._limitar_texto(risco, max_linhas=1, max_chars=260)}",
-            "",
-            "O que fazer agora:",
+            f"Situação: {self._limitar_texto(situacao, 1, 220)}",
+            "", f"Risco: {self._limitar_texto(risco, 1, 260)}", "", "O que fazer agora:",
         ]
-        linhas.extend(f"{idx}. {self._limitar_texto(passo, max_linhas=1, max_chars=120)}" for idx, passo in enumerate(passos, 1))
+        linhas.extend(f"{i}. {self._limitar_texto(p, 1, 120)}" for i, p in enumerate(passos, 1))
         linhas.extend(["", f"Atenção: {AVISO_DOSE}"])
         return "\n".join(linhas)
 
-    def _frase_curta(self, valor: object, fallback: str) -> str:
-        texto = str(valor or fallback).strip()
-        return self._limitar_texto(texto, max_linhas=1, max_chars=160)
+    def _frase_curta(self, valor, fallback) -> str:
+        return self._limitar_texto(str(valor or fallback).strip(), 1, 160)
 
-    def _lista_curta(self, valor: object, fallback: list) -> list:
+    def _lista_curta(self, valor, fallback) -> list:
         if not isinstance(valor, list):
             valor = fallback
         itens = [self._frase_curta(item, "") for item in valor if str(item or "").strip()]
         return (itens or fallback)[:3]
 
-    def _limitar_texto(self, texto: str, max_linhas: int, max_chars: int) -> str:
-        linhas = [linha.strip() for linha in str(texto or "").splitlines() if linha.strip()]
-        limitado = "\n".join(linhas[:max_linhas]).strip()
-        return limitado[:max_chars].rstrip()
+    def _limitar_texto(self, texto, max_linhas, max_chars) -> str:
+        linhas = [l.strip() for l in str(texto or "").splitlines() if l.strip()]
+        return "\n".join(linhas[:max_linhas]).strip()[:max_chars].rstrip()

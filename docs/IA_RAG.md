@@ -146,6 +146,49 @@ Confira `resposta_estruturada.modo`, `resposta_estruturada.origem` e o campo
 3. Rode `python -m app.services.rag.build_index` e
    `python -m pytest tests/test_rag.py -q`.
 
+## 10b. Correção estrutural (decisão, clima, entidades, metadados)
+
+A interpretação foi reestruturada para generalizar a perguntas novas, não apenas
+aos exemplos. Módulos em `app/services/ia/`:
+
+- **`decisao.py` — `DecisaoIntencao`**: a pergunta é classificada **uma única vez**
+  (na rota) em uma estrutura com `modo`, `dominio`, `necessita_dados_cliente`,
+  `necessita_clima`, `necessita_rag`, `tipo_entidade`, `culturas`, `parametros`,
+  `comparacao`, `parametro_foco`, `extremo`, `referencia_contextual`. O serviço
+  recebe essa decisão pronta e **não reclassifica**.
+- **`selecao.py`**: filtra os sensores pela entidade pedida (canteiro/estufa/
+  talhão/cultura) usando metadados do sensor (nome/tipo/local), nunca IDs fixos.
+  `destacar()` calcula, **a partir dos valores reais**, qual entidade se destaca
+  (ex.: menor umidade) — base da resposta comparativa direta.
+- **`localizacao.py`**: resolve coordenadas para clima na ordem texto → sensor →
+  cliente; nunca inventa local nem usa o de outro cliente.
+- **`metadados.py`**: funções centrais `calcular_origem`, `calcular_validade`,
+  `normalizar_confianca`.
+
+### Clima como recurso real
+Perguntas climáticas (“vai chover?”, “risco de geada?”) são roteadas para o
+**serviço climático existente** (`servico_clima.obter_clima_por_coordenadas`).
+A localização vem do sensor/cliente; sem localização segura, a IA pede o
+município. Falha do serviço → resposta controlada de indisponibilidade (sem
+previsão inventada, sem virar `fora_escopo`). Perguntas híbridas (“posso irrigar
+hoje ou vai chover?”) combinam leitura de umidade + previsão.
+
+### Origem, validade e confiança
+- **origem** reflete os recursos usados: `openai`, `openai_com_dados`,
+  `openai_com_rag`, `openai_com_dados_e_rag`, `openai_com_dados_clima_e_rag`,
+  `servico_climatico`, `fallback_local`, `regra_contextual`, `fora_escopo`.
+- **validade** depende do tipo: clima → ~3h com `atualizado_em`; dados → ~6h com
+  razão sobre novas leituras/chuva/manejo; agro_geral/esclarecimento/fora/erro →
+  `null`. A antiga “Previsão muda frequentemente” universal foi removida.
+- **confiança**: ausência/0/NaN viram base neutra (0.6), não zero; penalizada por
+  dados ausentes, RAG fraco, clima indisponível e recomendação que exige validação.
+
+### Fontes realmente usadas e segurança da recomendação
+- O modelo declara `documento_ids_utilizados`; o backend valida contra os chunks
+  enviados e expõe **apenas** as fontes usadas (ids inventados são descartados).
+- Ordens fortes baseadas em leitura isolada (“irrigue agora”, “aplique X”) são
+  suavizadas para “avaliar antes”, com penalidade de confiança e atenção extra.
+
 ## 10. Limitações atuais e evolução
 - Recuperação **lexical** (BM25): documentos em inglês (FAO/artigos) raramente são
   recuperados por consultas em português; isso evita poluir respostas, mas reduz a
