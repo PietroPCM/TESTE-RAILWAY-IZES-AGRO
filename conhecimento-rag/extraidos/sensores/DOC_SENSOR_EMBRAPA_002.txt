@@ -1,0 +1,1196 @@
+---
+documento_id: DOC_SENSOR_EMBRAPA_002
+titulo: Calibração e validação de sensor dielétrico para estimativa de teor de água em solos do Cerrado
+instituicao: Embrapa
+autores: SÁ, M. A. C. de; SANTOS JÚNIOR, J. de D. G. dos S.; SANO, E. E.; SÁ, M. A. C. de; SANTOS JÚNIOR, J. de D. G. dos S.; SANO, E. E.
+ano: 2008
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/571893/1/bolpd223.pdf
+arquivo_original: originais/embrapa/DOC_SENSOR_EMBRAPA_002.pdf
+sha256: 57385921c5c06d540955266cdb2827f4d53aa5c4651140a7f5f170cee776911f
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+223
+ISSN 1676 - 918X
+Novembro, 2008
+CG
+Calibração e Validação de
+Sensor Dielétrico para Estimativa
+de Teor de Água em Solos do Cerrado
+
+--- PÁGINA 2 ---
+Boletim de Pesquisa
+e Desenvolvimento 223
+Marcos Aurélio Carolino de Sá
+João de Deus Gomes dos Santos Junior
+Edson Eyji Sano
+Calibração e Validação
+de Sensor Dielétrico para
+Estimativa de Teor de Água em
+Solos do Cerrado
+Embrapa Cerrados
+Planaltina, DF
+2008
+Empresa Brasileira de Pesquisa Agropecuária
+Centro de Pesquisa Agropecuária dos Cerrados
+Ministério da Agricultura, Pecuária e Abastecimento
+ISSN 1676-918 X
+Novembro, 2008
+
+--- PÁGINA 3 ---
+Exemplares desta publicação podem ser adquiridos na:
+Embrapa Cerrados
+BR 020, Km 18, Rod. Brasília/Fortaleza
+Caixa Postal 08223
+CEP 73310-970 Planaltina, DF
+Fone: (61) 3388-9898
+Fax: (61) 3388-9879
+http://www.cpac.embrapa.br
+sac@cpac.embrapa.br
+Comitê de Publicações da Unidade
+Presidente: José de Ribamar N. dos Anjos
+Secretária-Executiva: Maria Edilva Nogueira
+Supervisão editorial: Fernanda Vidigal Cabral de Miranda
+Equipe de revisão: Fernanda Vidigal Cabral de Miranda,
+Francisca Elijani do Nascimento,
+Jussara Flores de Oliveira Arbués
+Normalização bibliográfica: Rosângela Lacerda de Castro
+Editoração eletrônica: Fabiano Bastos
+Capa: Fabiano Bastos
+Fotografia da capa: Waldir Pereira Dias - Embrapa Soja
+Impressão e acabamento: Divino Batista de Souza
+Alexandre Moreira Veloso
+Impresso no Serviço Gráfico da Embrapa Cerrados
+1
+a
+edição
+1
+a
+impressão (2008): 100 exemplares
+Todos os direitos reservados
+A reprodução não-autorizada desta publicação, no todo ou em
+parte, constitui violação dos direitos autorais (Lei no 9.610).
+Dados Internacionais de Catalogação na Publicação (CIP)
+Embrapa Cerrados
+Sá, Marcos Aurélio Carolino de.
+Calibração e validação de sensor dielétrico para estimativa de teor de
+água em solos do Cerrado / Marcos Aurélio Carolino de Sá, João de Deus
+Gomes dos Santos Junior, Edson Eyji Sano. – Planaltina, DF : Embrapa
+Cerrados, 2008.
+32 p.— (Boletim de Pesquisa e Desenvolvimento / Embrapa Cerrados,
+ISSN 1676-918 X ; 223).
+1. Solo. 2. Condutividade hidráulica. 3. Relação solo - água. I. Santos
+Junior, João de Deus Gomes dos. II. Sano, Edson Eyji. III. Título. IV. Série
+631.432 – CDD 21
+© Embrapa 2008
+S111c
+
+--- PÁGINA 4 ---
+Sumário
+Resumo ............................................................................. 5
+Abstract ............................................................................. 6
+Introdução .......................................................................... 7
+Material e Métodos .............................................................. 8
+Resultados e discussão ...................................................... 17
+Conclusões ....................................................................... 30
+Agradecimentos ................................................................ 30
+Referências ..................................................................... 30
+
+--- PÁGINA 5 ---
+Calibração e Validação
+de Sensor Dielétrico para
+Estimativa de Teor de Água
+em Solos do Cerrado
+Marcos Aurélio Carolino de Sá
+1
+; João de Deus
+Gomes dos Santos Junior
+2
+; Edson Eyji Sano
+3
+1
+Engenheiro Agrônomo, D.Sc., Pesquisador da Embrapa Cerrados, carolino@cpac.embrapa.br
+2
+Engenheiro Agrônomo, D.Sc., Pesquisador da Embrapa Cerrados, jdsantos@cpac.embrapa.br
+3
+Geólogo, Ph.D., Pesquisador da Embrapa Cerrados, sano@cpac.embrapa.br
+Resumo
+A capacidade de retenção de água pelo solo depende basicamente da
+sua textura e estrutura. Para determinação do teor de água do solo, o
+método padrão é o gravimétrico, que, embora preciso, é limitado quando
+se exigem estimativas rápidas ou um número grande de determinações
+em intervalos de tempo curtos. Isso tem motivado o desenvolvimento
+de sensores para estimativa rápida do teor de água no solo. Este
+trabalho teve por objetivo avaliar a precisão de um sensor dielétrico para
+estimativa do teor de água volumétrico do solo em condições de campo
+no Cerrado. A calibração foi feita em uma pedosequência localizada
+na Embrapa Cerrados, em Planaltina, DF. Foram analisados três solos:
+Neossolo Quartzarênico (RQ), Latossolo Vermelho - Amarelo textura
+média (LVAm) e Latossolo Vermelho Amarelo textura muito argilosa
+(LVAa). A validação dos modelos gerados foi feita em talhão com
+produção de grãos no Distrito Federal, composto por Latossolos com
+textura variando de média a muito argilosa. Concluiu-se que o teor de
+água volumétrico do solo pode ser estimado a partir da tensão fornecida
+pelo equipamento, com um erro de até ± 0,06 cm
+3
+cm
+-3
+e que a inclusão
+da textura nos modelos melhora sensivelmente a estimativa do teor
+volumétrico de água do solo.
+Termos para indexação: Umidade de solos, textura, sensor de umidade,
+estimativa, mapeamento.
+
+--- PÁGINA 6 ---
+Abstract
+The soil water retention capacity depends basically on their texture and
+structure. Gravimetry is the standard method for determining water
+content in soils. Although precise, it becomes limited when there is a
+requirement for rapid estimations or the number of estimations are large
+within a short time period. Such aspect has motivated the development
+of sensors for rapid estimation of soil moisture content. The objective
+of this work is to evaluate the precision of a sensor based on dielectric
+functioning – the hydro probe – to estimate the volumetric water
+content of Cerrado soils under the field conditions. The calibration
+was conducted in a pedosequence located in the Embrapa Cerrados
+experimental field in Planaltina, DF. We analyzed three soils: sandy soil,
+Yellow-Red Latossol with medium texture and Yellow-Red Latossol with
+very clayey texture. The validation of generated models was conducted
+in Latossols of Federal District with texture varying from medium to very
+clayey and with ongoing grain production. It was concluded that the
+volumetric water content can be estimated through the tension provided
+by the equipment, with an error smaller than ± 0.06 cm
+3
+cm
+-3
+. The
+consideration of texture in the modelling improved the volumetric soil
+moisture estimation significantly.
+Index terms: soil moisture, soil texture, humidity sensor, estimative, soil
+mapping
+Calibration and Validation
+of a Dielectric-Based Sensor
+for Estimating Soil-Water
+Content of Cerrado Soils
+
+--- PÁGINA 7 ---
+7 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Introdução
+Os solos funcionam como suporte físico e reservatório de água e
+nutrientes para plantas. A produção vegetal é afetada pela retenção de
+água pelo solo, a qual depende basicamente da sua textura e estrutura.
+A textura é uma característica intrínseca do solo, herdada do material de
+origem e não é alterada pelo manejo, enquanto a estrutura é influenciada
+basicamente pela mineralogia e conteúdo de matéria orgânica (RESENDE
+et al., 2002). Essas características possuem grande interesse agrícola e
+ambiental.
+O termo “umidade” é, às vezes, utilizado para designar o “teor de água”,
+sendo este último mais apropriado do ponto de vista quantitativo. Já o
+termo “conteúdo de água” diz respeito à quantidade de água armazenada
+(expressa em mm) até uma dada profundidade do solo, comumente a
+profundidade efetiva do sistema radicular (ANDRADE et al.,
+2008). O método padrão para determinação do teor de água do solo é
+o gravimétrico, em que é obtida a massa de uma amostra – simples ou
+composta, deformada ou indeformada - na condição em que foi coletada e
+depois de secada por 24 horas em estufa. O teor gravimétrico de água ( U )
+é expresso em massa de água por massa de solo (g g
+-1
+, kg kg
+-1
+, ton ton
+-1
+).
+Multiplicando-se U pela densidade do solo e dividida pela densidade da
+água (respeitando-se as respectivas unidades: g dm
+-3
+, kg dm
+-3
+, ton m
+-3
+),
+obtém-se numericamente o teor volumétrico de água ( θ ), expresso em
+volume de água por volume de solo (cm
+3
+cm
+-3
+, dm
+3
+dm
+-3
+, m
+3
+m
+-3
+)
+(CLAESSEN, 1997; SEYFRIED; MURDOCK, 2004).
+Embora seja preciso e direto, esse método é limitado quando se requer
+informações rápidas (em tempo quase real) ou se tem um número
+muito grande de determinações em intervalos de tempo curtos, seja no
+manejo de irrigação ou na pesquisa quando envolve medições do teor de
+água no solo. Esse fato tem motivado o desenvolvimento de métodos
+para estimativa rápida do teor de água no solo, tais como: o método
+do fogareiro, descrito em Pacheco e Dias Júnior (1990); o já obsoleto
+método de Speady (ANDRADE et al., 2008); os métodos baseados em
+
+--- PÁGINA 8 ---
+8 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+sensores ou sondas, como reflectometria no domínio do tempo ou TDR
+(TOPP et al., 1980); os sensores do tipo capacitivo ou reflectometria
+no domínio da freqüência ou FDR (ROBINSON; DEAN, 1993; NADLER;
+LAPID, 1996); os sensores dielétricos (SEYFRIED; MURDOCK, 2004);
+ou outros métodos, como sonda de nêutrons, sonda de raios gama,
+ressonância nuclear magnética, fibra ótica e métodos geofísicos como
+radar, microondas e ultrassom (ANDRADE et al., 2008). Entretanto,
+muitos desses métodos requerem equipamentos que não são práticos
+para uso operacional ou apresentam custo elevado e alguns deles
+proporcionam riscos provenientes da radiação, como a sonda de raios
+gama.
+Foi demonstrado em estudos prévios que sensores dielétricos
+proporcionam alta correlação com θ , apresentando potencial para
+medições quantitativas (SEYFRIED; MURDOCK, 2004; SEYFRIED et
+al., 2005). Entretanto, esses estudos foram feitos em condições de
+laboratório e com solos de clima temperado, distintos dos solos do
+Bioma Cerrado.
+O objetivo deste trabalho foi avaliar a precisão de um sensor com
+princípio de funcionamento dielétrico para estimativa do teor de água
+volumétrico do solo em condições de campo no Cerrado.
+Material e Métodos
+Equipamento utilizado
+Foi utilizado um equipamento de princípio dielétrico marca Stevens ,
+modelo Hydra Probe
+®
+. O sensor é alimentado por uma bateria alcalina
+de 9 V, e a parte que é inserida no solo (Fig. 1A) possui quatro hastes
+de metal de 5,8 cm de comprimento, sendo uma central e três ao redor,
+em formato de triângulo eqüilátero com 2,2 cm de lado (Fig. 1B). Uma
+vez inserida no solo e com o equipamento ligado (Fig. 1C), a haste
+central propaga um sinal eletromagnético de 50 MHz de freqüência
+que é receptado pelas hastes laterais, sendo as tensões medidas em
+Volts (V) por um multímetro convencional (Fig. 1D). Essas voltagens
+correspondem ao comportamento refletido da onda eletromagnética,
+
+--- PÁGINA 9 ---
+9 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+a qual varia em função do teor volumétrico de água no solo. Maiores
+detalhes sobre o princípio de funcionamento desse equipamento são
+descritos em Seyfried e Murdock (2004) e Seyfried et al. (2005).
+Fig. 1. Detalhes do equipamento utilizado ( Hydra probe® ). Sonda com hastes, sobre a
+caixa do equipamento (A); detalhe das hastes (B); Sonda inserida no solo durante a leitura
+(C); leitura feita no multímetro, em Volts (D).
+Durante a realização de ensaios preliminares, constatou-se que, uma
+vez inserida a haste no solo e ligado o aparelho, ocorre diminuição nos
+valores de voltagem, a qual é mais acentuada quando a bateria já se
+encontra fraca, conforme pode ser observado na Fig. 2. Dessa forma,
+embora tenham sido utilizadas baterias novas durante a realização dos
+ensaios, optou-se por avaliar o efeito do tempo de leitura depois de
+ligado o aparelho, conforme descrito posteriormente.
+
+--- PÁGINA 10 ---
+10 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Fig. 2. Variação da voltagem (V) fornecida pelo aparelho em função do tempo em minu -
+tos, com a utilização de uma bateria nova e uma bateria fraca.
+Solos estudados e procedimento utilizado para
+calibração
+A calibração do equipamento foi feita em área experimental da
+Embrapa Cerrados, localizada em Planaltina, DF (latitude: 15º 35’ 30”
+S; longitude: 47º 42’ 30” W; e altitude: 1.100 m). O clima é do tipo
+tropical estacional (Aw), com precipitação média anual de 1.500 mm
+concentrada no período que vai de outubro a março. As médias
+das temperaturas mínimas e máximas são de 15,9 °C e 26,4 °C,
+respectivamente.
+Foi escolhida uma pedosequência situada num transecto de
+aproximadamente 1.000 metros (Fig. 3A), onde foram avaliados três
+pontos em áreas sob pastagem, os quais apresentam entre si variação
+textural desde arenosa até muito argilosa, representados pelas classes
+Neossolo Quartzarênico (RQ), Latossolo Vermelho-Amarelo com textura
+média (LVAm) e Latossolo Vermelho-Amarelo com textura muito
+argilosa (LVAa) (SANTOS et al., 2006). As características físico-hídricas
+da camada 0 m – 0,05 m podem ser observadas na Fig. 4 e na Tabela 1.
+
+--- PÁGINA 11 ---
+11 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Fig. 3. Pontos localizados na área da Embrapa Cerrados utilizados para calibração do equi -
+pamento (A); Parte do talhão da Fazenda Sementes Primavera (circundada em vermelho)
+utilizada para validação dos modelos ajustados (B) e esquema da grade amostral de
+125 m x 125 m utilizada para amostragem de validação dos modelos (C).
+
+--- PÁGINA 12 ---
+12 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Fig. 4. Curvas características de retenção de água dos solos utilizados para calibração do
+equipamento, ajustadas pela equação de Van Genuchten (1980).
+Tabela 1. Atributos físico-hídricos dos solos da Embrapa Cerrados utilizados
+para calibração do equipamento e ajuste dos modelos.
+Atributo
+Solo
+RQ LVAm LVAa
+textura (g kg
+-1
+)
+Argila 80 196 728
+Silte 30 30 28
+Areia grossa 200 83 42
+Areia fina 690 691 202
+Areia total 890 774 244
+Classificação textural
+(1)
+Areia Franco arenosa Muito argilosa
+Atributos físico-hídricos
+Densidade (g cm
+-3
+) 1,42±0,05 1,36±0,11 1,15±0,08
+Macroporos (cm
+3
+cm
+-3
+) 0,16 0,14 0,08
+Microporos (cm
+3
+cm
+-3
+) 0,26 0,30 0,42
+Capacidade de campo
+(2)
+(cm
+3
+cm
+-3
+) 0,26 0,30 0,42
+Ponto de murcha
+(3)
+(cm
+3
+cm
+-3
+) 0,10 0,14 0,30
+Continua...
+
+--- PÁGINA 13 ---
+13 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Atributo
+Solo
+RQ LVAm LVAa
+Água disponível
+(4)
+(mm) 7,81 8,16 6,27
+Água prontamente disponível
+(5)
+(mm) 6,39 6,80 3,42
+Amplitude de θ observada
+(6)
+0,02 - 0,26 0,05 - 0,29 0,25 – 0,39
+Parâmetros da equação de van Genuchten
+(7)
+α (kPa
+-1
+) 0,4603 0,3207 0,5965
+N (adimensional) 1,5814 1,6825 1,3399
+θr (cm
+3
+cm
+-3
+) 0,0990 0,1360 0,2960
+θs (cm
+3
+cm
+-3
+) 0,4120 0,4350 0,5020
+R
+2
+0,9980 0,9980 0,9760
+1
+Lemos e Santos (1996).
+2
+θ obtido na tensão de 6 kPa (RESCK; SILVA, 1990).
+3
+θ obtido na tensão de 1500 kPa.
+4
+θ 6kPa – θ 1500 kPa x 0,05 m x 1000.
+5
+θ 6kPa – θ 100 kPa x 0,05 m x 1000 (RESCK; SILVA, 1990).
+6
+valores de θ determinados em laboratório durante os ensaios de calibração.
+7
+Equação 4.
+Os ensaios foram realizados durante a estação seca, com a finalidade
+de se evitar a interferência de chuvas no teor de água do solo. Assim,
+no dia 8 de agosto de 2007, estando os solos com teor de água
+abaixo do ponto de murcha na camada 0 m - 0,05 m, foi saturada
+uma área de 4 m
+2
+(2 m x 2 m) com auxílio de uma pipa tracionada
+por trator, adicionando-se aproximadamente 2.000 litros de água em
+cada ponto. Cessada a aplicação da água em cada ponto, as medições
+foram iniciadas 15 minutos após o desaparecimento da lâmina d’água
+da superfície do solo. Foram utilizados dois equipamentos idênticos,
+considerados como repetições, sendo as duas medições feitas
+simultaneamente em cada ponto. Para tanto, as hastes de 5,8 cm foram
+inseridas no solo, sendo, portanto, avaliada a camada de 0 m a 0,058
+m de profundidade. Para avaliar o efeito do tempo na estimativa do
+teor volumétrico de água, foram feitas medidas em Volts nos seguintes
+tempos: 15, 30, 60, 120, 180, 240, 300, 360, 420, 480, 540,
+600, 660, 720, 780, 840 e 900 segundos. Logo após desligados os
+aparelhos, coletou-se, bem ao lado de cada sensor, na camada de 0 m
+a 0,05 m de profundidade, uma amostra indeformada de solo por meio
+Tabela 1. Continuação.
+
+--- PÁGINA 14 ---
+14 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+de um anel volumétrico de 5 cm de altura por 5 cm de diâmetro, a qual
+foi levada ao laboratório para determinação do teor de água gravimétrico
+( U ), densidade aparente ( Ds ) e teor de água volumétrico ( θ ) do solo,
+conforme as equações 1, 2 e 3, seguindo procedimentos descritos em
+Claessen (1997):
+1 − =
+Ms
+Mu
+U
+equação 1
+Em que
+U é o teor gravimétrico de água no solo, em g g
+-1
+.
+Mu é a massa da amostra de solo nas condições em que foi coletada no
+campo, em gramas.
+Ms é a massa da mesma amostra de solo após secagem em estufa a 105
+ºC por 24 h, em gramas.
+V
+Ms
+Ds =
+equação 2
+Em que:
+Ds é a densidade aparente do solo, em g cm
+-3
+.
+Ms é a massa de solo no interior do anel volumétrico seco em estufa a
+105 ºC por 24 h, em gramas.
+V é o volume do anel (98,17 cm
+3
+).
+Da
+Ds U ×
+=
+θ
+equação 3
+Em que:
+θ é o teor volumétrico de água no solo, em cm
+3
+cm
+-3
+.
+U é o teor gravimétrico de água no solo, em g g
+-1
+.
+Ds é a densidade aparente do solo, em g cm
+-3
+.
+Da é a densidade da água, em g cm
+-3
+.
+Em cada ponto, foi coletada também uma amostra indeformada na
+camada 0 m – 0,05 m para determinação da curva característica de
+retenção de água pelo método da centrífuga (FREITAS JÚNIOR; SILVA,
+1984), sendo ajustado aos dados o modelo proposto por Van Genuchten
+(1980) por regressão não linear – Equação 4. Durante o ajuste, foram
+
+--- PÁGINA 15 ---
+15 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+adotados como θ s e θ r os valores observados, sendo ajustados apenas
+os parâmetros α e n. Com base nos dados de laboratório, considerou-se
+como capacidade de campo o valor de θ a 6 kPa, de acordo com Resck e
+Silva (1990), o ponto de murcha ( θ a 1500 kPa), a água disponível
+( θ
+0,06
+- θ
+1500 kPa
+), a macro e microporosidade conforme Claessen (1997),
+e a água prontamente disponível ( θ
+0,06
+- θ
+100kPa
+), conforme Resck e Silva
+(1990).
+( )
+( ) [ ]
+−
+×
++
+−
++
+=
+n
+n
+1
+1
+1
+Ψ
+α
+θ
+r
+θ
+s
+θ
+r
+θ
+[ ]
+equação 4
+Em que:
+θ (cm
+3
+cm
+-3
+) é o teor de água volumétrico.
+θ r e θ s (cm
+3
+cm
+-3
+) são os teores de água residual e saturado, respectivamente.
+Ψ (kPa) é a tensão de água no solo (módulo do potencial mátrico).
+α e n parâmetros de ajuste do modelo.
+Em cada ponto, a primeira leitura, feita logo após a saturação do solo,
+foi realizada na manhã do dia 8 de agosto de 2007. A segunda leitura
+foi feita no período da tarde do mesmo dia. As leituras subseqüentes
+ocorreram sempre no período da manhã dos dias 9, 10, 11, 13 e 16
+de agosto de 2007. No dia 9 de agosto, ocorreu um incêndio na área
+adjacente ao solo LVAm. Embora não tenha atingido esse ponto, as
+leituras foram realizadas apenas nos solos RQ e LVAa por motivo de
+segurança. No dia 11 de agosto, foram feitas medições em solo seco
+(fora da área saturada). Entretanto, esse procedimento foi possível
+apenas nos solos RQ e LVAm, uma vez que não foi possível inserir a
+haste no solo LVAa, dada a consistência extremamente dura desse solo,
+quando seco, proporcionada pelo elevado teor de argila.
+Foram ajustados modelos por regressão linear de θ (cm
+3
+cm
+-3
+) em função
+das respectivas voltagens (V) e tempos em minutos obtidos em cada
+solo, bem como de θ em função de V e dos teores de argila ou areia.
+Para tanto, foi utilizado o aplicativo estatístico SAEG versão 5.0.
+A decisão sobre a permanência ou retirada de uma variável do modelo
+
+--- PÁGINA 16 ---
+16 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+foi tomada com base na análise da significância dos coeficientes
+associados à variável. A comparação estatística entre os modelos,
+quando necessária, foi feita com base no teste F, seguindo
+procedimentos descritos em Motulsky e Christopoulos (2003). Para
+equações lineares com apenas dois parâmetros (coeficiente angular e
+intercepto), foi utilizado também o teste de Snedecor e Cochran (1989)
+para comparação entre parâmetros.
+Uma vez ajustados e escolhidos os modelos, sua validação foi feita em
+área pertencente à parte de um talhão de produção comercial de grãos
+com 52 ha e declividade média de 5 %, localizada na Fazenda Sementes
+Primavera, situada próximo a Planaltina, DF (latitude: 15° 38’ 16” S;
+longitude: 47° 26’ 52” O; e altitude: 949 m), a aproximadamente 40 km
+de distância da Embrapa Cerrados (Fig. 3B). Essa área foi escolhida pelo
+fato de ser composta por Latossolos com textura variando de média
+a muito argilosa. O local, originalmente sob vegetação de Cerrado,
+foi desmatado em meados da década de 1970 para implantação de
+pastagem cultivada ( Andropogon gayanus ). Em 1988, a área passou
+a ser cultivada com culturas anuais em sistema convencional (grade
+pesada). Na safra 1995/1996, foi iniciado o sistema de semeadura
+direta envolvendo soja e milho (três anos com soja e um ano com milho).
+Em grade amostral de 125 m x 125 m, totalizando 31 pontos (Fig. 3C),
+foram feitas, no dia 28 de outubro de 2007, medições com os dois
+aparelhos e coleta de solos com anéis volumétricos, conforme descrito
+no processo de calibração.
+Os valores de θ estimados na área de validação pelos aparelhos com
+base nos modelos ajustados foram confrontados com os valores de
+θ determinados em laboratório. A distribuição dos resíduos, expressa
+em ∆θ ( θ determinado em laboratório – θ estimado pelo aparelho
+com base nos modelos), foi avaliada graficamente. Os valores de θ
+estimados pelos modelos ajustados e os respectivos valores de ∆θ foram
+correlacionados linearmente pelo método de Pearson com os teores de
+areia, argila e θ determinados em laboratório nos 31 pontos amostrados.
+Visando à caracterização espacial das variáveis analisadas, os mapas
+foram interpolados pelo inverso da distância para voltagem (V) , e θ
+
+--- PÁGINA 17 ---
+17 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+determinado em laboratório e estimado pelos modelos, utilizando-
+se o aplicativo ArcView GIS 3.2, conforme procedimentos descritos
+em Shiratsuchi et al. (2005). A comparação entre mapas (superfícies
+interpoladas) foi feita com base em correlação linear de Pearson dos
+valores interpolados obtidos em pontos correspondentes a uma grade de
+20 m x 20 m, conforme descrito em Sá et al. (2007). Para análises de
+correlação, foi utilizado o aplicativo SAEG versão 5.0.
+Resultados e Discussão
+Considerações sobre os solos utilizados para calibração
+De acordo com Adámoli et al. (1986), os Latossolos correspondem a 46 %
+da área do Bioma Cerrado, enquanto os Neossolos Quartzarênicos
+correspondem a 15,2 %. Nos Latossolos, a textura pode variar desde
+média – entre 160 g kg
+-1
+e 350 g kg
+-1
+de argila – até muito argilosa – mais
+de 600 g kg
+-1
+. Nos Neossolos Quartzarênicos, a textura é, por definição,
+arenosa (< 160 g kg
+-1
+de argila) (SANTOS et al., 2006). Considerando-
+se a abrangência dessas classes de solo e a variação nos teores de
+argila existentes nos solos utilizados para calibração do aparelho no
+presente estudo (Tabela 1), pode-se afirmar que a calibração foi feita em
+condições representativas dos solos do Bioma Cerrado.
+Com relação aos atributos físico-hídricos (Tabela 1), embora sejam
+observadas densidades relativamente elevadas, sobretudo nos solos
+RQ e LVAm, esses valores são influenciados principalmente pelos
+teores mais elevados de areia, que tendem a proporcionar densidades
+mais elevadas (SÁ; SANTOS JÚNIOR, 2005). Entretanto, com base
+nos valores de macroporos relativamente mais baixos em relação aos
+microporos, é possível afirmar que os solos apresentam um grau de
+compactação relativamente elevado, notadamente no solo LVAa, o
+que influencia no formato das curvas de retenção de água (Fig. 4).
+Isso também afeta atributos como água disponível ou prontamente
+disponível. Considerando que as áreas são manejadas com pastagens,
+as quais se encontram em processo de degradação, o manejo
+inadequado pode ser considerado como a principal causa dessa
+compactação, conforme relatado por Leão et al. (2004).
+
+--- PÁGINA 18 ---
+18 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Variações no teor de água e voltagem durante a
+calibração
+A variação na voltagem correspondente ao valor em (V) em cada solo,
+ao longo dos dias em que foi feita a calibração, pode ser observada na
+Fig. 5A. Nota-se uma tendência de aumento ao longo do tempo, que
+foi semelhante para os três solos avaliados. Entretanto, as voltagens
+observadas para o solo LVAa foram substancialmente menores do
+que as observadas para os solos RQ e LVAm. A variação da voltagem
+foi proporcionalmente inversa à variação dos teores de θ , os quais
+diminuíram ao longo do tempo, e de maneira mais acentuada para os
+solos RQ e LVAm, indicando um comportamento diferenciado dos solos,
+o que pode ser atribuído basicamente às diferenças texturais, conforme
+relatado por Resende et al. (2002).
+Efeito do tempo na estimativa do teor de água do solo
+Os coeficientes dos modelos ajustados para estimativa do teor
+volumétrico de água a partir da voltagem e do tempo de leitura podem
+ser observados na Tabela 2. Foi ajustado um modelo para cada solo
+(RQ, LVAm e LVAa, modelos 1, 2 e 3, respectivamente). Embora os
+valores de R
+2
+tenham sido elevados (P < 0,0001), variando de 0,7567
+no solo LVAa até 0,9581 no solo LVAm, apenas os coeficientes b ,
+associados ao parâmetro voltagem, foram significativos (P < 0,0001)
+para os três solos, indicando que não houve influência do parâmetro
+tempo na estimativa de θ . Esse resultado pode ser visualizado na Fig. 6,
+nas superfícies de resposta obtidas pelos três modelos que são paralelas
+ao eixo do tempo, apresentando substancial inclinação no sentido do
+eixo da voltagem, razão pela qual os coeficientes b são significativos.
+Embora apresentem a mesma escala, os gráficos de superfície foram
+construídos respeitando-se a amplitude dos valores de θ observados em
+cada solo, permitindo perceber as diferenças intrínsecas a cada classe
+textural.
+
+--- PÁGINA 19 ---
+19 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Fig. 5. Variação ao longo dos dias de realização dos ensaios de calibração da voltagem (A)
+e do teor de água volumétrico do solo (B).
+Tabela 2. Parâmetros dos modelos ajustados para estimativa do conteúdo volu -
+métrico de água a partir do tempo de leitura e da voltagem para os três solos
+estudados.
+Parâmetros
+Solo
+RQ LVAm LVAa
+Coeficiente Probab. Coeficiente Probab. Coeficiente Probab.
+θ (cm
+3
+/cm
+3
+) = a + b (V) + c (min)
+Modelo 1 Modelo 2 Modelo 3
+a - Constante 7,19318x10
+-1
+- 6,25751x10
+-1
+- 6,17524x10
+-1
+-
+b - Voltagem (V) -2,84329x10
+-1
+0,0001 -2,38232x10
+-1
+0,0001 -2,05332x10
+-1
+0,0001
+c - Tempo (min) -3,00476x10
+-4
+0,1819 -1,23114x10
+-4
+0,3002 -3,43089x10
+-5
+0,4381
+Continua...
+
+--- PÁGINA 20 ---
+20 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Parâmetros
+Solo
+RQ LVAm LVAa
+Coeficiente Probab. Coeficiente Probab. Coeficiente Probab.
+R
+2
+0,8986 <0,0001 0,9581 <0,0001 0,7567 <0,0001
+N 222 198 206
+θ (cm
+3
+cm
+-3
+) = a + b (V)
+Modelo 4 Modelo 5 Modelo 6
+a - Constante 6,87366x10
+-1
+- 6,17495x10
+-1
+- 6,40135x10
+-1
+-
+b - Voltagem (V) -2,68324x10
+-1
+<0,0001 -2,33441x10
+-1
+<0,0001 -2,24301x10
+-1
+0,0001
+R
+2
+0,8764 <0,0001 0,9516 <0,0001 0,8605 <0,0001
+N 16 13 14
+Fig. 6. Superfícies de resposta linear obtidas pelos valores de conteúdo de água volumé -
+trico ( θ ) estimado em função da voltagem ( V ) e do tempo (min) pelos modelos 1, 2 e 3
+para os três solos utilizados na calibração do equipamento.
+Estimativa do teor de água do solo a partir da voltagem
+e da textura
+Com o parâmetro tempo excluído, foram ajustados os modelos lineares
+4, 5 e 6 para estimativa de θ em função da voltagem medida para cada
+Tabela 2. Continuação.
+
+--- PÁGINA 21 ---
+21 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+solo (Tabela 2). A retirada do parâmetro tempo possibilitou aumento no
+valor de R
+2
+para o solo LVAa, enquanto, para os demais solos, eles não
+sofreram alteração, sendo os coeficientes angulares (b) significativos em
+todos os casos (P < 0,0001). O comportamento das linhas de tendência
+proporcionadas pelos modelos 4, 5 e 6 pode ser observado na Fig. 7A,
+onde se constata visualmente uma ligeira diferença na inclinação das
+retas. Essa diferença é confirmada pelo teste de Snedecor e Cochran
+(1989) (Tabela 3), em que se pode observar que todos os coeficientes
+angulares são diferentes. Com relação aos coeficientes lineares, eles são
+iguais apenas para os modelos 4 e 6. Esse comportamento parece ser
+influenciado pela diferença textural entre os solos.
+Fig. 7. Estimativa do conteúdo de água volumétrico ( θ ) a partir da voltagem ( V ) pelos
+modelos 4, 5 e 6 para cada solo isoladamente (A) e pelo modelo 7, considerando os
+dados agrupados dos três solos (B); superfície de resposta obtida pelo modelo 8 para
+estimativa de θ em função da voltagem e do teor de argila (C); e pelo modelo 9, para
+estimativa de θ em função da voltagem e do teor de areia do solo (D).
+
+--- PÁGINA 22 ---
+22 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+A comparação entre esses modelos, feita de acordo com Motulski e
+Christopoulos (2003), permite afirmar que os modelos 4 e 5 são iguais,
+ambos diferindo do modelo 6 (Tabela 3). Isso pode ser atribuído ao fato
+de que o conjunto de dados de V e θ observados nos solos RQ e LVAm
+apresentam amplitudes de variação semelhantes, enquanto os dados
+de V e θ observados para o solo LVAa parecem ser um prolongamento
+dos dados dos dois solos (Fig. 7A). Quanto aos desvios ( ∆θ ) (Fig. 8A),
+os modelos 4 e 5 apresentaram valores mais elevados - em torno de ±
+0,04 cm
+3
+cm
+-3
+– quando comparados ao modelo 6, cuja amplitude para
+a maioria dos dados ficou ao redor de ± 0,02 cm
+3
+cm
+-3
+.
+Tabela 3 . Valores de F e probabilidades de significância utilizados para com -
+parações entre os modelos 4, 5 e 6 e respectivos coeficientes angulares e
+lineares.
+Textura
+Textura
+Modelo 5 Modelo 6
+Comparação entre equações
+(1)
+Modelo 4 0,58 (P<0,5639) 24,51 (P<0,0001)
+Modelo 6 23,18 (P<0,0001) -
+Comparação entre coeficientes angulares
+(2)
+Modelo 4 16,82 (P<0,000381) 47,91 (P<0,000001)
+Modelo 6 4,05 (P<0,056017) -
+Comparação entre coeficientes lineares
+(2)
+Modelo 4 0,09 (P<0,762371) 22,46 (P<0,000061)
+Modelo 6 33,33 (P<0,000006) -
+1
+Motulsky e Christopoulos (2003).
+2
+Snedecor e Cochran (1989).
+Esse comportamento diferenciado entre solos está de acordo com
+o relato de Seyfried e Murdock (2004), que inclusive propuseram
+calibrações específicas para cada tipo de solo. De acordo com
+Seyfried et al. (2005), as perdas dielétricas podem ser afetadas pelas
+propriedades da fração argila, como superfície específica e capacidade
+de troca catiônica (CTC), as quais podem variar em função de diferentes
+tipos de argila. No caso específico dos solos utilizados para calibração,
+o estudo feito por Macedo e Bryant (1987) no mesmo local demonstrou
+
+--- PÁGINA 23 ---
+23 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+que a mineralogia da fração argila desses solos é composta basicamente
+por caolinita, gibbsita e óxidos de ferro (goethita e hematita);
+mineralogia essa típica da grande maioria dos solos tropicais, sobretudo
+no Cerrado (RESENDE et al., 2002). Dessa forma, espera-se que as
+diferenças existentes entre os três solos estudados sejam mais devidas
+à textura do que à mineralogia.
+Assim, foram ajustados os modelos 7, 8 e 9, sendo o primeiro para
+estimativa de θ em função de V , e os outros para estimativa de θ em
+função da V e argila e V e areia, respectivamente, cujos parâmetros
+são apresentados na Tabela 4, onde pode-se constatar que todos
+apresentaram valores de R
+2
+elevados e significativos (P < 0,0001),
+porém bastante próximos. Da mesma forma, todos os coeficientes dos
+três modelos foram significativos. As comparações entre esses três
+modelos, feitas conforme Motulski e Christopoulos (2003), permitem
+afirmar que eles são estatisticamente iguais (Tabela 4). Dessa forma,
+embora os coeficientes ajustados para argila e areia nos modelos 8 e 9,
+respectivamente, tenham sido significativos, seu efeito na estimativa de
+θ é menor do que o efeito da voltagem, porém não pode ser desprezado.
+Isso pode ser visualizado nas Fig. 7C e 7D, em que se observa
+inclinação das superfícies de resposta mais acentuadas em função da
+voltagem do que em função dos teores de argila e areia, reflexo dos
+valores baixos dos coeficientes ajustados para estes últimos atributos.
+Quanto aos desvios, os modelos 7, 8 e 9 apresentaram comportamento
+semelhante (Fig. 8B), com valores de ∆θ , em sua maioria (mais
+precisamente, 93,1 % do erro das estimativas), situados entre ±
+0,06 cm 3 cm
+-3
+, ou seja, semelhante aos modelos 4 e 5. O modelo 7
+apresentou 62,8 % dos desvios entre ± 0,02 cm
+3
+cm
+-3
+, enquanto os
+modelos 8 e 9 praticamente se sobrepuseram – pontos vermelhos e
+verdes – com 74,4 % dos desvios entre ± 0,02 cm
+3
+/cm
+3
+, confirmando
+que os dois modelos são similares.
+
+--- PÁGINA 24 ---
+24 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Tabela 4. Parâmetros dos modelos ajustados para estimativa do conteúdo volu -
+métrico de água a partir da voltagem, dos teores de argila e areia, considerando
+dados dos três solos utilizados para calibração e valores de F e respectivas
+probabilidades, utilizados para comparação entre os modelos ajustados.
+Modelos
+Parâmetros
+Coeficiente Probabilidade
+Modelo 7: θ (cm
+3
+cm
+-3
+) = a + (b*Voltagem)
+a - Constante 6,92744 x10
+-1
+-
+b - Voltagem (V) 2,70413 x10
+-1
+0,0001
+R
+2
+0,9598 <0,0001
+N 43
+Modelo 8: θ (cm
+3
+cm
+-3
+) = a + (b*Voltagem) + (d*Argila)
+a - Constante 6,33655 x10
+-1
+-
+b - Voltagem (V) -2,44404 x10
+-1
+0,0001
+d - Argila (g kg
+-1
+) 4,41800 x10
+-5
+0,0072
+R
+2
+0,9655 <0,0001
+N 43
+Modelo 9: θ (cm
+3
+cm
+-3
+) = a + (b*Voltagem) + (e*Areia)
+a - Constante 6,76636 x10
+-1
+b - Voltagem (V) -2,44502 x10
+-1
+0,0001
+e - Areia (g kg
+-1
+) -4,43100 x10
+-5
+0,0072
+R
+2
+0,9655 <0,0001
+N 43
+Comparação entre equações
+(1)
+Modelo 8 Modelo 9
+Modelo 7 4,3 x10
+-6
+(P<0,998) 6 x10
+-7
+(P<0,999)
+Modelo 9 4,3 x10
+-6
+(P<0,998)
+1
+Motulsky e Christopoulos, (2003)
+
+--- PÁGINA 25 ---
+25 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+2
+Fig. 8 . Análise de resíduos ( ���
+) dos dados obtidos nos solos RQ, LVAm e LVAa
+da Embrapa Cerrados para os modelos 4, 5 e 6 (A) e para os modelos 7, 8 e 9
+(B), onde a linha pontilhada representa a reta 1:1.
+Fig. 8. Análise de resíduos (∆ θ ) dos dados obtidos nos solos RQ, LVAm e LVAa da
+Embrapa Cerrados para os modelos 4, 5 e 6 (A) e para os modelos 7, 8 e 9 (B), onde a
+linha pontilhada representa a reta 1:1.
+Validação dos modelos
+Determinados os teores de θ e a voltagem na camada de 0 m a 0,05 m
+de cada um dos 31 pontos da área utilizada para validação (Fig. 3B e
+3C), foi estimado o teor de água volumétrico para cada ponto a partir
+dos modelos 7, 8 e 9. As relações entre os valores determinados e
+estimados são apresentadas na Fig. 9A, e os respectivos desvios na
+Fig. 9B. Embora a relação entre θ estimado e determinado pelo modelo
+8 esteja mais próxima da linha 1:1 – o que é desejável, a dispersão
+
+--- PÁGINA 26 ---
+26 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+dos dados foi semelhante para os três modelos, conforme pode ser
+observado na distribuição dos valores de ∆θ (Fig. 9B), onde se constata
+que os erros de estimativa, em todos os casos, situaram-se entre
+± 0,06 cm
+3
+cm
+-3
+. Entretanto, dos 31 valores de θ estimados apenas
+pela voltagem (modelo 7), oito apresentaram erros superiores a
+± 0,04 cm
+3
+cm
+-3
+, ou seja, 74,2 % das estimativas apresentaram um
+erro entre ± 0,04 cm
+3
+cm
+-3
+, enquanto, para as estimativas a partir
+de voltagem e textura (modelos 8 e 9), apenas três dos 31 pontos
+apresentaram erro superior a ± 0,04 cm
+3
+cm
+-3
+, ou seja, 90,4 % das
+estimativas apresentam erro entre ± 0,04 cm
+3
+cm
+-3
+. Para o modelo 7,
+cerca de 35 % das estimativas (11 pontos) situaram-se entre
+± 0,02 cm
+3
+cm
+-3
+, contra 45 % (14 pontos) para os modelos 8 e 9.
+Mesmo que essas porcentagens tenham sido menores do que as
+observadas para os solos utilizados no ajuste dos modelos (Fig. 8B), isso
+indica que a inclusão de parâmetros texturais na estimativa de θ melhora
+a sensibilidade dos modelos e está de acordo com o que foi relatado por
+Seyfried et al. (2005): desvios na calibração de equipamentos de TDR a
+partir da equação proposta por Topp et al. (1980) podem ser atribuídos
+à textura do solo.
+Visando compreender melhor a relação entre as variáveis e a distribuição
+desses erros, foram estabelecidas correlações entre os valores de
+θ determinado e estimado pelos modelos 7, 8 e 9 bem como dos
+respectivos valores de ∆θ com valores determinados de areias, argila
+e θ (Tabela 5). Constatou-se que θ determinado pelo método padrão
+apresentou altas correlações com os teores de areia e argila, sendo
+inversa no primeiro caso e direta no segundo. Os valores de θ estimados
+a partir dos modelos 8 e 9 apresentaram coeficientes de correlação mais
+elevados com os valores de θ determinado do que os valores estimados
+a partir do modelo 7. Os valores de ∆θ do modelo 7 apresentaram
+correlações mais elevadas com os valores de areia e argila do que os
+modelos 8 e 9, o que ressalta a importância da inclusão de parâmetros
+texturais na estimativa de θ a partir do equipamento avaliado.
+Entretanto, outros fatores não avaliados no presente estudo como
+CTC, pH, saturação por bases podem também afetar a distribuição
+de ∆θ , concordando com Seyfried et al. (2005), uma vez que a área
+utilizada para validação estava cultivada com culturas anuais recebendo
+
+--- PÁGINA 27 ---
+27 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+adubações regulares, ao contrário da área utilizada para calibração e
+geração dos modelos, que não recebeu fertilizantes. Esse fato poderia
+ser objeto de estudos futuros.
+Fig. 9. Relações obtidas na área de validação dos modelos (Fazenda Sementes Primavera)
+entre θ determinado em laboratório e θ estimado pelos modelos 7, 8 e 9 – linha cheia -
+comparada com a reta 1:1 – linha tracejada (A) e respectiva distribuição de resíduos ou
+∆θ , definido como a diferença entre θ determinado e θ estimado, onde a linha pontilhada
+representa a reta 1:1 (B).
+
+--- PÁGINA 28 ---
+28 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Observando-se os mapas da área (Fig. 10), nota-se que os valores de
+V medidos apresentaram uma distribuição espacial semelhante aos
+teores de argila e de θ determinado, sendo os mapas gerados a partir
+dos teores de θ estimados pelos três modelos bastante semelhantes
+entre si. Essas tendências podem ser melhor compreendidas avaliando-
+se os coeficientes de correlação de Pearson obtidos entre os dados
+interpolados (Tabela 5), onde se constata que a superfície do mapa de
+θ determinado apresenta uma correlação de 0,98 com o mapa de argila.
+O mapa interpolado a partir dos valores de θ estimados pelo modelo 7
+apresentou correlação de 0,77 com o mapa de argila, ficando os mapas
+interpolados a partir dos valores de θ estimados pelos modelos 8 e 9 em
+posição intermediária – respectivamente, 0,86 e 0,87. Entretanto, esses
+apresentaram coeficientes de correlação com o mapa de θ determinado
+ligeiramente superiores ao mapa estimado pelo modelo 7, confirmando
+que a inclusão de variáveis texturais (areia ou argila) funcionam como
+um “ajuste fino”, melhorando a estimativa indireta do teor de água
+volumétrico do solo a partir da voltagem fornecida pelo equipamento
+estudado.
+Tabela 5 . Coeficientes de correlação de Pearson entre as variáveis determina -
+das nos pontos amostrados e entre os valores das variáveis obtidas a partir dos
+dados interpolados nos mapas numa grade de 20 m x 20 m da área utilizada
+para validação dos modelos.
+Variável
+areias Argila θ determinado
+Dados obtidos nos pontos amostrados
+θ determinado -0,95 0,94 -
+θ modelo 7 -0,63 0,59 0,70
+θ modelo 8 -0,76 0,73 0,81
+θ modelo 9 -0,77 0,74 0,82
+∆ θ modelo 7 -0,60 0,63 0,59
+∆ θ modelo 8 -0,48 0,51 0,49
+∆ θ modelo 9 -0,44 0,47 0,44
+Dados interpolados
+θ determinado - 0,98 -
+θ modelo 7 - 0,77 0,82
+θ modelo 8 - 0,86 0,90
+θ modelo 9 - 0,87 0,90
+
+--- PÁGINA 29 ---
+29 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Fig. 10 . Mapas da área utilizada para validação dos modelos, representando as variações
+dos teores de argila do solo na camada 0 cm a 20 cm, da voltagem ( V ) e de θ determi -
+nado e estimado (cm
+3
+cm
+-3
+) pelos modelos 7, 8 e 9 na camada de 0 m a 0,05 m.
+
+--- PÁGINA 30 ---
+30 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+Conclusões
+O teor de água volumétrico do solo pode ser estimado a partir da voltagem
+fornecida pelo equipamento, com um erro de até ± 0,06 cm
+3
+cm
+-3
+.
+A inclusão da textura nos modelos melhora a estimativa do teor
+volumétrico de água do solo.
+Agradecimentos
+Ao técnico agrícola Carlos Alberto Cardoso e ao auxiliar de
+operações Jesuino de Sousa Caldas, pelo auxílio nos trabalhos de
+campo na Embrapa Cerrados e à Fazenda Sementes Primavera (DF),
+especialmente, ao Engenheiro Agrônomo Francisco Luçardo pelo apoio
+logístico dado à equipe durante a realização dos trabalhos de validação.
+Referências
+ADÁMOLI, J.; MACEDO, J.; AZEVEDO, L. G. de; MADEIRA NETTO, J. Caracterização da
+região dos cerrados. In: GOEDERT, W. (Ed.). Solos dos cerrados : tecnologia e estratégia
+de manejo. [Planaltina, DF]: Embrapa-CPAC; São Paulo: Nobel, 1986. p. 33-74.
+ANDRADE, C. L. T.; BORGES JÚNIOR, J. C. F.; COUTO, L. Características físico-hídricas
+e dinâmica da água no solo. In: ALBUQUERQUE, P. E. P.; DURÃES, F. O. M. Uso e manejo
+de irrigação . Brasília, DF: Embrapa Informação Tecnológica, 2008. 528 p.
+CLAESSEN, M. E. C. (Org.). Manual de métodos de análise de solo . 2. ed. rev. atual. Rio
+de Janeiro: Embrapa-CNPS, 1997. 212 p. (Embrapa-CNPS. Documentos, 1).
+DEXTER, A. R. Soil physical quality. Part I. Theory, effects of soil texture, density and
+organic matter, and effects on root growth. Geoderma , Amsterdam, v. 120, p. 201-214,
+2004.
+FREITAS JÚNIOR, E. de; SILVA, E. M. da. Uso da centrífuga para determinação da curva
+de retenção de água no solo, em uma única operação. Pesquisa Agropecuária Brasileira ,
+Brasília, v. 19, n. 11, p. 1423-1428, 1984.
+LEÃO, T. P.; SILVA, A. P.; MACEDO, M. C. M.; IMHOFF, S.; EUCLIDES, V. P. B. Intervalo
+hídrico ótimo na avaliação de sistemas de pastejo contínuo e rotacionado. Revista
+Brasileira de Ciência do Solo , Campinas, v. 28, p. 415-423, 2004.
+LEMOS, R. C. de; SANTOS, R. D. dos. Manual de descrição e coleta de solo no campo .
+3. ed. Campinas: Sociedade Brasileira de Ciência do Solo; Rio de Janeiro: Embrapa-CNPS,
+1996. 83 p.
+
+--- PÁGINA 31 ---
+31 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+MACEDO, J.; BRYANT, J. Morphology, mineralogy, and genesis of a hydrosequence of
+Oxisols in Brazil. Soil Science Society of American Journal , Madison, v. 51, n. 3, p. 690-
+698, 1987.
+MOTULSKY, H. J.; CHRISTOPOULOS, A. Fitting models to biological data using linear and
+nonlinear regression : a practical guide to curve fitting. San Diego: GraphPad Software,
+2003. Disponível em: <http://www.graphpad.com>. Acesso em: 23 nov. 2006.
+NADLER, A.; LAPID, Y. An improved capacitance sensor for in situ monitoring of soil
+moisture. Australian Journal of Soil Research , Victoria, v. 34, p. 361-368, 1996.
+PACHECO, A. A. R. C.; DIAS JÚNIOR, M. S. Estudo comparativo de métodos de campo e
+laboratório aplicados à confecção de blocos em adobe. Ciência e Prática , Lavras, v. 14, n.
+2, p. 176-190, 1990.
+RESCK, D. V. S.; SILVA, J. E. da. Soil organic matter dynamics under different tillage
+systems in the Cerrados region in Brazil. In: INTERNATIONAL CONGRESS OF SOIL
+SCIENCE, 14., 1990, Kyoto. Transactions... Kyoto: International Society of Soil Science,
+1990. v. 6, p. 325-326.
+RESENDE, M.; CURI, N.; REZENDE, S. B.; CORRÊA, G. F. Pedologia : base para distinção
+de ambientes. 4. ed. Viçosa, MG: Universidade Federal de Viçosa, 2002. 338 p.
+ROBINSON, M.; DEAN, T. J. Measurement of near surface soil water content using a
+capacitance probe. Hydrological Processes , v. 7, p. 77-86, 1993.
+SÁ, M. A. C. de; SANTOS JÚNIOR, J. D. G. dos. Compactação do solo : conseqüências
+para o crescimento vegetal. Planaltina, DF: Embrapa Cerrados, 2005. 25 p. (Embrapa
+Cerrados. Documentos, 136).
+SÁ, M. A. C. de; SHIRATSUCHI, L. S.; FRANZ, C. A. B.; SANTOS JÚNIOR, J. D. G. dos.
+Compactação do solo e produtividade da cultura da soja em área irrigada no Cerrado .
+Planaltina, DF: Embrapa Cerrados, 2007. 31 p. (Embrapa Cerrados. Boletim de Pesquisa e
+Desenvolvimento, 177).
+SANTOS, H. G. dos; JACOMINE, P. K. T.; ANJOS, L. H. C. dos; OLIVEIRA, V. A. de;
+OLIVEIRA, J. B. de; COELHO, M. R.; LUMBRERAS, J. F.; CUNHA, T. J. F. (Ed.). Sistema
+brasileiro de classificação de solos . 2. ed. Rio de Janeiro: Embrapa Solos, 2006. 306 p.
+SEYFRIED, M. S.; MURDOCK, M. D. Measurement of soil water content with a 50-MHz
+soil dielectric sensor. Soil Science Society of America Journal , Madison, v. 68, p. 394-
+403, 2004.
+SEYFRIED, M. S.; GRANT, L. E.; DU, E.; HUMES, K. Dieletric loss and calibration of the
+Hydra Probe soil water sensor. Vadose Zone Journal , v. 4, p. 1070-1079, 2005.
+SHIRATSUCHI, L. S.; SANO, E. E.; BEZERRA, H. S. Manual de utilização das principais
+funções do programa computacional ArcView 3.2 no apoio à agricultura de precisão.
+Planaltina, DF: Embrapa Cerrados, 2005. 47 p. (Embrapa Cerrados. Documentos 138).
+SNEDECOR, G. W.; COCHRAN, W. G. Statistical methods . 8. ed. Ames: Iowa State
+University, 1989.
+
+--- PÁGINA 32 ---
+32 Calibração e Validação de Sensor Dielétrico para Estimativa de Teor de Água...
+TOPP, G. C.; YANUKA, M.; ZEBCHUK, W. D.; ZEGELIM, S. Determination of electrical
+conductivity using a time domain reflectometry: soil and water experiments in coaxial
+lines. Water Resources Research , Washington, v. 24, p. 945-952, 1980.
+VAN GENUCHTEN, M. Th. A closed form equation for predicting the hydraulic
+conductivity of unsaturated soils. Soil Science Society of America Journal , Madison, v.
+44, p. 892-898, 1980.

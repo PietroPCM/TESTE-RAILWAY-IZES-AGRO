@@ -1,0 +1,414 @@
+[
+  {
+    "documento_id": "DOC_SOLO_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/330592",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/330592",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Manual de métodos de análise de solo.",
+    "autores": [
+      "OLIVEIRA, L. B. de",
+      "LUIZ BEZERRA DE OLIVEIRA, CNPS."
+    ],
+    "ano": "1979",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/330592/1/Manual-de-metodos-de-analise-de-solo-1979.pdf"
+  },
+  {
+    "documento_id": "DOC_SOLO_EMBRAPA_002",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/330660",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/330660",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Métodos de análise de solos e calcário.",
+    "autores": [
+      "BLOISE, R. M.",
+      "MOREIRA, G. N. C.",
+      "BLOISE, R. M.",
+      "MOREIRA, G. N. C."
+    ],
+    "ano": "1976",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/330660/1/FL-2039-ok.pdf"
+  },
+  {
+    "documento_id": "DOC_CORRECAO_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/595886",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/595886",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Práticas agrícolas relacionadas à calagem do solo.",
+    "autores": [
+      "MARTINS, C. E.",
+      "MARTINS, C. E."
+    ],
+    "ano": "2005",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/595886/1/COT47Praticasagricolasrelacionadas.pdf"
+  },
+  {
+    "documento_id": "DOC_CORRECAO_EMBRAPA_002",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/275537",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/275537",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Análise do solo versus calagem : cuidados na aplicação do calcário.",
+    "autores": [
+      "LUZ, M. J. da S. e",
+      "FREIRE, R. M. M.",
+      "LUZ, M. J. da S. e",
+      "FREIRE, R. M. M."
+    ],
+    "ano": "2006",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/275537/1/FolderCalagem.pdf"
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1010147",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1010147",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Onde posicionar sensores de umidade e de tensão de água do solo próximo da planta para um manejo mais eficiente da água de irrigação.",
+    "autores": [
+      "COELHO, E. F.",
+      "SIMOES, W. L.",
+      "COELHO, E. F.",
+      "SIMOES, W. L."
+    ],
+    "ano": "2015",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/1010147/1/CircularTecnica109Ondeposicionarsensores.pdf"
+  },
+  {
+    "documento_id": "DOC_UMIDADE_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1093695",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1093695",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Determinação simplificada da umidade do solo visando o manejo de irrigação em Hortaliças.",
+    "autores": [
+      "BRAGA, M. B.",
+      "GUEDES, I. M. R.",
+      "SILVA, J. da",
+      "LIMA, C. E. P.",
+      "BRAGA, M. B.",
+      "GUEDES, I. M. R.",
+      "SILVA, J. da",
+      "LIMA, C. E. P."
+    ],
+    "ano": "2018",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/1093695/1/BPD155.pdf"
+  },
+  {
+    "documento_id": "DOC_SENSOR_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1170710",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/1170710",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Protocolo para a calibração e a aferição de sensores de umidade de solo.",
+    "autores": [
+      "VIANA, J. H. M.",
+      "VIANA, J. H. M."
+    ],
+    "ano": "2024",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/1170710/1/Protocolo-para-a-calibracao-e-a-afericao-de-sensores-de-umidade-de-solo.pdf"
+  },
+  {
+    "documento_id": "DOC_SENSOR_EMBRAPA_002",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/571893",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/571893",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Calibração e validação de sensor dielétrico para estimativa de teor de água em solos do Cerrado.",
+    "autores": [
+      "SÁ, M. A. C. de",
+      "SANTOS JÚNIOR, J. de D. G. dos S.",
+      "SANO, E. E.",
+      "SÁ, M. A. C. de",
+      "SANTOS JÚNIOR, J. de D. G. dos S.",
+      "SANO, E. E."
+    ],
+    "ano": "2008",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/571893/1/bolpd223.pdf"
+  },
+  {
+    "documento_id": "DOC_SENSOR_NPK_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/30165",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/30165",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Sistema para Sensoriamento de Potássio no Solo.",
+    "autores": [
+      "LEMOS, S. G.",
+      "NOGUEIRA, A. R. A.",
+      "TORRE NETO, A.",
+      "PARRA, A.",
+      "ARTIGAS, J.",
+      "CHAMARRO, J. A.",
+      "LEMOS, S. G.",
+      "NOGUEIRA, A. R. A.",
+      "TORRE NETO, A.",
+      "PARRA, A.",
+      "ARTIGAS, J.",
+      "CHAMARRO, J. A."
+    ],
+    "ano": "2004",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/30165/1/BPD092004.pdf"
+  },
+  {
+    "documento_id": "DOC_CE_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/31725",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/31725",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Medida de condutividade elétrica do solo adaptada a uma plantadeira.",
+    "autores": [
+      "RABELLO, L. M.",
+      "INAMASU, R. Y.",
+      "TORRE NETO, A.",
+      "LUCHIARI JUNIOR, A.",
+      "MOLIN, J. P.",
+      "RABELLO, L. M.",
+      "INAMASU, R. Y.",
+      "TORRE NETO, A.",
+      "LUCHIARI JUNIOR, A.",
+      "MOLIN, J. P."
+    ],
+    "ano": "2008",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/31725/1/CiT462008.pdf"
+  },
+  {
+    "documento_id": "DOC_CE_EMBRAPA_002",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/658188",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/658188",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Condutividade elétrica do solo, tópicos e equipamentos.",
+    "autores": [
+      "RABELLO, L. M.",
+      "RABELLO, L. M."
+    ],
+    "ano": "2009",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/658188/1/DOC432009.pdf"
+  },
+  {
+    "documento_id": "DOC_BATATA_DOCE_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/905861",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/905861",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "NORMAS técnicas para a cultura da batata-doce, Santa Catarina.",
+    "autores": [],
+    "ano": "1990",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/905861/1/SIDDOCUMENTOS15SISTEMADEPRODUCAODEBATATADOCE.pdf"
+  },
+  {
+    "documento_id": "DOC_SOJA_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/939248",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/939248",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "SISTEMAS de produção para soja: Paraná - região do oeste.",
+    "autores": [],
+    "ano": "1976",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/939248/1/CNPSODOCUMENTOS08SISTEMASDEPRODUCAOPARASOJA.pdf"
+  },
+  {
+    "documento_id": "DOC_SOJA_EMBRAPA_002",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/444396",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/444396",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "Recomendações técnicas para a cultura da soja no Paraná 1990/91.",
+    "autores": [
+      "OCEPAR. Programa de Pesquisa (Cascavel, PR).",
+      "OCEPAR. Programa de Pesquisa (Cascavel, PR)."
+    ],
+    "ano": "1990",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/444396/1/RecomendacoestenicasparaaculturadasojanoParana199091.pdf"
+  },
+  {
+    "documento_id": "DOC_MILHO_EMBRAPA_001",
+    "url_pagina": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/698134",
+    "status_http": 200,
+    "url_final": "https://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/698134",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "SISTEMA de produção para milho (revisão).",
+    "autores": [],
+    "ano": "1980",
+    "direitos": [
+      "openAccess"
+    ],
+    "pdf_declarado": "http://www.infoteca.cnptia.embrapa.br/bitstream/doc/698134/1/SPmilho.pdf"
+  },
+  {
+    "documento_id": "DOC_SOLO_IDR_001",
+    "url_pagina": "https://www.idrparana.pr.gov.br/Pagina/Editora-IDR-Parana",
+    "status_http": 200,
+    "url_final": "https://www.idrparana.pr.gov.br/Pagina/Editora-IDR-Parana",
+    "content_type": "text/html; charset=UTF-8",
+    "titulo": "",
+    "autores": [],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": ""
+  },
+  {
+    "documento_id": "DOC_MILHO_IDR_001",
+    "url_pagina": "https://www.idrparana.pr.gov.br/Pagina/Editora-IDR-Parana",
+    "status_http": 200,
+    "url_final": "https://www.idrparana.pr.gov.br/Pagina/Editora-IDR-Parana",
+    "content_type": "text/html; charset=UTF-8",
+    "titulo": "",
+    "autores": [],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": ""
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_FAO_001",
+    "url_pagina": "https://www.fao.org/4/X0490E/X0490E00.htm",
+    "status_http": 200,
+    "url_final": "https://www.fao.org/4/X0490E/X0490E00.htm",
+    "content_type": "text/html",
+    "titulo": "",
+    "autores": [],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": ""
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_FAO_002",
+    "url_pagina": "https://www.fao.org/4/T0234E/T0234E00.htm",
+    "status_http": 200,
+    "url_final": "https://www.fao.org/4/T0234E/T0234E00.htm",
+    "content_type": "text/html",
+    "titulo": "",
+    "autores": [],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": ""
+  },
+  {
+    "documento_id": "DOC_NUTRIENTES_FAO_001",
+    "url_pagina": "https://www.fao.org/3/a0443e/a0443e00.htm",
+    "status_http": 200,
+    "url_final": "https://www.fao.org/4/a0443e/a0443e00.htm",
+    "content_type": "text/html",
+    "titulo": "",
+    "autores": [],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": ""
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_001",
+    "url_pagina": "https://doi.org/10.5194/hess-15-1675-2011",
+    "status_http": 200,
+    "url_final": "https://hess.copernicus.org/articles/15/1675/2011/",
+    "content_type": "text/html",
+    "titulo": "The International Soil Moisture Network: a data hosting facility for global in situ soil moisture measurements",
+    "autores": [
+      "Dorigo, W. A.",
+      "Wagner, W.",
+      "Hohensinn, R.",
+      "Hahn, S.",
+      "Paulik, C.",
+      "Xaver, A.",
+      "Gruber, A.",
+      "Drusch, M.",
+      "Mecklenburg, S.",
+      "van Oevelen, P.",
+      "Robock, A.",
+      "Jackson, T."
+    ],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": "https://hess.copernicus.org/articles/15/1675/2011/hess-15-1675-2011.pdf"
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_002",
+    "url_pagina": "https://doi.org/10.2478/johh-2022-0014",
+    "status_http": 200,
+    "url_final": "https://reference-global.com/article/10.2478/johh-2022-0014",
+    "content_type": "text/html; charset=utf-8",
+    "titulo": "Calibration of an Arduino-based low-cost capacitive soil moisture sensor for smart agriculture",
+    "autores": [
+      "István Mihály Kulmány",
+      "Ákos Bede-Fazekas",
+      "Ana Beslin",
+      "Zsolt Giczi",
+      "Gábor Milics",
+      "Barna Kovács",
+      "Márk Kovács",
+      "Bálint Ambrus",
+      "László Bede",
+      "Viktória Vona"
+    ],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": "https://reference-global.com/download/article/10.2478/johh-2022-0014.pdf"
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_003",
+    "url_pagina": "https://doi.org/10.11113/jt.v78.8382",
+    "status_http": 200,
+    "url_final": "https://journals.utm.my/index.php/jurnalteknologi/article/view/8382",
+    "content_type": "text/html; charset=utf-8",
+    "titulo": "",
+    "autores": [],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": ""
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_004",
+    "url_pagina": "https://doi.org/10.1109/access.2021.3052478",
+    "status_http": 200,
+    "url_final": "https://ieeexplore.ieee.org/document/9328258/",
+    "content_type": "text/html;charset=UTF-8",
+    "titulo": "",
+    "autores": [],
+    "ano": "",
+    "direitos": [],
+    "pdf_declarado": ""
+  }
+]

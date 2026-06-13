@@ -1,0 +1,243 @@
+[
+  {
+    "documento_id": "DOC_SOLO_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/solo/DOC_SOLO_EMBRAPA_001.txt",
+    "paginas": 233,
+    "caracteres_sem_espaco": 196577,
+    "tipo_extracao": "OCR",
+    "erro": "",
+    "revisao_humana": true,
+    "possiveis_falhas_ocr": true
+  },
+  {
+    "documento_id": "DOC_SOLO_EMBRAPA_002",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/solo/DOC_SOLO_EMBRAPA_002.txt",
+    "paginas": 39,
+    "caracteres_sem_espaco": 31710,
+    "tipo_extracao": "OCR",
+    "erro": "",
+    "revisao_humana": true,
+    "possiveis_falhas_ocr": true
+  },
+  {
+    "documento_id": "DOC_CORRECAO_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/solo/DOC_CORRECAO_EMBRAPA_001.txt",
+    "paginas": 6,
+    "caracteres_sem_espaco": 17172,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_CORRECAO_EMBRAPA_002",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/solo/DOC_CORRECAO_EMBRAPA_002.txt",
+    "paginas": 2,
+    "caracteres_sem_espaco": 3934,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/irrigacao/DOC_IRRIGACAO_EMBRAPA_001.txt",
+    "paginas": 6,
+    "caracteres_sem_espaco": 15130,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_UMIDADE_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/irrigacao/DOC_UMIDADE_EMBRAPA_001.txt",
+    "paginas": 20,
+    "caracteres_sem_espaco": 20597,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_SENSOR_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/sensores/DOC_SENSOR_EMBRAPA_001.txt",
+    "paginas": 12,
+    "caracteres_sem_espaco": 19856,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_SENSOR_EMBRAPA_002",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/sensores/DOC_SENSOR_EMBRAPA_002.txt",
+    "paginas": 32,
+    "caracteres_sem_espaco": 37881,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_SENSOR_NPK_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/sensores/DOC_SENSOR_NPK_EMBRAPA_001.txt",
+    "paginas": 34,
+    "caracteres_sem_espaco": 42013,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_CE_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/sensores/DOC_CE_EMBRAPA_001.txt",
+    "paginas": 4,
+    "caracteres_sem_espaco": 11032,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_CE_EMBRAPA_002",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/sensores/DOC_CE_EMBRAPA_002.txt",
+    "paginas": 19,
+    "caracteres_sem_espaco": 27619,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_BATATA_DOCE_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/batata_doce/DOC_BATATA_DOCE_EMBRAPA_001.txt",
+    "paginas": 21,
+    "caracteres_sem_espaco": 24734,
+    "tipo_extracao": "OCR",
+    "erro": "",
+    "revisao_humana": true,
+    "possiveis_falhas_ocr": true
+  },
+  {
+    "documento_id": "DOC_SOJA_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/soja/DOC_SOJA_EMBRAPA_001.txt",
+    "paginas": 91,
+    "caracteres_sem_espaco": 46330,
+    "tipo_extracao": "OCR",
+    "erro": "",
+    "revisao_humana": true,
+    "possiveis_falhas_ocr": true
+  },
+  {
+    "documento_id": "DOC_SOJA_EMBRAPA_002",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/soja/DOC_SOJA_EMBRAPA_002.txt",
+    "paginas": 60,
+    "caracteres_sem_espaco": 106078,
+    "tipo_extracao": "OCR",
+    "erro": "",
+    "revisao_humana": true,
+    "possiveis_falhas_ocr": true
+  },
+  {
+    "documento_id": "DOC_MILHO_EMBRAPA_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/milho/DOC_MILHO_EMBRAPA_001.txt",
+    "paginas": 19,
+    "caracteres_sem_espaco": 11815,
+    "tipo_extracao": "OCR",
+    "erro": "",
+    "revisao_humana": true,
+    "possiveis_falhas_ocr": true
+  },
+  {
+    "documento_id": "DOC_SOLO_IDR_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/solo/DOC_SOLO_IDR_001.txt",
+    "paginas": 4,
+    "caracteres_sem_espaco": 6237,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_MILHO_IDR_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/milho/DOC_MILHO_IDR_001.txt",
+    "paginas": 2,
+    "caracteres_sem_espaco": 4506,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_FAO_001",
+    "sucesso": false,
+    "tipo_extracao": "não executada",
+    "erro": "documento original não validado",
+    "revisao_humana": true
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_FAO_002",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/irrigacao/DOC_IRRIGACAO_FAO_002.txt",
+    "paginas": 192,
+    "caracteres_sem_espaco": 335853,
+    "tipo_extracao": "OCR",
+    "erro": "",
+    "revisao_humana": true,
+    "possiveis_falhas_ocr": true
+  },
+  {
+    "documento_id": "DOC_NUTRIENTES_FAO_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/nutrientes/DOC_NUTRIENTES_FAO_001.txt",
+    "paginas": 366,
+    "caracteres_sem_espaco": 820115,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_001",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/sensores/DOC_SENSOR_ARTIGO_001.txt",
+    "paginas": 24,
+    "caracteres_sem_espaco": 97889,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_002",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/sensores/DOC_SENSOR_ARTIGO_002.txt",
+    "paginas": 11,
+    "caracteres_sem_espaco": 35905,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_003",
+    "sucesso": false,
+    "tipo_extracao": "não executada",
+    "erro": "documento original não validado",
+    "revisao_humana": true
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_004",
+    "sucesso": true,
+    "caminho_extraido": "extraidos/sensores/DOC_SENSOR_ARTIGO_004.txt",
+    "paginas": 27,
+    "caracteres_sem_espaco": 126420,
+    "tipo_extracao": "camada textual do PDF",
+    "erro": "",
+    "revisao_humana": false
+  }
+]

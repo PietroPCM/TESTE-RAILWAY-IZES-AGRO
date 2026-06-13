@@ -1,0 +1,169 @@
+[
+  {
+    "documento_id": "DOC_SOLO_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_SOLO_EMBRAPA_001.pdf",
+    "tamanho_bytes": 6951466,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_SOLO_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_SOLO_EMBRAPA_002.pdf",
+    "tamanho_bytes": 1065313,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_CORRECAO_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_CORRECAO_EMBRAPA_001.pdf",
+    "tamanho_bytes": 125748,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_CORRECAO_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_CORRECAO_EMBRAPA_002.pdf",
+    "tamanho_bytes": 700412,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_IRRIGACAO_EMBRAPA_001.pdf",
+    "tamanho_bytes": 1352714,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_UMIDADE_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_UMIDADE_EMBRAPA_001.pdf",
+    "tamanho_bytes": 1165257,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_SENSOR_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_SENSOR_EMBRAPA_001.pdf",
+    "tamanho_bytes": 4970670,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_SENSOR_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_SENSOR_EMBRAPA_002.pdf",
+    "tamanho_bytes": 6171772,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_SENSOR_NPK_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_SENSOR_NPK_EMBRAPA_001.pdf",
+    "tamanho_bytes": 3147707,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_CE_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_CE_EMBRAPA_001.pdf",
+    "tamanho_bytes": 1884598,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_CE_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_CE_EMBRAPA_002.pdf",
+    "tamanho_bytes": 1308773,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_BATATA_DOCE_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_BATATA_DOCE_EMBRAPA_001.pdf",
+    "tamanho_bytes": 4906133,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_SOJA_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_SOJA_EMBRAPA_001.pdf",
+    "tamanho_bytes": 18470626,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_SOJA_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_SOJA_EMBRAPA_002.pdf",
+    "tamanho_bytes": 46500800,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_MILHO_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_MILHO_EMBRAPA_001.pdf",
+    "tamanho_bytes": 4492929,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_SOLO_IDR_001",
+    "caminho": "originais/idr_parana/DOC_SOLO_IDR_001.pdf",
+    "tamanho_bytes": 303298,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_MILHO_IDR_001",
+    "caminho": "originais/idr_parana/DOC_MILHO_IDR_001.pdf",
+    "tamanho_bytes": 287278,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_FAO_001",
+    "caminho": "originais/fao/DOC_IRRIGACAO_FAO_001.pdf",
+    "erro": "HTTP 404"
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_FAO_002",
+    "caminho": "originais/fao/DOC_IRRIGACAO_FAO_002.pdf",
+    "tamanho_bytes": 1996794,
+    "status": 200,
+    "finalUrl": "https://www.fao.org/4/t0234e/t0234e.pdf",
+    "contentType": "application/pdf"
+  },
+  {
+    "documento_id": "DOC_NUTRIENTES_FAO_001",
+    "caminho": "originais/fao/DOC_NUTRIENTES_FAO_001.pdf",
+    "tamanho_bytes": 2870314,
+    "status": "existente",
+    "contentType": ""
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_001",
+    "caminho": "originais/artigos_cientificos/DOC_SENSOR_ARTIGO_001.pdf",
+    "tamanho_bytes": 2097629,
+    "status": 200,
+    "finalUrl": "https://hess.copernicus.org/articles/15/1675/2011/hess-15-1675-2011.pdf",
+    "contentType": "application/pdf"
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_002",
+    "caminho": "originais/artigos_cientificos/DOC_SENSOR_ARTIGO_002.pdf",
+    "tamanho_bytes": 1618455,
+    "status": 200,
+    "finalUrl": "https://reference-global.com/download/article/10.2478/johh-2022-0014.pdf",
+    "contentType": "application/pdf"
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_003",
+    "caminho": "originais/artigos_cientificos/DOC_SENSOR_ARTIGO_003.pdf",
+    "erro": "HTTP 404"
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_004",
+    "caminho": "originais/artigos_cientificos/DOC_SENSOR_ARTIGO_004.pdf",
+    "tamanho_bytes": 3579918,
+    "status": "existente",
+    "contentType": ""
+  }
+]

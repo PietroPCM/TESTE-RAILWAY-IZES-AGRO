@@ -1,0 +1,436 @@
+---
+documento_id: DOC_IRRIGACAO_EMBRAPA_001
+titulo: Onde posicionar sensores de umidade e de tensão de água do solo próximo da planta para um manejo mais eficiente da água de irrigação
+instituicao: Embrapa
+autores: COELHO, E. F.; SIMOES, W. L.; COELHO, E. F.; SIMOES, W. L.
+ano: 2015
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1010147/1/CircularTecnica109Ondeposicionarsensores.pdf
+arquivo_original: originais/embrapa/DOC_IRRIGACAO_EMBRAPA_001.pdf
+sha256: 50739a02841439fa3000417824e8e8a3a774aeb9a9cfe8c01259f9a08164b71a
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Cruz das Almas, BA
+Janeiro, 2015
+109
+ISSN 1809-5011
+Autores
+Eugenio Ferreira Coelho
+Engenheiro-agrícola, doutor
+em Engenharia de irrigação,
+pesquisador da Embrapa
+Mandioca e Fruticultura,
+Cruz das Almas, BA
+Welson Lima Simões
+Engenheiro-agrônomo,
+doutor em Engenharia
+Agrícola, pesquisador
+da Embrapa Semiárido,
+Petrolina, PE
+Onde Posicionar Sensores de Umidade e de
+Tensão de Água do Solo Próximo da Planta
+para um Manejo mais Eficiente da Água de
+Irrigação
+Introdução
+A irrigação eficiente é aquela com menor consumo de energia e menor perda
+de água, contribuindo na maior conservação dos recursos hídricos, por ser
+aplicada no momento correto, isto é, aquele em que a umidade do solo começa
+a comprometer a absorção de água pela planta. Essa irrigação eficiente
+requer também a reposição correta da água perdida pelas plantas desde a
+última irrigação. Os sensores que medem a umidade e a tensão de água do
+solo são instrumentos para se alcançar uma irrigação eficiente. Contudo, é
+preciso posicioná-los adequadamente na zona radicular das plantas para que
+se possa definir corretamente quando irrigar e o quanto de água aplicar. Essa
+circular técnica reúne resultados de estudos conduzidos nos últimos anos para
+recomendar onde posicionar os sensores de umidade e de tensão de água do
+solo na zona radicular de diferentes fruteiras tropicais de forma a contribuir para
+maximização da eficiência de uso de água na irrigação.
+Sensores de água do solo
+Dentre os sensores para medidas de umidade ou tensão da água do solo, há os
+de maior e de menor precisão. Os de maior precisão são os reflectómetros do tipo
+TDR (reflectometria no domínio do tempo) ou tipo FDR (reflectometria no domínio
+da frequência), mais caros e menos acessíveis a maioria dos produtores. No caso
+de reflectómetros tipo TDR, a coleta manual de dados pode ser feita com uso
+de diferentes equipamentos como o Trase system e o Minitrase (Soil Moisture),
+sendo estes os mais apropriados para manejo em campo, pelas facilidades de
+leituras diretas da umidade. O reflectómetro TDR 100 (Campbell Scientific
+1
+)
+não é vendido na forma de um equipamento único como o Trase System,
+mas em partes separadas (TDR 100, datalogger, bateria, mostrador digital),
+sendo necessário ao usuário reunir essas partes em uma caixa para tornar o
+equipamento portátil. Outro tipo de reflectometro de TDR disponível no mercado
+é a TDR 300, que tem preço mais acessível e é de mais fácil manuseio (Figura1).
+Figura 1. Reflectometros tipo TDR disponíveis para a agricultura e manejo da água de irrigação: (a)
+TDR 100; (b) Trase system; (c) Trase 300.
+A B C
+1
+A marca do produto não implica em endosso pelos autores.
+Fotos: (A) Alisson J.P Silva,
+(B) Tacisio P. Andrade
+
+--- PÁGINA 2 ---
+2 Onde posicionar sensores de umidade e de tensão de água do solo próximo da planta...
+Os reflectometros comerciais que usam o princípio
+da FDR tal como o Diviner são eficientes no
+manuseio em campo, sendo apropriados para o
+manejo com leituras manuais (Figura 2).
+Distribuição de raízes de fruteiras
+Os fatores que interferem na distribuição do sistema
+radicular são o tipo e a configuração do sistema de
+irrigação, tipos e vazões dos emissores, o manejo
+da irrigação e em especial a frequência de irrigação.
+A maior frequência de irrigação acarreta menor
+volume de solo molhado e, portanto, sistemas
+radiculares mais próximos da superfície do solo ou
+mais contraídos, ao contrário das irrigações menos
+frequentes, que proporcionam sistemas radiculares
+mais expandidos e profundos.
+Para realização de um bom manejo da irrigação,
+o ideal é que, após a irrigação, o solo atinja a sua
+umidade adequada (capacidade de campo) até a
+profundidade onde se encontre 80% da distribuição
+do sistema radicular ativo da cultura, denominada
+profundidade efetiva. Em se tratando de irrigação
+localizada, como gotejamento e microaspersão,
+é necessário conhecer tanto a profundidade
+quanto a distancia horizontal efetiva das raízes
+ativas para absorção, em relação à planta, isto
+é, a profundidade do solo e a distância da planta
+onde se concentram 80% do comprimento total
+das raízes. A Tabela 1 expõe a profundidade e a
+distância horizontal efetiva das raízes de algumas
+fruteiras tropicais a partir de resultados de pesquisa
+de diversos autores.
+A distância e profundidade efetiva do sistema
+radicular não garante que a absorção de água esteja
+ocorrendo dentro desses limites. A absorção ocorre
+onde os níveis de umidade lhe são propícios. Regiões
+de absorção de água do solo tem sido verificadas
+em pesquisa sob condições especificas (Coelho et
+al., 2008), mas o uso da distância e da profundidade
+efetiva do sistema radicular é um bom indicativo para
+posicionamento de sensores.
+Foto: Paulo Augusto Pereira
+Figura 2. Refletômetro tipo FDR (sonda de
+capacitância) em uso no campo
+Há sensores de umidade ou de tensão de água
+do solo mais acessíveis aos produtores tais como
+o Irrigas, o tensiômetro que funciona na faixa de
+tensão de 0-80 kPa; bem como, os medidores de
+tensão com uso de resistência elétrica que podem
+funcionar na faixa de tensão de água do solo entre
+150 kPa e 600 kPa no caso dos blocos de gesso,
+ou na faixa de 10 kPa a 200 kPa, no caso do
+material matricial granular (Figura 3). Há também
+indicadores de umidade do solo de baixo custo no
+mercado, que fornecem o estado de umidade de
+forma qualitativa como o método do tato, no qual
+o solo é comprimido nas mãos, e de acordo com
+aparência e a consistência da estrutura do mesmo,
+define-se o estado de umidade, bem como sua
+aparente disponibilidade de água (Figura 4).
+Foto: Eugênio F. Coelho
+Figura 3. Sensores de tensão de água do solo: (a)
+tensiometro (tensões de 0 a 80 kPa) e (b) watermark
+(tensões de 10 – 200 kPa)
+A B
+Foto: Tibério S. M. Silva
+Figuras 4. Uso do método do tato para
+determinação da umidade do solo
+
+--- PÁGINA 3 ---
+3 Onde posicionar sensores de umidade e de tensão de água do solo próximo da planta...
+É necessário localizar a região de extração de água
+do solo dentro do sistema radicular para caracterizar
+melhor o posicionamento dos sensores de água do
+solo. Adota-se a distância e profundidade efetiva de
+extração de água do solo, à semelhança da distância
+e profundidade efetiva do sistema radicular, para
+fins de posicionamento de sensores de umidade ou
+tensão de água do solo. Os sensores de umidade e
+potencial de água do solo devem ser instalados na
+zona radicular limitada pela distância e profundidade
+onde ocorre 80% da extração de água pelas
+raízes. Coelho et al. (2008) sintetiza as distâncias
+e profundidades efetivas de extração de água pelo
+sistema radicular para diferentes fruteiras tropicais,
+sob condi ç ões de irrigação (Tabela 2).
+Os valores da Tabela 2 foram recomendados para
+condições comuns de irrigação por microaspersão
+e gotejamento. Entretanto, emissores com menores
+vazões, ou no caso de uso da frequência de um dia,
+causará uma redução nas distâncias e profundidades
+efetivas de extração de água pelas plantas.
+Tabela 1. Profundidade e distância efetiva do sistema radicular de algumas espécies frutíferas irrigadas.
+Cultura Sistema de irrigação Espaçamento
+(m x m)
+Profundidade
+efetiva (m)
+Distância
+efetiva (m)
+Fonte
+Bananeira microaspersão 3,00 x 3,00 0,40 a 0,60 0,60 Coelho et al. (2008)
+Limão Thaiti microaspersão 7,00 x 8,00 0,40 a 0,60 2,00 Coelho et al. (2008)
+microaspersão 5,00 x 7,00 0,60 2,00 Machado & Coelho (2000)
+Goiabeira microaspersão 5,00 x 6,00 0,80 0,80 Bassoi et al. (2002)
+Laranja gotejamento 7,00 x 5,00 2,00 2,00 Coelho et al. (2008)
+Mamoeiro gotejamento 3,5 x 1,70 0,45 0,60 Coelho et al. (2008)
+gotejamento enterrado 3,5 x 1,70 0,25 0,45
+Carvalho (2011)
+microaspersão 3,5 x 1,70 0,45 0,55
+Mangueira gotejamento 5,00 x 8,00 0,90 1,60 Coelho et al. (2008)
+microaspersão 7,00 x 9,00 0,60 2,00
+Maracujazeiro gotejamento 3,50 x 4,00 0,40 a 0,60 0,65 Sousa et al. (2002)
+Videira gotejamento e 2,00 x 4,00 0,40 0,60 Bassoi et al. (2003)
+microaspersão 3,00 x 3,50 0,60 0,60
+Tabela 2. Distância e profundidade efetiva de extração de água no solo, para bananeira, limoeiro, mamoeiro e
+mangueira, sob irrigação localizada (Coelho et al., 2008).
+Cultura Sistema de irrigação
+Frequência de
+irrigação (dias)
+Distância (m) Profundidade (m)
+Bananeira Microaspersão 2 0,70 0,50
+Bananeira Microaspersão 4 0,70 0,60
+Bananeira Microaspersão 6 1,10 0,80
+Limão Thaiti Microaspersão 2 1,20 0,50
+Mamoeiro Gotejamento 3 0,55 0,40
+Mamoeiro Gotejamento 2 0,40 0,30
+Mangueira Microaspersão 2 1,50 0,70
+
+--- PÁGINA 4 ---
+4 Onde posicionar sensores de umidade e de tensão de água do solo próximo da planta...
+Posicionamento de sensores
+Posicionar os sensores de medição de umidade
+ou tensão de água do solo significa instalar esses
+sensores no entorno da planta onde a atividade das
+raízes é representativa de todo o sistema radicular,
+isto é, onde eles possam detectar as variações de
+umidade e de tensão de água do solo de forma a
+representar a variação em todo sistema radicular
+(Figura 5). Os sensores não podem ser instalados
+onde não há absorção de água ou onde a absorção
+não seja significativa, isto é entre duas fileiras de
+plantas ou entre duas plantas.
+Existe a recomendação de uso de um segundo
+sensor na borda inferior da profundidade efetiva
+do sistema radicular para detectar o momento
+de finalizar a irrigação, o que pode ser usado,
+entretanto, é necessário assegurar que seja uma
+alternativa mais adequada que o uso do tempo de
+irrigação calculado. A instalação de sensores de
+tensão de água como tensiômetros e sensores de
+resistência elétrica como o watermark deve levar
+em conta, além da região de relevante extração de
+água os limites de funcionamento do sensor.
+A definição da região para posicionamento de
+sensores de água do solo dessa circular técnica foi
+feita para algumas fruteiras tropicais com base: (i)
+nos limites da zona de extração de água pelas raízes
+onde ocorre pelo menos 80% da extração total e
+(ii) nos limites da região onde ocorre pelo menos
+80% do comprimento total das raízes. A interseção
+da região da zona radicular que concentra 80%
+do comprimento total das raízes e da região onde
+concentra 80% da extração total de água da planta
+resulta na região considerada mais propícia à
+instalação de sensores de umidade do solo.
+A Tabela 3 resulta da adaptação de resultados
+de pesquisas realizadas para definição do
+posicionamento de sensores de umidade e de
+tensão de água do solo, por meio da distância da
+planta e da profundidade do solo para diferentes
+fruteiras, sob sistema de irrigação por gotejamento
+e por microaspersão (SANTANA JUNIOR, 2012;
+CARVALHO, 2012, SANTOS et al., 2007).
+A distância recomendada na Tabela 3 corresponde
+à distância máxima para instalação dos sensores,
+entretanto as zonas de maior atividade do sistema
+radicular, isto é, a região onde ocorre as maiores
+extrações de água pelas raízes ocorre entre 0,20
+m e 0,40 m para todas as fruteiras mencionadas,
+exceto o abacaxi.
+Figura 5. Posicionamento de tensiometro próximo de
+uma touceira de bananeiras
+Foto: Tibério S. M. Silva
+Tabela 3. Recomendação para posicionamento de sensores de umidade e de tensão de água do solo para
+fruteiras tropicais sob irrigação por microaspersão e gotejamento.
+Cultura Frequência de
+irrigação (dias)
+Emissor Vazão do
+emissor L/h
+Distância máxima
+da planta (m)
+Profundidade máxima
+do solo (m)
+Abacaxi 2 gotejamento 4 0,20 0,15 - 0,35
+Citros 2 microaspersão 38 1,00 0,20 - 0,35
+Bananeira 2 microaspersão 60 0,60 0,20 - 0,35
+Bananeira 2 gotejamento 16 0,50 0,20 - 0,35
+Mamão 2 gotejamento 12 0,65 0,20 - 0,50
+Mamão 2 gotejamento 24 0,71 0,20 - 0,35
+Mamão 2 micro 60 0,55 0,20 - 0,45
+Mamão 2 gotejamento 12 0,70 0,20 - 0,45
+Mangueira 2 micro 43 - 60 1,50 0,20 - 0,60
+Maracujazeiro 2 gotejamento 8 0,40 0,20 - 0,35
+
+--- PÁGINA 5 ---
+5 Onde posicionar sensores de umidade e de tensão de água do solo próximo da planta...
+Casos específicos de posicionamento de
+sensores para fruteiras
+Os casos específicos de posicionamento de sensores
+de água no solo são os que envolvem variações
+da condição edafoclimatica, da vazão do emissor
+e da frequência de irrigação. Para a mangueira, a
+diferença no posicionamento de sensores para regiões
+semiáridas e subúmidas está na distância efetiva
+da planta, que é maior nas condições subúmidas
+(2,0 m) comparada à condição semiárida (1,50 m),
+sendo a profundidade efetiva de 0,70 m. No caso
+da bananeira sob microaspersão, em condições
+subúmidas a distância efetiva também é maior (0,80
+m) que nas condições semiáridas (0,70 m), embora
+com profundidade efetiva menor (0,40 m).
+A vazão do emissor influência diretamente a área
+molhada do solo. Quanto maior a vazão, maior a
+área molhada. Dessa forma, na Tabela 4, verifica-
+se as recomendações de distâncias e profundidades
+de instalação de sensores de umidade e de tensão
+para diferentes vazões do microaspersor. Deve-se
+destacar que a distância da planta onde ocorre maior
+atividade do sistema radicular para a bananeira situa-
+se entre 0,20 m e 0,40 m, embora o sensor possa
+ser instalado dentro da região limitada pela distância
+máxima sugerida na Tabela 4.
+A frequência de irrigação afeta o posicionamento dos
+sensores. O sensor em baixa frequência de irrigação,
+isto é, em irrigações mais espaçadas no tempo,
+pode ser estar localizado mais distante da planta e
+em maior profundidade no solo. A Tabela 5 ilustra a
+variação das posições de instalação de sensores de
+umidade e tensão de água do solo para a bananeira
+e mamoeiro, sendo que, mesmo nessas condições,
+prevalece maior atividade das raízes na faixa de
+distância mencionada. As profundidades máximas
+servem como limite de instalação dos sensores,
+embora, por segurança a camada de 0,20 a 0,40
+seja a mais adequada.
+O posicionamento do segundo sensor a ser instalado,
+no caso de adoção do mesmo para definir o final da
+irrigação, segue as mesmas distâncias sugeridas e as
+profundidades serão as profundidades efetivas das
+raízes, conforme a Tabela 1. O correto posicionamento
+contribui para maior eficiência do manejo da água, uma
+vez que se detectará o momento de irrigar de forma a
+representar as respostas no solo da atividade da planta
+no uso da água.
+Tabela 4. Distância e profundidade de instalação de sensores de umidade e de potencial de água do solo
+para bananeira sob microaspersão com diferentes vazões do microaspersor.
+Tabela 5. Posicionamento de sensores de umidade para diferentes frequências de irrigação, adaptado de
+Santana Junior (2012) e Carvalho (2012).
+Sensor Sistema de
+irrigação
+Vazão do
+emissor (L/h)
+Raio de ação do
+emissor (m)
+Distância máxima
+da planta (m)
+Profundidade
+máxima do solo (m)
+Umidade micro 32 1,50 0,70 0,20 - 0,35
+Umidade micro 60 3,20 0,80 0,20 - 0,35
+Tensiometro micro 32 1,50 0,50 0,20 - 0,35
+Tensiometro micro 60 3,20 0,50 0,20 - 0,60
+Cultura Sistema de irrigação Frequência de
+irrigação (dias)
+Distância da planta
+(m)
+Profundidade do solo
+(m)
+Bananeira microaspersão 2 dias 0 - 0,70 0,20 - 0,50
+Bananeira microaspersão 4 dias 0 – 0,70 0,20 – 0,60
+Bananeira microaspersão 6 dias 0 – 1,10 0,20 - 0,80
+Mamoeiro gotejamento 3 dias 0 – 0,55 0,20 – 0,40
+Mamoeiro gotejamento 2 dias 0 – 0,40 0,20 – 0,30
+
+--- PÁGINA 6 ---
+6 Onde posicionar sensores de umidade e de tensão de água do solo próximo da planta...
+Embrapa Mandioca e Fruticultura
+Endereço : Rua Embrapa, s/n, Caixa Postal 07,
+44380-000, Cruz das Almas - Bahia
+Fone : (75) 3312-8048
+Fax : (75) 3312-8097
+SAC: www.embrapa.br/fale-conosco/sac/
+www.embrapa.br/mandioca-e-fruticultura
+1
+a
+edição
+(2015): online
+Presidente : Aldo Vilar Trindade
+Secretária : Maria da Conceição P. Borba dos Santos
+Membros : Antonio Alberto Rocha Oliveira, Aurea
+Fabiana Apolinário de Albuquerque, Cláudia Fortes
+Ferreira, Herminio Souza Rocha, Jacqueline Camolese
+de Araújo, Marcio Eduardo Canto Pereira, Tullio
+Raphael Pereira de Pádua, Léa Ângela Assis Cunha,
+Lucidalva Ribeiro Gonçalves Pinheiro
+Supervisão editorial : Aldo Vilar Trindade
+Revisão de texto : Jacqueline Camolese de Araujo,
+Maurício Antonio Coelho Filho
+Revisão gramatical : Mª da Conceição P. B.dos Santos
+Normalização bibliográfica: Lucidalva Ribeiro G. Pinheiro
+Editoração : Maria da Conceição P. Borba dos Santos
+Comitê de
+publicações
+Expediente
+Circular
+Técnica, 109
+CGPE 11774
+Referências
+BASSOI, L.H.; TEIXEIRA, A.H.C.; SILVA, J.A.M.;
+SILVA, E.E.G.; TARGINO, E.L.; MAIA, J.L.T.;
+FERREIRA, M.N.L. Parâmetros para o manejo de
+irrigação da goiabeira no Vale do São Francisco.
+In: CONGRESSO BRASILEIRO DE ENGENHARIA
+AGRÍCOLA, 31., 2002, Salvador. Anais...
+Salvador: SBEA, 2002. (cd rom).
+BASSOI, L.H.; HOPMAMS, J.W.; JORGE, L.A.C.;
+ALENCAR, C.M.; SILVA, J.A.M. Grapevine root
+distribution for drip and microsprinkler irrigation.
+Scientia Agricola , Piracicaba, v.60, n.2, p.377-387,
+2003.
+CARVALHO, G. C. Variáveis de crescimento,
+de produção e da relação solo-água-planta no
+mamoeiro Sunrise Solo sob sistemas de irrigação
+localizada . Cruz das Almas: Universidade Federal
+do Recôncavo da Bahia. Dissertação (Mestrado) -
+2011.
+COELHO, E. F.; SIMÕES, W. L; CARVALHO, J. E.
+B. de; COELHO FILHO, M. A. Distribuição de raízes
+e extração de água do solo em fruteiras tropicais
+sob irrigação . 1. ed. Cruz das Almas: Embrapa
+Mandioca e Futicultura Tropical, 2008. v. 1. 80p.
+MACHADO, C. C.; COELHO, R. D. Estudo da
+distribuição espacial do sistema radicular do limão
+“Cravo” enxertado com lima ácida “Tahiti”. Laranja ,
+Cordeirópolis, v.21, n.2, p. 359-380, 2000.
+SANTANA JUNIOR, E.B. Caracterização solo-água,
+distribuição radicular e eficiência de uso da água
+pela cultura da banana sob diferentes configurações
+de irrigação localizada . 2012. Cruz das Almas:
+Centro de Ciências Agrárias, Universidade Federal
+do Recôncavo da Bahia Dissertação (Mestrado em
+Ciências Agrárias).
+SANTOS, D. B. dos; COELHO, E. F.; AZEVEDO,
+C. A. V. de. Sensor placement for soil water
+monitoring in lemon irrigated by microsprinkler.
+Revista Brasileira de Engenharia Agrícola e
+Ambiental (Impresso), v. 11, p. 46-52, 2007.
+SOUSA, V. F.; FOLEGATTI M. V.; COELHO FILHO,
+M. A.; FRIZZONE, J. A. Distribuição radicular do
+maracujazeiro sob diferentes doses de potássio
+aplicadas por fertirrigação. Revista Brasileira de
+Engenharia Agrícola e Ambiental , Campina Grande,
+v. 6, n.1, p.51-56. 2002.

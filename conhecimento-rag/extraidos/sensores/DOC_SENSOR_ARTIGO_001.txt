@@ -1,0 +1,2808 @@
+---
+documento_id: DOC_SENSOR_ARTIGO_001
+titulo: The International Soil Moisture Network: a data hosting facility for global in situ soil moisture measurements
+instituicao: Hydrology and Earth System Sciences (Copernicus Publications)
+autores: Dorigo, W. A.; Wagner, W.; Hohensinn, R.; Hahn, S.; Paulik, C.; Xaver, A.; Gruber, A.; Drusch, M.; Mecklenburg, S.; van Oevelen, P.; Robock, A.; Jackson, T.
+ano: 2011
+url_original: https://hess.copernicus.org/articles/15/1675/2011/hess-15-1675-2011.pdf
+arquivo_original: originais/artigos_cientificos/DOC_SENSOR_ARTIGO_001.pdf
+sha256: 9410feec8b54c6b472d360ef51b1e34f6e7a867d287f959884dc6ae2c3dd5413
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+www.hydrol-earth-syst-sci.net/15/1675/2011/
+doi:10.5194/hess-15-1675-2011
+© Author(s) 2011. CC Attribution 3.0 License.
+Hydrology and
+Earth System
+Sciences
+The International Soil Moisture Network: a data hosting facility for
+global in situ soil moisture measurements
+W. A. Dorigo
+1
+, W. Wagner
+1
+, R. Hohensinn
+1
+, S. Hahn
+1
+, C. Paulik
+1
+, A. Xaver
+1
+, A. Gruber
+1
+, M. Drusch
+2
+,
+S. Mecklenburg
+3
+, P. van Oevelen
+4
+, A. Robock
+5
+, and T. Jackson
+6
+1
+Institute of Photogrammetry and Remote Sensing (IPF), Vienna University of Technology, Vienna, Austria
+2
+European Space Agency, ESTEC, Noordwijk, The Netherlands
+3
+European Space Agency, ESRIN, Frascati, Italy
+4
+International GEWEX Project Office (IGPO), Silver Spring, Maryland, USA
+5
+Department of Environmental Sciences, Rutgers University, New Brunswick, New Jersey, USA
+6
+Hydrology and Remote Sensing Laboratory, Agricultural Research Service, US Department of Agriculture, Beltsville, USA
+Received: 20 January 2011 – Published in Hydrol. Earth Syst. Sci. Discuss.: 3 February 2011
+Revised: 23 May 2011 – Accepted: 24 May 2011 – Published: 30 May 2011
+Abstract.
+In situ measurements of soil moisture are invalu-
+able for calibrating and validating land surface models and
+satellite-based soil moisture retrievals.
+In addition, long-
+term time series of in situ soil moisture measurements them-
+selves can reveal trends in the water cycle related to cli-
+mate or land cover change.
+Nevertheless, on a worldwide
+basis the number of meteorological networks and stations
+measuring soil moisture, in particular on a continuous ba-
+sis, is still limited and the data they provide lack standardiza-
+tion of technique and protocol. To overcome many of these
+limitations, the International Soil Moisture Network (ISMN;
+http://www.ipf.tuwien.ac.at/insitu) was initiated to serve as
+a centralized data hosting facility where globally available
+in situ soil moisture measurements from operational net-
+works and validation campaigns are collected, harmonized,
+and made available to users. Data collecting networks share
+their soil moisture datasets with the ISMN on a voluntary
+and no-cost basis.
+Incoming soil moisture data are auto-
+matically transformed into common volumetric soil moisture
+units and checked for outliers and implausible values. Apart
+from soil water measurements from different depths, impor-
+tant metadata and meteorological variables (e.g., precipita-
+tion and soil temperature) are stored in the database. These
+will assist the user in correctly interpreting the soil moisture
+data.
+The database is queried through a graphical user in-
+terface while output of data selected for download is pro-
+vided according to common standards for data and metadata.
+Correspondence to:
+W. A. Dorigo
+(wd@ipf.tuwien.ac.at)
+Currently (status May 2011), the ISMN contains data of 19
+networks and more than 500 stations located in North Amer-
+ica, Europe, Asia, and Australia. The time period spanned
+by the entire database runs from 1952 until the present, al-
+though most datasets have originated during the last decade.
+The database is rapidly expanding, which means that both
+the number of stations and the time period covered by the
+existing stations are still growing. Hence, it will become an
+increasingly important resource for validating and improving
+satellite-derived soil moisture products and studying climate
+related trends.
+As the ISMN is animated by the scientific
+community itself, we invite potential networks to enrich the
+collection by sharing their in situ soil moisture data.
+1 Introduction
+Across many landscapes, soil moisture and its freeze/thaw
+state control evapotranspiration, thus providing the link be-
+tween terrestrial and atmospheric water, energy, and carbon
+cycles (Robock et al., 2000). In addition, surface soil mois-
+ture is a determinant of the partitioning of surface precipita-
+tion into infiltration and runoff. The availability of better spa-
+tial estimates of surface soil moisture conditions can there-
+fore help to improve forecasting of precipitation, droughts
+and floods as well as climate projections and predictions
+(Dirmeyer et al., 2006).
+It will also contribute to further
+the development of other hydrological applications that can
+support water managers and water resource decision-makers.
+The importance of soil moisture in the global climate system
+Published by Copernicus Publications on behalf of the European Geosciences Union.
+
+--- PÁGINA 2 ---
+1676
+W. A. Dorigo et al.: The International Soil Moisture Network
+has recently been underlined by the Global Climate Observ-
+ing System (GCOS) by endorsing soil moisture as an Essen-
+tial Climate Variable
+1
+.
+The value of soil moisture for various applications is re-
+flected by the large number of satellite-based soil moisture
+products that have emerged during the last decade. Only in
+2000, Robock et al. (2000, p. 1298) concluded their paper
+stating: “There are no existing global soil moisture datasets
+measured from remote sensing”. Today, a wide variety of op-
+erational global soil moisture products are available for ex-
+isting microwave sensors such as AMSR-E (Jackson, 1993;
+Njoku et al., 2003; Koike et al., 2004; Owe et al., 2008),
+TRMM-TMI (Owe et al., 2008), SSM/I (Owe et al., 2008),
+WindSat (Li et al., 2010), ERS 1 and 2 (Wagner et al., 1999;
+Scipal et al., 2002), and ASCAT (Naeimi et al., 2009). In ad-
+dition, special missions dedicated to soil moisture either have
+been recently launched, i.e. the Soil Moisture and Ocean
+Salinity Mission (SMOS) of the European Space Agency
+(ESA; Kerr et al., 2001; Wigneron et al., 2007), or are sched-
+uled for the near future, such as the Soil Moisture Active
+& Passive (SMAP) mission of the United States National
+Aerospace Space Administration (NASA; Entekhabi et al.,
+2010a).
+In addition, global soil moisture products based
+on land surface models are being made available routinely
+through operational forecast systems, e.g. from the European
+Centre for Medium-Range Weather Forecasts (Drusch and
+Viterbo, 2007), re-analyses (Uppala et al., 2005; Simmons et
+al., 2007) or the soil moisture fields provided by the Global
+Land Surface Data Assimilation System (Rodell et al., 2004)
+and the Global Soil Wetness Project (Dirmeyer et al., 1999).
+To calibrate and validate such satellite- and model-based
+soil moisture estimates, in situ measurements are an indis-
+pensable source of information (e.g. Ceballos et al., 2005;
+Wagner et al., 2007; Balsamo et al., 2009; Gruhier et al.,
+2010; Jackson et al., 2010; Liu et al., 2011).
+Moreover,
+in situ soil moisture measurements provide information that
+facilitates the study of the spatial and temporal variability
+of soil moisture at different scales (Famiglietti et al., 1999;
+Entin et al., 2000; Brocca et al., 2007), the exchange of water
+between different layers within the soil column or between
+the land surface and the atmosphere (Mahfouf and Noilhan,
+1991; Chen and Hu, 2004; Albergel et al., 2008), and climate
+related trends in soil moisture (Robock et al., 2005).
+Since the early 1980s, several dedicated soil moisture field
+campaigns in the US, Europe, and Australia have resulted in
+both short term and long term soil moisture datasets. Most
+of these campaigns were designed for satellite validation pur-
+poses. Of great historical importance were the soil moisture
+field experiments performed at the Beltsville Agricultural
+Research Center (BARC) where for one the first times remote
+sensing measurements were coupled with field observations
+(Wang et al., 1980). Being one of the first datasets publicly
+available, the BARC datasets triggered many researchers to
+1
+http://gosic.org/ios/MATRICES/ECV/ECV-Introduction.htm
+study the ability of retrieving soil moisture from space obser-
+vations. Other historically important experiments include the
+Botswana experiment (Van De Griend et al., 1989), HAPEX-
+Sahel (Prince et al., 1995), EFEDA (Braud et al., 1993), FIFE
+(Peck and Hope, 1995), and the soil moisture experiments
+coordinated by the United States Department of Agriculture
+(e.g. Jackson et al., 2002).
+The importance of soil moisture has been growing in im-
+portance also in the meteorological and hydrological com-
+munities and as a result several networks now measure soil
+moisture as a routine observation (e.g. Beyrich and Adam,
+2007; Calvet et al., 2008) . Nevertheless, on a global basis
+the number of long-term in situ monitoring networks is still
+small and mostly restricted to mid-latitude regions. Only few
+measurements are being made in Africa and South America.
+Complicating the easy utilization of network data is the lack
+of a standard measurement technique and a standard mea-
+surement protocol (Robock et al., 2000). Also, the fact that
+the various datasets are managed by a large number of dif-
+ferent organizations makes clear that global studies incorpo-
+rating in situ soil moisture measurements are tedious to per-
+form.
+Actions to collect data from several networks and to offer a
+centralized portal for dissemination are basically confined to
+the historical Global Soil Moisture Data Bank previously ex-
+isting at Rutgers University, NJ (Robock et al., 2000, 2005).
+This data archive provided data and metadata for various his-
+torical and operative networks around the globe. The dozens
+of scientific publications relying on its datasets have affirmed
+the importance of this dissemination platform. Although the
+Global Soil Moisture Data Bank was a good starting point for
+global validation efforts, the last update of the data base oc-
+curred in 2005 which made it unusable for the most recent
+and upcoming satellite-based soil moisture products listed
+above. In addition, the observations of the various networks
+in the Global Soil Moisture Data Bank were not harmonized
+in terms of measurement units. They were presented either
+as plant-available volumetric or as total volumetric soil mois-
+ture in cm or percent for a given soil layer depth. Hence, the
+soil water units needed to be carefully checked before per-
+forming a comparison.
+The need for intensified international cooperation in estab-
+lishing new monitoring networks and constructing central-
+ized and harmonized global soil moisture datasets has been
+broadly recognized by the international community (Grabs
+and Thomas, 2002; Jackson et al., 2005).
+Hence, in 2006
+the International Soil Moisture Working Group (ISMWG)
+was established to facilitate the creation of multi-source soil
+moisture datasets, including in situ observations.
+The de-
+velopment of these datasets and an in situ soil moisture net-
+work was consequently included in the Group on Earth Ob-
+servation (GEO) 2009–2011 Work Plan under sub-task WA-
+08-01a lead by the Global Energy and Water Cycle Exper-
+iment (GEWEX) and ESA. Its implementation is coordi-
+nated through the ISMWG under auspices of GEWEX. The
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 3 ---
+W. A. Dorigo et al.: The International Soil Moisture Network
+1677
+launch of SMOS in November 2009 has given a strong im-
+pulse to the establishment of a centralized data hosting fa-
+cility for in situ soil moisture measurements in support of a
+reliable calibration and validation of the mission soil mois-
+ture products.
+It was recognized that an integrated system
+was needed to host quality-controlled and harmonized soil
+moisture measurements from the various worldwide ground
+validation campaigns and networks.
+For this reason, ESA
+has supported the development and first phase of operation
+of a data hosting facility called the International Soil Mois-
+ture Network (Dorigo et al., 2011).
+The International Soil
+Moisture Network (ISMN) has been implemented by the Vi-
+enna University of Technology and provides no-cost access
+to its datasets for all users.
+This article gives an overview of the ISMN, which can be
+accessed through http://www.ipf.tuwien.ac.at/insitu. To put
+the structure of the system and the data manipulations per-
+formed within the system into a clearer context, the article
+starts with an overview of soil moisture definitions and the
+measurement techniques and instruments commonly used to
+measure soil moisture in situ (Sect. 2). Section 3 provides
+an overview of the technical design and implementation of
+the ISMN, and the methods used for harmonizing the soil
+moisture datasets.
+Section 4 summarizes the datasets cur-
+rently contained in the database. Even though the number of
+networks and stations are still rapidly increasing (visit http:
+//www.ipf.tuwien.ac.at/insitu/index.php/news.html for news
+on recent updates), this section intends to provide insight in
+the diversity of the datasets that are considered for integra-
+tion in the ISMN. Section 5 discusses the possible outreach
+of the ISMN and some issues that should be taken into con-
+sideration if in situ soil moisture data are used for calibration
+and validation of remote sensing products and land surface
+models. Section 6 concludes this paper by looking into the
+future and outlining some prerequisites for a successful con-
+tinuation of the ISMN.
+2
+Measuring in situ soil moisture
+2.1 Soil moisture definitions and units
+Soil moisture ( 2)
+is usually defined as the water present
+in the unsaturated part of the soil profile, i.e., between the
+soil surface and the ground water level and can be expressed
+in different units (e.g. Fredlund and Rahardjo, 1993; Hillel,
+1998; Robock et al., 2000; Seneviratne et al., 2010).
+An
+understanding of the different definitions is crucial for ho-
+mogenization of the soil moisture measurements. The most
+common definition of soil moisture is volumetric soil mois-
+ture. It is either expressed as the volumetric fraction of water
+in a given soil depth [m
+3
+water per m
+3
+soil] or as the depth of
+a column of water contained in a given depth of soil [mm wa-
+ter per mm soil]. The volumetric fraction [m
+3
+m
+− 3
+] is most
+widespread in earth observation. Therefore, this is also the
+unit adopted in the ISMN. Datasets that are provided in other
+units will be converted to this unit (Sect. 3.3.2). Some other
+relevant descriptors are presented below.
+Soil moisture can also be expressed as fraction of satura-
+tion. A fraction of the soil, typically less than 0.5, consists
+of pores that can be filled with air or water. This fraction is
+called the porosity ( P
+). If this fraction were completely filled
+with water, the soil would reach its maximum soil moisture
+content or saturation. The saturation ratio varies between 0
+(no soil moisture) and 1 (full saturation).
+The porosity, or
+water storage capacity, is needed to convert the saturation ra-
+tio into volumetric fraction.
+Another commonly used term is plant available water
+(PAW), which is the volume of water available to plants.
+PAW is computed by subtracting the volume of water cor-
+responding to the permanent wilting point from the total vol-
+umetric soil water content. Below the wilting point water is
+held too strongly by the soil matrix and is not accessible to
+plants (Hillel, 1998). The wilting point depends on soil prop-
+erties such as soil texture, and thus varies geographically.
+Essential for the definition of soil moisture is the char-
+acterization of the soil volume, as soil moisture content is
+not homogeneously distributed vertically and horizontally
+and thus depends on the soil volume considered.
+This is
+of high relevance for intercomparing in situ measurements
+originating from different stations and for the comparison of
+in situ measurements with Earth observation and land sur-
+face model data. For example, some methods sample only
+soil moisture in the top few millimeters to centimeters of the
+soil (e.g., microwave remote sensing), a small volume at a
+given depth (e.g., Time Domain Reflectometry (TDR) mea-
+surements Sect. 2.2), or provide an integral measure down
+to the water table depth. Moreover, for certain soil moisture
+definitions (e.g., root zone soil moisture, total soil moisture),
+2
+may be a function of space and time (i.e., as a function of
+the plants’ rooting depth or the water table depth).
+For a more extensive description of soil moisture defini-
+tions we refer the reader to existing literature (e.g. Hillel,
+1998; Seneviratne et al., 2010).
+2.2 Measurement techniques
+Several techniques are available for measuring soil moisture
+content in situ (Ward and Robinson, 1990; Robock et al.,
+2000; Walker et al., 2004; Robinson et al., 2008; Senevi-
+ratne et al., 2010). They can be categorized either as direct
+or indirect methods. The most frequently used methods are
+summarized below. For a more detailed discussion we refer
+to the references cited above.
+2.2.1 Gravimetric method
+The gravimetric method is the only method that measures
+soil moisture directly. Typically, soil samples are taken using
+coring devices or augers at specific depths and locations. The
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 4 ---
+1678
+W. A. Dorigo et al.: The International Soil Moisture Network
+samples are weighted before and after drying, and from the
+changes in mass, the soil moisture content can be derived.
+The method is labor-intensive and destructive (i.e., a sam-
+ple cannot be taken at exactly the same location more than
+once).
+When implemented as a monitoring technique, the
+temporal resolution of long-term measurement networks us-
+ing this technique is usually coarse, typically of the order of
+1–2 weeks at best (Seneviratne et al., 2010). Nevertheless,
+as the gravimetric method is low-tech and simple, it makes
+an excellent technique for long homogeneous climatological
+records (Robock et al., 2000). Today, most systematic obser-
+vations are based on indirect methods; however, calibration
+typically requires using the gravimetric method.
+2.2.2 Neutron probes
+Neutron probes are relatively easy to use, accurate, and capa-
+ble of measurements in real time. This indirect method uses
+a radioactive source of fast (high-energy) neutrons, which is
+lowered into a borehole, and the backscattered slow neutrons
+are measured.
+A detector counts the number of neutrons
+slowed down or thermalized by collisions with hydrogen nu-
+clei, mainly representing soil water. A relationship with vol-
+umetric soil moisture content is obtained by calibrating the
+slow neutron counts with gravimetric samples of soil mois-
+ture content and bulk densities (Vachaud et al., 1977). Since
+radioactive scattering occurs over a spherical domain, a neu-
+tron probe samples a volume of soil rather than a point. The
+probe’s relatively large volume of influence makes observa-
+tions at shallow depths prone to errors, as adjoining air is
+also sampled. Disadvantages of neutron probes include their
+requirement to be calibrated to soil types and zones over a pe-
+riod of time with different soil moisture fractions, that they
+are also labor-intensive, the need for precautions associated
+with handling radioactive material, and the relatively high
+costs. It is also not adaptable to frequent and automated ob-
+servations. The neutron probe is mostly used to measure soil
+moisture differences rather than absolute soil moisture con-
+tent.
+2.2.3 Electromagnetic techniques
+Soil capacitance measurements, TDR, and Frequency Do-
+main Reflectometry (FDR) are electromagnetic techniques
+that make use of the dependency of the dielectric permittivity
+of the soil on soil moisture content, caused by the difference
+between the dielectric constant of soil components and wa-
+ter, respectively.
+These techniques are non-destructive and
+non-radioactive and can be easily set up for automated oper-
+ation with a data logger. This facilitates frequent measure-
+ments up to several measurements per hour. TDR and FDR
+sensors, operating at higher frequencies, are more accurate
+than capacitance sensors (e.g. Robinson et al., 2008). How-
+ever, the latter are of much lower cost, which can allow for
+a higher number of instruments and thus much denser net-
+works (e.g., Bogena et al., 2007). On the other hand, FDR is
+sensitive to temperature fluctuations and ideally would need
+to be corrected for these. All techniques require calibration
+with gravimetric samples.
+2.2.4 Cosmic-ray neutrons
+Recently, a non-invasive method has been proposed that
+measures low-energy cosmic-ray neutrons that are generated
+within the soil, moderated mainly by hydrogen atoms, and
+diffused back to the atmosphere (Zreda et al., 2008; Desilets
+et al., 2010). These neutrons are sensitive to water content
+changes, but largely insensitive to variations in soil chem-
+istry. Their intensity above the surface is inversely correlated
+with hydrogen content of the soil.
+Portable neutron detec-
+tors are placed a few meters above the ground and allow for
+a sampling interval of several minutes to hours. Soil mois-
+ture information is inferred over a depth of 15 to 70 cm. In
+contrast to the methods presented above, cosmic-ray mea-
+surements integrate soil moisture measurements over much
+larger horizontal scales (diameter ∼
+670 m) and hence have
+the potential to bridge the spatial mismatch between point
+measurements using contact methods and remote sensing es-
+timates over large areas. Several operational and experimen-
+tal networks based on this method are currently set-up world-
+wide
+2
+.
+2.2.5 Other indirect techniques
+Tensiometers and electrical resistance blocks are capable of
+measuring the matric potential of soil water, which is di-
+rectly related to the ability of plants to extract water from
+soil. However, each instrument has a limited accessible wa-
+ter potential range. Tensiometers work well only in wet soils,
+whereas resistance blocks (mostly made of gypsum) do bet-
+ter in moderately dry soils (WMO8, 2008). Keeping in mind
+these known limitations they are sufficiently reliable and in-
+expensive. However, tensiometers are relatively service in-
+tensive and sensitive to temperature fluctuations while resis-
+tance blocks need careful (re-)calibration during longer op-
+eration periods.
+Both sensor types are frequently used for
+agricultural purposes. A detailed description of these meth-
+ods can be found in (WMO8, 2008).
+Heat dissipation (or pulse) sensors measure temperature
+changes in response to a heat pulse (Robock et al., 2000). It
+makes use of the principle that the thermal behavior of the
+soil is closely related to its water content. Other indirect soil
+moisture measurement techniques include gamma densitom-
+etry (based on the relatively greater gamma radiation atten-
+uation factor of water compared to other soil components)
+and psychrometers. All these indirect techniques need to be
+recalibrated with gravimetric samples.
+2
+COSMOS:http://cosmos.hwr.arizona.edu/
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 5 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1679
+Table 1.
+Static station parameters contained in the ISMN that are
+either mandatory (M), conditional (C) or optional (O) for a correct
+interpretation of in situ soil moisture measurements. A conditional
+input is only required when soil moisture is provided in units or
+definitions other than fractional volumetric soil moisture in m
+3
+m
+− 3
+and the respective information is needed to convert it to the latter.
+Variable name
+Unit
+Location degree lat/lon (Range:
+M
+[ − 90,90], [ −
+180,180])
+Elevation m
+M
+Slope degree
+O
+Aspect degree
+O
+Land cover descriptive
+O
+Land use descriptive
+O
+Photo –
+O
+Soil salinity dS m
+− 1
+O
+Soil bulk density kg m
+− 3
+C
+Soil porosity % (m
+3
+m
+− 3
+× 100)
+C
+Soil texture % clay, silt, sand
+C
+Soil textural class Descriptive, different systems
+C
+Soil depth cm
+O
+Residual water content m
+3
+m
+− 3
+C
+Saturation water content m
+3
+m
+− 3
+C
+Wilting point % (m
+3
+m
+− 3
+× 100)
+C
+Field capacity % (m
+3
+m
+− 3
+× 100) C
+3
+Implementation of the ISMN data hosting facility
+3.1 Data and metadata included
+The ultimate goal of the ISMN is to provide a system for
+the dissemination of quality-controlled and harmonized soil
+moisture measurements from various ground validation cam-
+paigns and operational networks. Harmonization and quality
+control of soil moisture datasets can only be performed if suf-
+ficient data and metadata are available (Sects. 3.3 and 3.4).
+The information that is useful in interpreting the soil mois-
+ture measurements can be subdivided into information that is
+considered either static (site characteristics) or that is highly
+variable over time (e.g. most meteorological and hydrologi-
+cal variables).
+The static variables that are included in the ISMN are sum-
+marized in Table 1. The coordinates of the measurement sta-
+tions are obligatory. Conditional variables like bulk density
+and soil porosity are needed if soil moisture data are pro-
+vided in units other than volumetric soil moisture and, as a
+consequence, the data need to be converted (Sect. 3.3.2). All
+other variables are not obligatory, but are very useful for a
+qualitative interpretation of observed soil moisture dynam-
+ics or encountered anomalies, e.g., between satellite-derived
+soil moisture and soil moisture contents measured in situ.
+Even though the variables listed in Table 1 may be consid-
+ered static over time, they usually vary with depth.
+Table 2.
+Meteorological and hydrological variables useful for the
+interpretation of soil 1 moisture data.
+Quantity name Unit
+Measuring device typically used
+Precipitation mm h
+− 1
+Storage-type gage or
+tipping bucket
+Air temperature at 2 m
+◦
+C
+Thermistor, thermometer
+Soil temperature
+◦
+C
+Thermistor, thermometer
+Soil suction kPa
+Psychrometer
+Snow water content %
+Snow pillow device and a
+pressure transducer
+Snow depth cm
+Sonic sensor
+Ground water level cm Pressure sensor
+Table 2 summarizes the meteorological and soil variables
+that vary over time that can be optionally included in the
+ISMN. Not all variables are measured at all stations. Some
+of the variables (e.g., soil suction) are directly related to the
+soil moisture content, whereas others (e.g., soil temperature
+and precipitation) can be helpful indicators of soil moisture
+data quality (Sect. 3.4).
+Temporal sampling resolutions of
+these variables (including soil moisture measurements) vary
+from 10 min to infrequent measurements every couple of
+days or even weeks, although an hourly sampling interval is
+most common. The sampling rate of the original soil mois-
+ture measurements for each network will be summarized in
+Sect. 4.
+3.2
+System overview
+3.2.1 General layout
+The data hosting facility has been designed fulfilling the fol-
+lowing requirements: Firstly, the data hosting facility had to
+be able to store all relevant information for the networks, the
+stations, the datasets, and the measurements techniques. Sec-
+ondly, this information should also be easily accessible, e.g.,
+by users who are looking for datasets within a specific region
+of interest, or by users that for satellite product validation are
+interested only in soil moisture measurements of the top soil
+layer. Finally, any modifications made to the original data,
+like harmonization, should be traceable and the user should
+be able to invert this procedure to obtain the original mea-
+surement values (e.g., plant available water).
+Based on these considerations the following system was
+implemented (Fig. 1):
+1. software for automated reading, conversion, harmoniza-
+tion, and quality checking of input data,
+2. a database containing the harmonized data and meta-
+data, and
+3. a web portal to provide the interface between the
+database and user queries and output.
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 6 ---
+1680 W. A. Dorigo et al.: The International Soil Moisture Network
+In situ soil moisture data and
+metadata provided by network 1
+In situ soil moisture data and
+metadata provided by network 2
+Data conversion ,
+harmonisation and
+quality checking
+In situ soil moisture data and
+metadata provided by network n
+Web interface
+Storage in
+data base
+Output
+Query by user
+Fig. 1. Conceptual overview of ISMN.
+The last two items are presented in this section, whereas
+data harmonization and quality control are discussed in
+Sects. 3.3 and 3.4, respectively.
+The system is automated to the highest degree possible to
+facilitate the processing of large datasets and frequent up-
+dates. In practice, this means that data harmonization, qual-
+ity control, and archiving are performed in a fully automated
+way.
+Only the ingestion into the system of the original
+datasets needs to be tailored to the specific network, as the
+data made available to the ISMN (e.g., by email or by down-
+load) are very heterogeneous with respect to file naming, file
+type, file format, the variables measured, and the metadata
+available. All data manipulations are performed in the Inter-
+active Data Language (IDL) of ITT-VIS
+3
+.
+3.2.2 Database
+The database (or archive) is the core of the ISMN data host-
+ing facility.
+Its design was very critical, since inadequate
+design considerations can significantly slow down operation
+when the database gets filled or leads to a database structure
+that is incapable of assimilating new networks with a differ-
+ent design or measurement setup. The design and content of
+the database was established after inventorying potential con-
+tributing networks, expected soil moisture and other datasets,
+possible users, and standards for hydrometeorological and
+spatial data and metadata (Sect. 3.2.4).
+Thus, an overview
+of expected database entries, data volumes, and data traffic
+could be established. A prototype of the data hosting facil-
+ity was first tested with a selected number of users and data
+providers and, wherever feasible, modified to their sugges-
+tions.
+The database distinguishes between mandatory, condi-
+tional, and optional database entries (see also Tables 1-2) and
+uses the following hierarchy: network > station > dataset.
+3
+http://www.ittvis.com
+Apart from data and metadata of soil moisture and other vari-
+ables, additional relevant information on the networks and
+the stations is included, e.g., the responsible organization or
+references to more detailed information on the networks and
+sites. Among others, an important design consideration has
+been the use of a measurement depth interval (“from – to”)
+to comply with the different measurement techniques and in-
+stallation positions of the sensors. In the case of a variable
+measured at a specific depth, the “from” and “to” depths are
+identical.
+The database was implemented in the open-source object-
+relational database management system PostgreSQL
+4
+(ver-
+sion 8.4) including the spatial database extension PostGIS
+5
+1.3.6.
+3.2.3 Web portal
+The ISMN can be accessed at http://www.ipf.tuwien.ac.at/
+insitu.
+It consists of two major parts: (i) a project website
+providing details about networks, partners, and the project
+itself, and (ii) the data hosting centre itself where users can
+query, view, and download the data contained in the database.
+Figure 2 shows a screenshot of the initial view of the data
+hosting centre.
+It embeds a Google Maps application pro-
+gramming interface (API), which offers the user a map-based
+selection tool to view and download the available data. In ad-
+dition, through the satellite data and orthophotos in Google
+Maps the user is able to obtain additional information about
+the land use/land cover and topography in the vicinity of the
+measurement stations. By clicking on the markers, the user
+obtains a summary of important metadata about the networks
+or stations, respectively, depending on the zoom level within
+Google Maps. For a selected station the available data can
+be viewed in a data viewer to get a first impression of the
+4
+http://www.postgresql.org/
+5
+http://postgis.refractions.net/
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 7 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1681
+Fig. 2.
+Web interface of ISMN. Red droplets indicate the center coordinates of the different networks contained in the database (Status as of
+May 2011).
+availability and quality of the data (Fig. 3). Apart from the
+map-based selection, the graphical data selection can also be
+refined by selecting continent, network, latitude/longitude,
+and time period. Finally, an advanced download window of-
+fers the possibility to make any query in the database based
+on SQL syntax.
+3.2.4 Output
+After selecting the required datasets for download, the out-
+put is prepared according to the data and metadata stan-
+dards of the Coordinated Energy and water cycle Observa-
+tions Project (CEOP)
+6
+,
+7
+. CEOP’s main goal is to understand
+and predict continental to local-scale hydroclimates for hy-
+drologic applications and coordination of the regional hy-
+droclimate projects. CEOP has accelerated the adoption of
+standards for various types of observations, including those
+of soil moisture.
+These standards do not only specify the
+formats of the data (Table 3) but also provide prescriptions
+on metadata formats and file naming conventions. Metadata
+descriptions compliant with ISO 19115 and INSPIRE (In-
+frastructure for Spatial Information in the European Com-
+munity)
+8
+are directly retrieved from the database and saved
+in an XML file that is appended to the data download.
+6
+CEOP is renamed GEWEX Hydroclimatology Project since
+September, 2010.
+7
+http://www.eol.ucar.edu/projects/ceop/dm/documents/
+refdata report/
+8
+http://inspire.jrc.ec.europa.eu/
+3.3 Data harmonization
+Datasets provided by participating networks (Sect. 4) are har-
+monized in time and with respect to the measurement units.
+3.3.1 Temporal resampling
+The various networks and stations measure at different tem-
+poral sampling intervals. Whereas the datasets contained in
+the Global Soil Moisture Data Bank (Robock et al., 2000)
+supply only several observations per month, most modern
+automated stations provide several measurements per hour
+(Sect. 4). Following recommendations from the World Me-
+teorological Organization, co-sponsored programs and appli-
+cations for satellite soil moisture products
+9
+, we decided that
+for the ISMN a temporal resolution of 1 hour is sufficient for
+all applications, including regional numerical weather pre-
+diction.
+Observation datasets, which are available at sub-hourly
+sampling rates, have been thinned selecting the individual
+measurements at the hourly UTC reference time step (Ta-
+ble 4).
+If at this hourly sampling interval no measure-
+ment is available (e.g., indicated by a dummy value like
+“ −
+99.90”), the database entry will receive the value “NaN”
+(Not a Number). This is illustrated in Table 4 for the time
+step 18:00 UTC. If no valid measurement is available, which
+means that the measurement value is outside a plausible
+range, the database entry for this measurement is labeled
+with a quality flag (see Sect. 3.4 for details). The thinning
+9
+http://www.wmo.int/pages/prog/sat/Requirements/
+Observational-requirements web.xls
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 8 ---
+1682 W. A. Dorigo et al.: The International Soil Moisture Network
+Fig. 3. Data viewer window with an example of soil moisture data from the SMOSMANIA network, Sabres station.
+Table 3.
+CEOP Soil Temperature and Soil Moisture Dataset Format Definition.
+Variable name C format Missing Value
+Final Units/Equations/Notes
+UTC Nominal Date/Time 16 chars N/A
+yyyy/mm/dd HH:MM, where MM is 00 or 30, only
+UTC Actual Date/Time 16 chars N/A
+yyyy/mm/dd HH:MM
+CSE Identifier 10 chars N/A
+Fill name with underscores, not spaces.
+Reference Site Identifier 15 chars N/A
+Fill name with underscores, not spaces.
+Station Identifier 15 chars N/A
+Fill name with underscores, not spaces.
+Latitude f10.5 − 99.99999
+decimal degrees. South is negative.
+Longitude f11.5 − 999.99999
+decimal degrees. West is negative.
+Elevation f7.2 − 999.99
+meters
+Sensor Height f7.2 − 999.99
+meters; height of sensor. Positive above ground level.
+Negative below ground.
+Soil Temperature f8.2 − 999.99
+Celsius
+Soil Temperature Flag 1 char M
+See Sect. 3.4
+Soil Moisture f8.2 − 999.99
+Percent. Volumetric water content.
+Soil Moisture Flag 1 char M See Sect. 3.4
+also has the advantage that the data amount is significantly
+reduced, thus leading to a better performance of the database.
+The proposed temporal resampling scheme is applied to all
+included meteorological variables, except for precipitation.
+For precipitation, which is a flux and not a state variable,
+all valid measurements taken since the penultimate database
+entry are added up for the respective time interval.
+3.3.2 Harmonizing soil moisture
+All soil moisture measurements provided to the ISMN are
+stored in the database as fractional volumetric soil moisture
+(m
+3
+m
+− 3
+)
+which is the most commonly used unit (Sect. 2.1).
+Most current networks provide their data in volumetric soil
+moisture (either in m
+3
+m
+− 3
+or %) so often no conversion
+is needed.
+However, most historical networks provide soil
+moisture in a different unit or definition and hence these ob-
+servations need to be converted. This is done according to the
+equations in Table 5. For the conversion additional metadata
+are required.
+We decided not to harmonize soil moisture measurements
+in the vertical direction (depth). A harmonization in terms of
+depths is considered infeasible, as all networks operate their
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 9 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1683
+Table 4.
+Temporal resampling: example for soil moisture
+measurements
+Original measurements
+Database entry
+Date/time value Date/time
+value
+28/04/2006 16:20 17.58 no entry
+no entry
+28/04/2006 16:40 17.49 no entry
+no entry
+28/04/2006 17:00 17.30 28/04/2006 17:00
+17.30
+28/04/2006 17:20 16.83 no entry
+no entry
+28/04/2006 17:40 16.62 no entry
+no entry
+28/04/2006 18:00 − 99.90 28/04/2006 18:00
+NaN
+28/04/2006 18:20 − 16.20 no entry
+no entry
+28/04/2006 18:40 NaN no entry
+no entry
+28/04/2006 19:00 − 0.01 28/04/2006 19:00 − 0.01
+Table 5.
+Equations used to convert original soil moisture unit into
+volumetric water content 2
+(% volume).
+Measurement unit
+Conversion equation
+Gravimetric water content
+(w), defined as the ratio
+between the mass of water
+and the mass of solids
+2 = w · ρ b / ρ w
+ρ b : dry bulk density (variable)
+ρ w :
+water density (assumed
+1000 kg m
+− 3
+)
+Degree of saturation ( s)
+,
+defined as the volume of water
+relative to the volume of voids.
+2 = P · s
+P
+: total porosity
+Equivalent Depth of Water per
+Depth of Soil ( D eq )
+,
+calculated by multiplying the
+volumetric water content 2
+with a depth interval 1 z .
+2 = 1 z / D eq
+Plant available water, PAW 2 = PAW + 2 wp
+2 wp
+: permanent wilting point
+Water volume ratio
+(sometimes called liquid
+ratio), ν w ,
+expressed by
+the volume of water divided
+by the volume of soil.
+2 = ν w / (1 + e)
+e : void ratio.
+sensors in different ways (horizontal and vertical measure-
+ments, point vs. interval measurements, etc.)
+and depths.
+Harmonizing the data to one or several fixed depths would
+require either assumptions or supplemental modeling that
+would require information about the profile that is not avail-
+able. In addition, since there are many potential uses for the
+data, there is no general agreement on the optimum depths of
+soil moisture measurements to provide. For example, satel-
+lite validation and calibration typically require observations
+of the 0-5 cm layer while for evaluation of land surface mod-
+els required measurement depths depend on the definition of
+the depth intervals of the different layers.
+Table 6.
+CEOP quality flags adopted by the ISMN.
+Flag value
+Definition
+C Reported value exceeds output
+format
+field size OR was negative precipitation.
+M
+Parameter value missing OR derived
+parameter can not be computed.
+D
+Questionable/dubious
+U Unchecked
+Table 7.
+Plausible variable ranges for the meteorological data
+stored in the ISMN. Values 1 exceeding this range are marked with
+the CEOP flag “C”.
+Variable name
+Variable range
+Soil moisture 0–0.6 m
+3
+m
+− 3
+Soil temperature − 60–60
+◦
+C
+Air temperature − 60–60
+◦
+C
+Precipitation 0–100 mm h
+− 1
+Soil suction
+∗
+0–2500 kPa
+∗
+Based on Fredlund and Rahardjo (1993).
+3.4 Quality flagging
+Quality flagging of the data is based on the CEOP-Data
+Flag Definitions
+10
+. At present, it is not a common practice
+that soil moisture networks provide quality indicators with
+their data.
+Therefore, we decided to integrate the alloca-
+tion of quality indicators in the data hosting facility itself.
+A rather conservative quality checking scheme was imple-
+mented, so that suspect observations can be detected more
+easily.
+We decided to provide only quality indicators that
+can be checked in an objective way. Hence, indicators like
+“Bad” and “Good” are not included. This leads to the subset
+of CEOP quality flags presented in Table 6.
+Table 7 shows the possible ranges for the most important
+meteorological variables. If a measured data value exceeds
+this range (on either side of the range) the measurement re-
+ceives the flag value “C.” If a measurement is missing, its
+quality flag is set to “M.” All other dataset values have been
+set to “U” for unchecked.
+In contrast to the other meteorological measurements, for
+soil moisture also the quality flag “Questionable/Dubious
+(D)” is adopted.
+This quality flag is adopted when a soil
+moisture measurement in combination with another variable
+leads to a suspicious result (Table 8).
+10
+http://www.eol.ucar.edu/projects/ceop/dm/documents/
+refdata report/data flag definitions.html
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 10 ---
+1684 W. A. Dorigo et al.: The International Soil Moisture Network
+Fig. 4.
+Map of the distribution of networks and stations contained in the ISMN (Situation of May 2011). Green pins indicate active stations,
+red pins the historical data sets inherited from the Global Soil Moisture Data Bank (Robock et al., 2000).
+If networks themselves provide CEOP-based quality flags
+with their data, these are propagated to the data hosting
+facility. Thus, the list of quality flags might be extended with
+the other CEOP flags in a future version of the database. In
+case a quality flag provided by a network conflicts with the
+one attributed by the ISMN, the most restrictive one is always
+adopted (e.g., if a contributing network sets the flag “Good”
+and the quality control of the ISMN typifies a measurement
+as “Dubious,” the latter will be taken over by the database).
+4
+Soil moisture datasets currently contained in
+the ISMN
+The soil moisture and meteorological datasets contained in
+the ISMN are shared by the network operating organizations
+on a voluntary basis and free of cost.
+At present (status
+May 2011), the ISMN contains the data of 9 networks which
+together contain more than 500 stations.
+The spatial dis-
+tribution of the stations is presented in Fig. 4.
+Apart from
+several recently established operational networks that share
+their data with the ISMN, the Global Soil Moisture Data
+Bank (Robock et al., 2000) merged its data collection with
+the ISMN and has now been closed.
+The following paragraphs describe the individual net-
+works, which are listed in alphabetical order. The overview
+of the datasets presented here is just a snapshot of the current
+situation while the ISMN is continuously evolving. Several
+other networks have already announced their participation
+and will be included in the near future. To keep up to date
+with the most recent developments, we advise regular vis-
+its to the news section of the ISMN or a subscription to the
+newsletter (see http://www.ipf.tuwien.ac.at/insitu/ for more
+details).
+4.1 AMMA
+Soil moisture data from this network have been collected
+within The African Monsoon Multidisciplinary Analysis
+(AMMA)
+11
+experiment, which is an international and inter-
+disciplinary cooperation designed to investigate the interac-
+tions between atmospheric, oceanic and terrestrial systems
+and their joint controls on tropical monsoon dynamics in
+West Africa (Lebel et al., 2009).
+The soil moisture sta-
+tions are located in three mesoscale sites in three different
+countries sampling the West-African eco-climatic gradient.
+For the Mali station, soil moisture measurements at a given
+depth have been taken at the bottom, middle, and top of a
+sand dune. In Niger, the stations were positioned in a way
+to describe the gradient from a plateau down to the valley
+bottom.
+More details on the AMMA network and project
+details are found in various publications (Cappelaere et al.,
+2009; de Rosnay et al., 2009; Mougin et al., 2009; Pellarin et
+al., 2009a) and in Table 9. Soil moisture measurement taken
+at the AMMA sites have been extensively used for satellite
+product validation (e.g., Gruhier et al., 2008, 2010; Pellarin
+et al., 2009b; Zribi et al., 2009) and hydrological modeling
+(Pellarin et al., 2009a).
+4.2 CALABRIA
+The stations of the CALABRIA network are found on var-
+ious locations across the Calabria region in southern Italy.
+11
+http://amma-international.org/
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 11 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1685
+Table 8.
+Parameter combinations leading to CEOP quality flag “D”
+for soil moisture.
+1
+Valid soil moisture measurement in combination with a
+negative soil temperature (measured at same depth)
+2
+Valid surface soil moisture measurement in combination
+with a negative air temperature
+3
+A decreasing or stable surface soil moisture content
+(with respect to the previous time step) while
+precipitation is measured
+The network was installed by the Centro Funzionale Multi-
+rischi – ARPACAL12
+12
+for civil protection activities related
+to hydrometeorological monitoring for flood and landslide
+risk mitigation.
+More details on this network are found in
+Brocca et al. (2011) and Table 9.
+Soil moisture measure-
+ments provided by this network have been used for the vali-
+dation of various satellite-based soil moisture products from
+AMSR-E and ASCAT (Brocca et al., 2011).
+4.3 CAMPANIA
+The CAMPANIA network is located near the city of Naples
+in the Campania region in southern Italy.
+The data are
+measured and prepared by the Centro Funzionale per la
+Previsione Meteorologica e il Monitoraggio Meteo-Pluvio-
+Idrometrico e delle Frane, Settore Programmazione Inter-
+venti di Protezione Civile sul Territorio, Regione Campa-
+nia.
+13
+Details on the measurements performed in this net-
+work are found in Brocca et al. (2011) and Table 9.
+Soil
+moisture measurements provided by this network have been
+used for the validation of various satellite-based soil moisture
+products from AMSR-E and ASCAT (Brocca et al., 2011)
+4.4 CHINA
+This dataset was previously contained in the Global Soil
+Moisture Data Bank (Robock et al., 2000).
+The observa-
+tions were taken at the 8, 18 and 28th of each month during
+the period 1981–1999 and served agricultural purposes. For
+some stations, no measurements were taken in the cold sea-
+son due to the frozen surface. Despite the low sampling rate,
+the soil moisture measurements provide detailed information
+on the vertical distribution of soil water as measurements
+were taken at 11 depth intervals over the upper 1 m soil layer.
+More details are found in Table 9 and Robock et al. (2000).
+Data from the CHINA network have been extensively used
+for a large range of applications, including fundamental re-
+search on the behavior of soil moisture (e.g., Entin et al.,
+2000), improvement of land surface and reanalysis models
+12
+http://www.cfcalabria.it/
+13
+http://www.regione.campania.it/
+(e.g., Rodell et al., 2004), evaluating drought severity mod-
+els (e.g., Dai et al., 2004), and satellite soil moisture product
+validation (e.g., Reichle et al., 2004).
+4.5 CNR-IRPI
+The CNR-IRPI network is located near the city of Perugia
+in central Italy. The network is maintained by the Research
+Institute for Geo-Hydrological Protection (IRPI) of the Ital-
+ian National Research Council (CNR)
+14
+to serve flood fore-
+casting. Additional information on the sites can be found in
+Table 9 and in Brocca et al. (2008, 2009).
+Data from the
+CNR-IRPI network have been used to test the reliability of
+various AMSR-E and ASCAT-based soil moisture products
+(Brocca et al., 2010b, 2011; Liu et al., 2011) and to study
+the spatio-temporal dynamics of soil moisture (Brocca et al.,
+2007, 2010a).
+4.6 FMI
+This network is operated by the Finish Meteorological In-
+stitute (FMI) as part of an operational weather observatory.
+Currently it consists of a single station (FMI Arctic Research
+Centre in Sodankyl¨ a)
+15
+that measures soil moisture in a fully
+automated operational mode at three different locations a few
+meters apart. The network has participated in several inter-
+national projects and initiatives, such as FLUXNET (Baldoc-
+chi et al., 2001) and the validation of diverse SMOS products
+(Rautiainen et al., 2011). More information on the FMI can
+be found in Rautiainen et al. (2011) and in Table 9.
+The
+FMI network is the first network in the ISMN that provides
+updates on a fully automated basis.
+Once a day, data sets
+are downloaded from the FMI server, processed and qual-
+ity controlled, and ingested into the database of the ISMN.
+Data sets of the FMI network were used for studying the rela-
+tionship between soil moisture and microwave emissions and
+backscatter in L-., C-, and X-band (Pulliainen et al., 1994;
+Rautiainen et al., 2011).
+4.7 ICN
+The Illinois Climate Network (ICN)
+16
+is coordinated by the
+Water and Atmospheric Resources Program of the Illinois
+State Water Survey. This network was also contained in the
+Global Soil Moisture Data Bank.
+Measurements began in
+1981 and the network continues to operate until present. The
+main purpose of the network is to provide information on ex-
+treme and usual weather events, as well as short and long-
+term trends in climate data.
+The dataset contained in the
+ISMN covers the period 1983 through July 2008 while an
+update with the most recent datasets is foreseen for the near
+future. The first two years were removed because of spin-up
+14
+http://www.irpi.cnr.it/
+15
+http://fmiarc.fmi.fi/index.html
+16
+http://www.isws.illinois.edu/warm.
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 12 ---
+1686 W. A. Dorigo et al.: The International Soil Moisture Network
+Table 9.
+Overview of networks contained in ISMN (Status May 2011).
+Network name AMMA CALABRIA
+CAMPANIA
+Country Benin, Mali, Niger Italy
+Italy
+Number of stations 7 5
+2
+Variables measured Soil moisture [m
+3
+m
+− 3
+] Soil moisture [m
+3
+m
+− 3
+],
+air temperature at 2 m [
+◦
+C],
+precipitation [mm]
+Soil moisture [m
+3
+m
+− 3
+],
+air temperature at 2 m [
+◦
+C],
+precipitation [mm]
+Depths of soil moisture
+measurements
+0.05 m, 0.10 m, 0.10–0.40 m, 0.20 m,
+0.30 m, 0.40 m, 0.40–0.70 m, 0.60 m,
+0.70–1.00 m, 1.00 m, 1.00–1.30 m,
+1.05–1.35 m, 1.20 m
+0.30 m, 0.60 m, 0.90 m
+0.30 m
+Soil moisture instrument CS 616 (Campbell Scientific)
+ThetaProbe ML2X
+(Delta-T Device)
+ThetaProbe ML2
+(Delta-T Devices)
+Data availability 1 January 2006–31 December 2009 1 January 2001–31 May 2010
+26 November 2000–
+31 December 2008
+Original sampling interval 15 min 20 min
+60 min
+Land cover/land use
+Natural rangeland, crops,
+wooded savanna
+Crops, forest, grassland
+Agriculture (grassland), forest
+Available soil metadata Soil texture – Soil texture
+Table 9 Continued.
+Overview of networks contained in ISMN (Status May 2011).
+Network name CHINA CNR-IRPI
+FMI
+Country China Italy
+Finland
+Number of stations 40 4
+1
+Variables measured Soil moisture [cm] Soil moisture [m
+3
+m
+− 3
+],
+air temperature at 2 m [
+◦
+C],
+precipitation [mm]
+Soil moisture [m
+3
+m
+− 3
+],
+soil temperature [
+◦
+C],
+air temperature at
+2 m
+[
+◦
+C]
+Depths of soil moisture
+measurements
+0.00–0.05 m, 0.05–0.10 m,
+0.10–0.20 m, 0.20–0.30 m,
+0.30–0.40 m, 0.40–0.50 m,
+0.50–0.60 m, 0.60–0.70 m,
+0.70–0.80 m, 0.80–0.90 m,
+0.90–1.00 m
+0.05–0.15 m, 0.15–0.25 m,
+0.35–0.45 m
+0.02 m, 0.10 m
+Soil moisture instrument Coring device/auger
+EnviroSCAN
+(Sentek Technologies)
+ThetaProbe ML2X
+Data availability 8 January 1981–28 December 1999 9 October 2002–31 May 2008
+25 January 2005–present
+Original sampling interval 10–11 days 30 min
+1 h
+Land cover/land use
+Agricultural (e.g. winter wheat, maize,
+sorghum, beans)
+Agricultural, pasture
+Boreal forest
+Available soil metadata Permanent wilting points – Texture
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 13 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1687
+Table 9 Continued.
+Overview of networks contained in ISMN (Status May 2011).
+Network name ICN IOWA
+MOL-RAO
+Country United States United States
+Germany
+Number of stations 19 6
+2
+Variables measured Soil moisture [mm] Soil moisture [% vol]
+Soil moisture [% vol],
+soil temperature [
+◦
+C],
+air temperature at 2 m [
+◦
+C],
+precipitation [mm]
+Depths of soil
+moisture
+measurements
+0.00–0.10 m, 0.10–0.30 m,
+0.30–0.50 m, 0.50–0.70 m,
+0.70–0.90 m, 0.90–1.10 m,
+1.10–1.30 m, 1.30–1.50 m,
+1.50–1.70 m, 1.70–1.90 m,
+1.90–2.00 m
+0.00–0.07 m, 0.07–0.15 m,
+0.15–0.30 m, 0.30–0.45 m,
+0.45–0.68 m, 0.68–0.83 m,
+0.83–1.06 m, 1.06–1.37 m,
+1.37–1.67 m, 1.67–1.98 m,
+1.98–2.28 m, 2.28–2.59 m
+0.08 m, 0.10 m, 0.15 m,
+0.20 m, 0.30 m, 0.45 m,
+0.60 m, 0.90 m, 1.50 m
+Soil moisture instrument
+Neutron Depth Probe (Troxler),
+Neutron Surface Probe (Troxler)
+Coring device/auger,
+neutron probe
+TRIME-EZ TDR Sensor
+(IMKO GmbH)
+Data availability
+1 January 1981–
+15 July 2008
+4 April 1972–
+15 November 1994
+1 January 2003–
+31 December 2008
+Original sampling interval
+14–16 days (growing season);
+28–31 days (rest of the year)
+15 days (growing season)
+30 min
+Land cover/land use Grassland, bare soil Agricultural crops
+Grassland, forest (pine)
+Available soil metadata
+Field capacity, permanent wilting
+point, potential plant available water
+None
+Texture, bulk density, poros-
+ity, wilting points, hydraulic
+conductivity, heat capacity
+Table 9 Continued.
+Overview of networks contained in ISMN (Status May 2011).
+Network name MONGOLIA OzNet
+REMEDHUS
+Country Mongolia Australia
+Spain
+Number of stations 44 64
+18
+Variables measured Plant Available Water [% vol] Soil moisture [m
+3
+m
+− 3
+],
+soil temperature [
+◦
+C],
+soil suction [kPa],
+precipitation [mm]
+Soil moisture [m
+3
+m
+− 3
+],
+soil temperature [
+◦
+C]
+Depths of soil moisture
+measurements
+0.00–0.10 m, 0.10–0.20 m,
+0.20–0.30 m, 0.30–0.40 m,
+0.40–0.50 m, 0.50–0.60 m,
+0.60–0.70 m, 0.70–0.80 m,
+0.80–0.90 m, 0.90–1.00 m
+0.00–0.05 m, 0.00–0.08 m,
+0.00–0.30 m, 0.30–0.60 m,
+0.43–0.73 m, 0.51–0.81 m,
+0.60–0.90
+0.00–0.05 m
+Soil moisture instrument Gravimetric, neutron probe
+CS615 and CS616
+(Campbell Scientific),
+Hydra Probe (Stevens)
+Hydra Probe (Stevens)
+Data availability
+8 April 1964–
+28 October 2002
+1 January 2001–
+2 February 2010
+1 January 2005–
+31 December 2009
+Original sampling interval 15 days (growing season) 20–30 min
+60 min
+Land cover/land use
+Agricultural crops,
+extensive pasture
+Agriculture, grass land
+(pasture)
+Agriculture,
+partly irrigated
+Available soil metadata Wilting points
+Soil type, soil depth,
+soil porosity, salinity
+None
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 14 ---
+1688 W. A. Dorigo et al.: The International Soil Moisture Network
+Table 9 Continued.
+Overview of networks contained in ISMN (Status May 2011).
+Network name RUSWET-AGRO RUSWET-GRASS
+RUSWET-VALDAI
+Country
+Russia, Belarus, Moldova, Lithuania,
+Latvia, Estonia, Kazakhstan
+Russia, Belarus, Kazakhstan,
+Uzbekistan, Turkmenistan,
+Tajikistan
+Russia
+Number of stations 78 122
+3
+Variables measured
+Plant available water
+[volumetric %]
+Plant available water
+[volumetric %]
+Soil moisture [volumetric %],
+precipitation [mm],
+soil temperature [
+◦
+C],
+air temperature [
+◦
+C],
+water table depth [cm],
+snow water equivalent [mm]
+Depths of soil moisture
+measurements
+0.00–0.20 m, 0.00–1.00 m 0.00–0.10 m, 0.00–1.00 m
+0.00–0.20 m, 0.00–0.50 m,
+0.00–1.00 m
+Soil moisture instrument Gravimetric Gravimetric
+Gravimetric
+Data availability 28 December 1986–28 December 1988 January 1952–December 1985
+January 1952–December 1985
+Original sampling interval 10–11 days (growing season)
+10–11 days (growing season);
+28-31 days (rest of year)
+1 month
+Land cover/land use
+Spring cereal crops and winter cereal
+crops
+Natural grassland
+Grassland, Forest
+Available soil metadata Wilting points Wilting points Wilting points
+Table 9 Continued.
+Overview of networks contained in ISMN (Status May 2011).
+Network name SMOSMANIA SWEX POLAND
+UDC SMOS
+Country France Poland
+Germany
+Number of stations 21 2
+11
+Variables measured Soil moisture [m
+3
+m
+− 3
+] Soil moisture [m
+3
+m
+− 3
+],
+soil temperature [
+◦
+C]
+Soil moisture [m
+3
+m
+− 3
+]
+Depths of soil
+moisture
+measurements
+0.05 m, 0.10 m, 0.20 m, 0.30 m
+0.00–0.02 m, 0.05 m, 0.10 m,
+0.20 m, 0.30 m, 0.40 m,
+0.50 m, 0.60–1.00 m
+0.00–0.10 m, 0.05 m, 0.10 m,
+0.20 m, 0.40 m
+Soil moisture instrument
+ThetaProbe ML2X
+(Delta-T Devices)
+D-LOG/mpts
+(EasyTest)
+IMKO TDR, ECHO EC5,
+EC-TE probes
+Data availability
+1 January 2007–
+31 December 2009
+3 March 2006–
+3 January 2010
+8 November 2007–
+25 July 2010
+Original sampling interval 12 min 30 min, 60 min
+60 min
+Land cover / land use
+Unmanaged grassland (immediate
+surrounding of stations), forest, and
+agriculture (larger surroundings)
+Agriculture (crops),
+forest, bog
+Agriculture
+(intensively used grassland)
+Available soil metadata
+Texture, organic matter, bulk dry
+density
+None None
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 15 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1689
+Table 9 Continued.
+Overview of networks contained in ISMN
+(Status May 2011).
+Network name
+UMSUOL
+Country
+Italy
+Number of stations
+1
+Variables measured Soil moisture [m
+3
+m
+− 3
+]
+Depths of soil moisture
+measurements
+0.10 m, 0.25 m, 0.45 m,
+0.70 m, 1.00 m, 1.35 m,
+1.80 m
+Soil moisture instrument
+TDR 100 (Campbell)
+Data availability
+1 June 2009–
+1 October 2010
+Original sampling
+interval
+60 min
+Land cover/land use
+Grassland
+Available soil metadata
+Organic matter content,
+texture, bulk density
+issues as the sensors were installed.
+Despite the low tem-
+poral sampling frequency (1–2 times per month, depending
+on the time of the year), the large number of depth inter-
+vals facilitates studying the vertical behavior of soil moisture
+over time. Further details on the network can be found in Ta-
+ble 9 and Hollinger and Isard (1994). Apart from climate re-
+search (e.g., Hollinger and Isard, 1994; Robock et al., 2000),
+several scientific disciplines already benefited form this net-
+work including the evaluation of land surface fluxes and state
+datasets (e.g., Findell and Eltahir, 1997; Dirmeyer, 2000;
+Maurer et al., 2002), the assessment of drought severity mod-
+els (e.g., Dai et al., 2004), evaluation of climate models (e.g.,
+Robock et al., 1998; Oleson et al., 2008), long-term weather
+forecasting (e.g., Huang et al., 1996), designing soil mois-
+ture observational networks (e.g., Vinnikov et al., 1999a) and
+satellite soil moisture product validation (e.g., Vinnikov et
+al., 1999b; Owe et al., 2001; Njoku et al., 2003; Reichle et
+al., 2004; Owe et al., 2008).
+4.8 IOWA
+The IOWA dataset was transferred from the Global Soil
+Moisture Data Bank and consists of soil moisture observa-
+tions from two different catchments located in the southwest
+of Iowa. Soil moisture observations were taken for scientific
+purposes until 1994 when it ceased operation.
+The gravi-
+metric method was used to measure soil moisture for the top
+5 layers, neutron probes for the deeper layers. On average,
+observations were made twice a month between April and
+October. More information about this network can be found
+in Table 9, Entin et al. (2000), and Robock et al. (2000). The
+IOWA dataset has been used e.g. for trend analysis in soil
+moisture (Robock et al., 2000), satellite product validation
+(Reichle et al., 2004) and for studying the temporal and spa-
+tial scales of soil moisture dynamics (Entin et al., 2000).
+4.9 Lindenberg Meteorological Observatory
+The Lindenberg Meteorological Observatory – Richard Ass-
+mann Observatory (MOL-RAO)
+17
+is situated close to Berlin,
+Germany. It is operated by the German Meteorological Ser-
+vice DWD and perfoms systematic observations of the atmo-
+sphere and the land surface. Soil moisture is operationally
+measured at a grassland site (Falkenberg) and a forest site
+(Kerigh) since 1998 and 2002, respectively.
+Being part of
+an operational meteorological observatory, also several other
+relevant hydrometeorological variables are provided and soil
+properties are well documented. Information on the network
+can be found in Table 9, in Beyrich and Adam (2007) and in
+various web sources
+18
+. Soil moisture data of the MOL-RAO
+network have been used to study the effect of soil moisture on
+surface heat fluxes (Beyrich et al., 2006; Heret et al., 2006).
+4.10 MONGOLIA
+Also this dataset was previously contained in the Global
+Soil Moisture Data Bank. Soil moisture datasets were col-
+lected by the National Agency of Meteorology, Hydrology
+and Environment Monitoring in Ulaanbaatar for agricultural
+purposes. All observations were initially provided as volu-
+metric plant-available water. As the original measured wilt-
+ing levels, required to convert PAW into fractional volumet-
+ric soil moisture content, could not be retrieved, these were
+calculated from soil texture and organic carbon content at
+each station using the predictive equations of Saxton and
+Rawls (2006).
+Input to the equations was provided by the
+Harmonized World Soil Database (FAO/IIASA/ISRIC/ISS-
+CAS/JRC, 2009). Soil moisture measurements are provided
+three times a month during the warm period of the year,
+which runs from April until the end of October. More infor-
+mation about this network is found in Table 9 and Robock
+et al. (2000).
+Datasets of the MONGOLIA network have
+been extensively used in studies connected to climate vari-
+ability (Robock et al., 2000), the evaluation of drought sever-
+ity models (Dai et al., 2004), validation of satellite-based soil
+moisture products (Reichle et al., 2004), and for studying the
+spatial and temporal scales of soil moisture dynamics (Entin
+et al., 2000).
+4.11 OzNet
+The OzNet hydrological monitoring network (Table 9) con-
+sists of several smaller experimental project networks in New
+South Wales in southeast Australia
+19
+. The various networks
+are typically associated with hydrological catchments, of
+17
+http://www.dwd.de/mol
+18
+http://www.eol.ucar.edu/projects/ceop/dm/insitu/sites/baltex/
+lindenberg/falkenberg/,http://www.eol.ucar.edu/projects/ceop/dm/
+insitu/sites/baltex/lindenberg/forest
+19
+http://www.oznet.org.au
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 16 ---
+1690
+W. A. Dorigo et al.: The International Soil Moisture Network
+which the most significant are the Murrumbidgee (Young et
+al., 2008) and the Goulburn River catchments (R¨
+udiger et al.,
+2007). The OzNet network is managed by the University of
+Melbourne. Datasets from the OzNet have been extensively
+used for satellite product validation (Draper et al., 2009; Liu
+et al., 2011; Parinussa et al., 2011) and the evaluation of land
+surface models (Richter et al., 2004).
+4.12 REMEDHUS
+The REMEDHUS network is situated in the center of the
+Iberian Peninsula.
+It was set up in 1999 as an experimen-
+tal network by the Centro Hispano Luso de Investigaciones
+Agrarias (CIALE) group of the University of Salamanca
+20
+.
+The stations lie in an agricultural area. In the vicinity of a
+few stations irrigation occurs.
+As a result, large jumps in
+measured soil moisture that cannot be coupled to meteoro-
+logical events and very high soil moisture fractions (up to
+0.95 m
+3
+m
+− 3
+) may be observed here.
+As irrigation usually
+is a very local phenomenon, the stations that are affected
+should be treated with caution when interpreted in a spa-
+tial context. Details of the network can be found in Table 9
+and in Mart´ ınez-Fern´ andez and Ceballos (2005).
+Datasets
+of the REMEDHUS network have been used by study the
+spatial and temporal dynamics of soil moisture (Mart´
+ınez-
+Fern´
+andez and Ceballos, 2003, 2005) and for satellite prod-
+uct validation (Ceballos et al., 2005; Wagner et al., 2007; Liu
+et al., 2011; Parinussa et al., 2011).
+4.13 RUSWET-AGRO
+Soil moisture datasets for 78 districts in the Former Soviet
+Union were prepared for agricultural purposes by the Rus-
+sian Hydrometeorological Center, Moscow, Russia and ini-
+tially distributed through the Global Soil Moisture Databank.
+The soil moisture observations were originally provided as
+volumetric plant-available water [volumetric %]. Due to the
+lag between observations and the publication of the data in
+reference books, and geo-political changes during the era,
+information on the wilting points (required to convert plant
+available water into volumetric soil moisture) has gone lost.
+To resolve this problem and make the data compatible, the
+predictive equations of Saxton and Rawls (2006) were used
+to estimate the wilting points from soil texture and organic
+carbon content. Input to the equations was provided by the
+Harmonized World Soil Database (FAO/IIASA/ISRIC/ISS-
+CAS/JRC, 2009). As the RUSWET-AGRO dataset was de-
+signed for monitoring soil moisture at agricultural fields,
+datasets were separately available for spring cereal crops and
+winter cereal crops for all locations.
+In the ISMN stations
+with the suffix “a” represent spring cereal crops while sta-
+tions with “b” illustrate winter cereal crops. Measurements
+are available three times a month during the growing period
+of 1987 and 1988. More information about this network is
+20
+http://campus.usal.es/ ∼ hidrus/
+available in Table 9, Vinnikov and Yeserkepova (1991), and
+Robock et al. (2000).
+The RUSWET-AGRO datasets have
+been widely used for climate research (Robock et al., 2000),
+evaluation of drought severity models (Dai et al., 2004), land
+surface model evaluation (Balsamo et al., 2009), and satellite
+product validation (Reichle et al., 2004).
+4.14 RUSWET-GRASS
+The RUSWET-GRASS dataset is a merger of the RUSWET-
+130STA and RUSWET-50STA networks from the former So-
+viet Union previously contained in the Global Soil Moisture
+Data Bank.
+Measurements were originally used for agri-
+cultural predictions.
+As soil moisture was originally pro-
+vided as plant available water, wilting points were needed
+to covert the measurements into volumetric soil moisture.
+Similarly as for the RUSWET-AGRO network, the predic-
+tive equations of Saxton and Rawls (2006) were used to es-
+timate the wilting points from soil texture and organic car-
+bon content while input to the equations was provided by the
+Harmonized World Soil Database (FAO/IIASA/ISRIC/ISS-
+CAS/JRC, 2009). The dataset covers the years 1952–1985,
+but the spatial extent of these data is poor until about 1975.
+Observations were made with a temporal resolution of about
+10 days during the warm season, and once a month during
+winter. The provided measurements are the average of four
+samples taken within an area of about 1000 m
+2
+.
+More in-
+formation on this dataset can be found in Table 9, Vinnikov
+and Yeserkepova (1991), and Robock et al. (2000).
+The
+RUSWET-GRASS datasets have been widely used for cli-
+mate research (e.g., Robock et al., 2000), evaluation of land
+surface models (e.g., Robock et al., 1995, 1998; Yang et
+al., 1997), evaluation of drought severity models (e.g., Dai
+et al., 2004), and satellite product validation (e.g., Reichle
+et al., 2004).
+4.15 RUSWET-VALDAI
+Soil moisture datasets for 3 catchments located in the Val-
+dai basin were collected by the State Hydrological Institute
+in St. Petersburg from 1960 to 1990 for water balance stud-
+ies. The catchments are characterized by different types of
+vegetation. Soil moisture [volumetric %] was computed us-
+ing data from 9–11 observational points distributed over the
+basin area. The resulting files contain monthly means of soil
+moisture for three different depth intervals. Thus, soil mois-
+ture values are available as monthly means, precipitation as
+monthly totals [mm], and temperature [
+◦
+C] as daily values.
+Other variables measured but not included into the ISMN
+are runoff, monthly averaged water table depth, snow water
+equivalent, and evaporation. More information can be found
+in Table 9, Vinnikov and Yeserkepova (1991), and Robock
+et al. (2000).
+The RUSWET-VALDAI datasets have been
+widely used for climate research (Robock et al., 2000), anal-
+ysis of scales of soil moisture variation (e.g., Vinnikov et al.,
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 17 ---
+W. A. Dorigo et al.: The International Soil Moisture Network
+1691
+1996), evaluation of land surface models in a cold climate
+(Schlosser et al., 2000; Slater et al., 2001; Luo et al., 2003),
+evaluation of drought severity models (Dai et al., 2004), and
+satellite product validation (Reichle et al., 2004).
+4.16 SMOSMANIA
+The SMOSMANIA network in southern France
+was
+set up in support of calibration and validation
+activi-
+ties for SMOS. The network is operated by the
+Cen-
+tre National de Recherches M´ et´ eorologiques,
+Groupe
+d’Etude de l’Atmosph` ere M´ et´
+eorologique (CNRM/GAME),
+M´ et´
+eoFrance, CNRS. Initially, 12 stations were installed, but
+from the start of 2009 the network was extended with an-
+other 9 stations. Details of SMOSMANIA can be found in
+Table 9 and in Albergel et al. (2008) and Calvet et al. (2008).
+Measurements taken by this network have been extensively
+used for validating various satellite-based soil moisture prod-
+ucts (Albergel et al., 2009, 2010; Li et al., 2010; Brocca et
+al., 2011; Liu et al., 2011; Parinussa et al., 2011) and for
+studying the interaction between surface and sub-surface soil
+moisture levels (Albergel et al., 2008).
+4.17 SWEX POLAND
+The Soil Water and Energy eXchange
+Poland
+(SWEX Poland) network is operated by the Institute of
+Agrophysics of the Polish Academy of Sciences.
+The
+network has been set up in particular to support calibration
+and validation of SMOS products over wetlands.
+Soil
+moisture and soil temperature are measured over
+eight
+different depths.
+More info is found in Table 9 and Mar-
+czewski et al. (2010). Primary purpose of the network will
+be the validation of satellite–based soil moisture retrievals
+(Marczewski et al., 2010).
+4.18 UDC SMOS
+The Upper Danube Catchment SMOS
+network
+(UDC SMOS) in Southern Germany is one of the two
+official European SMOS cal/val test sites. The soil moisture
+network is run as a cooperation between the University
+of Munich and the Bavarian State Research Center for
+Agriculture. It is funded by the German Aerospace Centre
+(DLR) through the project SMOSHYD
+21
+. At some stations
+soil moisture of a specific layer is measured by multiple
+sensors. Details on the UDC SMOS network can be found
+in Ttable 9 and Loew et al. (2009). Loew and Schlenz (2011)
+used the soil moisture data of this network to quantify the
+uncertainties of an AMSR-E derived soil moisture product.
+21
+http://www.geographie.uni-muenchen.de/department/fiona/
+forschung/projekte/index.php?projekt id=103
+4.19 UMSUOL
+UMSUOL is a network in the Po river plain in Northern Italy.
+It is part of an operational meteorological network operated
+by the Service of Hydrology, Meteorology and Climate of the
+Regional Agency for Environmental Protection in Emilia-
+Romagna (ARPA – SIMC) mainly for agricultural purposes.
+More information is given in Table 9. Soil moisture data of
+this network have been used for satellite product validation
+and intercomparison (Brocca et al., 2011).
+5
+Discussion
+5.1
+Impact of the ISMN for satellite products and land
+surface models
+Even though initial funding for the establishment of the
+ISMN, as provided by ESA, mainly focuses on the SMOS
+mission, other satellite-based soil moisture products from the
+existing and future missions such as AMSR-E, ASCAT, and
+SMAP can profit from the established network (for refer-
+ences see the individual networks in Sect. 4). However, the
+intention of the ISMN is to go beyond the role of satellite val-
+idation resource and to serve other scientific and application-
+oriented communities as well, such as hydrological model-
+ing, numerical weather forecasting, and water management.
+To fulfill this task, the ISMN stores not only surface soil
+moisture but also soil water content of the deeper layers and
+relevant hydrometeorological variables such as precipitation
+and temperature of the air and soil.
+In addition, to better
+serve time critical applications (ranging from several hours
+to a few days), the ISMN has been structured in a way that
+enables processing incoming soil moisture measurements on
+a fully automated basis. The automated daily update of data
+from the FMI network shows that a NRT assimilation and
+redistribution of data is possible. Nevertheless, prerequisite
+for the added value of such a mode is the presence of opera-
+tional measurement and processing chains on the part of the
+data providers in order to guarantee timely data delivery to
+the ISMN.
+5.2
+Considerations on data representativeness and
+quality
+The appropriateness of one or more soil moisture datasets
+from the ISMN for a specific application strongly depends
+on the spatial and temporal scales of the in-situ measure-
+ments and of the process that the user wishes to describe.
+For example, if the aim is to validate satellite-derived surface
+soil moisture, the user should be aware that these products
+contain information only about the upper few millimeters to
+centimeters of the soil column, whereas a technique based
+on cosmic-ray neutrons provides information up to a depth
+of ∼
+70 cm. On the other hand, the latter provides estimates
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 18 ---
+1692
+W. A. Dorigo et al.: The International Soil Moisture Network
+that are spatially more consistent than single electromagnetic
+devices or gravimetric measurements.
+Apart from the choice of the measurement technique itself,
+also its employment has a strong impact on what is exactly
+observed. The in-situ measurements are influenced by sev-
+eral factors including:
+– Installation depth of the sensor.
+–
+Placement of the sensor, e.g., is sensor positioned hori-
+zontally or vertically?
+–
+Is soil moisture measured at a specific depth or inte-
+grated over a certain soil depth interval? This is often
+closely related to the positioning of the instrument.
+– Density and geographical distribution of measurements.
+–
+Characterization of the soil, including texture, porosity,
+and organic matter content.
+–
+Calibration of the sensor
+Ideally, all these factors should be accounted for when har-
+monizing in situ soil measurements from different sites, so
+that observed variations are related only to real differences in
+soil moisture. However, such a harmonization of data would
+go beyond the current objective of the ISMN.
+The choice of the measurement technique may also have a
+strong impact on the data quality. In Sect. 2.2 and several ad-
+vantages and disadvantages of the different techniques were
+highlighted while the relative performance of various sensors
+has been extensively documented in literature (Baumhardt et
+al., 2000; Walker et al., 2004; Czarnomski et al., 2005; Mit-
+telbach et al., 2011). Even if TDR sensors nowadays are of-
+ten considered as benchmark for operational field monitoring
+of soil moisture, other, less expensive systems may in many
+situations show comparable performance (e.g. Czarnomski
+et al., 2005) and therefore should not be excluded on before-
+hand from data analysis.
+The relative accuracy and precision of stations may differ
+from site to site (even when employing similar instruments)
+and can shift over time due to sensor degradation or external
+disturbances. Not considering these differences in further us-
+age of the data may falsely affect results obtained and con-
+clusions drawn by a study. Therefore, adequate quality char-
+acterization of the individual networks and stations is highly
+desired. As the current quality control procedure is only able
+to detect evident outliers but does not give us any informa-
+tion about subtle differences between stations, future efforts
+will primarily focus on improved quality control. This will
+be done at the level of individual measurement values as well
+as at the station and network level.
+5.3 Utilization strategies for ISMN datasets
+Evaluating satellite- and model-derived soil moisture re-
+trievals with in situ soil moisture measurements is commonly
+based on the root-mean-square metric (Jackson et al., 2010).
+However, to use in situ soil moisture measurements from
+the ISMN in satellite and land surface model validation and
+calibration, the user should be aware of the systematic dif-
+ferences that may exist between in situ measurements and
+soil moisture estimates from models and satellite observa-
+tions (Entekhabi et al., 2010b). Even though the ISMN pro-
+vides soil moisture measurements in the same volumetric
+unit that is returned by most satellite products and models, bi-
+ases and differences in the dynamic range may exist between
+the datasets, e.g., by assumptions and generalizations made
+within the retrieval concept, scaling issues, or due to the dif-
+ferent soil layers or soil depths considered. Thus, other met-
+rics, such as the Pearson or Spearman correlation coefficient,
+often provide valuable and complementary information on
+the performance (Entekhabi et al., 2010b).
+To combine in situ soil moisture measurements with satel-
+lite retrievals and a first guess predicted by a land surface
+model, e.g., in the framework of data assimilation, it is often
+necessary to minimize systematic differences between the in-
+dividual datasets (e.g. Drusch, 2007). These correction meth-
+ods include standard rescaling techniques, e.g. based on sim-
+ple statistic descriptors of both datasets such as minimum,
+maximum, mean, and variance (Dorigo et al., 2010; Miralles
+et al., 2010), linear regression (Scipal et al., 2008), or CDF-
+matching (Drusch et al., 2005; Liu et al., 2011). Other studies
+propose the use of exponential filters or land surface models
+to find a robust relationship between the soil moisture dy-
+namics observed at different observation depths and in dif-
+ferent observation spaces (Wagner et al., 1999; Sabater et al.,
+2007; Albergel et al., 2008).
+5.4 Additional science benefits of the ISMN
+Since for the first time a globally harmonized soil moisture
+dataset is available, the ISMN may help to find comprehen-
+sive answers to fundamental science questions regarding soil
+moisture and its role in the integrated water cycle, such as:
+–
+Can we refine our understanding of the memory of soil
+moisture (e.g., Entin et al., 2000)? How does it depend
+on climate variability, climate persistence and soil hy-
+draulic properties?
+How do vegetation characteristics
+affect this memory?
+–
+How is surface soil moisture dynamics linked with that
+in the subsurface profile? How does soil moisture at the
+surface and below the surface respond to precipitation
+events and drydowns?
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 19 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1693
+–
+Can long-term trends and changes in the frequencies of
+extremes that have been regionally observed in regional
+in situ observations (e.g., Robock et al., 2005) be ex-
+trapolated to the global scale?
+–
+What are the functional relationships between soil mois-
+ture and evaporation (e.g. Jung et al., 2010)? How does
+it depend on vegetation, soil type and structure?
+In addition, existing knowledge on the temporal stability and
+spatial correlation of soil moisture (e.g. Vachaud et al., 1985;
+Mart´ ınez-Fern´
+andez and Ceballos, 2005; Cosh et al., 2008),
+can now be strengthened with global evidence.
+Moreover,
+there is a proven strong relationship between soil moisture
+and the biogeochemical cycles (e.g. Ciais et al., 2005) while,
+at the same time, our knowledge on how this interaction ex-
+actly takes place is still very limited (van der Molen et al.,
+2011). The ISMN may help to gain further inside in this pro-
+cess.
+6 Conclusions and outlook
+With the establishment of the ISMN data hosting center pre-
+sented in this paper, a first important step has been taken to-
+ward a global soil moisture observing system. Although soil
+moisture is now recognized as an essential climate variable
+by GCOS, the growth and continuity of this effort will de-
+pend upon the commitment of financial support and the co-
+operation of data providers on a long-term basis. To reach
+the goal of a fully integrated global soil moisture observing
+system it will be necessary to establish, expand and improve
+current soil moisture observations, both in situ and remotely
+sensed. The in situ efforts should focus on:
+–
+Developing a coordinated plan for soil moisture net-
+works at both the national and international levels.
+–
+Designing a supersite program, approximately satellite
+footprint size regions with high density measurements,
+needed to provide the comprehensive datasets required
+for satellite sensor evaluation and calibration, and to
+provide a basis for developing soil wetness algorithms
+for satellite measurements and the evaluation of cli-
+mate model outputs. For example, we expect the newly
+established National Ecological Observatory Network
+(NEON) in the US and the densely sampled watershed
+validation networks operated by USDA, to help serve as
+a model for such efforts.
+–
+Enhancing consistency and standardization of measure-
+ments, data, and metadata.
+– Striving for data continuity and automation.
+–
+Advancing data exchange.
+The positive and vital contributions of international orga-
+nizations such as WCRP, GEWEX and GEO, the support of
+Space Agencies, and the voluntary efforts of numerous in-
+dividual scientists contributing to the ISMN have raised the
+confidence that the consciousness and willingness to realize
+such an integrated soil moisture observing system are ubiq-
+uitous.
+Finally, we would like to emphasize that the ISMN is a
+growing entity animated by the scientific community itself.
+We therefore solicit users to download, use, and give feed-
+back on the datasets currently contained in the database, and
+invite potential networks to enrich the collection by shar-
+ing their data with the ISMN. As was demonstrated by the
+success the Global Soil Moisture Data Bank (Robock et al.,
+2000), the benefit of sharing soil moisture data free of cost
+with the scientific community is valuable not only for data
+users but also for the networks. Networks may become em-
+bedded as key networks in international calibration and val-
+idation activities or climate monitoring programs, e.g. like
+happened to the flux tower sites participating to FLUXNET
+(Baldocchi et al., 2001) or the stations participating to the
+Baseline Surface Radiation Network (Ohmura et al., 1998).
+This in turn may lead to vast international scientific recog-
+nition and pave the way for access to extended funding re-
+sources.
+Acknowledgements.
+We greatly thank all data providers that kindly
+shared their data with the ISMN: Thierry Pellarin (AMMA),
+Loredana Marsica and Luca Brocca (CALABRIA), Matteo Gen-
+tilella and Giovanni Battista Chirico (CAMPANIA), Konstantin
+Vinnikov and Thomas Collow (CHINA, IOWA, MONGOLIA,
+RUSWET-AGRO, RUSWET-GRASS, and RUSWET-VALDAI),
+Luca Brocca (CNR-IRPI), Matias Takala, Hanne Suokanerva, Jouni
+Pullianen, Jarkko Koskinen (FMI), Bob Scott (ICN), Udo Rummel
+(MOL-RAO), Jeffrey Walker and Christoph R¨
+udiger (OZNET),
+Jos´ e Mart´ ınez Fern´
+andez (REMEDHUS), Jean-Christophe Calvet
+(SMOSMANIA), Bogusaw Usowicz, Jerzy Usowicz,
+and Wo-
+jciech Marczewski (SWEX Poland), Florian Schlenz,
+Johanna
+dall’Amico, Alexander Loew,
+Wolfram Mauser (UDC SMOS),
+Vittorio Marletto and Marco Bittelli (UMSUOL). Without their
+valuable contributions this initiative would not have been pos-
+sible in the first place.
+The ISMN has been funded through the
+SMOS Soil Moisture Network Study (ESA ESTEC
+Contract
+No. 22954/09) and the SMOS Soil Moisture Network Study –
+Operational Phase (ESA ESTEC Contract No. 4000102722/10).
+Alan Robock is supported by NASA grant NNX09AJ99G. We
+greatly acknowledge the editor and the reviewers whose valuable
+comments and remarks substantially helped to improve
+the
+manuscript.
+Edited by: F. Pappenberger
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 20 ---
+1694 W. A. Dorigo et al.: The International Soil Moisture Network
+References
+Albergel, C., R¨
+udiger, C., Pellarin, T., Calvet, J.-C., Fritz, N., Frois-
+sard, F., Suquia, D., Petitpa, A., Piguet, B., and Martin, E.: From
+near-surface to root-zone soil moisture using an exponential fil-
+ter: an assessment of the method based on in-situ observations
+and model simulations, Hydrol. Earth Syst. Sci., 12, 1323–1337,
+doi:10.5194/hess-12-1323-2008, 2008.
+Albergel, C., R¨
+udiger, C., Carrer, D., Calvet, J.-C., Fritz, N.,
+Naeimi, V., Bartalis, Z., and Hasenauer, S.: An evaluation of
+ASCAT surface soil moisture products with in-situ observations
+in Southwestern France, Hydrol. Earth Syst. Sci., 13, 115–124,
+doi:10.5194/hess-13-115-2009, 2009.
+Albergel, C., Calvet, J.-C., de Rosnay, P., Balsamo, G., Wag-
+ner, W., Hasenauer, S., Naeimi, V., Martin, E., Bazile, E.,
+Bouyssel, F., and Mahfouf, J.-F.: Cross-evaluation of modelled
+and remotely sensed surface soil moisture with in situ data in
+southwestern France, Hydrol. Earth Syst. Sci., 14, 2177–2191,
+doi:10.5194/hess-14-2177-2010, 2010.
+Baldocchi, D., Falge, E., Gu, L., Olson, R., Hollinger, D., Running,
+S., Anthoni, P., Bernhofer, C., Davis, K., Evans, R., Fuentes, J.,
+Goldstein, A., Katul, G., Law, B., Lee, X., Malhi, Y., Meyers, T.,
+Munger, W., Oechel, W., Paw, K. T., Pilegaard, K., Schmid, H.
+P., Valentini, R., Verma, S., Vesala, T., Wilson, K., and Wofsy,
+S.: FLUXNET: A New Tool to Study the Temporal and Spatial
+Variability of Ecosystem–Scale Carbon Dioxide, Water Vapor,
+and Energy Flux Densities, B. Am. Meteorol. Soc., 82, 2415–
+2434, doi:10.1175/1520-0477, 2001.
+Balsamo, G., Viterbo, P., Beljaars, A., van den Hurk, B., Hirschi,
+M., Betts, A. K., and Scipal, K.: A Revised Hydrology for the
+ECMWF Model: Verification from Field Site to Terrestrial Wa-
+ter Storage and Impact in the Integrated Forecast System, J. Hy-
+dromet., 10, 623–643, doi:10.1175/2008jhm1068.1, 2009.
+Baumhardt, R. L., Lascano, R. J., and Evett, S. R.: Soil material,
+temperature, and salinity effects on calibration of multisensor ca-
+pacitance probes, Soil Sci. Soc. Am. J., 64, 1940–1946, 2000.
+Beyrich, F. and Adam, W. K.: Site and Data Report for the Linden-
+berg Reference Site in CEOP – Phase I, German Weather Ser-
+vice, Offenbach am Main, 55, 2007.
+Beyrich, F., Leps, J. P., Mauder, M., Bange, J., Foken, T., Huneke,
+S., Lohse, H., L¨
+udi, A., Meijninger, W. M. L., Mironov, D.,
+Weisensee, U., and Zittel, P.:
+Area-averaged surface fluxes
+over the litfass region based on eddy-covariance measurements,
+Boundary-layer Met., 121, 33–65, 2006.
+Bogena, H. R., Huisman, J. A., Oberdorster, C., and Vereecken,
+H.: Evaluation of a low-cost soil water content
+sensor
+for wireless network applications, J. Hydrol., 344,
+32–42,
+10.1016/j.jhydrol.2007.06.032, 2007.
+Braud, I., Noilhan, J., Bessemoulin, P., Mascart, P., Haverkamp,
+R., and Vauclin, M.:
+Bare-ground surface heat and water ex-
+changes under dry conditions: Observations and parameteriza-
+tion, Boundary-layer Met., 66, 173–200, 1993.
+Brocca, L., Morbidelli, R., Melone, F., and Moramarco, T.: Soil
+moisture spatial variability in experimental areas of central Italy,
+J. Hydrol., 333, 356–373, 2007.
+Brocca, L., Melone, F., and Moramarco, T.: On the estimation of
+antecedent wetness conditions in rainfall-runoff modelling, Hy-
+drol. Process., 22, 629–642, 2008.
+Brocca, L., Melone, F., Moramarco, T., and Morbidelli, R.: An-
+tecedent wetness conditions based on ERS scatterometer data, J.
+Hydrol., 364, 73–87, 2009.
+Brocca, L., Melone, F., Moramarco, T., and
+Morbidelli,
+R.:
+Spatial-temporal variability of soil moisture and its es-
+timation across scales, Wat. Resour. Res., 46,
+W02516,
+doi:10.1029/2009wr008016, 2010a.
+Brocca, L., Melone, F., Moramarco, T., Wagner, W., and Hasenauer,
+S.:
+ASCAT soil wetness index validation through in situ and
+modeled soil moisture data in central Italy, Remote Sens. Env-
+iron., 114, 2745–2755, doi:10.1016/j.rse.2010.06.009, 2010b.
+Brocca, L., Hasenauer, S., Lacava, T., Melone, F., Moramarco, T.,
+Wagner, W., Dorigo, W., Matgen, P., Mart´ ınez-Fern´
+andez, J.,
+llorens, P., Latron, J., Martin, C., and Bittelli, M.: Soil mois-
+ture estimation through ASCAT and AMSR-E sensors: An inter-
+coparison and validation study across Europe, Remote Sensing
+Envir., in review, 2011.
+Calvet, J. C., Fritz, N., Froissard, F., Suquia, D., Petitpa, A., and
+Piguet, B.: In situ soil moisture observations for the CAL/VAL
+of SMOS: The SMOSMANIA network, Int. Geosci. Remote Se.,
+IGARSS, Barcelona, Spain, 1196–1199, 2008.
+Cappelaere, B., Descroix, L., Lebel, T., Boulain, N., Ramier, D.,
+Laurent, J. P., Favreau, G., Boubkraoui, S., Boucher, M., Bouzou
+Moussa, I., Chaffard, V., Hiernaux, P., Issoufou, H. B. A., Le
+Breton, E., Mamadou, I., Nazoumou, Y., Oi, M., Ottl´
+e, C., and
+Quantin, G.: The AMMA-CATCH experiment in the cultivated
+Sahelian area of south-west Niger – Investigating water cycle re-
+sponse to a fluctuating climate and changing environment, J. Hy-
+drol., 375, 34–51, 2009.
+Ceballos, A., Scipal, K., Wagner, W., and Martinez-Fernandez, J.:
+Validation of ERS scatterometer-derived soil moisture data in
+the central part of the Duero Basin, Spain, Hydrol. Process., 19,
+1549–1566, doi:10.1002/Hyp.5585, 2005.
+Chen, X. and Hu, Q.: Groundwater influences on soil moisture and
+surface evaporation, J. Hydrol., 297, 285–300, 2004.
+Ciais, P., Reichstein, M., Viovy, N., Granier, A., Og´
+ee, J., Al-
+lard, V., Aubinet, M., Buchmann, N., Bernhofer, C., Carrara, A.,
+Chevallier, F., De Noblet, N., Friend, A. D., Friedlingstein, P.,
+Gr¨
+unwald, T., Heinesch, B., Keronen, P., Knohl, A., Krinner, G.,
+Loustau, D., Manca, G., Matteucci, G., Miglietta, F., Ourcival,
+J. M., Papale, D., Pilegaard, K., Rambal, S., Seufert, G., Sous-
+sana, J. F., Sanz, M. J., Schulze, E. D., Vesala, T., and Valentini,
+R.: Europe-wide reduction in primary productivity caused by the
+heat and drought in 2003, Nature, 437, 529–533, 2005.
+Cosh, M. H., Jackson, T. J., Moran, S., and Bindlish, R.: Temporal
+persistence and stability of surface soil moisture in a semi-arid
+watershed, Remote Sens. Environ., 112, 304–313, 2008.
+Czarnomski, N. M., Moore, G. W., Pypker, T. G., Licata, J., and
+Bond, B. J.: Precision and accuracy of three alternative instru-
+ments for measuring soil water content in two forest soils of the
+Pacific Northwest, Can. J. For. Res., 35, 1867–1876, 2005.
+Dai, A., Trenberth, K. E., and Qian, T.: A global dataset of Palmer
+Drought Severity Index for 1870–2002: Relationship with soil
+moisture and effects of surface warming, J. Hydromet., 5, 1117–
+1130, 2004.
+de Rosnay, P., Gruhier, C., Timouk, F., Baup, F., Mougin, E., Hier-
+naux, P., Kergoat, L., and LeDantec, V.: Multi-scale soil moisture
+measurements at the Gourma meso-scale site in Mali, J. Hydrol.,
+375, 241–252, 2009.
+Desilets, D., Zreda, M., and Ferr´
+e, T. P. A.: Nature’s neutron probe:
+Land surface hydrology at an elusive scale with cosmic rays,
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 21 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1695
+Wat. Resour. Res., 46, W11505, doi:10.1029/2009WR008726,
+2010.
+Dirmeyer, P. A.: Using a global soil wetness dataset to improve
+seasonal climate simulation, J. Climate, 13, 2900–2922, 2000.
+Dirmeyer, P. A., Dolman, A. J., and Sato, N.: The Pilot Phase of the
+Global Soil Wetness Project, B. Am. Meteorol. Soc., 80, 851–
+878, 1999.
+Dirmeyer, P. A., Gao, X., Zhao, M., Guo, Z., Oki, T., and Hanasaki,
+N.: GSWP-2: Multimodel analysis and implications for our per-
+ception of the land surface, B. Am. Met. Soc., 87, 1381–1397,
+2006.
+Dorigo, W. A., Scipal, K., Parinussa, R. M., Liu, Y. Y., Wagner,
+W., de Jeu, R. A. M., and Naeimi, V.:
+Error characterisation
+of global active and passive microwave soil moisture datasets,
+Hydrol. Earth Syst. Sci., 14, 2605–2616, doi:10.5194/hess-14-
+2605-2010, 2010.
+Dorigo, W. A., Van Oevelen, P., Wagner, W., Drusch, M., Mecklen-
+burg, S., Robock, A., and Jackson, T.: A New International Net-
+work for in Situ Soil Moisture Data, EOS, Transcations, Ameri-
+can Geophysical Union, 92, 141–142, 2011.
+Draper, C. S., Walker, J. P., Steinle, P. J., de Jeu, R. A. M.,
+and Holmes, T. R. H.: An evaluation of AMSR-E derived soil
+moisture over Australia, Remote Sensing Envir., 113, 703–710,
+doi:10.1016/j.rse.2008.11.011, 2009.
+Drusch, M.: Initializing numerical weather prediction models with
+satellite-derived surface soil moisture: Data assimilation exper-
+iments with ECMWF’s integrated forecast system and the TMI
+soil moisture data set, J. Geophys. Res.-Atmos., 112, D03102
+10.1029/2006JD007478, 2007.
+Drusch, M. and Viterbo, P.: Assimilation of screen-level variables
+in ECMWF’s integrated forecast system: A study on the impact
+on the forecast quality and analyzed soil moisture, Mon. Weather
+Rev., 135, 300–314, 2007.
+Drusch, M., Wood, E. F., and Gao, H.: Observation
+oper-
+ators for the direct assimilation of TRMM microwave im-
+ager retrieved soil moisture, Geophys. Res. Lett., 32, L15403,
+doi:10.1029/2005GL023623, 2005.
+Entekhabi, D., Njoku, E. G., O’Neill, P. E., Kellogg, K. H., Crow,
+W. T., Edelstein, W. N., Entin, J. K., Goodman, S. D., Jackson, T.
+J., Johnson, J., Kimball, J., Piepmeier, J. R., Koster, R. D., Mar-
+tin, N., McDonald, K. C., Moghaddam, M., Moran, S., Reichle,
+R., Shi, J. C., Spencer, M. W., Thurman, S. W., Tsang, L., and
+Van Zyl, J.: The soil moisture active passive (SMAP) mission, P.
+IEEE, 98, 704–716, 2010a.
+Entekhabi, D., Reichle, R. H., Koster, R. D., and
+Crow,
+W. T.: Performance Metrics for Soil Moisture
+Retrievals
+and Application Requirements, J. Hydromet., 11,
+832–840,
+doi:10.1175/2010JHM1223.1, 2010b.
+Entin, J. K., Robock, A., Vinnikov, K. Y., Hollinger, S. E., Liu, S.,
+and Namkhai, A.: Temporal and spatial scales of observed soil
+moisture variations in the extratropics, J. Geophys. Res.-Atmos.,
+105, 11865–11877, 2000.
+Famiglietti, J. S., Devereaux, J. A., Laymon, C. A., Tsegaye, T.,
+Houser, P. R., Jackson, T. J., Graham, S. T., Rodell, M., and
+Van Oevelen, P. J.: Ground-based investigation of soil moisture
+variability within remote sensing footprints during the Southern
+Great Plains 1997 (SGP97) Hydrology Experiment, Wat. Resour.
+Res., 35, 1839–1851, 1999.
+FAO/IIASA/ISRIC/ISS-CAS/JRC: Harmonized World
+Soil
+Database (version 1.1). FAO, Rome, Italy and IIASA, Laxen-
+burg, Austria., 2009.
+Findell, K. L. and Eltahir, E. A. B.: An analysis of the soil moisture-
+rainfall feedback, based on direct observations from Illinois, Wat.
+Resour. Res., 33, 725–735, 1997.
+Fredlund, D. G. and Rahardjo, H.: Soil mechanics for unsaturated
+soil., John Wiley and Sons, New York, 1993.
+Grabs, W. and Thomas, A. R.: Report of the GCOS/GTOS/HWRP
+Expert Meeting on the Implementation of a Global Terrestrial
+Network – Hydrology (GTN-H), WMO/TD No. 1099, 2002.
+Gruhier, C., de Rosnay, P., Kerr, Y., Mougin, E., Ceschia, E.,
+Calvet, J. C., and Richaume, P.:
+Evaluation of AMSR-E soil
+moisture product based on ground measurements over temper-
+ate and semi-arid regions, Geophys. Res. Lett., 35, L10405,
+doi:10.1029/2008GL033330, 2008.
+Gruhier, C., de Rosnay, P., Hasenauer, S., Holmes, T., de Jeu, R.,
+Kerr, Y., Mougin, E., Njoku, E., Timouk, F., Wagner, W., and
+Zribi, M.:
+Soil moisture active and passive microwave prod-
+ucts: intercomparison and evaluation over a Sahelian site, Hy-
+drol. Earth Syst. Sci., 14, 141–156, doi:10.5194/hess-14-141-
+2010, 2010.
+Heret, C., Tittebrand, A., and Berger, F. H.: Latent heat fluxes sim-
+ulated with a non-hydrostatic weather forecast model using ac-
+tual surface properties from measurements and remote sensing,
+Boundary-layer Met., 121, 175–194, 2006.
+Hillel, D.: Environmental Soil Physics, Academic Press, San Diego,
+771 pp., 1998.
+Hollinger, S. E. and Isard, S. A.: A soil moisture climatology of
+Illinois, J. Climate, 7, 822–833, 1994.
+Huang, J., Van Den Dool, H. M., and Georgakakos, K. P.: Analysis
+of model-calculated soil moisture over the United States (1931–
+1993) and applications to long-range temperature forecasts, J.
+Climate, 9, 1350–1362, 1996.
+Jackson, T., Entekhabi, D., Van Oevelen, P. J., and Kerr, Y.: To-
+wards integrated global soil moisture observations, GEWEX
+News, 15, 8–9, 2005.
+Jackson, T. J.: III. Measuring surface soil moisture using passive
+microwave remote sensing, Hydrol. Process., 7, 139–152, 1993.
+Jackson, T. J., Gasiewski, A. J., Oldak, A., Klein, M., Njoku, E.
+G., Yevgrafov, A., Christiani, S., and Bindlish, R.: Soil moisture
+retrieval using the C-band polarimetric scanning radiometer dur-
+ing the Southern Great Plains 1999 Experiment, IEEE T. Geosci.
+Remote, 40, 2151–2161, 2002.
+Jackson, T. J., Cosh, M. H., Bindlish, R., Starks, P. J., Bosch, D.
+D., Seyfried, M., Goodrich, D. C., Moran, M. S., and Du, J.:
+Validation of Advanced Microwave Scanning Radiometer Soil
+Moisture Products, IEEE T. Geosci. Remote, 48, 4256–4272,
+doi:10.1109/TGRS.2010.2051035, 2010.
+Jung, M., Reichstein, M., Ciais, P., Seneviratne, S. I., Sheffield,
+J., Goulden, M. L., Bonan, G., Cescatti, A., Chen, J. Q., de
+Jeu, R., Dolman, A. J., Eugster, W., Gerten, D., Gianelle,
+D., Gobron, N., Heinke, J., Kimball, J., Law, B. E., Mon-
+tagnani, L., Mu, Q. Z., Mueller, B., Oleson, K., Papale, D.,
+Richardson, A. D., Roupsard, O., Running, S., Tomelleri, E.,
+Viovy, N., Weber, U., Williams, C., Wood, E., Zaehle, S., and
+Zhang, K.:
+Recent decline in the global land evapotranspira-
+tion trend due to limited moisture supply, Nature, 467, 951–954,
+doi:10.1038/nature09396, 2010.
+Kerr, Y. H., Waldteufel, P., Wigneron, J. P., Martinuzzi, J. M., Font,
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 22 ---
+1696 W. A. Dorigo et al.: The International Soil Moisture Network
+J., and Berger, M.: Soil moisture retrieval from space: The Soil
+Moisture and Ocean Salinity (SMOS) mission, IEEE T. Geosci.
+Remote, 39, 1729–1735, 2001.
+Koike, T., Nakamura, Y., Kaihotsu, I., Davva, N., Matsuura, N.,
+Tamagawa, K., and Fujii, H.:
+Development of an Advanced
+Microwave Scanning Radiometer (AMSR-E) Algorithm of Soil
+Moisture and Vegetation Water Content, Annual J. Hydraul.
+Eng., JSCE, 48, 217–222, 2004.
+Lebel, T., Cappelaere, B., Galle, S., Hanan, N., Kergoat, L., Levis,
+S., Vieux, B., Descroix, L., Gosset, M., Mougin, E., Peugeot, C.,
+and Seguis, L.: AMMA-CATCH studies in the Sahelian region
+of West-Africa: An overview, J. Hydrol., 375, 3–13, 2009.
+Li, L., Gaiser, P. W., Gao, B. C., Bevilacqua, R. M., Jackson, T.
+J., Njoku, E. G., R¨
+udiger, C., Calvet, J. C., and Bindlish, R.:
+WindSat global soil moisture retrieval and validation, IEEE T.
+Geosci. Remote, 48, 2224–2241, 2010.
+Liu, Y. Y., Parinussa, R. M., Dorigo, W. A., De Jeu, R. A. M., Wag-
+ner, W., van Dijk, A. I. J. M., McCabe, M. F., and Evans, J.
+P.: Developing an improved soil moisture dataset by blending
+passive and active microwave satellite-based retrievals, Hydrol.
+Earth Syst. Sci., 15, 425–436, doi:10.5194/hess-15-425-2011,
+2011.
+Loew, A. and Schlenz, F.:
+A dynamic approach for evaluating
+coarse scale satellite soil moisture products, Hydrol. Earth Syst.
+Sci., 15, 75–90, doi:10.5194/hess-15-75-2011, 2011.
+Loew, A., Dall’Amico, J. T., Schlenz, F., and Mauser, W.: The Up-
+per Danube soil moisture validation site: measurements and ac-
+tivities, Earth Observation and Water Cycle Conference, Frascati
+(Rome), 18–20 November 2009, ESA Special Publications, SP-
+674, 2009.
+Luo, L., Robock, A., Vinnikov, K. Y., Schlosser, C. A., Slater, A. G.,
+Boone, A., Braden, H., Cox, P., de Rosnay, P., Dickinson, R. E.,
+Dai, Y., Duan, Q., Etchevers, P., Henderson-Sellers, A., Gedney,
+N., Gusev, Y. M., Habets, F., Kim, J., Kowalczyk, E., Mitchell,
+K., Nasonova, O. N., Noilhan, J., Pitman, A. J., Schaake, J.,
+Shmakin, A. B., Smirnova, T. G., Wetzel, P., Xue, Y., Yang, Z.
+L., and Zeng, Q. C.: Effects of frozen soil on soil temperature,
+spring infiltration, and runoff: Results from the PILPS 2(d) ex-
+periment at Valdai, Russia, J. Hydromet., 4, 334–351, 2003.
+Mahfouf, J. F. and Noilhan, J.: Comparative study of various formu-
+lations of evaporation from bare soil using in situ data, J. Appl.
+Meteorol., 30, 1354–1365, 1991.
+Marczewski, W., Slominski, J., Slominska, E., Usowicz, B., Usow-
+icz, J., Romanov, S., Maryskevych, O., Nastula, J., and Za-
+wadzki, J.:
+Strategies for validating and directions for em-
+ploying SMOS data, in the Cal-Val project SWEX (3275) for
+wetlands, Hydrol. Earth Syst. Sci. Discuss., 7,
+7007–7057,
+doi:10.5194/hessd-7-7007-2010, 2010.
+Mart´ ınez-Fern´ andez, J., and Ceballos, A.:
+Temporal Stability of
+Soil Moisture in a Large-Field Experiment in Spain, Soil Sci.
+Soc. Am. J., 67, 1647–1656, 2003.
+Mart´ ınez-Fern´
+andez, J. and Ceballos, A.: Mean soil moisture esti-
+mation using temporal stability analysis, J. Hydrol., 312, 28–38,
+2005.
+Maurer, E. P., Wood, A. W., Adam, J. C., Lettenmaier, D. P., and
+Nijssen, B.: A long-term hydrologically based dataset of land
+surface fluxes and states for the conterminous United States, J.
+Climate, 15, 3237–3251, 2002.
+Miralles, D. G., Crow, W. T., and Cosh, M. H.: Estimating spa-
+tial sampling errors in coarse-scale soil moisture estimates de-
+rived from point-scale observations, J. Hydromet., 11, 1423–
+1429, doi:10.1175/2010JHM1285.1, 2010.
+Mittelbach, H., Casini, F., Lehner, I., Teuling, A. J., and Senevi-
+ratne, S. I.: Soil moisture monitoring for climate research: Eval-
+uation of a low-cost sensor in the framework of the Swiss soil
+moisture experiment (SwissSMEX) campaign, J. Geophys. Res.-
+Atmos., 116, D05111, doi:10.1029/2010JD014907, 2011.
+Mougin, E., Hiernaux, P., Kergoat, L., Grippa, M., de Rosnay,
+P., Timouk, F., Le Dantec, V., Demarez, V., Lavenu, F., Ar-
+jounin, M., Lebel, T., Soumaguel, N., Ceschia, E., Mougenot,
+B., Baup, F., Frappart, F., Frison, P. L., Gardelle, J., Gruhier,
+C., Jarlan, L., Mangiarotti, S., Sanou, B., Tracol, Y., Guichard,
+F., Trichon, V., Diarra, L., Soumar´ e, A., Koit´ e, M., Demb´ el´
+e,
+F., Lloyd, C., Hanan, N. P., Damesin, C., Delon, C., Serc
+¸a, D.,
+Galy-Lacaux, C., Seghieri, J., Becerra, S., Dia, H., Gangneron,
+F., and Mazzega, P.: The AMMA-CATCH Gourma observatory
+site in Mali: Relating climatic variations to changes in vegeta-
+tion, surface hydrology, fluxes and natural resources, J. Hydrol.,
+375, 14–33, 2009.
+Naeimi, V., Scipal, K., Bartalis, Z., Hasenauer, S., and Wagner, W.:
+An Improved Soil Moisture Retrieval Algorithm for ERS and
+METOP Scatterometer Observations, IEEE T. Geosci. Remote,
+47, 1999–2013, doi:10.1109/Tgrs.2009.2011617, 2009.
+Njoku, E. G., Jackson, T. J., Lakshmi, V., Chan, T. K., and Nghiem,
+S. V.: Soil moisture retrieval from AMSR-E, IEEE T. Geosci.
+Remote, 41, 215–229, 2003.
+Ohmura, A., Dutton, E. G., Forgan, B., Fr¨
+ohlich, C., Gilgen, H.,
+Hegner, H., Heimo, A., K¨ onig-Langlo, G., McArthur, B., M¨
+uller,
+G., Philipona, R., Pinker, R., Whitlock, C. H., Dehne, K., and
+Wild, M.: Baseline Surface Radiation Network (BSRN/WCRP):
+New Precision Radiometry for Climate Research, B. Am. Mete-
+orol. Soc., 79, 2115–2136, 1998.
+Oleson, K. W., Niu, G. Y., Yang, Z. L., Lawrence, D. M., Thornton,
+P. E., Lawrence, P. J., St¨
+ockli, R., Dickinson, R. E., Bonan, G. B.,
+Levis, S., Dai, A., and Qian, T.: Improvements to the community
+land model and their impact on the hydrological cycle, J. Geo-
+phys. Res.-Biogeo., 113, G01021, doi:10.1029/2007JG000563,
+2008.
+Owe, M., De Jeu, R., and Walker, J.: A methodology for surface
+soil moisture and vegetation optical depth retrieval using the mi-
+crowave polarization difference index, IEEE T. Geosci. Remote,
+39, 1643–1654, 2001.
+Owe, M., de Jeu, R., and Holmes, T.: Multisensor historical cli-
+matology of satellite-derived global land surface moisture, J.
+Geophys. Res.-Earth., 113, F01002, doi:10.1029/2007jf000769,
+2008.
+Parinussa, R., Meesters, A. G. C. A., Liu, Y. Y., Dorigo, W., Wagner,
+W., and De Jeu, R. A. M.: An analytical solution to estimate the
+error structure of a global soil moisture data set, IEEE Geosci.
+Remote Sens., 8, 779–783, 2011.
+Peck, E. L. and Hope, A. S.: Spatial patterns of soil moisture for the
+FIFE study area derived from remotely sensed and ground data,
+J. Geophys. Res., 100, 25463–425468, 1995.
+Pellarin, T., Laurent, J. P., Cappelaere, B., Decharme, B., Descroix,
+L., and Ramier, D.: Hydrological modelling and associated mi-
+crowave emission of a semi-arid region in South-western Niger,
+J. Hydrol., 375, 262–272, 2009a.
+Pellarin, T., Tran, T., Cohard, J.-M., Galle, S., Laurent, J.-P., de
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/
+
+--- PÁGINA 23 ---
+W. A. Dorigo et al.: The International Soil Moisture Network 1697
+Rosnay, P., and Vischel, T.: Soil moisture mapping over West
+Africa with a 30-min temporal resolution using AMSR-E obser-
+vations and a satellite-based rainfall product, Hydrol. Earth Syst.
+Sci., 13, 1887–1896, doi:10.5194/hess-13-1887-2009, 2009b.
+Prince, S. D., Kerr, Y. H., Goutorbe, J. P., Lebel, T., Tinga, A.,
+Bessemoulin, P., Brouwer, J., Dolman, A. J., Engman, E. T.,
+Gash, J. H., Hoepffner, M., Kabat, P., Monteny, B., Said, F.,
+Sellers, P., and Wallace, J.: Geographical, biological and remote
+sensing aspects of the hydrologic atmospheric pilot experiment
+in the Sahel (HAPEX-Sahel), Remote Sens. Environ., 51, 215–
+234, 1995.
+Pulliainen, J. T., Heiska, K., Hyyppa, J., and Hallikainen, M. T.:
+Backscattering properties of boreal forests at the C- and X-bands,
+IEEE T. Geosci. Remote., 32, 1041–1050, 1994.
+Rautiainen, K., Lemmetyiner, J., Pullianen, J., Vehvil¨
+ainen, J., Dr-
+usch, M., Kontu, A., Kainulainen, J., and Sepp¨
+anen, J.: L-Band
+Radiometer Observations of Soil Processes at Boreal and Sub-
+Arctic Environments, IEEE T. Geosci. Remote., in review, 2011.
+Reichle, R. H., Koster, R. D., Dong, J., and Berg, A. A.: Global soil
+moisture from satellite observations, land surface models, and
+ground data: Implications for data assimilation, J. Hydrometeo-
+rol., 5, 430–442, 2004.
+Richter, H., Western, A. W., and Chiew, F. H. S.: The effect of soil
+and vegetation parameters in the ECMWF land surface scheme,
+J. Hydrometeorol., 5, 1131–1146, 2004.
+Robinson, D. A., Campbell, C. S., Hopmans, J. W., Hornbuckle,
+B. K., Jones, S. B., Knight, R., Ogden, F., Selker, J., and Wen-
+droth, O.: Soil moisture measurement for ecological and hydro-
+logical watershed-scale observatories: A review, Vadose Zone J.,
+7, 358–389, 2008.
+Robock, A., Vinnikov, K. Y., Schlosser, C. A., Speranskaya, N. A.,
+and Yongkang, X.: Use of midlatitude soil moisture and meteo-
+rological observations to validate soil moisture simulations with
+biosphere and bucket models, J. Climate, 8, 15–35, 1995.
+Robock, A., Schlosser, C. A., Vinnikov, K. Y., Speranskaya, N. A.,
+Entin, J. K., and Qiu, S.: Evaluation of the AMIP soil moisture
+simulations, Global Planet. Change, 19, 181–208, 1998.
+Robock, A., Vinnikov, K. Y., Srinivasan, G., Entin, J. K., Hollinger,
+S. E., Speranskaya, N. A., Liu, S., and Namkhai, A.: The Global
+Soil Moisture Data Bank, B. Am. Meteorol. Soc., 81, 1281–
+1299, 2000.
+Robock, A., Mu, M., Vinnikov, K., Trofimova, I. V., and Adamenko,
+T. I.: Forty-five years of observed soil moisture in the Ukraine:
+No summer desiccation (yet), Geophys. Res. Lett., 32, 1–5,
+doi:10.1029/2004GL021914, 2005.
+Rodell, M., Houser, P. R., Jambor, U., Gottschalck, J., Mitchell,
+K., Meng, C. J., Arsenault, K., Cosgrove, B., Radakovich, J.,
+Bosilovich, M., Entin, J. K., Walker, J. P., Lohmann, D., and
+Toll, D.: The Global Land Data Assimilation System, B. Am.
+Meteorol. Soc., 85, 381–394, 2004.
+R¨
+udiger, C., Hancock, G., Hemakumara, H. M., Jacobs, B., Kalma,
+J. D., Martinez, C., Thyer, M., Walker, J. P., Wells, T., and Will-
+goose, G. R.: Goulburn River experimental catchment data set,
+Wat. Resour. Res., 43, W10403, doi:10.1029/2006WR005837,
+2007.
+Sabater, J. M., Jarlan, L., Calvet, J. C., Bouyssel, F., and De Rosnay,
+P.: From near-surface to root-zone soil moisture using different
+assimilation techniques, J. Hydrometeorol., 8, 194–206, 2007.
+Saxton, K. E. and Rawls, W. J.: Soil water characteristic estimates
+by texture and organic matter for hydrologic solutions, Soil Sci.
+Soc. Am. J., 70, 1569–1578, doi:10.2136/sssaj2005.0117, 2006.
+Schlosser, C. A., Slater, A. G., Robock, A., Pitman, A. J., Vinnikov,
+K. Y., Henderson-Sellers, A., Speranskaya, N. A., Mitchell, K.,
+Boone, A., Braden, H., Chen, F., Cox, P., De Rosnay, P., Des-
+borough, C. E., Dickenson, R. E., Dai, Y. J., Duan, Q., Entin, J.,
+Etchevers, P., Gedney, N., Gusev, Y. M., Habets, F., Kim, J., Ko-
+ren, V., Kowalczyk, E., Nasonova, O. N., Noilhan, J., Schaake, J.,
+Shmakin, A. B., Smirnova, T. G., Verseghy, D., Wetzel, P., Xue,
+Y., and Yang, Z. L.: Simulations of a boreal grassland hydrology
+at Valdai, Russia: PILPS phase 2(d), Mon. Weather Rev., 128,
+301–321, 2000.
+Scipal, K., Wagner, W., Trommler, M., and Naumann,
+K.:
+The global soil moisture archive 1992–2000 from ERS scat-
+terometer data: First results, IGARSS 2002:
+IEEE Interna-
+tional Geoscience and Remote Sensing Symposium and 24th
+Canadian Symposium on Remote Sensing, Toronto, Canada,
+ISI:000179116800457, 1399–1401, 2002.
+Scipal, K., Holmes, T., de Jeu, R., Naeimi, V., and Wagner, W.: A
+possible solution for the problem of estimating the error struc-
+ture of global soil moisture data sets, Geophys. Res. Lett., 35,
+L24403, doi:10.1029/2008gl035599, 2008.
+Seneviratne, S. I., Corti, T., Davin, E. L., Hirschi, M., Jaeger, E. B.,
+Lehner, I., Orlowsky, B., and Teuling, A. J.: Investigating soil
+moisture-climate interactions in a changing climate: A review,
+Earth-Sci. Rev., 99, 125–161, 2010.
+Simmons, A., Uppala, S., Dee, D., and Kobayashi, S.:
+ERA-
+Interim: New ECMWF reanalysis products from 1989 onwards,
+ECMWF Newsletter, 110, 25–35, 2007.
+Slater, A. G., Schlosser, C. A., Desborough, C. E., Pitman, A. J.,
+Henderson-Sellers, A., Robock, A., Vinnikov, K. Y., Mitchell,
+K., Boone, A., Braden, H., Chen, F., Cox, P. M., De Rosnay,
+P., Dickinson, R. E., Dai, Y. J., Duan, Q., Entin, J., Etchevers,
+P., Gedney, N., Gusev, Y. M., Habets, F., Kim, J., Koren, V.,
+Kowalczyk, E. A., Nasonova, O. N., Noilhan, J., Schaake, S.,
+Shmakin, A. B., Smirnova, T. G., Verseghy, D., Wetzel, P., Xue,
+Y., Yang, Z. L., and Zeng, Q.: The representation of snow in land
+surface schemes: Results from PILPS 2(d), J. Hydrometeorol., 2,
+7–25, 2001.
+Uppala, S. M., Kallberg, P. W., Simmons, A. J., Andrae, U., Bech-
+told, V. D., Fiorino, M., Gibson, J. K., Haseler, J., Hernandez, A.,
+Kelly, G. A., Li, X., Onogi, K., Saarinen, S., Sokka, N., Allan, R.
+P., Andersson, E., Arpe, K., Balmaseda, M. A., Beljaars, A. C.
+M., Van De Berg, L., Bidlot, J., Bormann, N., Caires, S., Cheval-
+lier, F., Dethof, A., Dragosavac, M., Fisher, M., Fuentes, M.,
+Hagemann, S., Holm, E., Hoskins, B. J., Isaksen, L., Janssen,
+P., Jenne, R., McNally, A. P., Mahfouf, J. F., Morcrette, J. J.,
+Rayner, N. A., Saunders, R. W., Simon, P., Sterl, A., Trenberth,
+K. E., Untch, A., Vasiljevic, D., Viterbo, P., and Woollen, J.: The
+ERA-40 re-analysis, Q. J. Roy. Meteorol. Soc., 131, 2961–3012,
+doi:10.1256/qj.04.176, 2005.
+Vachaud, G., Royer, J. M., and Cooper, J. D.: Comparison of meth-
+ods of calibration of a neutron probe by gravimetry or neutron-
+capture model, J. Hydrol., 34, 343–356, 1977.
+Vachaud, G., Passerat De Silans, A., Balabanis, P., and Vauclin, M.:
+Temporal stability of spatially measured soil water probability
+density function, Soil Sci. Soc. Am. J., 49, 822–828, 1985.
+Van De Griend, A. A., Owe, M., Vugts, H. F., and Prince, S. D.:
+Water and surface energy balance modeling in Botswana, B. Am.
+www.hydrol-earth-syst-sci.net/15/1675/2011/ Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011
+
+--- PÁGINA 24 ---
+1698 W. A. Dorigo et al.: The International Soil Moisture Network
+Meteorol. Soc., 70, 1404–1411, 1989.
+van der Molen, M. K., Dolman, A. J., Ciais, P., Eglin, T., Gob-
+ron, N., Law, B. E., Meir, P., Peters, W., Phillips, O. L., Reich-
+stein, M., Chen, T., Dekker, S. C., Doubkov´
+a, M., Friedl, M. A.,
+Jung, M., van den Hurk, B. J. J. M., de Jeu, R. A. M., Kruijt,
+B., Ohta, T., Rebel, K. T., Plummer, S., Seneviratne, S. I., Sitch,
+S., Teuling, A. J., van der Werf, G. R., and Wang, G.: Drought
+and ecosystem carbon cycling, Agr. For. Met., 151(7), 765–773,
+doi:10.1016/j.agrformet.2011.01.018, 2011.
+Vinnikov, K. Y. and Yeserkepova, I. B.: Soil moisture: Empirical
+data and model results, J. Climate, 4, 66–79, 1991.
+Vinnikov, K. Y., Robock, A., Speranskaya, N. A., and Adam
+Schlosser, C.: Scales of temporal and spatial variability of mid-
+latitude soil moisture, J. Geophys. Res.-Atmos., 101, 7163–7174,
+1996.
+Vinnikov, K. Y., Robock, A., Qiu, S., and Entin, J. K.: Optimal
+design of surface networks for observation of soil moisture, J.
+Geophys. Res.-Atmos., 104, 19743–19749, 1999a.
+Vinnikov, K. Y., Robock, A., Qiu, S., Entin, J. K., Owe, M., Choud-
+hury, B. J., Hollinger, S. E., and Njoku, E. G.: Satellite remote
+sensing of soil moisture in Illinois, United States, J. Geophys.
+Res.-Atmos., 104, 4145–4168, 1999b.
+Wagner, W., Lemoine, G., and Rott, H.:
+A method for estimat-
+ing soil moisture from ERS scatterometer and soil data, Remote
+Sens. Environ., 70, 191–207, 1999.
+Wagner, W., Naeimi, V., Scipal, K., de Jeu, R., and Martinez-
+Fernandez, J.:
+Soil moisture from operational meteorological
+satellites, Hydrogeol. J., 15, 121–131, doi:10.1007/s10040-006-
+0104-6, 2007.
+Walker, J. P., Willgoose, G. R., and Kalma, J. D.: In situ measure-
+ment of soil moisture: A comparison of techniques, J. Hydrol.,
+293, 85–99, 2004.
+Wang, J. M., Shiue, J., Engman, E., Lawless, P., Schmugge, T.,
+Jackson, T., Gould, W., Fuchs, J., and Calhoon, C.: Remote Mea-
+surements of soil moisture by microwave radiometers at BARC
+test site, TM-80720, NASA GFSC, 113, 1980.
+Ward, R. C. and Robinson, M.: Principles of Hydrology, McGraw-
+Hill, Maidenhead, 1990.
+Wigneron, J. P., Kerr, Y., Waldteufel, P., Saleh, K., Escorihuela, M.
+J., Richaume, P., Ferrazzoli, P., de Rosnay, P., Gurney, R., Cal-
+vet, J. C., Grant, J. P., Guglielmetti, M., Hornbuckle, B., M¨
+atzler,
+C., Pellarin, T., and Schwank, M.: L-band Microwave Emission
+of the Biosphere (L-MEB) Model: Description and calibration
+against experimental data sets over crop fields, Remote Sens. En-
+viron., 107, 639–655, 2007.
+WMO8: Guide to Meteorological Instruments and Methods of Ob-
+servation, 7 ed., Weather-Climate-Water, World Meteorological
+Organization, Geneva, Switzerland, 681 pp., 2008.
+Yang, Z. L., Dickinson, R. E., Robock, A., and Vinnikov, K. Y.:
+Validation of the snow submodel of the biosphere-atmosphere
+transfer scheme with Russian snow cover and meteorological ob-
+servational data, J. Climate, 10, 353–373, 1997.
+Young, R., Walker, J., Yeoh, N., Smith, A., Ellett, K., Merlin, O.,
+and Western, A.: Soil moisture and meteorological observations
+from the Murrumbidgee catchment., Department of Civil and En-
+vironmental Engineering, The University of Melbourne, 2008.
+Zreda, M., Desilets, D., Ferre, T. P. A., and Scott, R. L.:
+Mea-
+suring soil moisture content non-invasively at intermediate spa-
+tial scale using cosmic-ray neutrons, Geophys. Res. Lett., 35,
+L21402, 10.1029/2008gl035655, 2008.
+Zribi, M., Pard´
+e, M., De Rosnay, P., Baup, F., Boulain, N., De-
+scroix, L., Pellarin, T., Mougin, E., Ottl´
+e, C., and Decharme, B.:
+ERS scatterometer surface soil moisture analysis of two sites in
+the south and north of the Sahel region of West Africa, J. Hydrol.,
+375, 253–261, 2009.
+Hydrol. Earth Syst. Sci., 15, 1675–1698, 2011 www.hydrol-earth-syst-sci.net/15/1675/2011/

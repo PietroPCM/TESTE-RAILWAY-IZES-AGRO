@@ -1,0 +1,22 @@
+{
+  "data_verificacao": "2026-06-13",
+  "total_manifesto": 24,
+  "documentos_validos": 22,
+  "documentos_invalidos": 2,
+  "html_falso": 0,
+  "duplicados": 0,
+  "documentos_extraidos": 22,
+  "extracoes_ocr": 7,
+  "extracoes_com_falha": 2,
+  "arquivos_proibidos": 0,
+  "erros": [
+    "DOC_IRRIGACAO_FAO_001: caminho original inexistente",
+    "DOC_SENSOR_ARTIGO_003: caminho original inexistente"
+  ],
+  "avisos": [
+    "DOC_IRRIGACAO_FAO_001: documento inválido",
+    "DOC_SENSOR_ARTIGO_003: documento inválido",
+    "DOC_IRRIGACAO_FAO_001: extração falhou ou requer OCR",
+    "DOC_SENSOR_ARTIGO_003: extração falhou ou requer OCR"
+  ]
+}

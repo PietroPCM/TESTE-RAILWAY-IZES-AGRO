@@ -1,0 +1,591 @@
+---
+documento_id: DOC_SENSOR_EMBRAPA_001
+titulo: Protocolo para a calibração e a aferição de sensores de umidade de solo
+instituicao: Embrapa
+autores: VIANA, J. H. M.; VIANA, J. H. M.
+ano: 2024
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1170710/1/Protocolo-para-a-calibracao-e-a-afericao-de-sensores-de-umidade-de-solo.pdf
+arquivo_original: originais/embrapa/DOC_SENSOR_EMBRAPA_001.pdf
+sha256: 69d0df59f9bd8483b94b982c7edb42f3eb7c0ecf6220c39ec7d3ff24dd5085dc
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Boletim de Pesquisa
+e Desenvolvimento
+ISSN 1679-0154 / e-ISSN 0000-0000
+262
+Sete Lagoas, MG / Novembro, 2024
+Embrapa Milho e Sorgo
+Rodovia MG 424, KM 65
+Caixa Postal 151
+35701-098 Sete Lagoas, MG
+https://www.embrapa.br/milho-
+e-sorgo
+https://www.embrapa.br/fale-
+conosco/sac
+Comitê Local de Publicações
+Presidente
+Maria Marta Pastina
+Secretário-executivo
+Antônio Carlos de Oliveira
+Membros
+Cláudia Teixeira Guimarães,
+Mônica Matoso Campanha,
+Roberto dos Santos Trindade e
+Maria Cristina Dias Paes
+Edição executiva
+Márcio Augusto Pereira do
+Nascimento
+Revisão de texto
+Antonio Claudio da Silva Barros
+Normalização bibliográfica
+Rosângela Lacerda de Castro
+(CRB-6/2749)
+Projeto gráfico
+Leandro Sousa Fazio
+Diagramação
+Márcio Augusto Pereira do
+Nascimento
+Publicação digital: PDF
+Todos os direitos
+reservados à Embrapa.
+Protocolo para a calibração e a aferição
+de sensores de umidade de solo
+João Herbert Moreira Viana
+Pesquisador, Embrapa Milho e Sorgo, Sete Lagoas, MG.
+Resumo – A calibração dos sensores de umidade de solo é essencial
+para a utilização dos dados produzidos por eles. Na calibração, os re -
+sultados das medidas dos sensores em teste são comparados aos de
+um método-padrão, como o método gravimétrico. Neste trabalho, foram
+avaliados os resultados de umidade do sensor ATV-S01, por comparação
+com medidas diretas de umidade em bases gravimétrica e volumétrica;
+foram desenvolvidos modelos de calibração específicos para os solos bra -
+sileiros, a serem incorporados ao sistema de monitoramento de pivôs; e
+foi avaliado o tempo de resposta do sensor. Foram montados dois ensaios
+com três repetições, um para a calibração estática dos sensores e outro
+para a avaliação dinâmica do processo de leitura sob tensão de água con -
+trolada. Foram usadas amostras de calibração de dois grupos, um com
+variação de granulometria e outro com variação de composição elemen -
+tar. O sensor foi inserido verticalmente nas amostras, ligado ao notebook,
+e a aquisição dos dados se deu por um programa feito para este fim.
+Os resultados foram o desenvolvimento de um modelo mais simples para
+correção dos dados brutos, com base apenas nas leituras do sensor, e
+modelos mais completos, que incorporam dados adicionais dos atributos
+dos solos, com melhores resultados em termos de acurácia. O tempo de
+resposta do sensor medido foi rápido e adequado a seu objetivo.
+Termos para indexação : umidade gravimétrica, umidade volumétrica, re -
+gressão linear stepwise , regressão linear bootstrap.
+Protocol for the calibration and verification of soil
+moisture sensors
+Abstract – The calibration of soil moisture sensors is essential for the
+use of its data. In that process, the results for the measurements of the
+tested sensors are compared to the standard method, the gravimetric one.
+In this work, the results of the moisture measurements for the ATV-S01
+sensor were evaluated with direct measurements by the gravimetric and
+volumetric methods; calibration models were developed specifically for
+
+--- PÁGINA 2 ---
+2 Boletim de Pesquisa e Desenvolvimento 262
+the Brazilian soils, to be used in the pivot monitoring
+system and the sensor response time was evalua -
+ted. Two experiments were performed, one for the
+static calibration of the sensors and another for the
+dynamic evaluation of the data acquisition under
+controlled water tension. Two groups of samples
+were used, one with varying texture and another
+with varying elemental composition. The sensor was
+vertically inserted in the soil samples, connected to
+the laptop and a software specifically developed for
+that purpose acquired the data. The results were a
+simpler model for the raw sensor data, and more
+comprehensive models that use additional soil infor -
+mation, with more accurate results. The sensor res -
+ponse time was fast and adequate for its purposes.
+Index terms: gravimetric moisture, volumetric mois -
+ture, stepwise linear regression, bootstrap linear
+regression.
+Introdução
+A aferição e a calibração dos sensores de umida -
+de de solo são operações essenciais para a utiliza -
+ção dos dados produzidos por eles. Os procedimen -
+tos de calibração permitem avaliar o comportamento
+dos sensores, em sua maioria importados e desen -
+volvidos para solos diversos dos brasileiros, e gerar
+modelos que permitem a correção dos resultados,
+além de estimar os intervalos de confiança para o
+uso seguro dos dados produzidos. Características
+específicas dos solos tropicais brasileiros, como alto
+teor de ferro, alto teor de argila e expansibilidade,
+exigem a calibração dos sensores para obtenção da
+acurácia adequada (Villwock et al., 2004).
+Nos estudos de calibração, os resultados das
+medidas dos sensores em teste são comparados
+aos de um método-padrão, como o método gravi -
+métrico de determinação de umidade no solo (Tei -
+xeira et al., 2017). A partir desses resultados, se
+necessário, podem ser desenvolvidos modelos de
+ajustes para correção dos dados. Vários estudos
+indicam que, para as condições brasileiras, são ne -
+cessários ajustes dos dados gerados por sensores
+de umidade de solo. Silva et al. (2012) mostraram
+que as calibrações de fábrica do sensor capacitivo
+Delta Probe não foram adequadas às condições
+de um Latossolo argiloso, mas foi possível ajustar
+equações de calibração aos dados. Serrarens et al.
+(2000) calibraram uma sonda TDR e ajustaram mo -
+delos lineares aos dados. Villwock et al. (2004) ajus -
+taram um modelo cúbico polinomial para ajuste dos
+dados de calibração de um equipamento de TDR.
+Lima et al. (2018) ajustaram modelos lineares e qua -
+dráticos para a calibração de um sensor capacitivo,
+realçando a necessidade desta calibração. Batista
+et al. (2016) usaram um modelo polinomial cúbico
+para a calibração dos dados de umidade de solo de
+uma sonda TDR. Leão et al. (2007) construíram um
+dispositivo para calibração de sensores de umidade
+do solo, a sua calibração e a determinação de suas
+principais propriedades, como precisão e cargas
+mínima e máxima. Santos et al. (2006) desen -
+volveram e testaram um sistema de pesagem de
+grande capacidade para utilização em gravimetria
+como método padrão de calibração de sensores
+de umidade do solo.
+Este trabalho foi desenvolvido no âmbito do
+projeto Sistema para automatização do manejo de
+irrigação para pivôs centrais, e visa permitir o uso
+dos sensores de umidade de solo, integrados ao
+sistema em desenvolvimento, para monitoramento
+da umidade do solo sob os pivôs e para ativação da
+irrigação de forma otimizada, conforme as necessi -
+dades da cultura implantada.
+Os objetivos deste trabalho foram:
+1 – Aferir os resultados de umidade 2 – Desen -
+volver curvas de calibração específicas para os so -
+los brasileiros, a serem incorporadas ao sistema de
+monitoramento de pivôs centrais, considerando dife -
+rentes cenários de disponibilidade de dados de solo.
+Material e métodos
+Foram montados dois ensaios: um para a cali -
+bração direta dos sensores e outro para a avaliação
+dinâmica do processo de leitura, sob tensão de água
+controlada. As amostras utilizadas para calibração
+foram divididas em dois grupos, um grupo com solos
+com a granulometria variando desde muito argilosa
+até arenosa (Tabela 1), e outro grupo, com variação
+dos teores de elementos principais (Tabela 2). Algu -
+mas das amostras foram coletadas na mesma área
+onde foram instalados os sensores para o teste ini -
+cial do sistema, sob um pivô central (Figura 1), para
+correção dos dados já em fase de coleta.
+Para o primeiro ensaio de calibração direta
+de umidade de solo, amostras destorroadas (terra
+fina seca ao ar, TFSA) dos solos selecionados fo -
+ram montadas em anéis de PVC de 330 mL (Figura
+2B, fechados no fundo com tecido fino. Para cada
+solo, foram montadas três repetições. Nas amostras
+montadas, foi inserido o sensor de umidade vertical -
+mente, de modo que a haste dele ficou completa -
+mente inserida no solo. O sensor foi ligado ao note -
+book por meio do cabo apropriado, e o programa de
+
+--- PÁGINA 3 ---
+Protocolo para a calibração e a aferição de sensores de umidade de solo 3
+leitura foi iniciado. Após a montagem, as amostras
+foram saturadas por capilaridade, e as leituras fo -
+ram feitas após intervalos para secagem ao ar das
+amostras, segundo o protocolo de leitura esquema -
+tizado abaixo:
+As pesagens foram feitas em balança analítica
+para obtenção da massa total da amostra, e as me -
+didas de temperatura e de umidade foram tomadas
+1) Saturar a amostra por capilaridade.
+2) Retirar do pote e pesar na balança de duas casas.
+3) Retornar ao pote e inserir o sensor.
+4) Iniciar o programa com intervalo de 5 segundos.
+5) Fazer 10 leituras do sensor na primeira repetição.
+6) Retirar o sensor e colocar na próxima amostra. Repetir o item 5.
+7) Retirar o sensor e colocar na última amostra. Repetir o item 5.
+8) Fechar o programa e renomear o arquivo com a identificação da amostra e a data.
+9) Colocar as amostras abertas na caixa para evaporar.
+10) Tampar e aguardar 24 horas.
+11) Retirar do pote e pesar na balança de duas casas.
+12) Retornar ao pote e inserir o sensor.
+13) Repetir os procedimentos de 4 a 12.
+Protocolo de leitura
+pelo sensor em avaliação. Foram tomadas dez lei -
+turas do sensor, para cada ponto de umidade. Ao
+final do ensaio de cada amostra, os anéis foram
+desmontados e foram determinados a massa seca
+em estufa a 105 °C da amostra e as dimensões in -
+ternas de cada anel com um paquímetro. Com es -
+ses dados, foram calculadas as umidades em base
+gravimétrica e volumétrica, para comparação com
+as leituras do sensor, feitas em base volumétrica.
+As leituras de umidade foram feitas da saturação até
+próximo da amostra seca ao ar, inicialmente, totali -
+zando oito períodos de leitura de umidade.
+Para o segundo ensaio de avaliação dinâmica
+do processo de leitura sob tensão, amostras inde -
+formadas foram coletadas em anéis de PVC de 330
+mL, fechados no fundo com tecido fino. As amos -
+tras com o sensor de umidade inserido vertical -
+mente foram montadas sobre mesas de tensão em
+miniatura, e assentadas sobre balanças analíticas
+(Figura 3), e o conjunto foi ligado ao notebook por
+meio dos cabos apropriados. Após a montagem, as
+amostras foram saturadas por capilaridade e, após
+um período de leitura, submetidas a tensões prees -
+tabelecidas por meio do aparato da mesa de tensão.
+A coleta contínua de dados foi feita pelo programa
+de leitura.
+Figura 1. Locais de implantação dos sensores no pivô central da Embrapa Milho e Sorgo. Sete Lagoas, MG.
+
+--- PÁGINA 4 ---
+4 Boletim de Pesquisa e Desenvolvimento 262
+Sensor
+Foi utilizado o sensor ATV-S01 (Tabela 3), forne -
+cido pela empresa Ativa, a ser utilizado em conjunto
+com o sistema de coleta e envio de dados do projeto
+(Figura 2). Para os ensaios, o sensor foi acoplado
+Tabela 1. Solos usados na calibração 1.
+Amostra Local de coleta Areia (%) Silte (%) Argila (%)
+Cerrado
+Embrapa Milho e Sorgo,
+Sete Lagoas, MG
+12 10
+78
+Estação
+Embrapa Milho e Sorgo,
+Sete Lagoas, MG
+33 16
+51
+Baiana
+Embrapa Milho e Sorgo,
+Sete Lagoas, MG
+21 37
+43
+Sensor 3
+Embrapa Milho e Sorgo,
+Sete Lagoas, MG
+41 32
+27
+Sensor 2
+Embrapa Milho e Sorgo,
+Sete Lagoas, MG
+50 26
+25
+TRI P07 Cocos, BA 88 1
+12
+Ver 02 Cocos, BA 97 1 3
+Tabela 2. Solos usados na calibração 2.
+Amostra Local de coleta
+SiO 2 Al 2 O 3 Fe 2 O 3 TiO 2 P 2 O 5
+Areia
+grossa
+Areia
+fina
+Silte Argila
+SR Santa Rosa 3,9 19,1 3,6 4 0,05 18 19 11 53
+SG São Gotardo 4,4 24,7 15,4 3,7 0,12 3 3 12 82
+PM Patos de Minas 2,4 12,5 37,9 15,2 0,89 13 13 38.6 35
+NL Nova Lima 0 7,1 60,5 2,8 0,13 6 20 42 22
+Ataque sulfúrico (%) Granulometria (%)
+Tabela 3. Especificações técnicas do sensor, conforme material técnico do fornecedor.
+a um cabo fabricado pela Ativa e conectado a um
+notebook (Figura 3). A coleta dos dados foi feita por
+um programa desenvolvido para esse fim pela Ativa
+(Figura 4).
+Especificações técnicas
+Umidade Temperatura
+Faixa 0% (m
+3
+/m
+3
+) a 100% (m
+3
+/m
+3
+)
+-30 °C a +70 °C
+Acurácia ±3% (0% – 50%)
+±0.3 °C
+Sinal
+Tempo de resposta
+Fonte
+Área de medida efetiva
+Carcaça
+Dimensões
+Temperatura de operação
+Proteção de entrada
+Estocagem
+Material da sonda
+71 x 45 x 16 mm (sonda: diâmetro 2 mm comprimento 55 mm)
+-40 °C a +80 °C
+IP68
+10°C a 60 °C e 20% a 90% de umidade relativa
+Aço inox 316 L
+Item
+4mA–20 mA, 0Va -V, RS485 opcional
+< 1s
+5 VDC, 12V
+a 24 VDC
+Centro do diâmetro da sonda 70 mm, altura do cilindro 70 mm
+ABS
+
+--- PÁGINA 5 ---
+Protocolo para a calibração e a aferição de sensores de umidade de solo 5
+Figura 2. Sensor ATV-S01 acoplado ao cabo de dados (A) e sensor instalado no anel com a amostra de solo (B).
+A B
+Figura 3. Esquema do dispositivo de medida simultânea de umidade, tensão e peso das amostras (A) e imagem da
+instalação (B).
+A B
+Figura 4. Interface desenvolvida para aquisição dos dados.
+
+--- PÁGINA 6 ---
+6 Boletim de Pesquisa e Desenvolvimento 262
+Com base nesses resultados, uma série de
+equações de regressão foi ajustada para os dados
+dos solos, e uma equação geral foi gerada para o
+conjunto de dados (Tabela 4). Os resultados das re -
+gressões individuais e da geral são apresentados na
+Figura 6. As análises de regressão foram feitas na
+plataforma R (R Core Team, 2024).
+Resultados e discussão
+Ensaios de calibração estáticos
+Esses ensaios avaliaram os resultados de umi -
+dade em base volumétrica produzidos pelo sensor
+em relação às medidas de referência, pelo méto -
+do gravimétrico. Os resultados dos dados brutos
+Figura 5. Gráfico dos dados brutos de calibração, com a umidade em base volumétrica medida pelo sensor em função
+da medida pelo método-padrão.
+indicam que, de forma geral, o sensor sistematica -
+mente subestimou os valores da umidade de solo
+(Figura 5). Apenas os materiais mais arenosos tive -
+ram um resultado com menor desvio relativo à curva
+1:1. Isso indica que a calibração de fábrica necessi -
+ta de correções para uso dos dados.
+Figura 6. Gráfico da regressão linear simples geral e das regressões individuais por amostra, com a umidade em base
+volumétrica medida pelo sensor em função da medida pelo método-padrão.
+Essa regressão geral (Equação 1) deve ser incor -
+porada como padrão inicial (“default” no sistema de
+coleta e envio de dados do projeto, no caso de não
+haver informação adicional alguma sobre os solos.
+
+--- PÁGINA 7 ---
+Protocolo para a calibração e a aferição de sensores de umidade de solo 7
+Tabela 4. Equações ajustadas dos modelos.
+Número Modelo Equação R
+2
+1 regressão linear simples geral UP (%) = 6,11 + 1,24 × US
+0,786
+2 regressão linear stepwise com dados de solo
+UP (%) = 12,719 + ArG_argila × (-1,76) + ArF_argila ×
+2,23 + Sil_argila × (8,65) + 1,24 × US
+0,83
+3
+regressão linear bootstrap om dados de solo e
+temperatura
+UP (%) = 21,54 - 6,42 × Sil_argila - 0,6 × T + 1,3 × US 0,986
+4
+regressão linear stepwise com dados de
+granulometria e de composição elementar de solo
+UP (%) = 5,57 - 6,0 × Sil_argila + 1,40 × US 0,951
+Figura 7. Gráfico da regressão linear stepwise com dados de granulometria de solo, com a umidade em base volumétrica
+predita em função da umidade medida.
+Foram desenvolvidas outras equações de regres -
+são, que permitem incorporar informações dos solos
+e melhorar a qualidade do ajuste dos dados medidos.
+Uma equação de regressão linear (Equação 2) foi
+gerada pelo procedimento ‘ stepwise ’,com base nos
+Figura 8. Gráficos da regressão linear ‘ bootstrap ’, para os dados de treinamento e validação, com dados de granu -
+lometria de solo e da temperatura medida pelo sensor, com a umidade em base volumétrica predita em função da
+umidade medida.
+dados de granulometria de solo (Tabela 4), e que
+permite um ganho de acerto do modelo em relação
+à regressão geral, como o R
+2
+passando de 0,79 para
+0,83 (Figura 6).
+US = umidade em base volumétrica medida pelo sensor;
+UP (%) = umidade em base volumétrica corrigida; ArG_argila = razão de teores areia grossa/argila; ArF_argila = razão de teores areia fina/
+argila; Sil_argila = razão de teores silte/argila; T = temperatura (°C).
+O sensor utilizado mede também a temperatura
+do solo, que foi incorporada em um modelo de re -
+gressão linear pelo procedimento bootstrap (Equação
+3), que incorpora os dados de granulometria de solo
+(Tabela 4). Neste caso, o ganho de acerto do mode -
+lo em relação à regressão geral foi maior, com o R
+2
+passando de 0,79 para 0,97 (Figura 7).
+
+--- PÁGINA 8 ---
+8 Boletim de Pesquisa e Desenvolvimento 262
+Os ensaios feitos por Manieri et al. (2007) apon -
+taram os erros-padrão das estimativas de 3% a 6%
+na calibração de laboratório e de 5% a 6% nos tes -
+tes de campo, utilizando equações de calibração es -
+pecíficas por grupo de textura e com todos os solos
+em conjunto, respectivamente.
+Ensaios de calibração dinâmicos
+Esses ensaios avaliaram os tempos de resposta
+do sensor em relação à medida de referência por
+balança analítica medida simultaneamente, duran -
+te a aplicação de diferentes tensões de água por
+meio do aparato da mesa de tensão. Foram usadas
+amostras indeformadas, que preservam a estrutura
+do solo e permitem uma avaliação mais realista dos
+processos de transporte de água no solo. As toma -
+das de dados foram feitas com intervalos de meio
+minuto entra as leituras e se prolongaram até a
+aparente estabilização do peso das amostras. São
+apresentados os resultados da umidade normaliza -
+da, para poder comparar os resultados no tempo.
+Os resultados indicam que o sensor respon -
+de rapidamente à aplicação da tensão que provo -
+ca a drenagem da amostra (Figuras 9 a 13), com
+(Tabela 4). Esse procedimento testa o efeito da in -
+corporação de variáveis ao modelo na melhoria do
+acerto. Os resultados indicaram que não houve ga -
+nho de acerto do modelo com a incorporação dos
+dados de composição, e a melhor equação gerada
+incorporou apenas os dados de granulometria, com
+o R
+2
+de 0,95, similar ao do outro conjunto de dados
+(Figura 8).
+Foram também testados modelos de regressão
+incorporando os dados de composição elementar de
+outro grupo de amostras (Tabela 2), para avaliar se
+a variação dos teores de ferro total poderia interferir
+nas leituras do sensor (Villwock et al., 2004). Uma
+equação de regressão linear (Equação 4) foi gerada
+pelo procedimento Ste pwise , com base nos dados
+de granulometria de solo e composição elementar
+Figura 9. Gráfico da regressão linear stepwise ,com dados de granulometria e de composição elementar de solo (ataque
+sulfúrico), com a umidade em base volumétrica predita em função da umidade medida.
+diferenças inferiores a um minuto entre as medidas
+do sensor e da balança, não significativas para os
+objetivos do uso dos sensores.
+Para a tensão de 2 kiloPascais (kPa) (Fi -
+guras 9 a 11), os valores da umidade normalizada
+convergiram após cerca de 10 minutos do início do
+ensaio. Para a carga de 4 kPa, a convergência ocor -
+reu após cerca de uma hora, e para a carga de 6
+kPa, após cerca de cinco horas. Isso indica que são
+necessárias pelo menos algumas horas de equilí -
+brio para se considerar os resultados para fins de
+decisão, especialmente para a faixa mais seca de
+umidade do solo.
+Cruz et al. (2010) avaliaram um sensor capaciti -
+vo e constataram que este apresentou alta velocida -
+de de resposta (menos de 1 segundo) às variações
+da quantidade de água na amostra de solo. Também
+identificaram que este sensor apresentou maior
+sensibilidade à medida que se diminui o conteúdo
+de água no solo, sendo adequado para determinar
+o teor de água do solo de forma adequada.
+
+--- PÁGINA 9 ---
+Protocolo para a calibração e a aferição de sensores de umidade de solo 9
+Figura 10 . Ensaio de avaliação de tempo de resposta do sensor. Dados normalizados, amostra Cerrado 1, carga 20 cm,
+repetição 1.
+Figura 11 . Ensaio de avaliação de tempo de resposta do sensor. Dados normalizados, amostra ‘Cerrado 1’, carga 20 cm,
+repetição 2.
+Figura 12. Ensaio de avaliação de tempo de resposta do sensor. Dados normalizados, amostra Cerrado 1, carga 20 cm,
+repetição 3.
+
+--- PÁGINA 10 ---
+10 Boletim de Pesquisa e Desenvolvimento 262
+Figura 13 . Ensaio de avaliação de tempo de resposta do sensor. Dados normalizados, amostra ‘Cerrado 1’, carga 40 cm,
+repetição 1
+Figura 14 . Ensaio de avaliação de tempo de resposta do sensor. Dados normalizados, amostra Cerrado 1, carga 60 cm,
+repetição 1.
+Conclusões
+Foi avaliado o desempenho de um sensor de
+solo para medição da umidade em base volumétri -
+ca, e, em função dos desvios encontrados em rela -
+ção a amostras do controle de solos com diferentes
+propriedades, foram desenvolvidos modelos linea -
+res para correção dos valores, para futura incorpo -
+ração no sistema de manejo de irrigação. Foi desen -
+volvido um modelo simples, apenas para correção
+dos dados brutos, e modelos mais completos, que
+incorporam dados adicionais de atributos medidos
+dos solos, com melhores resultados em termos de
+acurácia. Foi também avaliado o tempo de resposta
+do sensor, sendo constatado que o sensor tem um
+tempo de resposta rápido e adequado a seu objetivo.
+
+--- PÁGINA 11 ---
+Protocolo para a calibração e a aferição de sensores de umidade de solo 11
+Agradecimentos
+Este trabalho foi feito no escopo do projeto “Siste -
+ma para automatização do manejo de irrigação para
+pivôs centrais” (30.21.90.061.00.00), uma parceria da
+Embrapa e da Ativa Soluções Tecnológicas Indústria
+e Comércio S/.A. Atividade 30.21.90.061.00.02.003).
+Referências
+BATISTA, L. S.; COELHO, E. F.; PEREIRA, F. A. C.;
+SILVA, M. G.; GOMES FILHO, R. R.; GONÇALVES, A.
+A. Calibração de sonda artesanal de uso com TDR para
+avaliação de umidade de solos. Revista Brasileira de
+Agricultura Irrigada , v. 10, n. 2, p. 522-532, 2016. DOI:
+https://doi.org/10.7127/rbai.v10n200388.
+CRUZ, T. M. L.; TEIXEIRA, A. S.; CANAFÍSTU -
+LA, F. J. F.; SANTOS, C. C.; OLIVEIRA, A. D. S.;
+DAHER, S. Avaliação de sensor capacitivo para
+o monitoramento do teor de água do solo. Enge -
+nharia Agrícola , v. 30, n. 1, p. 33-45, 2010. DOI:
+https://doi.org/10.1590/S0100-69162010000100004.
+LEÃO, R. A. O.; TEIXEIRA, A. S.; CANAFÍSTULA,
+F. J. F.; MESQUITA, P. E. G.; COELHO, S. L. De -
+senvolvimento de um dispositivo eletrônico para
+calibração de sensores de umidade do solo. Enge -
+nharia Agrícola , v. 27, n. 1, p. 294-303, 2007. DOI:
+https://doi.org/10.1590/S0100-69162007000100024.
+LIMA, J. G. A.; OLIVEIRA, A. S.; SOUZA, L. S.; SIL -
+VA, N. D.; VIANA, P. C. Calibration of a soil moisture
+sensor with disturbed and undisturbed soil samples
+from Bahia. Revista Brasileira de Engenharia Agrí -
+cola e Ambiental , v. 22, n. 10, p. 696-701, 2018. DOI:
+https://doi.org/10.1590/1807-1929/agriambi.
+v22n10p696-701.
+MANIERI, J. M.; VAZ, C. M. P.; DE MARIA, I. C. Sonda es -
+piral de TDR para a medida da umidade no perfil do solo.
+Revista Brasileira de Ciência do Solo , v. 31, n. 2, p. 191-
+198, 2007. DOI: ht -
+tps://doi.org/10.1590/S0100-06832007000200001.
+R CORE TEAM. R : a language and environment for
+statistical computing. Vienna, 2024. Disponível em: http://
+www.R- project.org . Acesso em: 22 jun. 2024.
+SANTOS, R. M.; OLIVEIRA, A. S.; VELLAME, L. M.;
+BRANDÃO, F. J. C. Montagem e acurácia de um
+sistema experimental de pesagem para calibração
+de sensores de umidade do solo. Ciência e Agro -
+tecnologia , v. 30, n. 6, p. 1162-1169, 2006. DOI:
+https://doi.org/10.1590/S1413-70542006000600019.
+SERRARENS, D.; MACINTYRE, J. L.; HOPMANS, J. W.;
+BASSOI, L. H. Soil moisture calibration of TDR multilevel
+probes. Scientia Agricola , v. 57, n. 2, p. 349-354, 2000.
+https://doi.org/10.1590/S0103-90162000000200024.
+SILVA, B. M.; OLIVEIRA, G. C.; SERAFIM, M. E.; SIL -
+VA JÚNIOR, J. J.; COLOMBO, A.; LIMA, J. M. Acurácia
+e calibração de sonda de capacitância em Latossolo
+Vermelho cultivado com cafeeiro. Pesquisa Agrope -
+cuária Brasileira , v. 47, n. 2, p. 277-286, 2012. DOI:
+https://doi.org/10.1590/S0100-204X2012000200017.
+TEIXEIRA, P. C.; DONAGEMMA, G. K.; FONTANA, A.;
+TEIXEIRA, W. G. (ed.). Manual de métodos de análise
+de solo . 3. ed. rev. e ampl. Brasília, DF: Embrapa, 2017.
+573 p.
+VILLWOCK, R.; TAVARES, M. H. F.; VILAS BOAS,
+M. A. Calibração de um equipamento TDR em condi -
+ções de campo. Irriga , v. 9, n. 1, p. 82-88, 2004. DOI:
+http://dx.doi.org/10.15809/irriga.2004v9n1p82-88.
+
+--- PÁGINA 12 ---
+12 Boletim de Pesquisa e Desenvolvimento 262
+CGPE 018869
+Ministério da
+Agricultura e Pecuária

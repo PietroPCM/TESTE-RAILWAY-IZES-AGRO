@@ -1,0 +1,401 @@
+---
+documento_id: DOC_CE_EMBRAPA_001
+titulo: Medida de condutividade elétrica do solo adaptada a uma plantadeira
+instituicao: Embrapa
+autores: RABELLO, L. M.; INAMASU, R. Y.; TORRE NETO, A.; LUCHIARI JUNIOR, A.; MOLIN, J. P.; RABELLO, L. M.; INAMASU, R. Y.; TORRE NETO, A.; LUCHIARI JUNIOR, A.; MOLIN, J. P.
+ano: 2008
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/31725/1/CiT462008.pdf
+arquivo_original: originais/embrapa/DOC_CE_EMBRAPA_001.pdf
+sha256: 361704ef314b7a61f8bcc7fc970f8379585064103b5d67ef02efd834a382e3ad
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Introdução
+Um dos maiores problemas em agricultura de precisão é decidir a quantidade de amostragem
+do estudo que se esta fazendo em uma área, como por exemplo, as características do solo,
+tais como, acidez; umidade etc.
+Ferramentas e metodologias que possam auxiliar aos usuários de uma forma rápida no modo
+de como decidir essa amostragem ou definir sobre regiões de estudo levando em
+consideração a variabilidade espacial, são de grande importância tanto para a pesquisa como
+para empresas especializadas.
+Uma metodologia muito usada para esta demanda é a medida de condutividade elétrica,
+tendo como meio condutor o próprio solo, podendo ser medida com equipamentos
+relativamente simples e com grande eficiência operacional.
+Essa técnica tem um custo relativamente baixo comparado com técnicas de medida de
+outras grandezas agronômicas. Porém, a condutividade elétrica se correlaciona com múltiplos
+parâmetros químicos e físicos do solo, tornando medidas isoladas praticamente inúteis na
+maioria dos casos.
+Alguns equipamentos foram desenvolvidos para esta medida, sendo um dos mais conhecidos
+o sistema VERIS 3100 de fabricação da Veris Technologies (2008), que é um equipamento
+importado.
+A utilização deste equipamento requer que ele seja conduzido por um veículo motorizado
+para realizar as medidas antes de qualquer atividade de manejo da região e depois
+correlaciona-las, através de mapas de condutividade elétrica com alguns parâmetros
+agronômicos que se esta estudando.
+Baseados neste parâmetro alguns pesquisadores sugeriram uma adaptação do sistema de
+medida de condutividade elétrica a um implemento agrícola de uso normal da propriedade
+agrícola, reduzindo assim o tempo, os gastos de combustível e custo do equipamento com a
+coleta das medidas.
+Os resultados destes trabalhos
+podem ser visto nos escritos de
+Inamassu e Rabello (INAMASSU et.
+al., 2007; RABELLO et. al., 2008a;
+2008b), onde abordavam a medida
+de condutividade elétrica do solo
+adaptado a um implemento agrícola,
+no caso, um subsolador, conforme
+ilustrado na Figura 1.
+No artigo de Inamassu et al. (2007)
+foram implementados os primeiros
+mapas de condutividade elétrica
+usando este tipo de adaptação,
+conforme ilustrado na Figura 2, para
+uma plantação de cana de açúcar, no
+início do preparo da área,
+compreendendo uma área de 2
+alqueires.
+O princípio de funcionamento desta
+adaptação baseia-se na utilização
+dos discos de corte do sistema subsolador como eletrodos de contato elétrico com o solo
+para a medida de condutividade elétrica, sendo as medidas coletadas e armazenadas com
+sua correspondente posição georeferenciada em um coletor de dados. O coletor de dados
+utilizado foi o próprio sistema eletrônico baseado em um PC104 de fabricação da
+Veris
+Technology
+utilizado no sistema de medida de condutividade elétrica de sua fabricação, o
+VERIS 3100 (VERIS..., 2008).
+Essa circular técnica tem como objetivo a apresentação de um sistema de medida de
+condutividade elétrica, também adaptado a um sistema agrícola, sendo agora adaptado a
+uma semeadora, com a finalidade de reduzir o tempo de processamento e de coleta de dados
+sem a utilização do sistema VERIS 3100.
+46
+Medida de Condutividade Elétrica do Solo
+Adaptada a uma Plantadeira
+ISSN 1517-4778
+Autores
+São Carlos, SP
+Novembro, 2008
+Ladislau Marcelino Rabello
+Eng. Eletrônico, Dr., Pesquisador
+Embrapa Instrumentação
+Agropecuária, C.P. 741,
+CEP 13560-970, São Carlos
+SP
+rabello@cnpdia.embrapa.br
+Ricardo Yassushi Inamasu
+Eng. Mecânico, Dr., Pesquisador
+Embrapa Instrumentação
+Agropecuária, C.P. 741,
+CEP 13560-970, São Carlos
+SP
+ricardo@cnpdia.embrapa.br
+André Torre Neto
+Eng. Eletrônico, Dr., Pesquisador
+Embrapa Instrumentação
+Agropecuária, C.P. 741,
+CEP 13560-970, São Carlos
+SP
+andre@cnpdia.embrapa.br
+Ariovaldo Luchiari Junior
+Eng. Agrônomo, Dr.
+Embrapa Meio Ambiente
+Rodovia SP 340, km 127,5
+Cx. P. 69
+Jaguariúna
+SP
+luchiari@cnpma.embrapa.br
+José Paulo Molin
+Eng. Agrícola, Dr.
+USP-ESALQ, C.P. 09,
+CEP 13418-900, Piracicaba, SP
+jpmolin@esalq.usp.br
+Foto:
+ Ladislau Marcelino Rabello
+
+--- PÁGINA 2 ---
+Fig. 1.
+Implemento subsolador adaptado para medida de
+condutividade elétrica do solo.
+Fig. 2.
+Mapa de condutividade elétrica do solo usando
+sistema subsolador adaptado.
+Princípio da medida de resistividade
+A medida de resistividade elétrica consiste em usar uma
+amostra de forma e dimensões conhecidas (quadrada,
+cilíndrica, etc.). A resistência elétrica é então calculada
+pela seguinte equação:
+Eq. 01.
+Onde:
+R
+resistência elétrica [Ohms];
+- resistividade elétrica [Ohms
+centímetros];
+L
+comprimento da amostra [centímetros];
+A
+área de seção transversal da amostra [centímetros
+quadrados]
+Para amostra de forma e dimensões não definidas, utiliza-
+se um método muito utilizado em geofísica, conhecido
+como sistema de quatro pontos (SMTIS, 1958). Este
+método utiliza quatro eletrodos de metal alinhados
+seqüencialmente com espaçamentos conhecidos, Figura
+3.
+Fig. 3. Sistema de quatro pontos.
+A corrente elétrica I (Ampére) é injetada nos dois
+eletrodos externos e a tensão V (Volts) é lida nos dois
+eletrodos centrais. A resistividade então é calculada com
+a seguinte equação:
+Eq. 02
+eq. 03
+A condutividade elétrica, s
+é definida como os inversos
+da resistividade elétrica, assim têm:
+eq. 04
+Adaptação ao implemento agrário.
+O implemento agrário escolhido para esta adaptação foi
+uma plantadeira de fabricação TATU MARCHESAN,
+3
+modelo PHT
+plus plantio direto, de propriedade da
+EMBRAPA Meio Ambiente, ilustrada na Figura 4, tendo as
+seguintes características:
+- Discos de corte 16” com movimentos laterais e
+verticais.
+- Discos duplos desencontrados do Adubo 15” x 15”
+- Hastes escarificadoras para o adubo, com mínima
+movimentação do solo e ajuste da profundidade do
+adubo.
+- Discos duplos desencontrados da semente 15” x 15”.
+- Molas duplas nas linhas fornecem carga e curso de
+articulação adequada para o plantio direto em diferentes
+condições de solo.
+- Rodas de controle de profundidade com bandas
+flexíveis.
+- Ação efetiva junto ao disco duplo.
+Fig. 4.
+Foto da semeadora de fabricação TATU
+MARCHESAN.
+2
+Medida de Condutividade Elétrica do Solo Adaptada a uma Plantadeira
+
+--- PÁGINA 3 ---
+Os discos são fixados no barramento de discos da
+plantadeira por meio de um suporte projetado para este
+fim. Neste suporte é feito o isolamento elétrico do disco
+com o restante da armação da plantadeira por meio de
+uma manta de borracha de 5 mm de espessura colocada
+entre o suporte e o barramento, como ilustrado na Figura
+6.
+Conforme se pode observar na Figura 6, o suporte possui
+dois parafusos para a fixação do disco. Estes parafusos,
+mais precisamente o de cima, possibilitaram o contato,
+através de um cabo elétrico com o coletor de dados
+localizado no trator, conforme ilustrado na Figura 7.
+Fig. 7:
+Foto do contato elétrico via cabo.
+Finalmente estes cabos são ligados diretamente ao cabo
+do sistema VERIS, o mesmo cabo que faz a conexão com
+o sistema de discos originais.
+Resultados e discussões
+Para testes com a plantadeira adaptada, foi utilizada uma
+área de aproximadamente 2 hectares do campo
+experimental da Embrapa Meio Ambiente localizada no
+município de Jaguariúna no estado de São Paulo com as
+seguintes coordenadas geofísicas: latitude sul igual a 22º
+43’ 8,6412” e longitude oeste igual a 47º 01’ 9,0768”
+(-22,719067S; -47,019188O). Não havendo nenhuma
+cultura.
+As passadas com a plantadeira adaptada foram simuladas
+como se estivesse sendo feito um plantio normal na área,
+resultando em um mapa de condutividade elétrica
+conforme ilustrado na Figura 8.
+Fig. 8.
+Mapa de condutividade elétrica para a plantadeira
+adaptada; escala de condutividade elétrica acima a
+esquerda em mS/cm.
+É possível observar pela Figura 8 que na metade inferior
+da região há uma mudança na cor, indicando uma região
+de maior condutividade elétrica. Isto se deve ao histórico
+da região ter realizado um experimento com plantação de
+girassol há algum tempo, não determinado.
+3
+As especificações técnicas da plantadeira PHT , segundo
+dados do fabricante são indicadas na tabela 1.
+3
+Tabela 1. Especificação técnica plantadeira PHT
+plus
+Na Figura 4, observa-se que a plantadeira possui discos
+de corte, sendo os que mais interessavam seriam os
+quatros discos dianteiros. Porém devido ao projeto do
+sistema nenhum disco esta isolado eletricamente em
+relação à estrutura.
+A solução foi adaptar novos discos isolados entre os já
+instalados. Optou-se por essa solução para não mudar as
+características da plantadeira.
+Os discos escolhidos deveriam ser os mais próximos
+parecidos com o da plantadeira, porém segundo o
+fabricante haveria a necessidade de projetar estes discos,
+pois já há algum tempo a empresa descartou o uso de
+discos separados e sim fazendo parte de um único bloco.
+Segundo o fabricante existem discos de outras empresas
+que atenderiam a essa necessidade, os quais foram
+encontrados e cedidos pela empresa Agri-Tillage do Brasil,
+ilustrado na Figura 5.
+Fig. 5. Disco de corte para adaptação da plantadeira.
+Fig. 6.
+Suporte de fixação do disco no barramento. Entre
+o barramento e o suporte está a manta de borracha para
+o isolamento elétrico.
+3
+Medida de Condutividade Elétrica do Solo Adaptada a uma Plantadeira
+Modelo/ nr.
+de linha
+Espaçamento
+(mm)
+Largura de
+transporte (mm)
+Largura
+útil (mm)
+Capacidade Depósitos
+Semente (L/Kg)
+Adubo (L/Kg)
+Peso
+(Kg)
+Potência no
+motor Trator (cv)
+7/7
+7/6
+7/4
+5/5
+5/3
+3/3
+3/2
+450
+540-450
+900
+450
+900
+450
+900
+3100 2700
+35/28
+35/28
+35/28
+390/480
+1750
+1500
+1350
+1270
+1020
+770
+520
+100-110
+90-95
+85-90
+75-90
+60-65
+60-65
+60-65
+2200
+1300
+1800
+900
+260/312
+130/156
+
+--- PÁGINA 4 ---
+4
+Referências
+INAMASSU, R. Y.; SIMÕES, M. dos S.; LUCHIARI
+JÚNIOR, A.; RABELLO, L. M.; MOLIN, J. P.
+Sistema de
+medida de condutividade elétrica do solo adaptado a um
+implemento agrícola
+(subsolador). São Carlos, SP:
+Embrapa Instrumentação Agropecuária, 2007. 5 p.
+(Embrapa Instrumentação Agropecuária. Circular Técnica,
+40).
+RABELLO, L. M.; YNAMASSU, R. Y.; TORRE NETO, A.;
+MOLIN, J. P.; LUCHIARI JUNIOR, A.; SIMÕES, M. dos S.
+Sistema de medida de condutividade elétrica do solo
+adaptado a um implemento agrícola (subsolador). In:
+CONGRESSO BRASILEIRO DE AGRICULTURA DE
+PRECISÃO - ConBAP, 2008, Piracicaba, SP. Anais...
+Piracicaba, SP: ESALQ/USP, 2008a. 1 CD-ROM. p. 22-
+35. Editores: Carlos Alberto Vettorazzi e José Paulo
+Molin.
+RABELLO, L. M.; INAMASU, R. Y.; TORRE NETO, A.;
+LUCHIARI, A.; MOLIN, J. P.; SIMÕES, M. S. Soil
+condutivity electrical measurement system suited to an
+agricultural implement (subsoiler). In: INTERNATIONAL
+CONFERENCE ON PRECISISON AGRICULTURE, 9., 2008,
+Denver. Abstracts…
+[S. l.: s. n.], 2008b. não paginado.
+SMITS, F. M. Measurements of sheet resistivities with
+the four-point probe. Bell System Technical Journal
+, New
+York, v. 37, p. 711-718, May 1958.
+VERIS TECHNOLOGIES. Disponível em:
+<http://www.veristech.com>. Acesso em: 10 nov.
+2008.
+Conclusões
+O uso de ferramentas adequadas para uma rápida coleta
+de dados referentes aos parâmetros, fenômenos que se
+está estudando é de grande importância para a agricultura
+de precisão e a medida de condutividade elétrica tem sido
+uma técnica rápida e barata para a coleta de informações.
+Seu uso, porém, é dependente de instrumentos
+importados e é necessária sua utilização antes e depois
+de alguma ação a ser tomada no manejo da área, sendo
+depois utilizado os implementos necessários para o
+andamento do trabalho.
+A adaptação de implementos de uso geral nos trabalhos
+de plantio conjugado com a coleta de dados referentes à
+condutividade elétrica do solo viabiliza este processo,
+uma vez que o usuário não necessita ter um instrumento
+dedicado para este fim e sim adaptando os que já tem.
+Reduzindo assim o custo e o tempo com a aquisição dos
+dados, para futuros estudos com mapas de condutividade
+elétrica como no caso, associando a produtividade;
+características do solo; etc.
+A adaptação de uma plantadeira mostrou-se uma solução
+satisfatória para a medida de condutividade elétrica do
+solo, reduzindo o tempo de processamento e de coleta
+dos dados.
+Agradecimentos
+Aos colegas da Embrapa Meio Ambiente, Henrique Barros
+Vieira; Antonio Alves e Waldemore Moriconi pela
+participação no preparo da área experimental, pela
+plantadeira e pelas horas dirigindo o trator para a
+realização deste trabalho.
+Medida de Condutividade Elétrica do Solo Adaptada a uma Plantadeira
+Comitê de
+Publicações
+Expediente
+Presidente: Dr. Luiz Henrique Capparelli Mattoso
+Membros:
+Dra. Débora Marcondes B. P. Milori,
+Dr. João de Mendonça Naime,
+Dr. Washington Luiz de Barros Melo
+Membro Suplente: Dr. Paulo S. P. Herrmann Junior
+Supervisor editorial: Dr. Victor Bertucci Neto
+Tratamento das ilustrações: Valentim Monzane
+Editoração eletrônica:
+Manoela Campos
+Valéria de Fátima Cardoso
+Normalização bibliográfica: Valéria de Fátima Cardoso
+Circular
+Técnica, 46
+Exemplares desta edição podem ser adquiridos na:
+Embrapa Instrumentação Agropecuária
+Rua XV de Novembro, 1542 - Caixa Postal 741
+CEP 13560-970 - São Carlos-SP
+Fone: 16 2107 2800 - Fax:
+16 2107 2902
+e -mail:
+sac@cnpdia.embrapa.br
+http://www.cnpdia.embrapa.br
+1a. edição
+1a. impressão 2008: tiragem 300

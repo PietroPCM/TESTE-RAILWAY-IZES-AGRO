@@ -1,0 +1,3788 @@
+---
+documento_id: DOC_SENSOR_ARTIGO_004
+titulo: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+instituicao: IEEE Access
+autores: 
+ano: 2021
+url_original: https://ieeexplore.ieee.org/ielx7/6287639/9312710/09328258.pdf
+arquivo_original: originais/artigos_cientificos/DOC_SENSOR_ARTIGO_004.pdf
+sha256: 38f18113685c5ebb0e026778cbef9b4f6703d682f77d895c09f5f26cd6d7e7f6
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Received December 17, 2020, accepted January 4, 2021, date of publication January 18, 2021, date of current version January 26, 2021.
+Digital Object Identifier 10.1109/ACCESS.2021.3052478
+INVITED PAPER
+Sensing Methodologies in Agriculture for Soil
+Moisture and Nutrient Monitoring
+BHUWAN KASHYAP , (Member, IEEE), AND RATNESH KUMAR , (Fellow, IEEE)
+Department of Electrical and Computer engineering (ECpE), Iowa State University, Ames, IA 50010, USA
+Corresponding author: Bhuwan Kashyap (bkashyap@iastate.edu)
+This work was supported in part by the National Science Foundation under Grant CCF 1331390, Grant ECCS-1509420,
+Grant PFI-1602089, and Grant CSSI-2004766.
+ABSTRACT
+Development and deployment of sensing technologies is one of the main steps in achieving
+sustainability in crop production through precision agriculture. Key sensing methodologies developed for
+monitoring soil moisture and nutrients with recent advances in the sensing devices reported in literature
+using those techniques are overviewed in this article. The soil moisture determination has been divided into
+four main sections describing soil moisture measurement metrics and laboratory-based testing, followed
+by in-situ, remote and proximal sensing techniques. The application, advantages and limitations for each
+of the mentioned technologies are discussed. The nutrient monitoring methods are reviewed beginning with
+laboratory-based methods, ion-selective membrane based sensors, bio-sensors, spectroscopy-based methods,
+and capillary electrophoresis-based systems for inorganic ion detection. Attention has been given to the core
+principle of detection while reporting recent sensors developed using the mentioned concepts. The latest
+works reported on the different sensing methodologies point towards the trend of developing low-cost, easy
+to use, field-deployable or portable sensing systems aimed towards improving technology adoption in crop
+production leading to efficient site-specific soil and crop management which in turn will bring us closer to
+reaching sustainability in the practice of agriculture.
+INDEX TERMS
+Agriculture, biosensors, electrochemical, electrophoresis, impedance, moisture, nutrient,
+remote sensing, reflectometry, sensors.
+I. INTRODUCTION
+Food, water and energy are the key resources that allows
+for the existence and expansion of humanity. The global
+demand of these resources has been monotonically increas-
+ing and is expected to remain so. According to the United
+Nations, the global population is expected to reach 9.8 bil-
+lion by the year 2050 and 11.2 billion in 2100 [1]. With
+the impact on environment, onset of global warming, major
+crop producing countries reaching their fresh water limit,
+unpredictable variability in climate, reduced land fertility
+from draught, erosion and poor management, and the ever
+increasing public expectations for more sustainable practices
+to reduce use of water and agrochemicals, it has never been
+more important to achieve efficiency and sustainability in
+agriculture. United States Department of Agriculture (USDA)
+defines Sustainable agriculture as an integrated system of
+The associate editor coordinating the review of this manuscript and
+approving it for publication was Fan Zhang .
+plant and animal production practices having a site-specific
+application that will over the long term satisfy human food
+and fiber needs, enhance environmental quality and natural
+resource base upon which the agriculture economy depends,
+make the most efficient use of nonrenewable resources and
+on-farm resources and integrate, where appropriate, natural
+biological cycles and controls, sustain the economic viabil-
+ity of farm operations, and enhance the quality of life for
+farmers and society as a whole
+[2]. Technologies enabling
+precision agriculture have emerged as one of the key ways to
+achieve these goals by measuring, monitoring and responding
+to site-specific variability in the field.
+This article aims to present the current state of the sensing
+methodologies applied in agriculture for soil moisture and
+nutrient monitoring. The working principles of key technolo-
+gies are discussed while advances in sensors developed on
+those principles in recent years, last decade or so, compared
+(with key works). Section 1 starts with introduction and
+the aim of this article, section 2 presents the soil moisture
+VOLUME 9, 2021
+This work is licensed under a Creative Commons Attribution 4.0 License. For more information, see https://creativecommons.org/licenses/by/4.0/
+14095
+
+--- PÁGINA 2 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+sensing methodologies, section 3 focuses on the crop nutri-
+ent sensing techniques, section 4 discusses the potential of
+sensing in agriculture going forward, and section 5 presents
+conclusion.
+II. SOIL MOISTURE SENSING METHODS
+Water and agriculture are inherently intertwined, where water
+is one of the key determinants in crop production, agricultural
+processes affect the hydrological cycle in terms of evapotran-
+spiration, groundwater recharge and runoffs. Over 70% of
+the global fresh water resources are used by agriculture [3]
+and at the same time about 4 billion people across the globe
+live with water insufficiency [4]. Optimum availability of
+moisture in soil is essential for various biophysical processes
+like germination of seeds, plant growth, nutrient cycling as
+well as sustaining natural biodiversity in soil. The importance
+of soil moisture also makes it a key variable in agricultural
+monitoring and prediction software tools like USDA’s Root
+Zone Water Quality Model (RZWQM) [5], [6]. Monitor-
+ing soil moisture provides key insights into not only the
+availability of water to crops, but also soil health and mois-
+ture retention which are important indicators of sustainable
+agroecosystem.
+Several soil moisture sensing technologies have been
+developed with various goals in mind such as precision agri-
+culture, landscape moisture statistic monitoring and long term
+global soil moisture mapping. Soil moisture sensing tech-
+niques range from large scale satellite-based remote sensing
+methods suitable for regional and global scales (100s of km
+2
+)
+to precision in-field sensors aimed towards plot and field
+scale (0.1 m
+2
+to 10000 m
+2
+) measurements. In this section of
+the article a review of the soil moisture sensing mechanisms
+and sensors based on those methods are presented. The soil
+moisture sensing methodologies have been divided into five
+subsections :
+• Soil moisture metrics and laboratory method,
+• In-situ soil moisture sensing methods,
+• Remote sensing methods for measuring soil moisture,
+• Proximal in-field soil moisture monitoring, and
+• Other soil moisture sensing methods.
+A. SOIL MOISTURE METRICS AND STANDARD
+LABORATORY METHOD
+Soil is a mixture comprising of minerals, organic matter,
+living organisms, water and gases. The mineral part of the soil
+can be divided into three size-based particles, sand (largest),
+silt and clay (smallest). The proportion of each of these types
+of particles gives the soil its characteristic texture, often based
+on which the soil type is defined. Water in soil is present in
+two main forms: (i) bounded, adsorbed on the soil mineral
+particles and is unavailable to plants. (ii) unbounded, free
+existing water molecules which are available for absorption
+by roots, measured in the form of soil water tension/water
+potential. Depending on the type of soil, the ratio of the
+water present in bounded and unbounded form varies, for
+FIGURE 1.
+Typical soil water characteristic curves for different soil
+textures, reprinted from [7] with permission from Elsevier.
+example, clay has particularly high affinity for
+water
+molecules, hence soils with larger clay proportions have
+higher water tensions (more bounded water). Soil moisture
+sensors can detect either total soil moisture content (SMC) or
+soil water tension/potential (SWP).
+The relationship between the SMC and SWP is described
+by the soil water characteristic curve which provides the
+amount water retained in a soil (SMC) under equilibrium
+at a given matric potential. The is highly nonlinear and is
+strongly affected by factors like soil texture, structure and
+organic matter. Typical soil water characteristic curves for
+three different soil textures is shown in Figure 1.
+SMC is generally expressed on either gravimetric or volu-
+metric basis and can be described as gravimetric water con-
+tent (GWC) or volumetric water content (VWC), respectively,
+and are given by,
+GWC =
+m wet − m dry
+m dry
+and
+VWC = GWC ×
+ρ soil
+ρ water
+,
+(1)
+where m wet
+is the mass of the wet soil sample (fresh soil
+sample), m dry is the mass of the dried soil sample, ρ soil
+is the
+dry bulk density of the soil, and ρ water
+is the density of water,
+usually taken to be 1000 kg / m
+3
+.
+The method most commonly used for determining SMC
+in laboratories is the thermo-gravimetric method, where the
+fresh soil sample of known volume is weighed, then oven
+dried at 105
+◦
+C for 24 h and re-weighed, and the difference
+between the weights provide the amount of the water present
+in the soil sample [8]. The measured SMC can be expressed
+in both volummetric and gravimetric units using (1). This
+technique is highly accurate and simple but, time and labor
+intensive.
+Apart from direct soil water determination in laboratories,
+several indirect methods have also been developed that are
+based on the contrasting behaviour of water in terms of its
+thermal properties like high specific heat capacity, thermal
+conductivity, and dielectric properties like large dielectric
+constant as compared to dry soil. Most soil sensors take
+advantage of these properties to characterize the amount of
+14096 VOLUME 9, 2021
+
+--- PÁGINA 3 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+TABLE 1. Comparison of some the recent and commonly used in-situ point-based soil moisture sensing methods.
+water in soil for in-field, or proximal, or remote sensing
+applications.
+B. IN-SITU OR AT-SITE SOIL MOISTURE SENSING
+METHODS
+In-situ or at-site soil moisture sensing methods refers to
+non-destructive point-based
+measurement approaches where
+the instrument is taken in the field and is in contact with the
+soil medium. These methods have unique potential to provide
+real time point-based high resolution moisture content data
+that is representative of plot to field scale areas and are par-
+ticularly useful for agricultural applications as they are easier
+to calibrate, control time scale, can provide measurements at
+variable depths and in general, more accessible to farmers.
+Table 1 presents a brief comparison between different in-situ
+or at-site sensing methods discussed in this article.
+1) TENSIOMETER
+A tensiometer is a device that mimics the operation of a
+plant’s root, measuring the ease with which a plant can
+absorb water up from the soil. It consists of a stem filled
+with distilled water, a porous ceramic tip at the bottom and
+a pressure/vacuum gauge on the top. It works by releasing
+or sucking water, to or from the soil through the ceramic
+tip depending on the water potential difference between the
+soil mixture and the stem. In dry soil conditions, the water
+inside the instrument tries to seep into nearby soil creating
+measurable tension (measured in kPa or centibar). The ten-
+sion is recorded via a pressure gauge or a transducer that
+measures pressure. A tensiometer directly measures the water
+available to the plants (unbounded water content) or the SWP,
+as opposed to other methods that use indirect soil properties
+like thermal or electrical, hence it is a highly accurate and a
+VOLUME 9, 2021 14097
+
+--- PÁGINA 4 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+FIGURE 2. ( a ) Irrometer - a commercial tensiometer. ( b
+) Watermark - a
+granular matrix SWP sensor. (The Irrometer Co., Riverside, CA;
+www.irrometer.com).
+better indicator of water availability for plants than volumet-
+ric or gravimetric water content observations.
+Figure 2(a) shows a commercial tensiometer (Irrometer
+Co., Riverside, CA.) with its main components. Tensiome-
+ters have various advantages such as they are not affected
+by soil temperature or salinity, as the dissolved salts can
+freely move in and out through the ceramic head and they
+do not require site-specific calibration based on the type of
+soil. Tensiometers provides accuracy of up to ±
+3% of the
+full scale measurement [9], costing between $100 to $300
+(not including the electronics or data loggers) [20]. Some
+disadvantages associated with the device includes frequent
+maintenance, as the distilled water in the stem needs to be
+refilled every 2 to 4 weeks depending on the soil type and
+irrigation frequency, the device has to be removed during
+winter as freezing temperatures may harm the instrument,
+and extra care must be taken during deployment as any air
+pocket around the ceramic head will affect the accuracy of the
+measurement. Tensiometers and granular matrix sensors are
+among the most commonly used soil water sensors developed
+for commercial applications.
+2) GYPSUM BLOCK/GRANULAR MATRIX SENSOR
+This sensing approach employs a porous material like a gyp-
+sum (CaSO 4 .2H 2
+O) block or a granular matrix, consisting of
+gypsum wafers surrounded by porous granular filler material,
+with electrodes embedded inside. The sensor is buried in soil
+in the root zone and works on the principle of resistance
+change depending on the water penetration inside the mate-
+rial. Figure 2(b) shows a commercial granular matrix sensor
+called Watermark [21]. Gypsum has reasonable solubility
+in water and begins to dissolve as the moisture from the
+soil seeps inside the porous matrix/material. This mobilizes
+the ions inside the porous material reducing the resistance
+between the electrodes and vice versa. This type of sensor
+is easy to manufacture, low-priced, and is one of the most
+prevalent type of sensor used in the field. However, there
+are some limitations to this method like poor accuracy with
+error ranging between 10% and 25% [10], slow response
+time, the gypsum tends to dissolve over time, problems in
+accuracy as the resistance of gypsum is affected by temper-
+ature, and the calibration may vary depending on soil type
+(or salinity) [22].
+3) THERMAL PROBE/HEAT PULSE METHOD
+Thermal soil moisture sensing probes measures the tempera-
+ture of a porous block buried in soil (often made of gypsum or
+ceramic) or the soil itself, before and after a small heat pulse
+is applied. The amount of heat dissipation is proportional
+to the thermal conductivity of the porous block or the soil,
+which in turn depends on the moisture content in soil. The
+main components of the sensor include a heating element
+(like a thermister) and temperature sensor (such as a pn junc-
+tion), which are embedded in the porous block (gypsum or
+ceramic) and buried into the soil, measuring SWP or directly
+buried in soil, measuring SMC. Several thermal probe/heat
+pulse sensors have been described in literature with sin-
+gle, dual and multi probe designs [11]–[13], [23], [24].
+A single-probe heat pulse (SPHP) soil moisture sensor based
+on a single npn bipolar junction transistor (BJT) was reported
+in [11], where the collector-base (CB) junction functioned
+as the heating element and the base-emitter (BE) junction
+served as the temperature sensor. A generalized relationship
+between the measured temperature change ( 1 T
+), the heat
+pulse duration ( 1 t
+) and the thermal conductivity of the soil
+medium ( κ
+) for a single probe heat pulse (SPHP) is given
+by [11],
+1 T =
+− q
+4 πκ
+ln ( 1 t ) ,
+(2)
+where q
+is the input heating power per unit length. Either the
+measured 1 T or the derived κ
+can be calibrated a function
+of the moisture in soil. The developed sensor exhibits good
+sensitivity with respect to the changes in soil water content
+where 1% change in the water content (VWC) will result in a
+temperature variation 1 T of 0.21
+◦
+C.
+Dual probe heat pulse (DPHP) techniques involve separate
+heater and temperature sensing elements, one such sensor was
+described for SMC estimation where the heater probe was
+an insulated copper wire that is folded length-wise to pack
+into a short steel tube with a K-type or T-type thermocou-
+ple for the temperature probe [24]. The DPHP sensor was
+able to measure SMC between 0 to 30% VWC. Figure 3
+shows a general schematic of a DPHP thermal SMC sensor,
+where the relationship between change in temperature and the
+radial distance ( r ) as a function of time ( t ) and soil thermal
+14098 VOLUME 9, 2021
+
+--- PÁGINA 5 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+FIGURE 3.
+General schematic of a dual probe heat pulse soil moisture
+sensor. ’ r ’ is the radial distance between the probes.
+diffusivity ( α ) can be given by [23],
+dT ( r , t )
+dt
+=
+q
+4 πκ t
+exp (
+− r
+2
+4 α t
+) .
+(3)
+Alternatively, a multi-probe heat pulse sensor has also
+been reported where multiple temperature sensors are placed
+around the heater probe, and everything was fabricated on
+planar PCB platform, where the sensor was able to measure
+VWC from 5% to 41% with sensitivity of 0.632
+◦
+C per 1%
+change in VWC [13]. Thermal soil water sensors are also
+commercially available [25] and offer a relatively low-cost
+solution with accuracy between 5% to 10% [12], but require
+soil-type specific calibration, show variations in accuracy
+due ambient temperature and humidity changes, show slow
+response, and are energy intensive.
+4) NEUTRON PROBE METHOD
+The neutron probe (NP) method for SMC determination
+uses the characteristic property of hydrogen nuclei in water
+molecules to scatter and/or slow down neutrons. Based on
+the energy transfer, scatter cross-section and having the sim-
+ilar size as a neutron, hydrogen nucleus has greater ther-
+malization (collision) effect with neutrons than any other
+element. High energy neutrons from a radioactive source,
+such as radium-beryllium or americium-beryllium slow down
+or change direction due to elastic collisions [26]. The ther-
+malized neutron density can easily be measured by a detec-
+tor and if the capture cross-section of soil media remains
+fairly constant i.e. the chemical composition remains fairly
+constant except the variation due to water, the measure-
+ments from neutron probes can be calibrated to represent the
+SMC.
+Figure 4 shows the schematic of a neutron probe soil
+moisture sensor where the general construction of the device
+consists of a radioactive neutron source and a detector con-
+nected through a cable. The high energy neutrons are released
+by the radioactive source that collide with hydrogen atom
+nuclei of water in soil and are captured by the detector.
+Neutron probes are available commercially where, with good
+calibration based on soil make up (metal content and density)
+and proper installation (sampling region completely buried
+FIGURE 4.
+Schematic of a neutron probe SMC sensor deployed in the
+field.
+in soil and minimal air gaps around the probe), precision
+between 1% to 5% can be achieved [14]. Some advantages of
+NPs include high accuracy, and relatively less dependence on
+soil temperature and salinity. Some limitations of this method
+include radiation hazard, the requirement of a skilled operator
+to properly install and take measurements making the method
+labor as well as cost intensive.
+5) TIME DOMAIN REFLECTOMETRY-BASED METHOD
+The time domain reflectometry (TDR) is a well known
+technique that was originally developed for detecting faults
+across transmission lines by observing the reflections from
+impedance mismatches and the time interval based on the
+velocity of the electromagnetic (EM) signal along the trans-
+mission line [27]. TDR-based SMC measurement works by
+determining the propagation velocity of EM signal in the soil
+and using it to calculate the permittivity/dielectric constant.
+Soil can be considered as a mixture of water, dry soil/matter
+and air, where water has a specifically high dielectric per-
+mittivity, ε water =
+80 at room temperature as compared to
+air, ε air = 1 and dry soil/matter, ε drysoil =
+3-5, hence,
+the overall permittivity of the soil is highly dependent on its
+water content.
+TDR-based SMC sensors consist of a transmission line
+made of parallel metallic probes of length L
+completely
+buried in soil at the required depth. As the signal propa-
+gates, a part of an incident EM wave is reflected at the
+interface where the cable connects to the probe because of
+the impedance mismatch as the cable and the probe may
+have different characteristic impedance, the rest of the wave
+propagates through the probe to the tip buried in soil and is
+reflected back. The propagation velocity ν
+along the TDR
+probe buried in soil is given from [28] as :
+ν =
+1
+√
+( μ s ε s / 2)(
+√
+1 + tan
+2
+δ + 1)
+, with (4)
+ε s = ( ε
+′
+s
+− j ε
+′′
+s
+) ε 0 = ε
+′
+s
+ε 0 − j
+σ s
+ω
+;
+tan δ =
+Imaginary( ε s
+)
+Real( ε s )
+=
+σ s
+ωε
+′
+s
+ε 0
+,
+where ε s is the complex permittivity of soil, ε 0 = 8 . 854 ×
+10
+12
+(F/m) is the permittivity of the free space, ε
+′
+s
+and ε
+′′
+s
+are
+VOLUME 9, 2021 14099
+
+--- PÁGINA 6 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+the real and imaginary parts of relative permittivity, respec-
+tively, of soil, tan δ is the loss tangent, σ s
+is the electrical
+conductivity of soil, μ s is the permeability of soil, and ω
+is
+the angular frequency of measurement. Soil in general has
+relatively low electrical conductivity (small σ s
+) and at signal
+frequencies of the order of 1 GHz or higher (large ω ), ε
+′′
+s
+and
+tan δ
+are small. Using these approximations, the propagation
+velocity ν
+of the EM wave in soil can be expressed from (4)
+as :
+ν ≈
+1
+√
+μ s ε s
+≈
+c
+√
+ε
+′
+s
+,
+(5)
+where c = 1 /
+√
+μ 0 ε 0 and μ 0 = 4 π × 10
+− 7
+[ V . s / ( A . m
+)] are
+the speed of light in free space and the magnetic permeability,
+respectively. Given the length of the probe and the measured
+time interval between reflections t
+, the measured propagation
+velocity of the EM signal in soil can be expressed as :
+ν =
+2
+L
+t
+.
+(6)
+From (5) and (6), the dielectric permittivity of soil can be
+calculated as :
+ε
+′
+s
+=
+(
+ct
+2 L
+)
+2
+.
+(7)
+The dielectric constant of the soil obtained from (7) is
+used to relate to the VWC, denoted θ ν
+, through a calibration
+function that can be described as θ ν = f ( ε
+′
+s
+). Various models
+for the calibration function f
+have been discussed in litera-
+ture. One such well-known empirical calibration function was
+presented in [28] and has the form :
+θ ν = − 5 . 3 × 10
+− 7
++ 2 . 92 × 10
+− 2
+ε
+′
+s
+− 5 . 5 × 10
+− 4
+ε
+′ 2
+s
++ 4 . 3 × 10
+− 6
+ε
+′ 3
+s
+.
+(8)
+(8) was shown in [28] to hold universally for most mineral
+soils with minimal dependence on soil temperature, salinity,
+and texture. However, many other works have been reported
+on the calibration function estimation based on soil type [29],
+[30], temperature corrections [15] and effect of temperature
+on TDR-based soil permittivity estimation depending on the
+proportions of bound and free water in soil [31], and dielectric
+mixing models that expands the water in the soil mixture to
+free water and bound water bringing the number of phases
+to four, dry soil and air being the other two [32]. Overall,
+the TDR method for SMC determination has high accuracy
+of within 2% with respect to the standard thermogravimetric
+laboratory-based method and can also be used to measure
+bulk conductivity of soil [15]. The stimulus EM signal used
+is a rectangular pulse waveform with frequency of the order
+of 1 GHz and the time resolution for the reflection intervals of
+the pulses is in the range of 10 ps [15]. Hence, sophisticated
+data analysis methods as well as circuits are required to record
+the reflection times accurately making the probes expensive.
+TDR soil sensors are also readily commercially available
+offering accuracy in VWC within ±
+2% can cost between
+$1500 to $7500 (including data reader) making it an expen-
+sive sensing method [16], [33].
+FIGURE 5.
+A commercial TDR moisture meter: HandiTrase TDR
+Soilmoisture Meter w/FLD Probe [16].
+FIGURE 6.
+An impedance spectroscopy-based in-situ soil moisture sensor
+with the sensing element also serving as an antenna [2018], IEEE [36].
+6) IMPEDANCE/CAPACITANCE-BASED METHODS
+Impedance/capacitance-based SMC measurement methods
+rely on the effect of moisture content on the overall dielec-
+tric permittivity of soil, similar to TDR-based SMC sensors.
+Where TDR sensors use the time delay measurement to
+determine the permittivity of soil, the impedance/capacitance
+sensors measures the impedance or the capacitance of a
+buried probe or planar structure which depends directly
+on the permittivity of the soil. These sensors operate in
+comparatively lower frequency ranges (10s of MHz) which
+makes the application specific circuit design simpler than the
+TDR-based method. There are two main component of an
+impedance-based SMC sensor, (i) the sensing element or the
+probe, and (ii) the impedance or capacitance measurement
+circuit. Numerous strategies involving single as well as multi
+frequency impedance measurements have been explored in
+literature [18], [27], [34], [35]. Some of the key recent sensing
+systems built in the past decade for in-field determination of
+the SMC are discussed here.
+A low RF band impedance spectroscopy-based sensor for
+in-situ, wireless soil sensing was developed in [17], [37].
+The system uses a planar microstrip electrode as the sens-
+ing element in contact with the soil which also doubles
+as the antenna for wireless communication, operating at
+433 Mhz. Impedance measurement circuit was fabricated on a
+printed circuit board (PCB) and was capable of measuring the
+14100 VOLUME 9, 2021
+
+--- PÁGINA 7 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+reflection coefficient ( 0 soil ) from the incident and
+the
+reflected signals at multiple frequencies ranging between
+3 MHz to 30 MHz. The impedance of the sensing element
+was then calculated according to the following equation,
+0 soil =
+V r
+V i
+=
+Z soil − Z 0
+Z soil + Z 0
+,
+(9)
+where V r is the measured reflected signal, V i
+is the measured
+incident signal, Z soil is the calculated soil impedance and
+Z 0
+is the characteristic impedance of the transmission line
+connected to the sensing electrode (typically, 50 
+). (9) pro-
+vided the complex impedance whose real and imaginary parts
+indicated the conductivity and the SMC, respectively. The
+sensing system showed accuracy within 10% of true value,
+and was designed to be left buried underground for contin-
+uous SMC measurements. In a later extension of the work,
+dielectric mixing models were explored using the impedance
+measurement data to estimate salinity along with SMC [36].
+A miniaturized wireless water content and conductivity
+soil sensor system was developed recently, where impedance
+measurements were taken at a low (100 kHz) and a high
+frequency (10 MHz) points which described the resistance
+and the capacitance of the soil between the electrodes, respec-
+tively. An excitation signal of known amplitude is applied,
+then the signal amplitudes at the electrodes are determined
+by a peak detector. The peak detector creates a DC signal pro-
+portional (theoretically) to the amplitude of the AC response
+of the soil electrodes [38].
+A low-cost soil moisture profile probe using thin-film
+capacitors and a capacitive touch sensor is presented in [18].
+Thin film rectangular electrodes were fabricated by etching
+copper (Cu) on polyethylene terephthalate (PET) film. The
+film was then rolled onto a polyvinyl chloride (PVC) pipe
+where a distance of 1 mm was kept between the rectangular
+Cu electrodes forming a capacitor and a set of three electrodes
+were made at depths of 10 cm, 20 cm and 30 cm. Tempera-
+ture sensors using thermistors were also placed adjacent to
+the electrodes. The sensing electronics consisted of a low
+cost capacitive touch sensor controller MPR121 (NXP Semi-
+conductors N.V., Eindhoven, The Netherlands) to measure
+capacitance through the constant current source method at a
+frequency of 62 kHz. The method works by driving a constant
+current I into the capacitor for a unit time period t
+, and
+measuring the voltage V across the capacitor C as :
+V =
+I ×
+t
+C
+.
+(10)
+Based on the sampled data, a linear, a quadratic and a cubic
+empirical calibration functions were derived for VWC at the
+depths of 10 cm, 20 cm, and 30 cm, respectively. The calibra-
+tion function showed good coefficient of determination ( R
+2
+)
+values between 0 . 91 and 0 .
+95 with accuracy within 5% of
+true value. The overall sensing system was estimated to cost
+around $200-$300.
+In another work, the design and calibration of a low cost
+capacitive SMC sensor with flexible connection to datalog-
+gers via an analog output and an SDI-12 communication
+FIGURE 7. Experimental Sensor design on a PCB developed in [35].
+protocol was pursued [35]. The system allowed flexibility
+in choosing pre-registered calibration functions depending
+on soil type, where equations were made available for three
+different soil types. The sensing electronics consisted of
+an oscillator employing integrated circuit (IC) 555 in an
+astable configuration that generates a square wave whose fre-
+quency varies with the capacitance of the probe. A picoPower
+8-bit AVR RISC-based microcontroller from
+Microchip
+(Chandler, AZ, USA) was used for processing and control.
+Two parallel copper tracks on a PCB formed the sensing
+probe. The sensing circuits as well as the sensing probe were
+integrated together on a single compact PCB substrate as
+shown in figure 7. The sensor was calibrated against the
+data from a commercial sensor, MPS-6 (Decagon Devices,
+Inc.) in the field for 1 month where the data was remotely
+recorded using a CR1000 datalogger every 10 mins. The
+sensor accuracy was shown to be within ±
+7% VWC.
+Overall, the impedance-based methods provide opportuni-
+ties for developing low-cost, field-deployable SMC sensors
+with a few drawbacks such as soil-type specific calibra-
+tion and need for temperature corrections to achieve high
+accuracy [35]. Impedance or capacitance-based probes are
+also commercially available detecting both soil water poten-
+tial [39] and SMC within 2%-5% accuracy [19].
+C. REMOTE SENSING METHODS FOR SOIL MOISTURE
+ESTIMATION
+Several satellite-based remote sensing systems for soil mois-
+ture monitoring have been reported in literature [40], [41].
+In 2015, NASA launched its first Earth satellite designed to
+collect global observations of the vital soil moisture called
+the Soil Moisture Active Passive (SMAP) satellite [42], [43].
+Remote sensing (RS) methods for SMC (RS-SMC) determi-
+nation are particularly suitable for regional to global scale
+measurements and are based on either reflected or emit-
+ted electromagnetic (EM) energy from the soil surface. The
+methods can be broadly classified into two main categories:
+(i) Active methods where the reflected or scattered energy
+is recorded in response to incident energy, and (ii) Passive
+methods where sensors (like radiometers) are used to detect
+the radiation emitted by the target also known as the bright-
+ness or the brightness temperature of the target. Techniques
+have been developed for observing SMC remotely in the
+following EM spectral ranges: visible, infrared/thermal and
+microwave, where the soil moisture is determined based on
+the intensity variations of the radiation due to parameters
+like dielectric constant, temperature, and thermal proper-
+ties. Secondary parameters such as vegetation cover, surface
+VOLUME 9, 2021 14101
+
+--- PÁGINA 8 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+roughness and atmospheric effects also play an important role
+in successful RS-SMC retrieval. Vast amounts of RS-SMC
+data from various satellite missions has been observed and
+processes in literature [44], [45], a brief review of the key
+methods in RS-SMC estimation are presented here.
+Optical methods using reflectance spectroscopy
+were
+among the early techniques applied for RS-SMC observations
+operating in the visible (vis) or near-infrared (IR) region of
+the EM spectrum. Majority of the sun’s radiation directly
+reflected from the earth’s surface lies in the 0 . 4-2.5 μ
+m
+wavelength range within which water molecules exhibit dis-
+tinct absorption bands [46], and reflectance spectroscopy
+exploits this characteristic property of the water molecules
+to quantify skin SMC. An early work on spectrophotometric
+determination of soil water content based on the absorbance
+of water at 1.94 μ
+m wavelength was presented in [47],
+and a linear response between the absorbance amplitude
+and SMC was observed. Since then, numerous works have
+been reported on reflectance based method in vis, near-IR,
+and short-wave-IR spectral ranges for RS-SMC determina-
+tion [45], [46]. Although surface reflectance-based methods
+in the visible-infrared range have the potential to provide
+relatively higher spatial resolution data, it is limited to skin
+RS-SMC measurements, and the spectral behavior of soil
+surface is influenced not only by SMC but also by other
+parameters such as surface roughness, soil type, vegetation,
+topography and atmospheric conditions.
+Moving to higher wavelengths, in the thermal-IR
+region
+between 3 . 5 μ m -14 μ m
+, SMC can be retrieved using thermal
+properties of soil. Water has distinctly high specific heat
+capacity, hence, the overall soil thermal inertia ( P
+) is highly
+influenced by the SMC and can be expressed as,
+P =
+√
+λ s ρ soil C soil ,
+(11)
+where λ s is the thermal conductivity of soil, ρ soil
+is the soil
+bulk density, and C soil
+is the soil heat capacity. When the
+moisture content in soil increases, the thermal inertia also
+increases which reduces the diurnal amplitude variations in
+the land surface temperature (LST). A generalised inverse
+linear relationship between SMC and LST
+can be given
+by,
+SMC =
+LST dry −
+LST
+LST dry − LST wet
+,
+(12)
+where LST dry and LST wet
+are the known LSTs for dry and
+wet soil conditions, respectively. SMC
+obtained from (12)
+is also known as the Normalized Difference Temperature
+Index (NDTI). A list of satellites with LST capable sensors
+is reported in [48], and various indices, including NDTI,
+for SMC quantification have been summarized in [46].
+LST-based measurements are restricted to soil surface tem-
+peratures and face interference from vegetation covers.
+Approaches combining both optical and thermal
+methods
+to determine RS-SMC using LST and vegetative index (VI),
+which is results from the reflectivity of vegetation other
+objects in any particular frequency band, have also been
+developed. In the past three decades, LST-VI-based meth-
+ods have been extensively applied towards SMC determi-
+nation [45], [46], [49]. The estimation of moisture in a
+soil-vegetation/LST-VI system is based on the energy balance
+equation :
+R n = H + LE + G ,
+(13)
+where R n is the net radiation, H
+is the sensible heat flux (heat
+energy exchange responsible for change in temperature), LE
+is the latent heat flux (evapotranspiration), and G
+is the soil
+heat flux. Therefore, SMC in the root zone can be indirectly
+estimated over vegetated area through the thermal response
+of the vegetation canopy. Different formulations based on the
+energy balance equation as well as various LST-VI indices
+to quantify SMC, evapotranspiration, leaf area index, and
+more from remote sensing data have been developed in the
+past [49]–[51]. The trapezoid or triangle model is one of
+the most commonly applied approaches where SMC can be
+estimated from the pixel distribution in the LST-VI feature
+space [45], [49].
+RS-SMC estimation in the microwave
+wavelengths,
+1 mm − 30 cm
+, have been observed to be more robust than
+vis-thermal methods, as microwaves are better suited for
+passing through clouds and penetrating deeper under the soil
+surface as well as through vegetation (especially at lower
+frequencies) but provide limited spatial resolution.
+Passive
+microwave sensors (radiometers)
+measure the radiation nat-
+urally emitted by the soil surface in the form of its brightness
+temperature ( T B
+), moist soils appear cooler to radiometers.
+The intensity of the observed emission is proportional to
+the product of the temperature ( T surf ) and emissivity ( e
+) of
+soil [40], and the recorded T B
+by the radiometer, and can be
+given as :
+T B = τ ( rT sky − eT surf ) + T atm ,
+(14)
+where τ is the atmospheric transmission, rT sky
+is the reflected
+sky brightness temperature ( r is the surface reflectivity), and
+T atm
+is the temperature contribution of the atmosphere. Multi-
+ple algorithms have been developed for SMC retrieval using
+T B
+, summarized in [52]. The modeling generally consist of
+two main steps: (i) Radiative transfer model, relating T B
+and
+soil dielectric constant ( ε s
+), and (ii) Dielectric mixing model
+for relating SMC (VWC) with ε s .
+Active microwave sensors (radars) record the
+back-
+scattered signal when a beam of microwave radiation is inci-
+dent on the ground. The microwave backscatter is dependent
+on the soil variables like moisture, vegetation cover and sur-
+face roughness (typically at higher resolutions). Among phys-
+ical models, integral equation model is commonly used for
+the backscatter coefficient calculations [52]. Various empiri-
+cal and semi-empirical models have also been reported along
+with machine learning-based approaches [52], [53].
+Although satellite-based remote sensing for soil moisture
+content provides appealing solutions for long-term large scale
+measurements, it has coarse spatial (of the order of km
+2
+) and
+temporal resolutions and are restricted to shallow penetration
+14102 VOLUME 9, 2021
+
+--- PÁGINA 9 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+FIGURE 8.
+A drone-borne GPR-based sensing platform for SMC
+determination, reprinted from [54] with permission from Elsevier.
+depths. They also require complex data analyses which may
+vary depending on the governing group, making the SMC
+data accessibility difficult for individual fields and farmers
+for precise agriculture resource management.
+D. PROXIMAL IN-FIELD SOIL MOISTURE MONITORING
+Proximal in-field soil moisture sensors refer to devices that
+are not in direct contact with the soil but are in proximity
+to
+the soil surface for non-point
+-based estimation. Such sensing
+systems consist of airborne as well as land-borne techniques
+for plot and field scale SMC measurements. Ground penetrat-
+ing radar (GPR) systems mounted on unmanned aerial vehi-
+cles (UAVs) or drones have emerged as one such promising
+proximal SMC determination method. A recently developed
+system is shown in Figure 8 and presents a drone-borne
+GPR sensor for soil moisture mapping using a lightweight
+vector network analyzer (VNA) combined with a hybrid
+horn-dipole antenna, a lightweight global positioning system
+(GPS), a computer system and a smartphone [54]. Reflec-
+tion coefficient or return loss ( S 11 ( ω
+)) is measured using the
+single port VNA in the 500 MHz to 700 MHz frequency
+range. S 11 ( ω
+) refers to the scattering parameter which is
+calculated as the ratio of the reflected to the incident power
+at port 1 in a given system. The frequency was chosen to
+avoid soil surface roughness effects and sample the SMC
+between 10 cm to 20 cm soil depth. The data processing
+was done in two main steps: (i) Radar modeling, where the
+VNA-antenna-multilayered medium (soil) were modeled as
+linear systems in series and parallel in the frequency domain,
+as described in [55], resulting in the overall transfer function
+as :
+S 11 ( ω ) = R i ( ω ) +
+H t ( ω ) G xx ( ω ) H r ( ω
+)
+1 − H f ( ω ) G xx ( ω )
+,
+(15)
+where R i ( ω ), H t ( ω ), H r ( ω ) and H f ( ω
+) are the complex
+return loss, transmitting, receiving and feedback loss transfer
+functions, respectively, and G xx ( ω
+) is the transfer function
+(Green’s function) of the air-subsurface system modeled as a
+multilayered medium. R i ( ω
+) can be calculated by operating
+the system in free space ( S 11 ( ω ) = R i ( ω )), and H t ( ω ),
+H r ( ω ) and H f ( ω
+) were obtained by solving a system of
+linear equations [55]. Hence using (15), G xx ( ω
+) was calcu-
+lated from the measured S 11 ( ω
+). (ii) Full-wave inversion for
+parameter retrieval, namely, an inverse problem was defined
+using weighted least-squares formulation and the minimiza-
+tion of the following objective function ( 8 ( b
+)) was carried
+out :
+8 ( b ) = ( g
+∗
+xx
+( t ) − g xx ( b , t ))
+T
+( g
+∗
+xx
+( t ) − g xx ( b , t )) ,
+(16)
+where g
+∗
+xx
+( t ) and g xx ( b , t
+) are the experimental and the mod-
+eled Green’s function in time domain, b = [ h , ε s ] with h
+being the vector of the distance between the antenna cen-
+ter and the soil surface and ε s
+being the vector of relative
+dielectric permittivity of soil. The experimental G xx ( ω
+) cal-
+culated from (15) was used to calculate g
+∗
+xx
+( t
+) using inverse
+Fourier transform. The VWC was then calculated from the
+ε s
+measurement using TDR equation (8). High-resolution
+SMC maps were obtained using the developed system in three
+agricultural fields in Belgium.
+UAV-based high resolution thermal and multi-spectral
+imagery coupled with image processing algorithms have also
+been applied for proximal SMC determination. These imag-
+ing techniques are similar to satellite-based remote sens-
+ing methods but provide higher spatial resolutions due to
+close proximity to surface. In a recent work, nine
+vegetative
+indices (VIs) related to water stress in maize at different
+growth stages were derived from UAV multi-spectral imagery
+and weather conditions, and were used to establish a crop
+water stress index (CWSI) inversion model, which was then
+compared with CSWI obtained from on-site ground-based
+SMC measurements [56]. The ratio of transformed chloro-
+phyll absorption in the reflectance index (TCARI) and renor-
+malized difference vegetation index (RDVI), and the TCARI
+and soil-adjusted vegetation index (SAVI) had high cor-
+relations with CWSI. R
+2
+values were 0.47 and 0.50 for
+TCARI/RDVI at the reproductive and maturation stages,
+respectively; and 0.81 and 0.80 for TCARI/SAVI at the late
+reproductive and maturation stages, respectively. Overall,
+the study reported on the feasibility of using UAV-based
+imagery for SMC detection on field scale with moderate
+accuracy.
+In another work, an artificial neural network (ANN)-
+based model using a three-layered feed forward neural net-
+work was developed with multi-spectral images recorded via
+AggieAir
+[57] platform, consisting of UAV that can carry
+multispectral sensor load, as inputs to estimate soil mois-
+ture [58]. Normalized Difference Vegetative Index (NDVI),
+Vegetative Condition Index (VCI), enhanced vegetation index
+(EVI), RGB, NIR and thermal imagery were used as inputs.
+Finally, the ANN model with 8 input parameters (red, blue,
+NIR, thermal, NDVI, VCI, EVI and field capacity) was
+reported to perform the best with R
+2
+value of 0 .
+77 with respect
+to the ground-based SMC measurement. An advantage of
+data driven (ANN) based approach over conventional SMC
+estimation using empirical models based on indices like VIs
+VOLUME 9, 2021 14103
+
+--- PÁGINA 10 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+and LSTs is that, indices-based methods require large number
+of pixels to be sampled in order to have enough points in
+an image to use in the determination of the boundaries of
+extreme conditions. ANN-based modelling has the potential
+to provide better resolutions and robust results but require
+more complex computations as well as care must be taken
+in selecting and processing input parameters and modeling
+structures.
+The key advantages of UAV-based SMC sensors include
+ability to cover relatively larger areas, autonomous operation,
+potential to add other sensing technologies like imaging for
+weed detection and crop scouting, and the demand for drones
+in agriculture is predicted to increase rapidly [59]. Some
+limitations include complex data processing is required, accu-
+racy in SMC estimates is lower than in-situ methods, uneven
+terrain may cause errors, environmental conditions like snow
+cover and rainfall may affect the measurement, and UAVs
+can cost of the order of $10000, but can break even after
+a few uses [59]. There also exist considerations for use of
+UAVs in form of the rules laid down by the Federal Aviation
+Administration (FAA), such as the total weight must not
+exceed 55 pounds, maximum allowable altitude is 400 ft
+above ground, etc. [60].
+Electromagnetic induction
+(EMI)-based methods can also
+be identified as land-borne proximal SMC sensors. EMI
+sensors work by measuring apparent electrical conductivity
+of soil, which positively correlates to the water in soil as
+more ions gets mobilized with higher SMC, by inductive cou-
+pling. The sensing structure is composed of transmitter (Tx)
+and receiver (Rx) coils, where Tx coils are energized with
+alternating current (AC) and generate time-varying EM fields
+that induces circular eddy currents in the nearby conducting
+media (soil). Weak eddy currents in soil in turn generates
+secondary EM fields that induces AC current in Rx coils. The
+amplitude and phase difference between Tx and Rx currents
+is then used to determine soil properties. EMI-based sensors
+are better suited to determine SMC in drier soils with higher
+electrical resistivities. However, the result from the sensors
+can vary depending on variable soil properties such as salinity
+and metallic ion content mandating soil-type specific cali-
+bration for sufficient accuracy, and generally requires special
+expertise for operation in the field. Overall, EMI-based soil
+sensing is a relatively mature technique with numerous com-
+mercially available sensors, both handheld as well as vehicle
+mounted [61].
+E. OTHER SOIL MOISTURE SENSING METHODS
+In addition to the aforementioned sensing
+approaches,
+other relatively uncommon but innovative technologies have
+been applied towards soil moisture determination primarily
+on non-point-based
+field to catchment scale and beyond.
+In one such method, soil moisture sensing using
+wireless
+underground communications
+was reported, where the rel-
+ative permittivity of soil and soil moisture is determined
+using wave propagation velocity and path loss between
+an underground transmitter (Tx) and receiver (Rx) [62].
+The proposed sensing model was validated through exper-
+iments in a software-defined radio test-bed and an indoor
+test-bed in the frequency range from 100 MHz to 500 MHz
+using dipole antennas with over-the-air resonant frequency
+of 433 MHz, where the Tx and Rx were buried in different
+types of soil at depths of 10 cm, 20 cm, 30 cm and 40 cm.
+The reported system was capable of measuring soil moisture
+and permittivity in 1 m to 15 m distance range between Tx and
+Rx, and exhibited accuracy within 8% estimation error from
+ground truth. However, for practical implementation such a
+system may be power intensive as well as come with high
+initial set-up cost.
+Similar to the methodology of neutron probes,
+cosmic
+ray neutron probes
+(CRNPs) have also been reported for
+determining SMC, where instead of employing radioactive
+neutron emitting components, cosmic ray neutron intensity
+is recorded near the surface. The elastic collisions with soil
+water plays a moderating role as the cosmic neutron dif-
+fuse through soil and can be calibrated to estimate SMC.
+CRNPs commonly provide data on intermediate/field scale,
+and are restricted to shallow depths [63]. Software modelling
+tools for field scale soil moisture maps using CRNPs have
+been developed and are being continuously improved [64],
+[65]. An intermediate scale CRNP-based system
+called
+COsmic-ray Soil Moisture Observing System (COSMOS)
+was described in [66]. The system consists of deploying
+CRNPs above surface, measuring secondary neutrons, at sev-
+eral locations (about 500 in total) across the United States to
+measure average SMC within a diameter of a few hectometers
+and depth of a few decimeters. Another work reported on the
+extension of cosmic-ray neutron probe measurement depth
+for improving field scale root-zone soil moisture estimation
+by coupling with representative in-situ sensors [67]. Overall,
+similar to NPs, CRNPs can provide highly accurate aver-
+age SMC measurements on intermediate scale within 2%
+estimation error depending on the calibration and operating
+conditions [66].
+Global navigation satellite system reflectometry
+(GNSS-
+R) or Global positioning system reflectometry (GPS-R) is
+another relatively new but promising technology applied for
+SMC estimation at intermediate to large scales [68]. It works
+by recording GNSS/GPS signal power variations received by
+an antenna on the ground, directly from the satellite versus
+through reflected pathways from the surface. The simultane-
+ously received direct and coherently reflected signals results
+in an interference pattern which produces a modulation that
+can be observed in temporal variations of the signal-to-noise
+ratio (SNR) data recorded by the receiver on the ground. All
+the three GPS interferogram parameters: effective reflector
+height, phase and amplitude are a function of the soil surface
+permittivity which in turn depends on the near surface SMC,
+within the top 5-6 cm of the soil [69]. A GPS multipath-based
+near surface SMC estimation system was developed in [70],
+where the sensitivity of the recorded GPS SNR data with
+respect to moisture variations in the areas of 1000 m
+2
+hori-
+zontally and 1-6 cm vertically was observed. The following
+14104 VOLUME 9, 2021
+
+--- PÁGINA 11 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+model was described for SNR [70],
+SNR = A cos
+(
+4 π h
+λ
+sin E + φ
+)
+,
+(17)
+where A is the amplitude, h
+is the height above the horizontal
+reflector, λ is the GPS wavelength and E
+is the elevation angle
+of the satellite and φ
+is the phase offset. An unweighted least
+squares fit to the GPS SNR data (restricted to 5–25 degrees
+elevation angles) was used to find A and φ
+, which were
+then correlated to SMC using linear and polynomial fits with
+R
+2
+between 0.9 and 0.76, when compared with the average
+SMC measurements taken using in-situ reflectometry-based
+sensors. Most disagreement was observed when SMC was
+less than 10% VWC. In another work, phase-only was estab-
+lished as the best metric derived from GPS data to estimate
+SMC [69].
+A long-term GNSS-R-based SMC determination case
+study for Sutherland, South Africa was reported in [71],
+where time series GNSS SNR data was recorded and used
+to estimate soil moisture variations during 2008 to 2014.
+A model similar to 17 was used to calculate the phase and
+amplitude from the SNR data which was then correlated with
+SMC obtained using in-situ TDR-based measurements with
+reported R
+2
+of 0.8. The results captured the the wetting and
+drying cycles in response to rainfall.
+It can be concluded that GNSS-R holds potential to provide
+complementary intermediate scale SMC estimates worldwide
+using the established GNSS infrastructure.
+F. FUTURE PROSPECTS AND RESEARCH DIRECTION IN
+SOIL MOISTURE SENSING
+In order to successfully implement precision site-specific
+management, accurate soil property maps are
+essential.
+For this purpose, continuous progress is being made on
+small-scale point-based in-situ methods, and
+large-scale
+remote sensing technologies, as well as intermediate-scale
+proximal soil sensing techniques for soil moisture determi-
+nation. Presently, tensiometer, TDR- and impedance-based
+sensing probes are among the most readily available and
+applied for in-situ
+point-based soil moisture monitoring.
+Currently, the devices based on these methods require con-
+tinuous maintenance and human intervention in terms of
+proper installation, feeding power and data collection which
+restricts their use when obtaining high resolution soil mois-
+ture maps of a field or plot. However, the advent
+of
+internet-of-things (IoT) and wireless sensing technologies,
+particularly the ones that can be left buried (up to 1 m or so)
+in soil for long periods of time (2 to 5 years) such as described
+in [17], [38], [72], can enable fully automated operation.
+By placing the sensors underground, measurements can be
+taken at strategic locations without interrupting on-land activ-
+ities facilitating accurate site-specific management. In the
+future, for point-based applications, SMC monitoring tech-
+nologies not only need to be accurate but also power efficient
+and economical with easy data access and analysis resulting
+in functional information for growers.
+Alternatively, for obtaining soil moisture maps at interme-
+diate scale, UAV-based proximal sensing methods are promis-
+ing as they require minimal hardware and human intervention
+for covering relatively larger land areas. Continuous progress
+is being made in UAV-imaging, and GPR-based technologies
+for improving spatial as well as depth resolution of SMC
+measurement, which currently are inferior to point-based
+methods. Though expensive at first, with continuous use,
+proximal/UAV-based sensors can prove to be economical.
+These methods offer unique advantage in terms of easier
+adoption, and flexibility in the type of sensors that can be
+mounted on a UAV with potential to provide supplementary
+information about soil and plant characteristics like crop
+health, vegetation cover and more.
+On an even larger spatial and/or temporal
+scale
+satellite-based remote sensing methods are uniquely suitable.
+The soil moisture information obtained using these methods
+can be used for agricultural applications but is more suited
+for large-scale geological and hydrological studies. These
+methods are especially useful for observing soil or land
+characteristics over longer time scales spanning decades
+over large areas spanning continents. However, the RS-SMC
+measurements are presently restricted to near-surface (at
+depths of a few cm
+) observations. Constant progress is being
+made in improving remote sensing hardware as well as
+software for realizing higher accuracy as well as resolution in
+satellite-based soil moisture determination. Data processing
+and analysis plays a major role in SMC retrieval, making
+these methods complex, however, the emerging data analysis
+techniques based on empirical models as well as machine
+learning methods can provide robust measurements with
+minimal error due to surface variations such as vegetation
+cover, roughness, and temperature, and are an active area of
+research with applications spanning even beyond earth.
+III. CROP NUTRIENT SENSING METHODS
+For the majority of Earth’s history, nutrient cycling had
+occurred naturally from soil to plants and animals, and then
+back to soil through decomposition of biomass. As humans
+went from hunter-gatherers to practicing agriculture and
+developing long term settlements, the natural soil nutrient
+cycling was altered through production and application of
+agrochemicals (chemical fertilizers, pesticides, herbicides,
+etc.). In the mid 20
+th
+century agriculture was further trans-
+formed by the green revolution that increased the crop pro-
+duction worldwide through selective breeding for developing
+and adopting high yielding crop varieties, especially cereal
+and novel cultivation practices. Ever since then, achieving
+sustainability through precision agriculture has been a goal
+for humanity.
+In general, it has been established that there are 17 essential
+elements/nutrients that are critical for plant growth, and defi-
+ciency of any one of them can result in reduced yields [73].
+Figure 9 presents the essential elements and the form in which
+they are taken up by the plants. The non-mineral elements, C,
+H and O are available to the plant either from the atmosphere
+VOLUME 9, 2021 14105
+
+--- PÁGINA 12 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+FIGURE 9. Essential nutrients required for plant growth and their available form in soil.
+or in the form of natural biomass or water. The mineral
+elements that are required in relatively larger quantities for
+crop growth are categorized as primary macronutrients that
+includes N, P and K. The deficiencies in N, P and K may
+lead to significant yield losses and are therefore added exoge-
+nously to soil to meet the plant’s needs. Ca, Mg and S are
+classified as secondary macronutrients as they are needed in
+relatively lesser amounts and are often present in sufficient
+quantities in soil. Plants also need other nutrients for healthy
+growth but only in trace amounts, these elements are clas-
+sified as micronutrients. Micronutrients are largely present
+naturally in adequate amounts in soil and if required, are
+added to macronutrient doses in minute quantities. Excessive
+concentrations of micronutrients in soil can also lead to toxi-
+city in plants.
+Nutrient/fertilizer application is one of the largest expenses
+incurred in crop production not only in terms of direct
+capital but also in terms of its ultimate impact on the
+environment. Hence, precise monitoring of nutrients in soil
+enables better application efficiencies and enhanced sustain-
+ability in agriculture. This section presents the methodologies
+employed towards detection of nutrients in soil, particularly
+primary macronutrients, and is divided into the following
+subsections:
+• Laboratory-based methods,
+• Ion-selective membrane (ISM)-based
+electrochemi-
+cal (EC) sensors,
+• Other biosensing methods, and
+• Electrophoresis-based methods.
+A. LABORATORY-BASED METHODS FOR SOIL NUTRIENT
+ANALYSIS
+Standard soil testing procedures in laboratory (lab) set-
+ting consists of two main steps, (i) Sampling,
+and
+(ii) Nutrient extraction and quantification. Recommendations
+for soil sampling procedures vary with different laboratories
+[74]–[76]. In general, a large field can be divided into smaller
+areas of ∼
+20 acre, within which at least 15 to 20 soil
+cores from different locations (zig-zag pattern or randomized
+pattern etc.) can be taken at soil depths of 6 to 24 inches.
+The top six inches of soil has the most root activity and
+fertilizer applications are generally restricted to this depth,
+however, in case of deep rooted crops such as wheat or for
+more detailed nutrient analysis, cores from 6 to 24 inches
+can be taken. A relation between the number of cores and
+coefficient of variation is described in [77] and as expected,
+the variation decreases with larger number of collected sam-
+ple cores. The collected soil samples are dried, ground and
+sieved prior to analysis to obtain a homogeneous mixture.
+To begin analysis, first the nutrients are extracted from the
+processed sample. The extractants are chemically separated
+from the sample to rapidly assess either total and/or available
+(or soluble) soil nutrient pools. Several nutrient specific
+extraction chemistries, often dependent on pH of the soil,
+have been developed over the years, such as N
+extraction
+using calcium sulphate, P and K
+extraction using Mehlich 3
+method and more [76].
+Colorimetry
+used to one of the standard laboratory soil test-
+ing methods prior to using more sophisticated instruments.
+In this method, the changes in intensity of color or turbid-
+ity is recorded in response to reactions between the sample
+extractant and a prescribed reagent, which directly correlates
+with the concentration of a specific ion. Various colorimetric
+reagents have been developed for detecting different soil
+nutrients, such as NO
+−
+3
+detection using diazotize dye method
+after conversion to nitrite using cadmium, NH
+−
+4
+detection
+using Nessler reagents, P using stannous chloride method,
+K by tetraphenylboron precipitation, Ca and Mg by ethylene-
+diaminetetraacetic acid (EDTA) titraion and more [78]. The
+developed color is compared to a reference color strip accord-
+ing to which the concentration levels are determined. Thus the
+14106 VOLUME 9, 2021
+
+--- PÁGINA 13 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+accuracy of measurement is affected by the limited number
+of reference levels as well as human interpretation. However,
+in recent years, photometers and image processing has been
+applied for improved color analysis. A portable colorimetric
+analyzer based on smartphone camera for P determination
+in soil was presented in [79]. Colorimetric test kits are also
+readily commercially available providing low-cost per test
+for soil analysis [78], [80]. In general, colorimetry-based
+methods require several sample preparation steps making the
+process labor as well as time intensive.
+Compared to colorimetry, spectroscopy
+-based methods
+offer more precise and rapid analysis with relatively sim-
+pler soil preparation requirements. Spectroscopic techniques
+like visible (vis), ultraviolet (UV) and IR spectroscopy,
+X-ray fluorescence (XRF) spectroscopy, inductively coupled
+plasma spectroscopy, among others, have been employed
+for laboratory-based soil testing. vis and UV spectropho-
+tometers work on the principle of interaction of vis or UV
+light with the electron in the constituent atoms, where the
+electrons in orbitals can absorbs photons of specific energy
+(or wavelength) and are observed in the absorbance spec-
+trum. Absorbance ( Abs
+) at a particular wavelength can be
+related to the concentration of the analyte molecule using the
+Beer-Lambert law as :
+Abs = α × l × C 0 ,
+(18)
+where α is the absorption coefficient, l
+is the path length of
+light through the sample, and C 0
+is the concentration of the
+analyte. α and l
+are constant for a given system and element,
+hence a direct relationship between absorbance and C 0
+can
+be established [77].
+In IR spectroscopy
+, the test sample is irradiated with IR
+radiation and the frequencies corresponding to the vibrational
+modes of the atomic/molecular bonds are absorbed while the
+rest are reflected. The output spectrum is recorded using a
+spectrophotometer where different molecular bonds exhibit
+distinct vibrational modes which are characterized in the IR
+absorbance bands.
+In inductively coupled plasma (ICP)
+optical emission spec-
+troscopy (ICP-OES), the test samples are introduced inside
+the core of ICP argon plasma which generates temperature of
+about 8000
+◦
+C
+making the thermally excited elements emit
+light at their characteristic optical wavelengths. The emitted
+light is scanned using a spectrometer and the amplitude at
+each wavelength is recorded is representative of the elemental
+concentration [81].
+XRF spectroscopy
+works on the principle that when pri-
+mary x-rays are targeted at a sample, secondary x-radiation
+(fluorescence) is emitted by the target. Electron bombard-
+ment at the target can also be used as a source of primary
+excitation. When excited, each element emits x-rays of char-
+acteristic wavelength (inversely related to the square of the
+atomic number of the element) and intensity, proportional to
+the amount of the element present [82].
+Soil testing in labs currently cost between $8 to $25 per
+test per sample depending on the information required, and
+are typically performed on an average every 3 to 5 years [74],
+[75]. Laboratory- based methods provide accurate as well as
+precise measurements which are used as standard (or ground
+truth) for other sensing techniques but require several sample
+collection and preparation steps. Therefore there exists a need
+for cost-effective and field accessible soil nutrient sensing
+technologies to enable continuous monitoring for precise fer-
+tilizer application as well as soil health analysis. Subsequent
+sections discuss various sensing technologies developed and
+applied towards soil nutrient analysis with the potential for
+providing portable, accurate, quick, continuous and low-cost
+measurements.
+B. ION-SELECTIVE MEMBRANE (ISM)-BASED
+ELECTROCHEMICAL METHODS
+Sensors like ion selective electrodes (ISEs) and
+ion
+selective field-effect transistors (ISFETs) use ion selective
+membrane (ISM) for selectivity and are the most common
+electrochemical sensing methods studied and applied for the
+determination of inorganic ions in soil. ISMs can be classified
+into 3 broad categories: (i) glass membrane (primarily used
+for pH measurement), (ii) inorganic salt crystal-based solid
+state membranes, and (iii) polymer membranes containing
+ionophores. This last kind (a polymer ISM) is typically made
+from a mixture of the ionophore/ligand, a high molecular
+weight polymer matrix as the base material for ionophore
+immobilization, and a platicizer that imparts flexibility as
+well as enhances dissolution of the ionophore in the polymer.
+Often an anion or cation exchanger is added to the mix which
+may improve the selectivity of the membrane. Synthesis of
+ISMs developed for detecting various anions and cations can
+be found in [83]. A general procedure for fabricating ISMs
+includes pouring the prepared recipe in a glass mold, kept in
+an air permeable enclosure, until the solvent evaporates and
+the ISM is left behind for use [84].
+The detection principle of an ISE is based on a poten-
+tiometric electrochemical (EC) cell where instead of direct
+analyte redox reactions, selective binding of the analyte ion
+to a membrane generates an electric potential. An ISE sensor
+is composed of a complete galvanic cell with two electrodes,
+a working electrode (WE) and a reference electrode (RE),
+where an ISM specific to a particular analyte/ion is integrated
+with the WE, and the potential difference between the WE
+and the RE varies depending on the concentration/activity of
+the analyte in the test solution/electrolyte. Figure 10 shows
+the general construction of ISE devices, where the conven-
+tional ISE (C-ISE) of Figure 10(a) is composed of a working
+electrode (WE) in an internal reference solution inside a
+glass tube interfaced with the test solution via the ISM, and
+a reference electrode (RE) with a porous frit. In contrast,
+a solid state (or solid contact) ISE (SS-ISE) of Figure 10(b)
+is made of a solid state RE, together with a metallic electrode
+coated with an ISM serving as the WE. Often there is an
+ion-to-electron transducer material sandwiched between the
+bare metal and the ISM. As the term suggests, the RE is a
+non-polarizable electrode, which means that its cell potential
+VOLUME 9, 2021 14107
+
+--- PÁGINA 14 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+FIGURE 10. ( a ) Schematic of a conventional ISE. ( b
+) Schematic of a planar
+all solid state ISE.
+in a suitable electrolyte remains unchanged, hence can be
+used as a reference potential/ground. A commonly used RE
+in EC sensing is formed using a silver wire coated with silver
+chloride (Ag/AgCl) kept in chlorinated (saturated potassium
+chloride) solution/electrolyte as depicted in Figure 10(a). A
+general chemical structure of a C-ISE cell with Ag/AgCl
+reference electrodes can be given by :
+Ag ( s ) | AgCl ( s ) | Cl
+−
+( aq ) || A
++
+( aq , sample ) | ISM |
+A
++
+( aq , inside ) , Cl
+−
+| AgCl ( s ) | Ag ( s ) ,
+(19)
+where ||
+represents physical separation between chemical
+species via a porous membrane or frit, |
+represents separa-
+tion of chemical species in different phases, ISM
+represents
+separation by an ISM, and A
++
+is the analyte ion of interest
+(assumed to have a unit positive charge).
+When a conventional ISE as denoted by (19) is immersed
+in the test solution, then based on the concentration differ-
+ence, the analyte ion diffuses across the ISM which cre-
+ates ionic charge difference across the membrane surfaces.
+The inner reference electrode system constituting the WE
+acts as a transducer and converts the ionic charge difference
+into electronic charge through a reference redox reaction
+( AgCl ( s ) + e
+−
+Ag ( s ) + Cl
+−
+), leading to a potential differ-
+ence between the WE and the RE, E ISE
+, given by the well
+known Nernst equation as :
+E ISE = E 0 +
+RT
+zF
+ln
+[
+a ( sample )
+a ( inside )
+]
+⇔ E ISE = E 0 −
+RT
+zF
+ln [ a ( inside ) ] +
+RT
+zF
+ln [ a ( sample ) ] ,
+(20)
+where E 0
+is a reference potential under standard conditions
+(and is a constant for a given ISE structure), R
+is the gas
+constant (8 . 314 J mol
+− 1
+K
+− 1
+), T is the temperature in
+◦
+K, F
+is the Faraday constant (96485 C/mol), z
+is the charge on the
+analyte ion, a ( sample )
+is the ionic activity (or concentration) of
+the analyte in the test solution, and a ( inside )
+is the known ionic
+activity (or concentration) in the inner electrolyte.
+In practice however, the ISM may respond to
+some
+interfering species in the solution, hence the overall mea-
+sured electric potential difference can be given by
+the
+Nikolskii-Eisenman form of the Nernst equation [85] as :
+E ISE = E 0 −
+RT
+zF
+ln [ a ( inside ) ] +
+RT
+zF
+ln [ a ( sample )
++
+∑
+K j ( a j )
+z / z j
+] ,
+(21)
+where a j is the activity/concentration, z j is the charge, and
+K j is the selectivity coefficient of the j
+th
+interfering ion. (20)
+and (21) describe the logarithmic relationship between the
+electric potential and the ionic activity/concentration which
+is representative of potentiometric EC sensors like ISEs.
+Although functional and accurate, there are challenges
+associated with conventional ISEs (C-ISE) in terms of dura-
+bility, leakage/contamination of inner solutions, difficulty
+in miniaturization and portability. Solid-state ISEs (SS-ISE)
+were developed to overcome the drawbacks of the C-ISEs.
+However, SS-ISEs often encounter potential drift due to inner
+aqueous layer formation change in chemical composition,
+which may be improved through electrode conditioning [86].
+The earlier versions of the SS-ISE used direct contact elec-
+trodes also known as coated wire electrodes (CWE) where an
+ISM layer was directly attached on a metallic surface without
+any inner filling solutions, but this exhibited high interface
+resistance leading to potential instability and problems in
+reproducibility [87]. In order to improve the operation of
+SS-ISEs, ion-to-electrode transducer materials were intro-
+duced between the metallic surface and the ISM. Various
+ion-to-electron transducer materials have been explored in
+literature such as hydrogel layers and conductive polymers
+which operate similar to the inner electrode by undergoing
+redox reaction in the hydrogel or polymer matrix itself [88].
+Apart from ISEs, transistor-based ISFET sensors have
+also been developed as shown in Figure 11.
+These
+have the same basic construction as the
+well-known
+metal-oxide-semiconductor field effect transistor (MOSFET)
+devices where the current flowing between the source and
+drain terminals is controlled by the voltage on the gate ter-
+minal. The general expression for the drain current ( I d
+) for a
+MOSFET is given by :
+I d =
+1
+2
+μ n / p C ox
+W
+L
+[2( V gs − V T ) V ds − V
+2
+ds
+] ,
+(22)
+where μ n / p
+is the mobility of the electrons/holes depending
+on the device type, N-channel or P-channel MOSFET, C ox
+is the gate oxide capacitance, V gs
+is the potential differ-
+ence between gate and source, V ds
+is the potential difference
+between drain and source, V T
+is the threshold voltage for the
+inversion layer to form in the channel, and W and L
+represent
+the width and the length of the channel, respectively. The
+14108 VOLUME 9, 2021
+
+--- PÁGINA 15 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+FIGURE 11. A schematic of an ISFET sensing device.
+gate region is coated with the ISM and is exposed to the test
+solution. A RE in the solution is used as the gate terminal
+with respect to which V gs
+is applied. The ISM only allows
+specific ions to accumulate electrostatic charge on the gate,
+affecting the overall V T
+(determined as the potential value
+in (20)), resulting in the change in the drain current according
+to (22).
+1) N DETECTION USING ISMs
+Plants take majority of N from soil in the form of NO
+−
+3
+,
+however NH
++
+4
+can be dominant in some acidic and/or anaer-
+obic environments, and it has been widely accepted that
+co-provision of nitrate with ammonium may be ideal for
+plant growth [98]. Among the inorganic forms of N, nitrate
+is the most mobile making it prone to leaching and there-
+fore, requires frequent replenishment. The ideal concentra-
+tion range of nitrates in soil is about 10 to 30 mg/kg or
+approximately 0.1 to 0.5 mM [99], which coincides with the
+detection range of most ISM-based devices.
+N detection using ISEs and ISFETs has been explored for
+several decades and many recipes have been developed for
+nitrate ISMs. In one of the prominent early works on nitrate
+ISE (1976), a series of symmetrical quaternary ammonium
+compounds were synthesized, purified and tested as ligands
+in various plasticizers, and polyvinyl chloride (PVC) to form
+non-porous PVC-membrane-based ISEs. A combination of
+ionophore tetradodecylammonium nitrate (TDDA), plasti-
+cizer dibutylphthalate (DBP) in PVC polymer matrix with
+the composition of 4% TDDA, 67% DBP, and 29% PVC was
+proposed as optimal [100]. The developed sensor exhibited a
+sensitivity of 56.2 mV/decade with the limit of detection of
+8 . 3 × 10
+− 7
+M and ln( K j ) values for Cl
+−
+, NO
+−
+2
+, F
+−
+and HCO
+−
+3
+as − 2 . 30 , − 1 . 15 , − 3 . 0 and − 3 .
+30, respectively.
+Since then many nitrate selective membranes have been
+reported in literature [83], [99] with various objectives includ-
+ing, improving selectivity with respect to interference from
+Cl
+−
+[85], [101], developing portable inexpensive devices and
+improving potential stability in SS-ISEs [93]. The sensors
+exhibit near-Nernstian slope; Nitrate ion has a unit negative
+charge (or | z | =
+1), and hence according to (21), the theo-
+retical Nernstian-slope ( RT / zF
+) magnitude or sensitivity for
+NO
+−
+3
+ion is ∼ 59 .
+2 mV/decade. In general, the ISE sensing
+technology for N detection have matured successfully in the
+past decades offering reliable commercial products, often
+used as standard for in-field testing as well as in lab testing,
+however, new devices with unique characteristics like low
+cost fabrication, longer life times, continuous use with easy,
+robust and quick operation are being developed continually.
+Table 2 presents a brief overview of some of the recent
+ISM-based devices used for detecting nitrate in soil media.
+Among recently reported works, laser
+induced
+graphene (LIG) electrodes were fabricated on
+poly-
+imide/Epson printer paper and were functionalized with
+ionophores, tridodecylmethylammonium nitrate and nonactin
+within PVC-based membrane to form solid contact (SC) ISEs
+for NO
+−
+3
+and NH
++
+4
+detection, respectively [94]. The LIG
+SC-ISEs displayed near Nernstian sensitivities of 51.7 ±
+7.8 mV/dec and 54.8 ±
+2.5 mV/dec, and detection limits
+of 28.2 ± 25.0 μ M and 20.6 ± 14.8 μ M for NH
++
+4
+and NO
+−
+3
+,
+respectively. Soil slurry sensing was performed, and recovery
+percentages of 96% and 95% were obtained for added NH
++
+4
+and NO
+−
+3
+, respectively.
+Another work demonstrated a low-cost and flexible SS-ISE
+using inkjet-printing for in-field nitrate detection, where the
+effect of ISM film thickness was studied with the conclusion
+that thicker ISM leads to longer conditioning requirement
+but smaller drift [90]. The developed ISEs (irrespective of
+thickness) presented 50-52 mv/dec sensitivity in a wide range
+of 0.0001 M to 0.1 M nitrate and about 95% accuracy in soil
+nitrate detection.
+A novel nanocomposite of poly(3-octyl-thiophene) and
+molybdenum disulfide (POT-MoS 2
+) was reported as an ion-
+to-electron transducer with high hydrophobicity (minimizing
+the formation of thin water layer at the electrode interface)
+and redox properties for nitrate SS-ISE [91]. Tridodecyl-
+methylammonium nitrate-based ISM with the proposed ion-
+to-electron transducing layer coated on Au electrode (100 nm
+Au deposited on copper on a PCB substrate) was used, result-
+ing in the detection range of 1-1500 ppm with sensitivity
+of 64 mV/decade, and exhibited a life time of 27 days of
+continuous use in monitoring nitrate in soil slurry.
+Alternatively, ionic-liquid (IL)-based ISMs have also been
+studied for N detection. ILs are specific salts generally com-
+posed of two asymmetrical ions of opposite charge (usually
+big organic cations and smaller anions), and possess unique
+properties, such as low volatility, tunable viscosity, high
+conductivity, large electrochemical window [95]. The use of
+IL/water two-phase system appears to be very promising for
+electroanalytical chemistry, where ILs have been successfully
+utilized as almost any major component of ISEs (ionophore,
+ion exchanger, plasticizer) [92]. A multi-functional usage of
+ionic liquid trihexyltetradecylphosphonium chloride (THTD-
+PCl) for the preparation of PVC-based polymeric membrane
+solid contact nitrate ISE was reported with the sensitivity
+of 60.1 mV/decade and the detection range of 10
+− 5
+M
+to 10
+− 1
+M [95]. However, it was observed that chloride
+ion concentrations about 1 mM can interfere with nitrate
+VOLUME 9, 2021 14109
+
+--- PÁGINA 16 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+TABLE 2. Brief comparison of recent ISM-based EC devices for N detection.
+determination. Another recent work explored phosphonium-
+based ILs and poly (methyl
+methacrylate)/poly(decyl
+methacrylate) (MMA-DMA) copolymer as matrix materi-
+als alternative to classical PVC-based membranes in ISEs
+for NO
+−
+3
+and NH
++
+4
+detection [92]. Graphite pencil drawn
+electrodes were used for NO
+−
+3
+(ionophore free) and NH
++
+4
+(ionophore, Nonactin) detection, and demonstrated function-
+ality by analyzing 8 water and 15 soil samples. A comparison
+of results using ISEs and colorimetric assay showed excellent
+correlation (Pearson’s R = 0.97 and 0.99 for NO
+−
+3
+and NH
++
+4
+,
+respectively).
+2) P DETECTION USING ISMs
+After N, P is the second most limiting primary macronutri-
+ent which is often supplemented in soil with external fer-
+tilizer application. It is absorbed by the plants largely in
+orthophosphate forms H 2 PO
+−
+4
+or HPO
+2 −
+4
+present in soil.
+The fraction of these ions depend on the pH of the soil:
+For pH values above 7, HPO
+2 −
+4
+is dominant whereas below
+pH 7, H 2 PO
+−
+4
+is abundant. Therefore, majority of ISE sensors
+have been reported for detecting these forms of phosphates.
+In soil extractants typical concentration of plant soluble
+phosphates range from 9 mg/kg to 30 mg/kg or 90 μ
+M to
+300 μ
+M [111], which lies within the operation range of most
+of the ISM-based P sensing devices.
+The selectivity of an ionophore towards an ion is governed
+by the hydration energy of the ion which is a measure of
+the free energy of transfer from the solution to the mem-
+brane phase, resulting in the Hofmeister series (perchlorate
+> thiocyanate > iodide > nitrate > bromide > chloride >
+acetate > phosphates) [112]. Phosphates have high hydra-
+tion energy and consequently lie at the lower end of the
+Hofmeister series, this makes developing phosphate selective
+ionophores challenging. However, ISM-based sensors for P
+14110 VOLUME 9, 2021
+
+--- PÁGINA 17 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+TABLE 3. Brief comparison of recent ISM-based EC devices for P detection.
+have been reported in literature and the developed approaches
+can be classified into two broad categories: (i) polymer
+membrane-based electrodes containing organic ionophores,
+and (ii) metal compound-based electrodes. Table 3 presents
+a brief comparison of some of the key recent ISM-based
+sensors developed for determination of phosphates.
+Among prominent earlier works on
+organometallic
+ionophores, binuclear organotin compound-based ionophores
+were shown to hold promise for polymeric
+ISM-based
+phosphate detection [99]. A PVC membrane
+contain-
+ing bis(tribenzyltin) oxide (ionophore), o-nitrophenyl octyl
+ether (plasticizer) showing near-Nernstian response for
+HPO
+2 −
+4
+was reported with detection range of 5 × 10
+− 6
+M
+to 10
+− 1
+M and slope of −
+30.1 mV/decade [112]. Note that
+as HPO
+2 −
+4
+has 2 units of charge (or | z | =
+2), therefore
+according to (21), the theoretical Nernstian-slope ( RT / zF
+)
+magnitude or sensitivity for this ion is ∼ 29 .
+6 mV/decade.
+Since then, numerous other approaches have been reported
+for P detection and some of the recent works are discussed as
+follows.
+A SS-ISE sensor for HPO
+2 −
+4
+based on copper monoamino
+phthalocyanine (CuMAPc) covalently attached to
+poly
+(n-butyl acrylate) (PnBA) was reported in [109].
+The
+SS-ISE was constructed by the application of a
+thin
+film of a polymer cocktail containing a
+CuMAPc–
+PBDA ionophore and benzyl-dimethylhexadecyl ammonium
+VOLUME 9, 2021 14111
+
+--- PÁGINA 18 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+chloride (BDMHAC) as a lipophilic cationic additive onto
+a gold electrode pre-coated with the conducting polymer
+poly (3,4-ethylenedioxythiophene) (PEDOT) as an ion and
+electron transducer. The sensor exhibited moderate selec-
+tivity with sensitivity of 29.8 mV/decade and a
+linear
+detection range of 4 × 10
+− 9
+M to 10
+− 2
+M. Selectivity coef-
+ficients (ln( K j )) for OAc
+−
+− 2.42, NO
+−
+3
+− 2.13, ClO
+−
+4
+−
+3.89,
+Cl
+−
+− 1.85, I
+−
+− 1.96, F
+−
+− 2.98 and SO
+2 −
+4
+−
+4.94 were
+observed.
+In another work, an electrochemical capacitive sensor
+based on Al-Cu/Si-p/SiO 2 /Si 3 N 4 substrate
+functional-
+ized with copper C,C,C,C-tetra-carboxylic phthalocyanine-
+acrylate polymer adduct (Cu(II)TCPc-PAA) ionophore was
+reported and tested in high (10 kHz) and low (100 Hz)
+frequencies using Mott-Schottky electrochemical
+tech-
+nique [107]. A wide detection range from 10
+− 10
+M to 10
+− 5
+M with Nernstian sensitivity of 27.7 mV/dec was observed.
+Electro-analytical reactions of phosphate ions with metal-
+lic compound electrodes can be characterized using EC
+methods and have been reported for developing ISEs for P
+detection. Coated cobalt metal wire electrode is one such
+device which have been extensively studied for detecting
+orthophosphates. A phosphate sensitive Co electrode for
+sensing H 2 PO
+−
+4
+in ammonium lactate-acetic acid soil extracts
+was reported, where the mechanism of detection was based on
+the conversion of surface cobalt oxide (CoO) to cobalt phos-
+phate Co 3 (PO 4 ) 2
+, and characterization using cyclic voltam-
+metry (CV) [105]. Comparison was done between using
+Pt wire versus Ag/AgCl as RE, where Pt wire exhibited
+faster response and wider detection range. Soil samples were
+tested using the developed sensor and were in good corre-
+lation with ICP-OES. Another work based on the formation
+of Co(H 2 PO 4 ) 2
+in the coexistence of surface CoO and/or
+Co(OH) 2
+on cobalt wire electrode was reported, where the
+selectivity coefficients (ln( K j )) for HCO
+−
+3
+, NO
+−
+3
+, CH 3 COO
+−
+,
+SO
+2 −
+4
+, and Cl
+−
+were evaluated to be − 2.1, 2.5, − 3.2, −
+4.0,
+and −
+4.0, respectively [106].
+In another work, Molybdenum blue (Mo blue) was elec-
+trodeposited on a pencil graphite electrode (MB/PGE) by CV
+method between −
+0.5 and 1.0 V versus Ag/AgCl (3.0 M KCl)
+in a 0.5 M Na 2 MoO 4 2H 2
+O solution at 100 mV/s, and was
+used in the detection of phosphate ions [102]. PVC was used
+as a coating agent for the modified electrodes to improve their
+stability. Differential pulse voltammetry (DPV) was used to
+determine PO
+3 −
+4
+content in soil samples, where the potential
+was scanned between − 0.05 V and +
+0.15 V versus Ag/AgCl
+(3.0 M KCl) with a 10 mV/s scanning rate, and the peak
+currents were recorded around 0.06 V in acidic medium. The
+involved oxidation reactions in the presence of phosphate ions
+can be given by [102],
+PO
+3 −
+4
++ 12 MoO
+2 −
+4
+( Mo blue ) + 27 H
++
+→ H 3 PO 4 ( MoO 3 ) 12 + 12 H 2 O (23)
+H 3 PMo ( VI ) O 40 + xe
+−
+⇔ [ H 4 PMo ( VI ) 8 Mo ( V ) 4 O 40 ]
+3 −
+(24)
+A paper-based screen-printed EC sensor working on the sim-
+ilar mechanism as described by 23 and 24 was developed
+where the electroactive area was modified with 100 mM
+molybdate ions, 100 mM KCl (supporting electrolyte) and
+100 mM sulfuric acid, and the formation of phosphomolybdic
+complex in the presence of phophate ions [108].
+Alternatively, a solid state sensor using nickel oxide-
+oxyhydroxide-modified printed carbon electrode for poten-
+tiometric phosphate detection was developed, where in alka-
+line media and in the presence of hydroxide groups, NiO
+(Ni(II)) is oxidized to NiOOH (Ni(III)) as an intrinsic redox
+processes, and in the presence of phosphate, NiOOH reacts
+with H 2 PO
+−
+4
+to produce nickel phosphate (NiPO 4
+) charac-
+terized using chrono-potentiometry [103]. Sensitivity of the
+developed sensor was examined towards the following inter-
+fering ions: Cl
+−
+, NO
+−
+3
+, SO
+2 −
+4
+, Br
+−
+, H 3 C 2 O
+−
+2
+, and CO
+2 −
+3
+with the recorded values of 2.56. 2.21, 9.23, 0.84, 1.04 and
+6.13 mV/dec, respectively as compared to 78.48 mV/dec for
+H 2 PO
+−
+4
+.
+A nozzle-jet printed silver/reduced graphene
+oxide
+(Ag/rGO) composite-based ISFET sensor on a flexible dis-
+posable polymer platform was presented where the mecha-
+nism of the phosphate ion detection was elucidated as [104],
+3 Ag
++
++ PO
+−
+4
+→ Ag 3 PO 4
+(25)
+The sensing mechanism was confirmed by performing X-ray
+photoelectron spectroscopy (XPS) analysis of the Ag/rGO
+ISFET. The selectivity and interference test of the Ag/rGO
+FET sensors was carried out towards interfering ions such as
+SO
+2 −
+4
+, Mg
+2 +
+, K
++
+, HCO
+−
+3
+, Ca
+2 +
+, and thiamine pyrophosphate
+chloride (TPP) showing under 5% variation in phosphate
+detection.
+3) K DETECTION USING ISMs
+The interest in K detection spans from monitoring its levels
+in human serum [121] to determining its concentration in
+soil [115]. K is the third critical nutrient for crop production,
+and although it is present in the soil in large quantities,
+the plant available K pool is small [122]. Desired potassium
+ion levels in soil range from 50 mg/kg to 600 mg/kg or
+1.25 mM to 15 mM [111]. Table 4 presents a compari-
+son between the recent ISM-based sensors and devices for
+potassium-ion detection.
+Among the ISMs developed for K detection, valinomycin
+has been observed to be the most successful ionophore
+for potassium ion detection because of its high selectivity
+towards the ion [99]. Recent advances in ISM-based K sens-
+ing have been towards developing low cost, and portable
+solid state devices for in-field applications. In one such
+work, a handheld device using screen-printed SS-ISE was
+presented, where a plasticizer-free butyl acrylate ISM, doped
+with ionophore valinomycin and lipophilic salt was deployed
+for detecting K in soil (extracted using strontium chlo-
+ride) [115]. Carbon-nanotubes (CNT)-based ink was used to
+print WE and AgCl ink was used for printing RE before drop
+casting membranes (Polyvinyl butyral or PVB for RE) on the
+14112 VOLUME 9, 2021
+
+--- PÁGINA 19 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+TABLE 4. Brief comparison of recent ISM-based devices for K detection.
+printed strip electrodes. A custom reader was also developed
+to measure the potential difference between the WE and
+RE pair enabling truly portable operation. The selelctivity
+coefficients (ln( K j )) were recorded for Na
++
+, Mg
++
+, Ca
+2 +
+, Li
++
+and NH
++
+4
+as − 2.6, − 4.3, − 4.7, − 2.3 and −
+1.7, respectively.
+In another work, reduced graphene oxide (rGO) was pro-
+posed as an ion-to-electron transducer for a screen printed
+SS-ISE-based K sensor [113]. Valinomycin-based ISM was
+drop-casted on to the surface of rGO/Au electrode, and
+rGO layer was shown to improve the potential stability by
+inhibiting the formation of thin water layer in the electrode
+surface. A potential reading circuit was developed on the
+PCB platform for portable operation. A superhydrophobic
+graphene/carbon black nanocomposite-based solid contact
+K-ISE was reported in [117], where a valinomycin-based ISM
+was coated on the superhydrophobic material. The developed
+sensor was characterized by cyclic voltammetry, chronopo-
+tentiometry and impedance spectroscopy, and exhibited large
+capacitance improving the long term potential stability of
+the ISE which showed about 1 μ
+V/hr variation after 50 h of
+continuous use.
+Although naturally occurring valinomycin offers supe-
+rior selectivity and sensitivity, Potassium ionophore
+III
+(2-Dodecyl-2-methyl-1,3-propanediyl bis[N-[5’-nitro(benzo-
+15-crown-5)-4’-yl] carbamate]) has also been used for K-ISM
+fabrication as an alternative to valinomycin which is clas-
+sified as a hazardous substance [114]. An ISFET device
+using potassium- ionophore-III-based ISM incorporated into
+parylene encapsulated graphene FET was reported in [114].
+The fabricated device exhibited high resolution K sensing of
+the order of 1 nM. Moderate selectivity was observed with
+highest interference sensitivity of 9 mV/dec was recorded
+for NH
++
+4
+as compared to 37 for K
++
+. However, the developed
+sensor showed good correlation with a commercial K-ISE
+when testing K
++
+levels in samples like milk, grape juice,
+lemon juice, bovine and sheep blood.
+4) MULTI-MACRONUTRIENT SYSTEMS BASED ON ISMs
+Multi-ion detection systems employing multiple ISEs have
+also been developed in literature. In one such
+recent
+work, an automated sensing platform for
+hydroponic
+macronutrients using an array of ISEs was reported [123].
+VOLUME 9, 2021 14113
+
+--- PÁGINA 20 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+Different PVC-based ISMs were prepared for detecting NO
+−
+3
+,
+K
++
+, Ca
+2 +
+and Mg
+2 +
+. Alternatively, low-cost disposable
+paper-based potentiometric ion sensing systems using ISMs
+for detecting K
++
+, NH
++
+4
+, Na
++
+, Ca
+2 +
+and pH have also been
+developed [124], [125]. The sensors exhibit near-Nernstian
+sensitivity while operating in the concentration range of
+interest.
+In another work, a piezoresistive microcantilever-based
+portable lab-on-a-chip sensing system for detection
+of
+macronutrients, NO
+−
+3
+, H 2 PO
+−
+4
+, K
++
+, in the soil using ISMs
+was reported [126]. The developed piezoresistive silicon
+microcantilevers were coated with a polymer matrix contain-
+ing ionophores; methyltridodecylammonium nitrate /nitrate
+ionophore VI, 18-crown-6 ether and Tributyltin chloride for
+NO
+−
+3
+, K
++
+, H 2 PO
+−
+4
+, respectively. A microcantilever die con-
+sisting of an array of four microcantilevers was mounted on
+a PCB and contacts were made using either wire bonding
+or silver epoxy. A Teflon flow cell with inlet and outlet
+was placed on the PCB. Out of four microcantilevers, one
+was used as a reference and the other three were test can-
+tilevers used for sensing. The reference and three different
+test microcantilevers functionalized with the coatings of N,
+P, and K will selectively bind different nutrients and will
+result in a change of resistance, which was measured using
+a Wheatstone’s bridge-based portable electronic setup. Suc-
+cessful response was recorded for N and K with P to be tested
+in the future.
+Overall, ISM-based sensors have been studied extensively
+and provide reliable detection for various applications includ-
+ing soil testing. Continuous progress in being made in
+improving the life time and the potential stability of low-cost
+SS-ISEs for quick in-field testing.
+C. OTHER BIOSENSING METHODS
+Besides ISM-based EC devices, other biosensors have also
+been reported for detecting macronutrients in soil, particu-
+larly N and P. Some of the key recent biosensing methods,
+including
+enzymatic biosensors, molecularly imprinted poly-
+mer (MIP), aptamers, and electro-catalysis-based detection
+methods are discussed in this section.
+1) N DETECTION
+The reduction of NO
+−
+3
+to NO
+−
+2
+in the presence of the enzyme,
+nitrate reductase (niR) can be characterized using EC meth-
+ods to develop nitrate sensors. Enzymes
+are protein molecules
+that act as biological catalysts for specific biochemical
+reactions, and can thus, be used for developing selective
+and sensitive biosensors. In a recent work, a microfluidic
+impedimetric sensor for soil nitrate detection using graphene
+oxide (GO) and conductive nanofibers decorated with niR
+was reported [127]. The sensor was characterized using elec-
+trochemical impedance spectroscopy (EIS) and had a wide
+range of operation, 0.44 to 442 mg/L with the detection
+limit of 0.135 mg/L and sensitivity of 61.15  /(mg/L)/cm
+2
+.
+In another work, an niR decorated extended-gate
+type
+organic FET-based enzymatic sensor for nitrate detection was
+reported, where a bipyridinium derivative was employed as
+an electron transfer mediator, and sodium dithionite served
+as electron donor to the enzyme in the solution phase [128].
+The developed sensor exhibited a linear relationship was
+obtained in the region of the low concentration (0 − 4 . 0 ×
+10
+−
+6 M). Several other works have been reported on enzy-
+matic (using niR) nitrate biosensors in the recent years on
+account of their excellent selectivity such as an intelligent
+portable biosensor usable for up to 10 days [129], a portable
+nitrate biosensing device using bi-modal approach combining
+EC and spectroscopy-based measurement [130], and amper-
+ometric nitrate biosensor based on CNT/PPy/niR biofilm
+exhibiting LOD, sensitivity and linear range of 0.17 mM,
+300 nA/mM and 0.44mM to 1.45 mM, respectively [131].
+In addition to enzyme-based approaches,
+MIP-based
+biosensing approaches such as described in [132] have also
+been reported, where Isobutyl nitrate (IBN) (1 mmol) and
+1-allyl-2-thiourea (AT) (4.0 mmol) were used as template
+molecule and functional monomer, respectively. These sen-
+sors operate on the principle of selective binding of the
+analyte ion to the previously manufactured MIP molecules
+via dipole interactions and hydrogen bonding. The developed
+sensor was able to measure nitrate-N in the range 1 mg/L to
+10 mg/L, and showed 6% and 4% variation against interfering
+Nitrite-N and sulphate ions, respectively as compared to 90%
+for nitrate. In another recent work, poly(N-methylpyrrole)
+imprinted with nitrate ions was evaluated and was found to
+exhibit lower dependence on pH as compared to PPy-based
+MIPs [133]. The developed sensor displayed a linear range
+of 5.0 × 10
+− 6
+M to 0 .
+1 M nitrate with a near Nernstian
+slope of −
+56.3 mV per decade and a strong preference for
+nitrate ion. In general MIP-based sensors require relatively
+complex fabrication but offer better longevity, and stability
+as compared to other approaches.
+Alternatively, the electro-reduction of nitrate to ammonium
+ion on copper-based electrodes (coated wire electrodes) has
+also been employed for nitrate detection. A composite of
+Cu nano-particles, multi-wall carbon nanotubes (MWCNT)
+and reduced-GO (rGO) for simultaneous electrochemical
+detection of nitrite and nitrate was reported in [134]. The
+electro-reduction of nitrate on Cu/MWCNT/rGO electrode
+was characterized using square wave voltammetry, the sensor
+demonstrated a detection range from 0.1 μ M to 75 μ
+M.
+In another work, Cu nanowires were used for the detec-
+tion of nitrate in water exhibiting wide range, 8 μ
+M to
+5860 μ
+M, when tested using differential pulse voltammetry
+(DPV) [135].
+2) P DETECTION
+An amperometric phosphate biosensor, based on
+a
+cobalt phthalocyanine screen-printed carbon
+electrode
+(CoPC-SPCE) employing enzyme pyruvate oxidase was
+reported in [136]. The principle of operation consisted of
+the enzymatic reaction in the presence of inorganic phos-
+phate where pyruvate was converted to acetylphosphate,
+CO 2 and H 2 O 2
+. The analytical response was then recorded
+by the electrocatalytic oxidation of the formed H 2 O 2 with
+14114 VOLUME 9, 2021
+
+--- PÁGINA 21 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+Co
+2 +
+to produce Co
++
+. The developed sensor showed linear
+response in the range of 2.5 μ M to 130 μ
+M. In another
+work, a pyruvate oxidase (PyO)-based field-effect transistor
+biosensor was fabricated where PyO was functionalized
+on the ZnO nanorods (ZnO NRs) array grown on seeded
+SiO 2
+/Si substrate (gate region) providing high specific sur-
+face area [137]. The developed sensor exhibited sensitivity
+of 80.57 μ A mM
+− 1
+in a wide linear range of 0.1 μ
+M to
+7.0 mM.
+In another work, dual enzyme biochemistry was reported
+where phosphate determination is achieved by
+first,
+the enzyme purine nucleoside phosphorylase (PNP) cat-
+alyzed reaction of inosine and phosphate to produce hypoxan-
+thine which is subsequently oxidized by the second enzyme,
+xanthine oxidase (XOx), first to xanthine and then to uric
+acid [138]. Both PNP and XOx are integrated in a redox active
+Os-complex modified polymer, which also acts as an ion-
+to-electron transducer. The developed bienzymatic cascade
+phosphate biosensor selectively delivers four electrons for
+each phosphate molecule present, and and additional two
+electrons from the electrochemical oxidation of uric acid
+either through Os
+II / III
+-couple or O 2
+directly at the glassy
+carbon surface. The developed sensor exhibited LOD of
+∼ 0.35 μ
+M.
+Additionally, MIP-based sensors have also been developed
+for P detection where an interdigital capacitive biosensor
+using MIPs to detect phosphates in a hydroponic system was
+reported in [139]. MIPs were synthesized using functional
+monomers methacrylic acid (MAA) and N-allylthiourea,
+against the template molecules diphenyl phosphate, triethyl
+phosphate, and trimethyl phosphate. Selectivity of different
+MIPs were tested against nitrate and sulphate where a selec-
+tive change in capacitance was observed for phosphate.
+Fluorescence-based sensors have also been reported for
+P detection, where in one such work, synthesized thiogly-
+colic acid (TGA) capped cadmium telluride (CdTe) quantum
+dots (QDs) were used in ‘turn on’ photoinduced electron
+transfer (PET)-based inorganic phosphate sensing in aque-
+ous solution [140]. Europium (Eu
+3 +
+) was used as an inter-
+mediate species that quenches fluorescence of QDs (when
+excited with ultraviolet light of 375 nm), but with the addi-
+tion of phosphate ions to the QD-Eu complex, the quenched
+fluorescence was recovered. This phenomenon was used
+to quantify fluorescence intensity with phosphate concen-
+tration in the solution. A non-linear calibration function
+was reported along with an interference study, showing
+moderate phosphate selectivity. In another work, a smart-
+phone, paper-based fluorescent sensor for ultra-low inor-
+ganic phosphate detection was reported for P detection
+where a reflection-mode fluorescence-sensing apparatus was
+developed using the fluorophore, N-[2-(1-maleimidyl)ethyl]-
+7-(diethylamino)-coumarin-3-carboxamide (MDCC), bound
+to a bacterial phosphate binding protein to generate fluo-
+rescent optical signal proportional to the concentration of
+phosphate [141]. The developed sensor exhibited linear
+detection range from 1.1 to 64 ppb.
+3) K DETECTION
+K detection using EC sensors using ISM devices has been
+studied extensively with numerous commercial products for
+agricultural applications available in the market, see table 4,
+however, other biosensing strategies have also been devel-
+oped where in a recent work, an aptamer-based sensor
+using the interaction of gold nano-particles (AuNPs) and a
+cationic dye for K detection was reported [142]. Aptamers are
+single-stranded functional oligonucleotides (DNA or RNA)
+which have been proved to have receptor-like activity and can
+display affinity for specific chemical species. In the devel-
+oped framework, in the presence of K
++
+ions, the aptamers
+dissociated from the surface of AuNPs (aptamer-modified
+AuNPs), and the free AuNPs and the cationic dye makes
+the solution green (due to aggregaton of AuNPs), therefore,
+the solution turns from orange to green as the concentra-
+tion of K
++
+increases. The linear range of the colorimetric
+paper sensor spanned from 10 μ
+M to 40 mM and the detection
+limit of 6.2 μ
+M was obtained with minimal variation in the
+presence of interfering ions.
+In another work, a graphene Hall effect
+biosen-
+sor was developed for K detection where a
+flexi-
+ble single-stranded DNA with guanine-rich
+sequences
+(5’-GGTTGGTGTGGTTGG-3’) was immobilized on the
+graphene surface as a probe, which could fold into a tetraplex
+structure (guanine-quadruplexes) with K
++
+ions due to the
+formation of intramolecular hydrogen bonding in order to
+efficiently and selectively capture K
++
+ions [143]. Van der
+Pauw measurement configuration was used to test the sensor,
+and a linear detection range of 1 nM to 10 μ M
+with LOD
+of 1 nM was observed. The developed sensor exhibited good
+selectivity except in case of Na
++
+ions, where a variation of
+about 30% was recorded due to interference.
+Alternatively, K
++
+detection has also been realized using
+selective binding to fluorophore molecule and its char-
+acterization. In a recent work [144], a novel molecular
+K
++
+probe for colorimetric, fluorescent, and photoacoustic
+detection was reported, where the developed probe called
+NK2 is composed of 2-dicyanomethylene-3-cyano-4,5,5-
+trimethyl-2,5-dihydrofuran (TCF) as the chromophore and
+phenylazacrown-6-lariat ether (ACLE) as the K
++
+recognition
+unit. NK2 showed good response and high selectivity which
+was demonstrated by the absorbance spectrum, fluorescence
+spectrum, and photoacoustic measurements leading to a lin-
+ear detection range of 5 mM to 200 mM.
+D. ON-THE-GO SPECTROSCOPY-BASED METHODS
+Besides extensive use in laboratory-based soil
+testing,
+spectroscopic methods have also been investigated
+for
+on-the-go soil nutrient sensing applications. A few
+of
+the key recent optical/spectroscopy-based sensing systems
+are presented here. A field mobile soil nitrate
+sensor
+using Diamond-Attenuated Total Internal Reflection Fourier
+Transform Infrared (D-ATR-FTIR) spectroscopy
+was
+reported in [145]. D-ATR-FTIR is similar to IR spectroscopy
+but instead of directly exposing the sample to the IR radiation,
+VOLUME 9, 2021 14115
+
+--- PÁGINA 22 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+the light is directed into a crystal placed in contact with the
+sample. The evanescent fields at the total internal reflection
+interfaces are characteristically attenuated at particular wave-
+lengths, representative of the composition of the surround-
+ings. An Agilent 4100 ExoScan (Agilent Technologies, Santa
+Clara, CA, USA) handheld spectrometer with a diamond ATR
+crystal was used for all spectral measurements exhibiting
+good accuracy for NO
+−
+3
+estimation.
+In another work, a portable X-ray fluorescence (pXRF)-
+based nutrient analysis system with simplified sample prepa-
+ration was reported [146]. Soil samples were tested in
+pellet or powder form using a commercial pXRF spectrom-
+eter, Tracer III–SD model (Bruker AXS, Madison, USA).
+Pressed pellet samples showed better response with moderate
+accuracy, with R
+2
+values for K and Ca as 0.87 and 0.78
+respectively.
+A portable soil nitrogen detector based on
+near-IR
+spectroscopy and using Back Propagation Neural
+Net-
+work (BPNN) was reported in [147]. Absorbance data was
+collected at six wavelengths (1550, 1300, 1200, 1100, 1050,
+and 940 nm) using the optical system consisting of six IR
+LEDs (one for each wavelength), shared drive circuit, optical
+fibers and a photoelectric sensor. The optical fibers used for
+directing light and recording absorbance were housed in a
+probe which was buried 30 cm under soil surface, and a
+micro-controller was used as a control unit. The collected
+data was then modelled using BPNN and demonstrated an
+R
+2
+value of 0.88.
+Overall, on-the-go optical/spectroscopic methods for soil
+nutrient analysis offer fast and efficient measurements for
+single to simultaneous multiple ion detection. However,
+the accuracy is dependent on other factors such as soil particle
+size, organic matter, moisture content, environment temper-
+ature and surface roughness making the sample prepara-
+tion procedure as well as data analysis method of critical
+importance.
+E. ELECTROPHORESIS-BASED METHODS
+Capillary electrophoresis (CE) works on the principle of
+physical separation of ions in a buffer solution traveling
+inside a capillary tube/microchannel under the effect of an
+electric field. A detector is located at the end of the tube
+or microchannel which records sequential crossing of the
+different types of ions. Following one of the early promi-
+nent works on zone electrophoresis in open-tubular glass
+capillaries [148], CE has progressed into an established
+contemporary analytical technique for quick high resolution
+sequencing of bio-molecules as well as inorganic ions. Most
+of the commercially available CE systems like [149], [150]
+are targeted towards bio-molecule detection costing $1000 s
+and are limited to lab setting. However, recent advances have
+been made in the development of economical field-applicable
+CE systems for nutrient/inorganic ion monitoring in soil
+samples [151], [152].
+Figure 12 shows the schematic operation of a CE-based
+sensing system. The separation of ions in CE method is
+FIGURE 12. Schematic of a CE microchip [2017], IEEE [151].
+based on their specific electrophoretic mobility when a
+potential difference is applied across the channel which
+results in the ions exhibiting unique migration velocity. Apart
+from the electrophoretic migration, ions also experience
+electro-osmotic forces due to the movement of the buffer
+solution through the capillary. This is caused by the charging
+of the capillary walls in the presence of an electric field
+and is dependent on the capillary material and pH of the
+buffer [153]. Therefore, the overall migration velocity ( ν net
+)
+of an ion in a CE system can be given by,
+ν net = ( μ EP ± μ EOF )
+¯
+E ; μ EP =
+q
+6 πη r
+,
+(26)
+where μ EP is the electrophoretic mobility, μ EOF
+is the mobil-
+ity due to the electro-osmotic flow,
+¯
+E
+is the applied electric
+field, q is the ionic charge, η
+is the viscosity of the buffer
+solution and r is the radius of the ion. As shown in (26), μ EP
+is a function of the ionic charge, ionic size and the viscosity of
+the buffer media as described by the well-known Stokes’ law.
+Moreover, the electro-osmotic flow may hinder or enhance
+the mobility of the ion depending on the direction of the flow
+and the movement of the ion for a given electric field leading
+to a net migration velocity.
+Several electrophoresis-based sensing systems for inor-
+ganic soil ion detection have been explored in the past includ-
+ing [153]–[155]. A brief review of the recent CE-based sens-
+ing systems applied towards soil nutrient ion measurement in
+the past decade is presented here. In a recent work, a nutrient
+sensing system using chip scale electrophoresis with in-situ
+soil extraction capability was reported in [151], [156]. The
+system is composed of a microfluidic electrophoretic chip
+with a two step process of ion detection. In the first step,
+an injection voltage (200V) is applied to load the sample
+in the channel from the sample inlet port, then a separation
+voltage (500V) is applied across the separation channel to
+segregate the ions. At the end of the separation channel,
+parallel electrodes measure the conductivity change across
+the channel, while the peaks corresponding to the ion concen-
+tration are detected at ion-specific time intervals. The system
+requires a few micro-litres of sample which is extracted from
+the soil using a vacuum pump coupled with a porous suc-
+tion head and stored in a reservoir connected to the sample
+inlet port. The sensor was characterized for anions in soil
+including, Cl
+−
+, NO
+−
+3
+, SO
+2 −
+4
+and H 2 PO
+−
+4
+with a detection
+limit of ∼ 7 . 25 μ
+M for nitrate ions. In another work, a lab-
+on-a-chip CE-based sensor was developed for detecting soil
+14116 VOLUME 9, 2021
+
+--- PÁGINA 23 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+nutrients [152]. The sensor used a microfluidic chips with
+channels of length of 44 mm and 64 mm, taking a curved route
+to accommodate the design on relatively smaller chip area.
+The injection voltage for loading a sample from the sample
+reservoir as well as the separation voltage across the channel
+were both 2000 V. The device was constructed using a glass
+substrate on which the electrodes were deposited through
+thermal evaporation, the channel was formed by selective
+lithography process with a photosensitive material, and then
+a polymethylmethacrylate (PMMA) top cover was bonded to
+seal the channel. Ion separation was shown for various soil
+nutrients but proper calibrations were done for NO
+−
+3
+, NH
++
+4
+,
+PO
+2 −
+4
+and K
++
+exhibiting good linearity.
+Compared to other methods, CE-based approaches has
+unique advantages such as simultaneous detection of multiple
+ions, minimal sample preparation and potential for devel-
+oping fully in-situ long term nutrient monitoring systems.
+Whereas, high power requirement and use of moving parts
+that may need maintenance are some of the limitations of this
+method.
+F. FUTURE PROSPECTIVE AND RESEARCH DIRECTION IN
+CROP NUTRIENT SENSING
+On-the-go or in-situ sensing technologies will pave the way
+for future soil nutrient monitoring which in the present state
+are somewhat limited by sample collection and preparation
+requirements, and may not always be economical. Currently,
+soil nutrient determination is largely performed in laboratory
+setting which is not only expensive (per sample) but also
+time and labor intensive leading to irregular testings and low
+adoption rate. Depending on the application, from automated
+small scale green house farms to large crop growing opera-
+tions, the need for easy to use, reliable and economical nutri-
+ent is immense. N, P and K are among the common externally
+supplemented nutrients making their efficient application
+in the field critical for both economical and environmental
+gains. Continuous progress is being made in various sens-
+ing methodologies as over-viewed in this article, ranging
+from low-cost solutions to portable and real-time applications
+while improving sensor lifetimes, selectivity, sensitivity and
+accuracy. Furthermore, future efforts may be directed towards
+validation and testing of crop nutrient sensing technologies
+in short and long term deployments in the field in order
+uncover and understand the effects of environmental factors
+on sensors enabling continuous in-field monitoring.
+IV. SENSING IN AGRICULTURE: TRENDS AND FUTURE
+With the growth in population and demand for agri-products,
+and the resulting ever increasing use of fertilizers
+and
+other agrochemicals in agriculture, monitoring nutrient lev-
+els in soil is becoming a critical need to ensure economic
+efficiency while minimizing the impact on environment.
+Precision agriculture through site specific management is
+emerging as a mainstream practice driven not only by envi-
+ronmental concerns but also by efficiency and profitability
+considerations, and enabled by the advances and adoption
+of technology in crop production. The market for precision
+agriculture is developing at a rapid pace, according to a recent
+report published by Meticulous Research
+, the global tech-
+nology market in agriculture is expected to grow at a com-
+pound annual growth rate (CAGR) of 14.1% from 2019 to
+reach $34.9 billion by 2027 [157]. Sensor-based measure-
+ments form the basis for achieving sustainability through
+precision agriculture. Optimization of agricultural processes
+begins with data collection from sensors in soil, plant, air,
+and space, and analyzed using crop modeling software (for
+example [6]), to precisely tailor plant needs and manage
+crops. The availability of moisture and nutrients in soil is
+a critical determinant in crop growth and therefore, takes
+precedence when developing sensing technologies for pre-
+cision agriculture. Overall, the trends in soil moisture and
+nutrient sensing are moving towards low-cost, easy to use,
+portable or field-deployable sensors providing sufficiently
+accurate data for precise soil and crop modelling leading
+to higher economical and environmental sustainability while
+improving the technology adoption rate in agriculture. While
+the progress on sensors based on different methods are being
+made, advances have also been made in their sensor-to-sensor
+networking through improved physical/MAC/Network layer
+designs for energy-efficient synchronization, scheduling, and
+routing [158], and also for network-based in-situ sensor
+position localization to aid their maintenance or replace-
+ment [159], [160].
+V. CONCLUSION
+This article presents an overview of soil moisture and nutrient
+sensing methodologies. Key soil moisture sensing methods
+spanning individual farmer’s needs to more regional and
+large-scale soil management were discussed and compared,
+while the underlying principles of operations were explained
+in a concise manner. Besides soil moisture, brief description
+and comparison of the devised methods commonly applied
+for soil nutrient determination were also presented in this
+article. Based on the observed trends and needs, even though
+laboratory-based methods provide accurate measurements,
+the high cost and slow response times has instituted the
+need for quick on-the-go or in-situ sensors. Portable sensing
+systems with minimal sample preparation requirements have
+become the common goal for developing soil ion sensing
+technologies where effective site specific management can
+be realized accurately. Solid state devices on disposable plat-
+forms offer low cost measurements, whereas spectroscopic
+and CE-based methods offer the potential for continuous long
+term deployment in the fields. Overall, continuous develop-
+ments are being made for monitoring soil properties accu-
+rately with the goal of making the technologies economical,
+and available leading to better resource management and
+sustainability in agriculture.
+REFERENCES
+[1]
+Population Division of the United Nations Department of Economic and
+Social Affairs.
+World Population Projected to Reach 9.8 Billion in 2050,
+and 11.2 Billion in 2100
+. Accessed: Jul. 19, 2020. [Online]. Available:
+https://www.un.org/development/desa/en/news/population/world-
+population-prospects-2017.html
+VOLUME 9, 2021 14117
+
+--- PÁGINA 24 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+[2] Sustainable Agriculture Program | National Institute of Food
+and
+Agriculture
+. Accessed: Jul. 19, 2020. [Online]. Available: https://nifa.
+usda.gov/program/sustainable-agriculture-program
+[3]
+B. M. Campbell, D. J. Beare, E. M. Bennett, J. M. Hall-Spencer,
+J. S. I. Ingram, F. Jaramillo, R. Ortiz, N. Ramankutty, J. A. Sayer, and
+D. Shindell, ‘‘Agriculture production as a major driver of the earth system
+exceeding planetary boundaries,’’ Ecol. Soc.
+, vol. 22, no. 4, pp. 1–11,
+2017.
+[4]
+M. M. Mekonnen and A. Y. Hoekstra, ‘‘Four billion people facing severe
+water scarcity,’’ Sci. Adv.
+, vol. 2, no. 2, Feb. 2016, Art. no. e1500323.
+[5] RZWQM: USDA ARS . Accessed: Aug. 10, 2020.
+[Online].
+Available:
+https://www.ars.usda.gov/plains-area/fort-collins-co/center-
+for-agricultural-resources-research/rangeland-resources-systems-
+research/docs/system/rzwqm/
+[6] A. Bhar, R. Kumar, Z. Qi, and R. Malone,
+‘‘Coordinate
+descent based agricultural model calibration and optimized
+input
+management,’’ Comput. Electron. Agricult. , vol. 172, May
+2020,
+Art. no. 105353.
+[7] M. Tuller and D. Or, ‘‘Water retention and characteristic curve,’’ in
+Encyclopedia of Soils in the Environment
+, D. Hillel, Ed. Oxford, U.K.:
+Elsevier, 2005, pp. 278–289.
+[8]
+T. J. Schmugge, T. J. Jackson, and H. L. McKim, ‘‘Survey of methods
+for soil moisture determination,’’ Water Resour. Res.
+, vol. 16, no. 6,
+pp. 961–979, Dec. 1980.
+[9] Irrometer Sensors . Accessed: Jul. 29, 2020. [Online].
+Available:
+https://www.irrometer.com/sensors.html#irro
+[10] Soil Moisture Monitoring: A Selection Guide | Agriculture and Food
+.
+Accessed: Oct. 10, 2020. [Online]. Available: https://www.agric.wa.
+gov.au/horticulture/soil-moisture-monitoring-selection-guide
+[11]
+P. C. Dias, W. Roque, E. C. Ferreira, and J. A. S. Dias, ‘‘A high sensi-
+tivity single-probe heat pulse soil moisture sensor based on a single npn
+junction transistor,’’ Comput. Electron. Agricult.
+, vol. 96, pp. 139–147,
+Aug. 2013.
+[12]
+G. Ravazzani, ‘‘Open hardware portable dual-probe heat-pulse sensor for
+measuring soil thermal properties and water content,’’
+Comput. Electron.
+Agricult.
+, vol. 133, pp. 9–14, Feb. 2017.
+[13]
+M. B. de Morais Franca, F. J. O. Morais, P. Carvalhaes-Dias, L. C. Duarte,
+and J. A. S. Dias, ‘‘A multiprobe heat pulse sensor for soil moisture
+measurement based on PCB technology,’’ IEEE Trans. Instrum. Meas.
+,
+vol. 68, no. 2, pp. 606–613, Feb. 2019.
+[14] ICT International. Neutron Probe Smart503
+. Accessed: Oct. 27, 2020.
+[Online]. Available:
+http://ictinternational.com/products/smart503/
+neutron-probe-smart503/
+[15] W. Skierucha, A. Wilczek, A. Szypłowska, C. Sławiński,
+and
+K. Lamorski, ‘‘A TDR-based soil moisture monitoring
+system
+with simultaneous measurement of soil temperature and
+electrical
+conductivity,’’ Sensors
+, vol. 12, no. 10, pp. 13545–13566, Oct. 2012.
+[16] Soilmoisture Equipment Corp:: Shop by Product:: Soil
+Moisture
+Meters:: Trase TDR Soilmoisture Meters:: Handitrase TDR Soilmois-
+ture Meter W/FLD Probe
+. Accessed: Oct. 29, 2020. [Online]. Available:
+http://www.soilmoisture.com/HT2/
+[17]
+G. Pandey, R. Kumar, and R. J. Weber, ‘‘A low RF-band impedance spec-
+troscopy based sensor for in situ , wireless soil sensing,’’ IEEE Sensors J.
+,
+vol. 14, no. 6, pp. 1997–2005, Jun. 2014.
+[18]
+Y. Kojima, R. Shigeta, N. Miyamoto, Y. Shirahama, K. Nishioka,
+M. Mizoguchi, and Y. Kawahara, ‘‘Low-cost soil moisture profile probe
+using thin-film capacitors and a capacitive touch sensor,’’ Sensors
+, vol. 16,
+no. 8, p. 1292, Aug. 2016.
+[19] EC-5 | Soil Moisture Sensor | Meter Environment .
+Accessed:
+Oct. 29, 2020. [Online]. Available:
+https://www.metergroup.com/
+environment/products/ec-5-soil-moisture-sensor/
+[20] Spectrum Technologies.
+Irrometer Tensiometers | Spectrum Technolo-
+gies . Accessed: Aug. 15, 2020. [Online]. Available:
+https://www.
+specmeters.com/soil-and-water/soil-moisture/tensiometers/tensiometers/
+[21] Irrometer Sensors . Accessed: Jul. 27, 2020. [Online].
+Available:
+https://www.irrometer.com/sensors.html#wm
+[22]
+E. J. A. Spaans and J. M. Baker, ‘‘Calibration of watermark soil moisture
+sensors for soil matric potential and temperature,’’ Plant Soil
+, vol. 143,
+no. 2, pp. 213–217, Jun. 1992.
+[23]
+H. He, M. F. Dyck, R. Horton, T. Ren, K. L. Bristow, J. Lv, and
+B. Si, ‘‘Development and application of the heat pulse method for soil
+physical measurements,’’ Rev. Geophys.
+, vol. 56, no. 4, pp. 567–620,
+Dec. 2018.
+[24]
+N. Jorapur, V. S. Palaparthy, S. Sarik, J. John, M. S. Baghini, and
+G. K. Ananthasuresh, ‘‘A low-power, low-cost soil-moisture sensor using
+dual-probe heat-pulse technique,’’ Sens. Actuators A, Phys.
+, vol. 233,
+pp. 108–117, Sep. 2015.
+[25] 229-L—Heat Dissipation Matric Potential Sensor .
+Accessed:
+Jul. 27, 2020. [Online]. Available:
+httpshttps://www.campbellsci.
+com/229-l
+[26]
+J. Kodikara, P. Rajeev, D. Chan, and C. Gallage, ‘‘Soil moisture moni-
+toring at the field scale using neutron probe,’’ Can. Geotech. J.
+, vol. 51,
+no. 3, pp. 332–345, Mar. 2014.
+[27]
+B. Kashyap, C. K. Sestok, A. G. Dabak, S. Ramaswamy, and R. Kumar,
+‘‘Ultra-precision liquid level sensing using impedance spectroscopy
+and data analytics,’’ IEEE Sensors J.
+, vol. 19, no. 20, pp. 9468–9478,
+Oct. 2019.
+[28]
+G. C. Topp, J. L. Davis, and A. P. Annan, ‘‘Electromagnetic determination
+of soil water content: Measurements in coaxial transmission lines,’’
+Water
+Resour. Res.
+, vol. 16, no. 3, pp. 574–582, Jun. 1980.
+[29]
+K. Noborio, ‘‘Measurement of soil water content and electrical conductiv-
+ity by time domain reflectometry: A review,’’ Comput. Electron. Agricult.
+,
+vol. 31, no. 3, pp. 213–237, May 2001.
+[30]
+H. Quinones, P. Ruelle, and I. Nemeth, ‘‘Comparison of three calibration
+procedures for TDR soil moisture sensors,’’ Irrigation Drainage
+, vol. 52,
+no. 3, pp. 203–217, 2003.
+[31]
+W. Skierucha, ‘‘Temperature dependence of time domain reflectometry-
+measured soil dielectric permittivity,’’ J. Plant Nutrition Soil Sci.
+,
+vol. 172, no. 2, pp. 186–193, Apr. 2009.
+[32]
+M. Dobson, F. Ulaby, M. Hallikainen, and M. El-Rayes, ‘‘Microwave
+dielectric behavior of wet soil—Part II: Dielectric mixing models,’’
+IEEE
+Trans. Geosci. Remote Sens.
+, vol. GE-23, no. 1, pp. 35–46, Jan. 1985.
+[33] FieldScout TDR 350 Soil Moisture Meter With Case |
+Spectrum
+Technologies . Accessed: Oct. 29, 2020. [Online].
+Available:
+https://www.specmeters.com/soil-and-water/soil-moisture/fieldscout-
+tdr-meters/fieldscout-tdr-350-soil-moisture-meter-with-case/
+[34]
+P. P. Bobrov, A. V. Repin, and O. V. Rodionova, ‘‘Wideband frequency
+domain method of soil dielectric property measurements,’’
+IEEE Trans.
+Geosci. Remote Sens.
+, vol. 53, no. 5, pp. 2366–2372, May 2015.
+[35]
+J. González-Teruel, R. Torres-Sánchez, P. Blaya-Ros, A. Toledo-Moreo,
+M. Jiménez-Buendía, and F. Soto-Valles, ‘‘Design and calibration of a
+low-cost SDI-12 soil moisture sensor,’’ Sensors
+, vol. 19, no. 3, p. 491,
+Jan. 2019.
+[36]
+G. Pandey, R. J. Weber, and R. Kumar, ‘‘Agricultural cyber-physical sys-
+tem: In-situ soil moisture and salinity estimation by dielectric mixing,’’
+IEEE Access
+, vol. 6, pp. 43179–43191, 2018.
+[37]
+G. Pandey, R. Kumar, and R. J. Weber, ‘‘Low RF-band impedance
+spectroscopy based sensor for in-situ
+, wireless soil sensing,’’ U.S.
+Patent 10 073 074, Sep. 11, 2018.
+[38] C. Rusu, A. Krozer, C. Johansson, F. Ahrentorp, T.
+Pettersson,
+C. Jonasson, J. Rösevall, D. Ilver, M. Terzaghi, D. Chiatante, and
+A. Montagnoli, ‘‘Miniaturized wireless water content and conductivity
+soil sensor system,’’ Comput. Electron. Agricult.
+, vol. 167, Dec. 2019,
+Art. no. 105076.
+[39]
+Decagon MPS6 Meter Group TEROS 21 Water Potential Sensor |
+ICT International . Accessed: Oct. 29, 2020. [Online].
+Available:
+https://www.ictinternational.com/products/mps-6/teros-21-water-
+potential-sensor/
+[40] T. Schmugge, ‘‘Remote sensing of surface soil moisture,’’
+J. Appl. Mete-
+orol.
+, vol. 17, no. 10, pp. 1549–1557, 1978.
+[41]
+B. P. Mohanty, M. H. Cosh, V. Lakshmi, and C. Montzka, ‘‘Soil moisture
+remote sensing: State-of-the-science,’’ Vadose Zone J.
+, vol. 16, no. 1,
+pp. 1–9, 2017.
+[42] NASA Launches Groundbreaking Soil Moisture Mapping Satellite
+.
+Accessed: Aug. 21, 2020. [Online]. Available: http://www.nasa.gov/
+press/2015/january/nasa-launches-groundbreaking-soil-moisture-
+mapping-satellite
+[43] S. K. Chan et al.
+, ‘‘Assessment of the SMAP passive soil moisture prod-
+uct,’’ IEEE Trans. Geosci. Remote Sens.
+, vol. 54, no. 8, pp. 4994–5007,
+Aug. 2016.
+[44]
+M. S. Burgin, A. Colliander, E. G. Njoku, S. K. Chan, F. Cabot, Y. H. Kerr,
+R. Bindlish, T. J. Jackson, D. Entekhabi, and S. H. Yueh, ‘‘A comparative
+study of the SMAP passive soil moisture product with existing satellite-
+based soil moisture products,’’ IEEE Trans. Geosci. Remote Sens.
+, vol. 55,
+no. 5, pp. 2959–2971, May 2017.
+14118 VOLUME 9, 2021
+
+--- PÁGINA 25 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+[45]
+E. Babaeian, M. Sadeghi, S. B. Jones, C. Montzka, H. Vereecken, and
+M. Tuller, ‘‘Ground, proximal, and satellite remote sensing of soil mois-
+ture,’’ Rev. Geophys.
+, vol. 57, no. 2, pp. 530–616, Jun. 2019.
+[46]
+D. Zhang and G. Zhou, ‘‘Estimation of soil moisture from optical and
+thermal remote sensing: A review,’’ Sensors
+, vol. 16, no. 8, p. 1308,
+Aug. 2016.
+[47]
+S. A. Bowers and S. J. Smith, ‘‘Spectrophotometric determination of
+soil water content,’’ Soil Sci. Soc. Amer. J.
+, vol. 36, no. 6, pp. 978–980,
+Nov. 1972.
+[48]
+C. J. Tomlinson, L. Chapman, J. E. Thornes, and C. Baker, ‘‘Remote sens-
+ing land surface temperature for meteorology and climatology: A review,’’
+Meteorol. Appl.
+, vol. 18, no. 3, pp. 296–306, Sep. 2011.
+[49]
+M. Sadeghi, E. Babaeian, M. Tuller, and S. B. Jones, ‘‘The optical
+trapezoid model: A novel approach to remote sensing of soil moisture
+applied to sentinel-2 and Landsat-8 observations,’’ Remote Sens. Environ.
+,
+vol. 198, pp. 52–68, Sep. 2017.
+[50]
+Y.-A. Liou and S. Kar, ‘‘Evapotranspiration estimation with remote sens-
+ing and various surface energy balance algorithms—A review,’’ Energies
+,
+vol. 7, no. 5, pp. 2821–2849, Apr. 2014.
+[51]
+I. Sandholt, K. Rasmussen, and J. Andersen, ‘‘A simple interpretation of
+the surface temperature/vegetation index space for assessment of surface
+moisture status,’’ Remote Sens. Environ.
+, vol. 79, nos. 2–3, pp. 213–224,
+Feb. 2002.
+[52]
+L. Karthikeyan, M. Pan, N. Wanders, D. N. Kumar, and E. F. Wood,
+‘‘Four decades of microwave satellite soil moisture
+observations:
+Part 1. A review of retrieval algorithms,’’ Adv. Water Resour.
+, vol. 109,
+pp. 106–120, Nov. 2017.
+[53]
+I. Ali, F. Greifeneder, J. Stamenkovic, M. Neumann, and C. Notarnicola,
+‘‘Review of machine learning approaches for biomass and soil mois-
+ture retrievals from remote sensing data,’’ Remote Sens.
+, vol. 7, no. 12,
+pp. 16398–16421, Dec. 2015.
+[54] K. Wu, G. A. Rodriguez, M. Zajc, E. Jacquemin, M.
+Clément,
+A. De Coster, and S. Lambot, ‘‘A new drone-borne GPR for soil moisture
+mapping,’’ Remote Sens. Environ.
+, vol. 235, Dec. 2019, Art. no. 111456.
+[55] S. Lambot, E. C. Slob, I. van den Bosch, B. Stockbroeckx,
+and
+M. Vanclooster, ‘‘Modeling of ground-penetrating radar for accurate
+characterization of subsurface electric properties,’’
+IEEE Trans. Geosci.
+Remote Sens.
+, vol. 42, no. 11, pp. 2555–2568, Nov. 2004.
+[56]
+L. Zhang, H. Zhang, Y. Niu, and W. Han, ‘‘Mapping maize water stress
+based on UAV multispectral remote sensing,’’ Remote Sens.
+, vol. 11, no. 6,
+p. 605, Mar. 2019.
+[57] Utah State University. Aggieair
+. Accessed: Oct. 29, 2020. [Online]. Avail-
+able: https://uwrl.usu.edu/aggieair/index.
+[58]
+L. Hassan-Esfahani, A. Torres-Rua, A. Jensen, and M. McKee, ‘‘Assess-
+ment of surface soil moisture using high-resolution
+multi-spectral
+imagery and artificial neural networks,’’ Remote Sens.
+, vol. 7, no. 3,
+pp. 2627–2646, Mar. 2015.
+[59] N. J. Stehr, ‘‘Drones: The newest technology for precision agriculture,’’
+Natural Sci. Edu.
+, vol. 44, no. 1, pp. 89–91, Dec. 2015.
+[60] Unmanned Aircraft Systems (UAS)
+. Accessed: Jul. 19, 2020. [Online].
+Available: https://www.faa.gov/uas/
+[61]
+J. A. Doolittle and E. C. Brevik, ‘‘The use of electromagnetic induc-
+tion techniques in soils studies,’’ Geoderma
+, vol. 223–225, pp. 33–45,
+Jul. 2014.
+[62] A. Salam, M. C. Vuran, and S. Irmak, ‘‘Di-sense: In situ
+real-
+time permittivity estimation and soil moisture sensing using wireless
+underground communications,’’ Comput. Netw.
+, vol. 151, pp. 31–41,
+Mar. 2019.
+[63] A. M. Peterson, W. D. Helgason, and A. M. Ireson,
+‘‘Estimat-
+ing field-scale root zone soil moisture using the cosmic-ray
+neu-
+tron probe,’’ Hydrol. Earth Syst. Sci.
+, vol. 20, no. 4, pp. 1373–1385,
+Apr. 2016.
+[64] PC-Progress—Hydrus-1D Description . Accessed: Oct. 27,
+2020.
+[Online]. Available: https://www.pc-progress.com/en/Default.aspx?h1d-
+description
+[65]
+L. Lv, T. E. Franz, D. A. Robinson, and S. B. Jones, ‘‘Measured and
+modeled soil moisture compared with cosmic-ray neutron probe esti-
+mates in a mixed forest,’’ Vadose Zone J.
+, vol. 13, no. 12, Dec. 2014,
+Art. no. vzj2014.06.0077.
+[66]
+M. Zreda, W. J. Shuttleworth, X. Zeng, C. Zweck, D. Desilets, T. Franz,
+and R. Rosolem, ‘‘COSMOS: The COsmic-ray soil moisture observ-
+ing system,’’ Hydrol. Earth Syst. Sci.
+, vol. 16, no. 11, pp. 4079–4099,
+Nov. 2012.
+[67]
+H. H. Nguyen, J. Jeong, and M. Choi, ‘‘Extension of cosmic-ray neu-
+tron probe measurement depth for improving field scale root-zone soil
+moisture estimation by coupling with representative in-situ sensors,’’
+J. Hydrol.
+, vol. 571, pp. 679–696, Apr. 2019.
+[68] N. Rodriguez-Alvarez, X. Bosch-Lluis, A. Camps, A.
+Aguasca,
+M. Vall-llossera, E. Valencia, I. Ramos-Perez, and H. Park, ‘‘Review of
+crop growth and soil moisture monitoring from a ground-based instru-
+ment implementing the interference pattern GNSS-R technique,’’
+Radio
+Sci.
+, vol. 46, no. 6, pp. 1–11, Dec. 2011.
+[69]
+C. C. Chew, E. E. Small, K. M. Larson, and V. U. Zavorotny, ‘‘Effects of
+near-surface soil moisture on GPS SNR data: Development of a retrieval
+algorithm for soil moisture,’’ IEEE Trans. Geosci. Remote Sens.
+, vol. 52,
+no. 1, pp. 537–543, Jan. 2014.
+[70]
+K. M. Larson, J. J. Braun, E. E. Small, V. U. Zavorotny, E. D. Gutmann,
+and A. L. Bilich, ‘‘GPS multipath and its relation to near-surface soil
+moisture content,’’ IEEE J. Sel. Topics Appl. Earth Observ. Remote Sens.
+,
+vol. 3, no. 1, pp. 91–99, Mar. 2010.
+[71]
+S. Vey, A. Güntner, J. Wickert, T. Blume, and M. Ramatschi, ‘‘Long-term
+soil moisture dynamics derived from GNSS interferometric reflectome-
+try: A case study for Sutherland, South Africa,’’ GPS Solutions
+, vol. 20,
+no. 4, pp. 641–654, Oct. 2016.
+[72] Inc Soil Scout. Wireless Soil Moisture Sensors
+. Accessed: Oct. 30, 2020.
+[Online]. Available: http://soilscout.com/solution/elements/
+[73] F. R. Troeh and L. M. Thompson, Soils and Soil Fertility
+, 6th ed. Hoboken,
+NJ, USA: Wiley, 2005.
+[74] Soil and Water Testing
+. Accessed: Jul. 24, 2020. [Online]. Available:
+https://www.sedgwick.k-state.edu/products-test/soiltests.html
+[75] Sampling Instructions for Routine Soil Analysis
+. Accessed: Jul. 24, 2020.
+[Online]. Available:
+https://ag.umass.edu/soil-plant-nutrient-testing-
+laboratory/fact-sheets/sampling-instructions-for-routine-soil-analysis
+[76]
+J. R. Brown, ‘‘Recommended chemical soil tests procedures for the North
+Central region,’’ Rev. ed. North Central Regional Publ. 221, 1998.
+[77] J. R. Okalebo, K. W. Gathua, and P. L. Woomer,
+Laboratory Methods of
+Soil and Plant Analysis: A Working Manual
+. Nairobi, Kenya: TSBF, 1993.
+[78]
+C. Dimkpa, P. Bindraban, J. E. McLean, L. Gatere, U. Singh, and
+D. Hellums, ‘‘Methods for rapid testing of plant and soil nutrients,’’ in
+Sustainable Agriculture Reviews
+. Cham, Switzerland: Springer, 2017,
+pp. 1–43.
+[79]
+N. Moonrungsee, S. Pencharee, and J. Jakmunee, ‘‘Colorimetric analyzer
+based on mobile phone camera for determination of available phosphorus
+in soil,’’ Talanta
+, vol. 136, pp. 204–209, May 2015.
+[80] Model STH-5—Soil Testing Outfit
+. Accessed: Jul. 24, 2020. [Online].
+Available:
+https://lamotte.com/products/soil/agricultural-soil-testing-
+kits/model-sth-5-soil-testing-outfit
+[81] About ICP Analysis
+. Accessed: Jul. 25, 2020. [Online]. Available:
+https://soiltest.vt.edu/content/soiltest_vt_edu/en/Files/labinfo.html
+[82] A. D. Karathanasis and B. F. Hajek,
+Elemental Analysis by X-Ray
+Fluorescence Spectroscopy
+. Hoboken, NJ, USA: Wiley, 2018, ch. 7,
+pp. 161–223.
+[83]
+D. T. Jackson and P. N. Nelson, ‘‘Preparation and properties of some ion
+selective membranes: A review,’’ J. Mol. Struct.
+, vol. 1182, pp. 241–259,
+Apr. 2019.
+[84]
+A. Craggs, G. J. Moody, and J. D. R. Thomas, ‘‘PVC matrix mem-
+brane ion-selective electrodes. Construction and laboratory experiments,’’
+J. Chem. Educ.
+, vol. 51, no. 8, p. 541, Aug. 1974.
+[85]
+S. Birrell and J. W. Hummel, ‘‘Membrane selection and ISFET configura-
+tion evaluation for soil nitrate sensing,’’ Trans. Amer. Soc. Agricult. Eng.
+,
+vol. 43, pp. 197–206, Mar. 2000.
+[86] M. Fibbioli, W. E. Morf, M. Badertscher, N. F. de Rooij,
+and
+E. Pretsch, ‘‘Potential drifts of solid-contacted ion-selective electrodes
+due to zero-current ion fluxes through the sensor membrane,’’
+Electro-
+analysis
+, vol. 12, no. 16, pp. 1286–1292, Nov. 2000.
+[87]
+S. Komaba, T. Akatsuka, K. Ohura, C. Suzuki, N. Yabuuchi, S. Kanazawa,
+K. Tsuchiya, and T. Hasegawa, ‘‘All-solid-state ion-selective electrodes
+with redox-active lithium, sodium, and potassium insertion materials as
+the inner solid-contact layer,’’ Analyst
+, vol. 142, no. 20, pp. 3857–3866,
+2017.
+[88]
+J. Bobacka, ‘‘Conducting polymer-based solid-state ion-selective elec-
+trodes,’’ Electroanalysis
+, vol. 18, no. 1, pp. 7–18, Jan. 2006.
+[89]
+M. Chen, M. Zhang, X. Wang, Q. Yang, M. Wang, G. Liu, and
+L. Yao, ‘‘An all-solid-state nitrate ion-selective electrode with nanohy-
+brids composite films for in-situ soil nutrient monitoring,’’ Sensors
+,
+vol. 20, no. 8, p. 2270, Apr. 2020.
+VOLUME 9, 2021 14119
+
+--- PÁGINA 26 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+[90] H. Jiang, W. Yu, J. F. Waimin, N. Glassmaker, N.
+Raghunathan,
+X. Jiang, B. Ziaie, and R. Rahimi, ‘‘Inkjet-printed solid-state potentiomet-
+ric nitrate ion selective electrodes for agricultural application,’’ in
+Proc.
+IEEE SENSORS
+, Oct. 2019, pp. 1–4.
+[91] M. A. Ali, X. Wang, Y. Chen, Y. Jiao, N. K. Mahal, S.
+Moru,
+M. J. Castellano, J. C. Schnable, P. S. Schnable, and L. Dong, ‘‘Con-
+tinuous monitoring of soil nitrate using a miniature sensor with poly(3-
+octyl-thiophene) and molybdenum disulfide nanocomposite,’’
+ACS Appl.
+Mater. Interfaces
+, vol. 11, no. 32, pp. 29195–29206, Aug. 2019.
+[92]
+J. Choosang, A. Numnuam, P. Thavarungkul, P. Kanatharana, T. Radu,
+S. Ullah, and A. Radu, ‘‘Simultaneous detection of ammonium and
+nitrate in environmental samples using on ion-selective electrode and
+comparison with portable colorimetric assays,’’ Sensors
+, vol. 18, no. 10,
+p. 3555, Oct. 2018.
+[93]
+M. Pięk, R. Piech, and B. Paczosa-Bator, ‘‘TTF-TCNQ solid contact
+layer in all-solid-state ion-selective electrodes for potassium or nitrate
+determination,’’ J. Electrochem. Soc.
+, vol. 165, no. 2, pp. B60–B65, 2018.
+[94]
+N. T. Garland, E. S. McLamore, N. D. Cavallaro, D. Mendivelso-Perez,
+E. A. Smith, D. Jing, and J. C. Claussen, ‘‘Flexible laser-induced graphene
+for nitrogen sensing in soil,’’ ACS Appl. Mater. Interfaces
+, vol. 10, no. 45,
+pp. 39124–39133, Nov. 2018.
+[95]
+C. Wardak, ‘‘Solid contact nitrate ion-selective electrode based on ionic
+liquid with stable and reproducible potential,’’ Electroanalysis
+, vol. 26,
+no. 4, pp. 864–872, Apr. 2014.
+[96] Mettler-TOLEDO International Inc. Perfection Comb NO3 Lemo
+.
+Accessed: Jul 3, 2020. [Online]. Available: https://www.mt.com/us/
+en/home/products/Laboratory_Analytics_Browse/pH-meter/sensor/ion-
+selective-electrode/perfectIONComb-NO3-Lemo.shop.html
+[97] Vernier Nitrate Ion-Selective Electrode
+. Accessed: Jul. 3, 2020. [Online].
+Available:
+https://www.vernier.com/product/nitrate-ion-selective-
+electrode/
+[98]
+T. Hachiya and H. Sakakibara, ‘‘Interactions between nitrate and ammo-
+nium in their uptake, allocation, assimilation, and signaling in plants,’’
+J. Experim. Botany
+, vol. 68, no. 10, pp. 2501–2512, 12 2016.
+[99]
+H. Kim, K. A. Sudduth, and J. W. Hummel, ‘‘Soil macronutrient sens-
+ing for precision agriculture,’’ J. Environ. Monitoring
+, vol. 11, no. 10,
+pp. 1810–1824, 2009.
+[100]
+H. J. Nielsen and E. H. Hansen, ‘‘New nitrate ion-selective electrodes
+based on quaternary ammonium compounds in nonporous polymer mem-
+branes,’’ Anal. Chim. Acta
+, vol. 85, no. 1, pp. 1–16, Aug. 1976.
+[101]
+T. M. Mubita, J. E. Dykstra, P. M. Biesheuvel, A. van der Wal, and
+S. Porada, ‘‘Selective adsorption of nitrate over chloride in microporous
+carbons,’’ Water Res.
+, vol. 164, Nov. 2019, Art. no. 114885.
+[102]
+M. B. Arvas, O. Gorduk, M. Gencten, and Y. Sahin, ‘‘Preparation of a
+novel electrochemical sensor for phosphate detection based on a molyb-
+denum blue modified poly(vinyl chloride) coated pencil graphite elec-
+trode,’’ Anal. Methods
+, vol. 11, no. 30, pp. 3874–3881, 2019.
+[103] S. Sedaghat, S. Jeong, A. Zareei, S. Peana, N. Glassmaker,
+and
+R. Rahimi, ‘‘Development of a nickel oxide/oxyhydroxide-modified
+printed carbon electrode as an all solid-state sensor for potentiometric
+phosphate detection,’’ New J. Chem.
+, vol. 43, no. 47, pp. 18619–18628,
+2019.
+[104]
+K. S. Bhat, U. T. Nakate, J.-Y. Yoo, Y. Wang, T. Mahmoudi, and
+Y.-B. Hahn, ‘‘Nozzle-jet-printed silver/graphene composite-based field-
+effect transistor sensor for phosphate ion detection,’’ ACS Omega
+, vol. 4,
+no. 5, pp. 8373–8380, May 2019.
+[105]
+V. O. Ebuele, D. G. Congrave, C. D. Gwenin, and V. Fitzsimmons-Thoss,
+‘‘Development of a cobalt electrode for the determination of phosphate in
+soil extracts and comparison with standard methods,’’ Anal. Lett.
+, vol. 51,
+no. 6, pp. 834–848, Apr. 2018.
+[106]
+K. Xu, Y. Kitazumi, K. Kano, and O. Shirai, ‘‘Phosphate ion sensor using
+a cobalt phosphate coated cobalt electrode,’’ Electrochim. Acta
+, vol. 282,
+pp. 242–246, Aug. 2018.
+[107]
+L. Barhoumi, A. Baraket, N. M. Nooredeen, M. B. Ali, M. N. Abbas,
+J. Bausells, and A. Errachid, ‘‘Silicon nitride capacitive chemical sensor
+for phosphate ion detection based on copper phthalocyanine–acrylate-
+polymer,’’ Electroanalysis
+, vol. 29, no. 6, pp. 1586–1595, Jun. 2017.
+[108] S. Cinti, D. Talarico, G. Palleschi, D. Moscone, and F.
+Arduini,
+‘‘Novel reagentless paper-based screen-printed electrochemical
+sen-
+sor to detect phosphate,’’ Anal. Chim. Acta , vol. 919,
+pp. 78–84,
+May 2016.
+[109] M. N. Abbas, A. L. A. Radwan, N. M. Nooredeen,
+and
+M. A. A. El-Ghaffar, ‘‘Selective phosphate sensing using
+copper
+monoamino-phthalocyanine functionalized acrylate
+polymer-based
+solid-state electrode for FIA of environmental waters,’’
+J. Solid State
+Electrochem.
+, vol. 20, no. 6, pp. 1599–1612, Jun. 2016.
+[110]
+P. Kumar, D.-M. Kim, M. H. Hyun, M.-S. Won, and Y.-B. Shim, ‘‘An all
+solid state potentiometric sensor for monohydrogen phosphate ions,’’
+Electroanalysis
+, vol. 25, no. 8, pp. 1864–1870, Aug. 2013.
+[111] Understanding Soil Tests for Pastures—Agriculture
+.
+Accessed: Aug. 5, 2020. [Online]. Available: https://agriculture.vic.gov.
+au/farm-management/soil/understanding-soil-tests-for-pastures
+[112]
+D. Liu, W.-C. Chen, R.-H. Yang, G.-L. Shen, and R.-Q. Yu, ‘‘Polymeric
+membrane phosphate sensitive electrode based on binuclear organotin
+compound,’’ Anal. Chim. Acta
+, vol. 338, no. 3, pp. 209–214, Feb. 1997.
+[113]
+J. H. Yoon, H. J. Park, S. H. Park, K. G. Lee, and B. G. Choi, ‘‘Electro-
+chemical characterization of reduced graphene oxide as an ion-to-electron
+transducer and application of screen-printed all-solid-state potassium ion
+sensors,’’ Carbon Lett.
+, vol. 30, pp. 73–80, 2020.
+[114]
+I. Fakih, A. Centeno, A. Zurutuza, B. Ghaddab, M. Siaj, and T. Szkopek,
+‘‘High resolution potassium sensing with large-area graphene field-effect
+transistors,’’ Sens. Actuators B, Chem.
+, vol. 291, pp. 89–95, Jul. 2019.
+[115]
+R. Rosenberg, M. S. Bono, S. Braganza, C. Vaishnav, R. Karnik, and
+A. J. Hart, ‘‘In-field determination of soil ion content using a hand-
+held device and screen-printed solid-state ion-selective electrodes,’’
+PLoS
+ONE
+, vol. 13, no. 9, pp. 1–20, Sep. 2018.
+[116]
+K. Yu, N. He, N. Kumar, N. Wang, J. Bobacka, and A. Ivaska, ‘‘Elec-
+trosynthesized polypyrrole/zeolite composites as solid contact in potas-
+sium ion-selective electrode,’’ Electrochim. Acta
+, vol. 228, pp. 66–75,
+Feb. 2017.
+[117] B. Paczosa-Bator, ‘‘Ion-selective electrodes with
+superhydrophobic
+polymer/carbon nanocomposites as solid contact,’’ Carbon
+, vol. 95,
+pp. 879–887, Dec. 2015.
+[118]
+F. Li, J. Ye, M. Zhou, S. Gan, Q. Zhang, D. Han, and L. Niu, ‘‘All-solid-
+state potassium-selective electrode using graphene as the solid contact,’’
+Analyst
+, vol. 137, no. 3, pp. 618–623, 2012.
+[119] Potassium Ion-Selective Electrode
+. Accessed: Aug. 5, 2020. [Online].
+Available:
+https://www.vernier.com/product/potassium-ion-selective-
+electrode/
+[120] Perfection Comb K Lemo
+. Accessed: Aug. 5, 2020. [Online]. Available:
+https://www.mt.com/us/en/home/products/Laboratory_Analytics_
+Browse/pH-meter/sensor/ion-selective-electrode/perfectION-Comb-K-
+Lemo.html
+[121]
+W. Gao, S. Emaminejad, H. Y. Y. Nyein, S. Challa, K. Chen, A. Peck,
+H. M. Fahad, H. Ota, H. Shiraki, D. Kiriya, D.-H. Lien, G. A. Brooks,
+R. W. Davis, and A. Javey, ‘‘Fully integrated wearable sensor arrays for
+multiplexed in situ perspiration analysis,’’ Nature
+, vol. 529, no. 7587,
+pp. 509–514, Jan. 2016.
+[122] Potassium for Crop Production . Accessed: Aug. 4,
+2020.
+[Online]. Available:
+https://extension.umn.edu/phosphorus-and-
+potassium/potassium-crop-production
+[123] H.-J. Kim, W.-K. Kim, M.-Y. Roh, C.-I. Kang, J.-M. Park,
+and
+K. A. Sudduth, ‘‘Automated sensing of hydroponic macronutrients using
+a computer-controlled system with an array of ion-selective electrodes,’’
+Comput. Electron. Agricult.
+, vol. 93, pp. 46–54, Apr. 2013.
+[124]
+M. Novell, M. Parrilla, G. A. Crespo, F. X. Rius, and F. J. Andrade,
+‘‘Paper-based ion-selective potentiometric sensors,’’ Anal. Chem.
+, vol. 84,
+no. 11, pp. 4695–4702, Jun. 2012.
+[125]
+W.-J. Lan, X. U. Zou, M. M. Hamedi, J. Hu, C. Parolo, E. J. Maxwell,
+P. Bühlmann, and G. M. Whitesides, ‘‘Paper-based potentiometric ion
+sensing,’’ Anal. Chem.
+, vol. 86, no. 19, pp. 9548–9553, Oct. 2014.
+[126]
+R. S. Patkar, M. Ashwin, and V. R. Rao, ‘‘Piezoresistive microcantilever
+based lab-on-a-chip system for detection of macronutrients in the soil,’’
+Solid-State Electron.
+, vol. 138, pp. 94–100, Dec. 2017.
+[127]
+M. A. Ali, H. Jiang, N. K. Mahal, R. J. Weber, R. Kumar, M. J. Castellano,
+and L. Dong, ‘‘Microfluidic impedimetric sensor for soil nitrate detection
+using graphene oxide and conductive nanofibers enabled sensing inter-
+face,’’ Sens. Actuators B, Chem.
+, vol. 239, pp. 1289–1299, Feb. 2017.
+[128]
+T. Minami, Y. Sasaki, T. Minamiki, S.-I. Wakida, R. Kurita, O. Niwa,
+and S. Tokito, ‘‘Selective nitrate detection by an enzymatic sensor based
+on an extended-gate type organic field-effect transistor,’’
+Biosensors Bio-
+electron.
+, vol. 81, pp. 87–91, Jul. 2016.
+[129]
+J. Massah and K. A. Vakilian, ‘‘An intelligent portable biosensor for fast
+and accurate nitrate determination using cyclic voltammetry,’’
+Biosyst.
+Eng.
+, vol. 177, pp. 49–58, Jan. 2019.
+[130]
+K. A. Vakilian and J. Massah, ‘‘A portable nitrate biosensing device
+using electrochemistry and spectroscopy,’’ IEEE Sensors J.
+, vol. 18, no. 8,
+pp. 3080–3089, Apr. 2018.
+[131]
+F. Can, S. Korkut Ozoner, P. Ergenekon, and E. Erhan, ‘‘Amperometric
+nitrate biosensor based on carbon nanotube/polypyrrole/nitrate reduc-
+tase biofilm electrode,’’ Mater. Sci. Eng., C
+, vol. 32, no. 1, pp. 18–23,
+Jan. 2012.
+14120 VOLUME 9, 2021
+
+--- PÁGINA 27 ---
+B. Kashyap, R. Kumar: Sensing Methodologies in Agriculture for Soil Moisture and Nutrient Monitoring
+[132]
+M. E. E. Alahi, S. C. Mukhopadhyay, and L. Burkitt, ‘‘Imprinted polymer
+coated impedimetric nitrate sensor for real-time water quality monitor-
+ing,’’ Sens. Actuators B, Chem.
+, vol. 259, pp. 753–761, Apr. 2018.
+[133]
+E. Bomar, G. Owens, and G. Murray, ‘‘Nitrate ion selective electrode
+based on ion imprinted poly(N-methylpyrrole),’’ Chemosensors
+, vol. 5,
+no. 1, p. 2, Jan. 2017.
+[134]
+H. Bagheri, A. Hajian, M. Rezaei, and A. Shirzadmehr, ‘‘Composite of Cu
+metal nanoparticles-multiwall carbon nanotubes-reduced graphene oxide
+as a novel and high performance platform of the electrochemical sen-
+sor for simultaneous determination of nitrite and nitrate,’’
+J. Hazardous
+Mater.
+, vol. 324, pp. 762–772, Feb. 2017.
+[135]
+J. Liang, Y. Zheng, and Z. Liu, ‘‘Nanowire-based cu electrode as elec-
+trochemical sensor for detection of nitrate in water,’’
+Sens. Actuators B,
+Chem.
+, vol. 232, pp. 336–344, Sep. 2016.
+[136]
+L. Gilbert, A. T. A. Jenkins, S. Browning, and J. P. Hart, ‘‘Development
+of an amperometric, screen-printed, single-enzyme phosphate ion biosen-
+sor and its application to the analysis of biomedical and environmental
+samples,’’ Sens. Actuators B, Chem.
+, vol. 160, no. 1, pp. 1322–1327,
+Dec. 2011.
+[137]
+R. Ahmad, M.-S. Ahn, and Y.-B. Hahn, ‘‘ZnO nanorods array based field-
+effect transistor biosensor for phosphate detection,’’
+J. Colloid Interface
+Sci.
+, vol. 498, pp. 292–297, Jul. 2017.
+[138] G. Kopiec, K. Starzec, J. Kochana, T. P.
+Kinnunen-Skidmore,
+W. Schuhmann, W. H. Campbell, A. Ruff, and N.
+Plumeré,
+‘‘Bioelectrocatalytic and electrochemical cascade for phosphate sensing
+with up to 6 electrons per analyte molecule,’’ Biosensors Bioelectron.
+,
+vol. 117, pp. 501–507, Oct. 2018.
+[139]
+C. Storer, Z. Coldrick, D. Tate, J. Donoghue, and B. Grieve, ‘‘Towards
+phosphate detection in hydroponics using molecularly imprinted polymer
+sensors,’’ Sensors
+, vol. 18, no. 2, p. 531, Feb. 2018.
+[140]
+V. Borse, P. Jain, M. Sadawana, and R. Srivastava, ‘‘‘Turn-on’ fluores-
+cence assay for inorganic phosphate sensing,’’ Sens. Actuators B, Chem.
+,
+vol. 225, pp. 340–347, Mar. 2016.
+[141]
+M. Sarwar, J. Leichner, G. M. Naja, and C.-Z. Li, ‘‘Smart-phone, paper-
+based fluorescent sensor for ultra-low inorganic phosphate detection
+in environmental samples,’’ Microsyst. Nanoeng.
+, vol. 5, no. 1, p. 56,
+Dec. 2019.
+[142]
+M. Naderi, M. Hosseini, and M. R. Ganjali, ‘‘Naked-eye detection of
+potassium ions in a novel gold nanoparticle aggregation-based aptasen-
+sor,’’ Spectrochimica Acta A, Mol. Biomolecular Spectrosc.
+, vol. 195,
+pp. 75–83, Apr. 2018.
+[143]
+X. Liu, C. Ye, X. Li, N. Cui, T. Wu, S. Du, Q. Wei, L. Fu, J. Yin, and
+C.-T. Lin, ‘‘Highly sensitive and selective potassium ion detection based
+on graphene Hall effect biosensors,’’ Materials
+, vol. 11, no. 3, p. 399,
+Mar. 2018.
+[144] J. Ning, X. Lin, F. Su, A. Sun, H. Liu, J. Luo, L. Wang,
+and
+Y. Tian, ‘‘Development of a molecular K + probe for
+colorimet-
+ric/fluorescent/photoacoustic detection of K + ,’’ Anal. Bioanal. Chem.
+,
+vol. 412, no. 25, pp. 6947–6957, Oct. 2020.
+[145]
+N. Rogovska, D. A. Laird, C.-P. Chiou, and L. J. Bond, ‘‘Develop-
+ment of field mobile soil nitrate sensor technology to facilitate preci-
+sion fertilizer management,’’ Precis. Agricult.
+, vol. 20, no. 1, pp. 40–55,
+Feb. 2019.
+[146]
+T. R. Tavares, L. C. Nunes, E. E. N. Alves, E. D. Almeida, L.
+F. Maldaner, F. J. Krug, H. W. P. D. Carvalho, and J. P. Molin,
+‘‘Simplifying sample preparation for soil fertility analysis by
+X-
+ray fluorescence spectrometry,’’ Sensors , vol. 19, no. 23,
+p. 5066,
+Nov. 2019.
+[147]
+X. An, M. Li, L. Zheng, Y. Liu, and H. Sun, ‘‘A portable soil nitrogen
+detector based on NIRS,’’ Precis. Agricult.
+, vol. 15, no. 1, pp. 3–16,
+Feb. 2014.
+[148]
+J. W. Jorgenson and K. D. Lukacs, ‘‘Zone electrophoresis in open-tubular
+glass capillaries,’’ Anal. Chem.
+, vol. 53, no. 8, pp. 1298–1302, Jul. 1981.
+[149] 7100 CE System | Agilent
+. Accessed: Jul. 13, 2020. [Online]. Available:
+https://www.agilent.com/en/product/capillary-electrophoresis-ce-ms/ce-
+ce-ms-systems/7100-ce-system
+[150] LabChip GX Touch Nucleic Acid Analyzer
+. Accessed: Jul. 13, 2020.
+[Online]. Available:
+https://perkinelmer-appliedgenomics.com/home/
+products/nucleic-acid-analysis-protein-characterization/dna-rna-
+analysis-microfluidics-technology/labchip-gx-touch-nucleic-acid-
+analyzer/
+[151]
+Z. Xu, X. Wang, R. J. Weber, R. Kumar, and L. Dong, ‘‘Nutrient sensing
+using chip scale electrophoresis and in situ soil solution extraction,’’
+IEEE
+Sensors J.
+, vol. 17, no. 14, pp. 4330–4339, Jul. 2017.
+[152]
+M. Smolka, D. Puchberger-Enengl, M. Bipoun, A. Klasa, M. Kiczkajlo,
+W. Śmiechowski, P. Sowiński, C. Krutzler, F. Keplinger,
+and
+M. J. Vellekoop, ‘‘A mobile lab-on-a-chip device for on-site
+soil
+nutrient analysis,’’ Precis. Agricult. , vol. 18, no. 2,
+pp. 152–168,
+Apr. 2017.
+[153]
+C. Merusi, C. Corradini, A. Cavazza, C. Borromei, and P. Salvadeo,
+‘‘Determination of nitrates, nitrites and oxalates in food products by cap-
+illary electrophoresis with pH-dependent electroosmotic flow reversal,’’
+Food Chem.
+, vol. 120, no. 2, pp. 615–620, May 2010.
+[154]
+B. Westergaard and H. C. B. Hansen, ‘‘Determination of anions in soil
+solutions by capillary zone electrophoresis,’’ Analyst
+, vol. 123, no. 4,
+pp. 721–724, 1998.
+[155]
+K. Fukushi, S. Takeda, K. Chayama, and S.-I. Wakida, ‘‘Application of
+capillary electrophoresis to the analysis of inorganic ions in environ-
+mental samples,’’ J. Chromatogr. A
+, vol. 834, nos. 1–2, pp. 349–362,
+Feb. 1999.
+[156]
+Z. Xu, L. Dong, and R. Kumar, ‘‘Electrophoretic soil nutrient sensor for
+agriculture,’’ U.S. Patent 10 564 122, Feb. 18, 2020.
+[157]
+Agriculture IoT Market—Global Opportunity Analysis and Industry
+Forecast (2019–2027)
+. Accessed: Aug. 13, 2020. [Online]. Available:
+https://www.meticulousresearch.com/product/agriculture-iot-market-
+5080/
+[158]
+H. Sahota, R. Kumar, and A. Kamal, ‘‘A wireless sensor network for
+precision agriculture and its performance,’’
+Wireless Commun. Mobile
+Comput.
+, vol. 11, no. 12, pp. 1628–1645, Dec. 2011.
+[159]
+H. Sahota and R. Kumar, ‘‘Maximum-likelihood sensor node localization
+using received signal strength in multimedia with multipath characteris-
+tics,’’ IEEE Syst. J.
+, vol. 12, no. 1, pp. 506–515, Mar. 2018.
+[160]
+H. Sahota and R. Kumar, ‘‘Network based sensor localization in multi-
+media application of precision agriculture part 2: Time of arrival,’’ in
+Proc. 11th IEEE Int. Conf. Netw., Sens. Control , Apr. 2014, pp. 203–208.
+BHUWAN KASHYAP
+(Member, IEEE) received
+the B.Tech. degree in electronics and commu-
+nication engineering from the Indian
+Institute
+of Technology Roorkee, India, in 2014. He is
+currently pursuing the Ph.D. degree in
+elec-
+trical engineering with Iowa State
+University,
+Ames, IA, USA. His current research
+inter-
+ests include designing sensing technologies for
+sustainable agriculture, microwave engineering,
+micro-electro-mechanical systems, digital circuit
+design, lab-on-a-chip-based systems, and clean energy harvesting devices.
+RATNESH KUMAR
+(Fellow, IEEE) received the
+B.Tech. degree in electrical engineering
+from
+IIT Kanpur, India, in 1987, and the M.S. and
+Ph.D. degrees in electrical and computer engi-
+neering from The University of Texas at Austin,
+in 1989 and 1991, respectively. He is currently
+a Harpole Professor with Iowa State University,
+Electrical and Computer Engineering, where he
+directs the ESSeNCE (Embedded Software, Sen-
+sors, Networks, Cyberphysical, and Energy) Lab.
+Previously, he held faulty position at the University of Kentucky, and var-
+ious visiting positions with the University of Maryland (College Park),
+the Applied Research Laboratory at the Pennsylvania State University (State
+College), the NASA Ames, the Idaho National Laboratory, the United Tech-
+nologies Research Center, and the Air Force Research Laboratory. He was
+a recipient of the Gold Medals for the Best EE Undergrad, the Best EE
+Project, and the Best All Rounder from IIT Kanpur, the Best Dissertation
+Award from UT Austin, the Best Paper Award from the IEEE Transactions
+on Automation Science and Engineering, and Keynote Speaker and paper
+awards recipient from multiple conferences. He is or has been an editor of
+several journals (including of IEEE, SIAM, ACM, Springer, IET, MDPI),
+was a Distinguished Lecturer of the IEEE Control Systems Society, was a
+recipient of D. R. Boylan Eminent Faculty Award for Research from Iowa
+State University and also a Fellow of AAAS.
+VOLUME 9, 2021 14121

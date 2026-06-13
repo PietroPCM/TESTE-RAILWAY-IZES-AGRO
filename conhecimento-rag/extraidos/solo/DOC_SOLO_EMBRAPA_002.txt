@@ -1,0 +1,1309 @@
+---
+documento_id: DOC_SOLO_EMBRAPA_002
+titulo: Métodos de análise de solos e calcário
+instituicao: Embrapa
+autores: 
+ano: 1976
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/330660/1/FL-2039-ok.pdf
+arquivo_original: originais/embrapa/DOC_SOLO_EMBRAPA_002.pdf
+sha256: ad15da7e492b624e1dc4bda0472804c4e6086d6fbbfefcb99a057e222d46d088
+data_acesso: 2026-06-13
+tipo_extracao: OCR
+possiveis_falhas_ocr: true
+revisao_humana: true
+--------------
+--- PÁGINA 1 ---
+|
+For 2036
+toterio Técnico nº 55
+[OP
+Vinculada so Ninintário da Agriculture
+semuiço WcIoNAL DE LeVANTANENTO é
+
+| METODOS DE ANALISE DE SOLOS E CALCÁRIO
+”
+
+--- PÁGINA 2 ---
+;
+'
+penE-SE PRATA
+MOUS DENANDONS LU! ECHANGE
+PENSE ExcuaNGE
+Endereço: Serviço Nacional de Levantamento e
+conservação de Solos - ENBRAPA
+Rue Jardin botânico, 1024 26-20
+20.000 - Rio de daneiro, R3
+ao
+
+--- PÁGINA 3 ---
+[OPA
+semvigo Macio 0€ Levar €
+consemnção oe sexos
+neronos DE MLISE DE Solos é cxLcinto
+nto de dmtro
+ie
+
+--- PÁGINA 4 ---
+METODOS OE ANÁLISE DE SOLOS E CALCÁRIO
+Engenhe! ros Agrônosos
+Raphael Minotti Bloise
+Gisa Nara Castellini noreira
+
+--- PÁGINA 5 ---
+INTRODUÇÃO
+
+A fquipe de Pedologia e Fertilidade do Solo, atual
+Serviço Nacional de Levantamento e Conservação de Solos, pu-
+blicou em 1969 o Boletim Técnico nº 7, sob o título "nétodos
+de Análise de Solo", em que era especificada a metodologia a
+dotada pelos laboratórios da então EPFS,
+
+(0 presente Boletim Técnico acrescenta âquela reto-
+dologia as modificações havidas posteriormente no tocante à
+análise de solos, e inclui os métodos adotados para a análi- |
+se de calcário.
+
+De outro lado, tem este trabalho o objetivo prinel,
+pal de proporcionar a todos os técnicos envolvidos na execu
+6ão de análises de solos e calcário as vais completas in-
+formações sobre metodologia em uso nos laboratórios — &o
+SMLCS, aqui descrita com os maiores detalhes, ebora — de
+forma simples, de fácil e rápica conpreensão, tento quanto
+0 método em si como quanto aos cálculos matenáticos nele
+utilizados.
+
+--- PÁGINA 6 ---
+METODOS DE ANALISE DE SOLOS E CALCARIOS
+Quando uma análise de solo é solicitada ao Laboraté,
+Fio do SMS, são normalmente fornecidos os seguintes dados:
+1. Textura (deterninação expedita)
+2. ph em água
+3. Cálcio + Megnésio trocáveis
+4, Alunfnio trocável
+5. Fósforo assinilável
+6. Potássio trocóvel
+7. Calcário a ser aplicado (quando necessário)
+8. Adubação adequada
+Porên, em se tratândo de arostras provenientes dos
+Levantamentos de Solos deste Serviço, ou quando o interessar
+do os solicita, são fornecidos ainda os seguintes dados,con-
+siderados adicionais:
+9. Hidrogênio trocâvel + Alunínio trocável
+16. Sódio trocêvel
+11. Cálcio trocóvel
+12. Nagnêsio trocável
+13. Soma das bases trocêveis (Valor S)
+14. Capacidade de troca de cations (Valor 1)
+15. Indice de saturação em bases (Valor V)
+16. Tndice de saturação em a1º**
+Nas análises de calcários, os dados fornecidos são:
+4. es00, ou eo
+2. Wgco, ou 190
+3. Resíduo insolúvel e não dosado
+4. Granutonetria
+5. em
+6. Interpretação dos resultados
+..-
+
+--- PÁGINA 7 ---
+ANALISE DE SOLOS
+ENTRADA DE ANCSTRAS DE S9.05
+
+O técnico exarregado da recepção deve, obrigato -
+risrente, verificar os dados constantes na enbalagem da or
+
+1) Nome do rereterte
+
+b) Procedência festaco, mueicípio, propriedade, ou
+
+Projeto e Instituição)
+
+€) Identificação de arostra (nt ou marca)
+
+d) Cultura à ser feita ou adutada
+
+Preencherá então un protocelo em que conste — alêm
+desses dados, o tota! de amostras que corpõem a revessa. Es
+se protocolo será encani-tado, juntamente com o interessado
+ou portador das amostras, ao Setor &cministrativo, para qui-
+tação da Inportância devida, no caso de as análises — serem
+solicitadas por particulares ou firmes. Seas análises des-
+tinamse a Levantanentos de Solos do próprio SNLCS, tal pro-
+tocolo seguirá ao resro Setor para sinples registro. Em car
+sos de pedidos de isenção ou ce pesquisas ce outros órgãos
+oficiais, será necessário o visto do Sr. Chefe do SHLCS,
+
+PREPARO DAS AFOSTRAS DE SO.0
+
+As amostras seguer então para a saia de preparo,on,
+de são registradas er livro especial, receber o nº de Labora
+tório e passar à secoçen em estufa cor circulação de ar for-
+ada, à temperatura de 4i%C,
+
+São após destorreadas, com rolo de madeira — sobre
+sola grossa, cujo forro é nudado a caca amostra. Esse forro,
+por medida de econcria, é constituído por folhas de Jornal.
+Passa-se então à arostra por peneira nº 10 (abertura — de
+2 mm), obtendo-se a terra fina seca soar = TFSA = que é
+
+-.
+
+--- PÁGINA 8 ---
+colocada nas caixinhas apropriadas. Estará a amostra de so-
+lo preparada para todas as determinações.
+
+METODOS DE ANALISE DE SOLOS
+1. Textura (deterninação expedita)
+
+E avaliada através co tato, so esfregar um pouco
+de solo únido entre os cedos. E inportantíssimo Porogenei -
+z9r bem a massa de solo wedecido, prestando toda atenção às
+variações de sensação. Quanco esta se mantêm idêntica apos
+seguidas manipulações, procura-se avaliar as percentagens =
+prováveis dos corponentes co solo estudado.. É um trabalho -
+que exige grande perícia do técnico, uma vez que, É pratica
+mente inpossível encontrar solos com una só fração granuloné,
+trica. Se isso fosse possível, as sensações seriam as se -
+guintes:
+
+areia = atrito
+
+site = sedosidade
+
+argita = plasticidade e pegajosidade
+
+Con auxílio do Triângulo Americano, modificado par
+ra incluir a classe de argila pesada, procura-se então — a
+classe textural correspondente às percentagens estinades de
+cada um das frações granutorátricas
+2. ph em água (112,5
+
+Em copinho plástico de É 108 ml, colocar 10.5] de
+TFSA e 25 nl de água destilada ou deionizada. Agitar — com
+bastão de vidro, lavando-o ao passar de uma e outra amostra.
+Deixar em repouso por uma hora ou mais.
+
+O aparelho utilizado é o potenciênetro provido de
+eletrodos de vidro e calonelano, com capacidade para deterni,
+mar pH de 0,00 a 14,00, Deve ser calibrado com soluções tem
+pão - padrões - de pH 7,00 e pH 4,00, uma vez que, a malo-
+
+ria dos solos apresenta pH dentro dessa faixa. Esses padrões
+e
+À
+
+--- PÁGINA 9 ---
+são guardados em geladeira, para evitar a formação de fungos
+no padrão ph 7,00, sendo necessário retirá-los do refrigera
+dor a tenpo suficiente (pelo menos 1 hora) para que sua tem
+peratura se iguale à da mistura água + solo dos copinhos.
+Costuma-se manter, ao lado do potenciêretro, — um
+tersônetro mergulhado em um copinho com água, a fim de regu-
+lar o aparelho na tesperatura das soluções antes de qualquer
+catibração.
+As operações acima descritas são feitas na seguin-
+te ordem:
+1º Retirar os padrões do refrigerador, colocando-os so lado
+do potenciônetro.
+
+2º Colocor à água nos copinhos, que Já deverão conter a ter
+re, e agitar.
+
+3º Ligar o potenciênetro, pelo menos 30 minutos antes do inf
+elo das deterninações.
+
+At Verificar à tenperatura no termômetro mergulhado na água
+é regular o aparelho para trabalhar à essa tengeratura.
+5º calibrar o aparelho no zero e com as soluções tampão - pa
+
+drão ph 7,00 e padrão pH 4,00. Iniciar imediatamente as
+determinações, agitando cada anostra com bastão de vidro,
+como da primeira vez, antes de mergulhar os eletrodos no
+copinho.
+Mota: Não é necessário lavar os eletrodos so passar de uma
+amostra à outra, sendo porêm indispensável lavá-los cuidado-
+somente e secá-los con papel de filtro antes e após — serem
+mergulhados em cade um dos padrões.
+
+Após es determinações, lavar os eletrodos e dei -
+xá-los en inersão em um copinho com água destilada, — onde
+deven permanecer tespre, mesmo com o aparelho desligado.
+
+-s-
+
+--- PÁGINA 10 ---
+364. Alwínio e Cálcio + magnésio trocóveis
+
+O extrator & uma solução É rorral de KCl:
+
+peso molecular
+ken
+O 3557
+
+Solução KCI Nº = 76,557 g/litro
+
+Na prática, toma-se 746 g de KCl, passa-se — para
+balão de 10 Nitros e conpleta-se o volume com água destilada,
+Ataque:
+
+Em ertenmeçer de 125 ml, coloca-se 10 gde TASA e
+100 nº da solução extratora, *gita-se por 5 ninutos em agi-
+tador circular Rorizental. Vão é necessário tenpar. Isto é
+feito à tarde. ho retirar as baterias do agitador, ter — o
+cuidado de desranchar os rontículos de terra que se forman -
+no contro dos erlenneyers. Deixense repousar durante a noi
+
+No dia seguinte, sem filtrar, pipetar 2 alíquo -
+tos de 25 nm do Ifquido sosrensdante: ura deles destina-se à
+determinação do cálcio + ragnésio trocáveis e a outra à der
+terninação do alunínio tracável.
+3: Peterrinaçõo do cálcio + ragnósio trocóveis
+
+Em uma dos alíquotas de 25 rl do extrato de solo,
+colocar à nl de um coquetel de "buffer", cianeto de potássio
+e trietanolanina. Titular con ECTA (sal dissódico) 0,025 N-
+morra idade exata - usanco Ericcrrome Black T como indica
+dor. Após acrescentar o coquetel, colocar pequena quantida-
+de (1/2 pitaco ou menos) de ácido Lrascórbico, a fin de des-
+cartar possível interferência de aarganês na titulação. Vi-
+ragen de réseo para azul ouro.
+Nota: O indicador (3 gotas) deve ser colocado inediatarente
+
+-..
+
+--- PÁGINA 11 ---
+antes de começar a titulaçõos se, so se sproxicar o — final
+desta, esmaecer à cor, colocar mais duas gotas do indicador.
+A leitura na bureta corresponde ao teor de Ca”? + mM”, em
+sEN100 6.
+4. Determinação do alunínio trocável
+Na outra alíquota de 25 mi do extrato de solo, com
+Jocar 3 gotas de azul Bromotinol a 0,12 e titular com — NaOH
+0,025 N - norvalidade exato - protegida contra CO,. A feita
+ra nº bureta corresponde so teor de AI***, em nE/100 g.
+Note: "protegida contra COZ" - para isto, antes de iniciar u
+ma série de titulações, abre-se a torneira da bureta, à fin
+de descartar a porção de NaOH em possível contato como er.
+Torna-se a encher à bureta e inicia-se então a titulação.
+Preparo dos reagentes para Ca** + mt?
+Coquetel - para preparar 1 litro, colocar em proveca gradua-
+Pa
+600 ml de solução tanpão (“butfer")
+300/51 de tritanolanina
+100 6 de KCN 5 10%
+Momogeneizar com bastão de vidro e estocar em fras
+co tenpado.
+Solução tampão - para preparar 1 litro, colocar em proveta -
+graduado:
+67,5 g de MMC em 200 ml) de água
+600 nl de arónia concentrada
+0,616 g de Mes0,.7 40
+0,930 9 de EOTA (sal dissódico)
+completar a 1 litro com água destilada
+Mota: Controlar & neutralidade em relação ao Hg e so EDTA,
+do seguinte modo: em erlenveçer de 125 mil, colocar 3 ml de
+solução tempão + 30 ml de ácua destilada. Com? gota de -
+7
+
+--- PÁGINA 12 ---
+EDTA 0,025 N deve virar para o azul.
+SEN a 107 - Pesar 100 g oe KUN p.s., passar para balão de 1
+Vitro e completar o volure
+tom — - Partindo do sal dissódico, fazer estoque da solu
+ção 0,05 4 PMS GTRAS2
+Solução 1 N = 372,252 g/litro
+Solução 0,05 1 =X
+NM = 0,05 Mx 372,25? g = 18,6126 g/1itro
+Solução 0,05 mM = 18,6126 g/Iitro, para uma pure-
+28 de 1008
+Ver a pureza no rótulo do frasco. Geralmente é
+de 992 no nínivo, como no caso do EDTA que te
+mos em estoque. Então:
+Pureza 1008 = 18,6126 g/itro
+Pureza 991 = 18,80 g/litro
+Corrigir o título usando solução Caco, 0,05 Nº
+em ertenmeyer de 125 nl, colocar:
+10 nm) de solução Coco, 9,05 m
+4 5 de coquetel
+30 mt de água destilado
+3 gotas de Eriochroee Black-T
+A solução deve consunir exatamente 16 ml — da
+solução EDTA 0,05 M. Se consunir mais, Ir acres
+centondo pitadas de EDTA, até acertar o título.
+toTA 0,025 N - Prepare-se à partir da solução estoque 0,05 H
+Solução 0,05 N x 2 (sal dissódico) = solução 0,1N
+Para preparar 1 litro da solução 0,025 Na par
+tir da solução 0,1 X, tonavos a equação fundames,
+tal da quínica volwêtrica:
+a
+
+--- PÁGINA 13 ---
+me VI ve T0007
+1.000 x 0,025 = Vº. 0,1 Ne 0,085 K
+Vs 1.000 x 0,025 = 25 = 250 Vie?
+
+o. E Neo
+Verificação da igualdade VN = V'N'
+1.000 x 0,025 = 250 x 0,1
+
+2.
+Tomamos então 250 ni da solução EDTA 0,1 Nº (ou
+10,05 M) é diluíros à 1 litro para obter um solu
+ção EDTA 0,025 x.
+
+Caco, 0,05 M - Tonanos o Caco p.a., sabendo que
+PM = 100,0893 9.
+mol 2009 x = 0,05. 100 = 5 g/Hitro
+0,05 not ce x
+(0 cacO) é muito pouco solúvel em água destilada
+(É 12)? Para sua dissolução total procede-se do
+seguinte modo: passa-se es 5 g de CaCO, para um
+becher de 300 ou HOO mi, unedecense ligeiramente
+e em seguida coloca-se gota a gota, HC! concen -
+trado (tos procedência) até não der mais eferves
+câência. Caso não se dissolva totalmente, levar
+0 fogo até dissolução total. Estriar e comple
+tor o volume a 4 Vitro.
+
+Indicador: Eriochrome Black? = Oissolver 0,29 de Erio
+chrome Black-T em 50 m) de álcool metílico con -
+tendo 16 g de bórax por litro.
+
+Alcool metílico + bórax - Dissolver à g de bórax em 250 ml
+de metanol. O bóran é pouco solúvel. Senão -
+dissolver, levar ao banho-maria até a dissolução
+total.
+
+CUIDADO - Ro ser levado so banho-naria, a chamo
+pode explodir o setano!. Tosar um recipiente =
+-s.-
+
+--- PÁGINA 14 ---
+(grande (diâmetro grande) para afastar suficiente
+mente o metano! da chara
+
+Mota inportante: Se for necessário levar so ba
+nho-raria, pesar antes. Após a dissolução, es-
+Ffriar e pesar novamente. Conpletar a diferença
+de peso com metanol.
+
+Preparo dos reagentes para AIº**
+
+Indicador: Azul de Brosotízo! - 0,1% - Tomar 0,1 gde azul
+
+de brorotivol, colocar em um gra! e Juntar 1,6
+ml de NON 0,1 N. Triturar bem, atê o todo fi -
+car verde.
+Mota” Por vezes à cor porranece ânbar, apesar
+de ben triturado. Nesse caso, colocar nais algu
+nas gotas de NaOH 0,1 Ne à cor verde aparecerá.
+Juntar água sos poucos e Ir passando para balão
+de 100 nl, ao mesro tenpo em que se vai lavando
+o gral. Estando este bem linpo, cospletar o vo-
+me adicionando água diretamente no balão. Guar-
+dar em frasco escuro.
+
+Nao 1% O preparo é feito s partir de anpolas com | NOM
+em solução, é que diluídas a 1 litro dão um so"
+Iuçõo NaON | N. O nome comercial dessas ampolas
+(Mormex, Titrisol, Oilut-lt) varia confor=e o fa
+bricante,
+
+Partivos da solução | N e fazeros estoque de so"
+lução 0,1 N. Esta, por sua vez, irá sendo dileí,
+da 3 0,025 N para as titulações.
+
+MsON 0,4 N = Preparo de 1 Iitro de solução KeOK 0,1 N, a par
+tir da solução | Nº
+me vs
+
+-.-
+
+--- PÁGINA 15 ---
+Voo xa, e Vo veto
+Vis 1000 x 0,1 = 100BI Ne ON
+7 ve?
+Nei
+Tomar 100 ml da solução NaOH 1 N, levar a balão
+de 1 litro e conpletar o volure.
+NaOH 0,025 N = Preparo de 1 litro de solução 0,025 N, a par-
+tir de solução 0,1 n
+me va vet
+1.000 x 0,025 = VW". 0,1 Ne 0,025 6)
+V' = 1.000 x 0,085 = 25 = 2505 Vie?
+o o Neo
+Tomar 250 nº da solução 0,1 N, levar a balão de
+1 litro e completar o volume.
+5. 6. e 10. Fósforo assimilável e potássio e sódio trocóveis
+Para estas deterninações, usa-se uma solução de à-
+idos fraca como extrator, partindo de MCI p.a. e N250, pas,
+isentos de fósforo:
+0,050 N em HC)
+0,025 N em 4250,
+Preparo da solução extratora HCl 0,050 N e
+250, 0,025 à
+Mei 0,050 N = Partindo de HC! concentrado,temos: PN = 36,469
+36,46 g/1itro = solução 1X Te
+x g/Ntro= solução 0,060 NX ds 1,19
+me 36,46 x 0,05 = 1,823 g/titro
+densidade:
+NBr ne 1,883 = 1,532 si/Nitro
+LI Gena o
+uu.
+
+--- PÁGINA 16 ---
+Título:
+1007 = 1,532 mi/litro
+364 + x ml/Nitro
+me 200 153 = 4,256 E b3 mi/litro
+3%
+Para ter um solução HCl 0,050 N, tomanos 4,3 ml
+de HC! e diluisos a 1 Vitro.
+M/50, 0,025 N - Partindo de K250,concentrado, teses:
+PR = 98,089
+ds 18 (a 150)
+Te
+Solução H50, 1 N = 98,08 = 49,04 g/litro
+2
+Solução 1 N = 49,04 g/itro
+Solução 0,025 N = x
+mn 0,025 Nx 69,04 = 1,226 g/itro
+densidade:
+NB Ge Ato xe 1,26 0666)
+- 1,226 ge x el nã
+Título:
+1002 = 0,666 nl x = 300 x 0,666 = 0,69 mi/litro
+96 ex ”
+Para ter um solução K50, 0,025 H, tomamos 0,69
+el de 1/50, e diluinos à | litro.
+- Na prática, costenanos preparar 10 litros da
+Solução HEI 0,050 N é 4,50, 0,025 Nº toma-se um
+betão de 10 litros e coloca-se nais ou menos 5
+Titros de água destilada. — Adiciona-se 43 mi de
+MEI e 6,2 nl de K50,. Conpleta-se o volne, s-
+tendo en,
+Mota: Após adicionar o MCI, ter o cuidado de la
+var a proveta por 3 veres, colocando as águas de
+Iavages no balão
+un.
+
+--- PÁGINA 17 ---
+Ataque:
+
+En erlenveyers de 125 nl, coloca-se 19 gde TASA e
+100 nº de solução extratora NC 0,050 N e K,50, 0,025 N. Agi-
+ta-se por 5 minutos em agitador circular horizontal. Não é
+mecessário taspar. Isto é feito à carce. ão retirar as bate
+rias do agitador, ter o cuidado de desmanchar o montículo de
+terra que se forma no centro do erlenveyer. Deixar repousar
+
+No dia seguinte, sem filtrar, pipetar 25 =) do 11-
+quido sobrensdante e passar para bateria de frascos plásti-
+cos com capacidade aprexinada de 3º nl.
+
+Lavar a bateria em que 6 mistura solo + solução ex
+tratora se encontrava e deixar escorrer bem. Em ouiro ali -
+quotador, pipetar 5 m) (exacaente) dos 25 el anteriormente
+extraídos e passar novamente para a bateria de erlenceyers -
+de 125 ml. Estes 55] se destinam à determinação do fósforo
+assinilável e os 20 mi que restam na bateria de frascos plás
+ticos vão para determinação de potássio trocável, e do sódio
+quando for o caso.
+
+5. Peterminação do fástoro assiniláve)
+
+Ros 5 nl do extrato de solo anteriormente pipetados,
+Juntar 10 m) de solução ácida de “olibéato de arônio já diluí
+da e 7 pitado (nais ou renos 30 mg) de ácido ascórbico em pó,
+como redutor. Levar ao agitador circular horizontal por 1 mi
+muto, para hosogeneizar
+
+Ro prazo nágio de 1 hora após a adição do ácido as-
+côrbico (45 rinutos a 2 horas), inleiar a leitura da densida-
+de ótica na escala logaríteica do fotocolorínetro, — usando
+o filtro verneiho (conprimento de onda de 668 mu). Converter
+2 leitora es ppm de P, através de tabela elaborada cos a ici-
+tura de padrões.
+
+ST
+
+--- PÁGINA 18 ---
+Mota: Constatamos na prática a absoluta necessidade de lavar
+os pipetadores (de 25 ml « 5 ml) após cada extração. — Quando
+esta é feito, não se tem idéia da concentração de fósforo no
+extrato. Caso seja alta, o resíduo aderido às paredes das pi
+petas pode mascarar conpletamente o resultado da alíquota pi-
+petada imediatamente depois.
+
+Diluição: Também no caso de se apresentarem altas concentra-
+(ções de fósforo assinilável, superiores a capacidade de leite
+ra de escala ou sinplesnente à de faixa mais expandida, e se
+quer o resultado exato, será necessário proceder a diluição ,
+após decorrer o tengo necessário para a reação (nfnimo de 45
+minutos).
+
+Considerar sempre que temos no erleneer 15 ml (5
+nl do extrato do solo + 10 nl da solução ácida de molibésto).
+Ir acrescentando água destilada sespre na proporção de 15 ml
+ou seus múltiplos, até obter uma cor que permita um leitura
+exata na escala. Se, so atingir 120 ml a cor ainda for mui-
+to escura, homogeneizar bem o conteúdo com bastão de vidfo,oi
+petar uma porção para outro erienseyer e prosseguir a dilui =
+são.
+
+Preparo dos reagentes para P assieilável
+Solução ácida de molibéato de amônio (concentrada) - Em balão
+aferido de 1 litro (pirex ou similar) colocar 2 gra
+mas de subcartontos de bismuto e É 250 ml de água
+destilada; juntar ropidamente 150 ml de K50, con
+
+centrado (reagente bon, isento de P). Ao cessar a
+
+fervura, o sal de bismuto deve estar completamente
+
+dissolvido,
+
+Depois de frio, juntar uma solução de 20 g de molib
+
+dato de anônio em $ 200 mi de água. Completar a
+
+1 Vitro e hovogeneizar. Fazer estoque.
+
+NTE
+
+--- PÁGINA 19 ---
+Solução ácida de molisdato de arônio diluída - Em proveta gra
+duada, colocar 300 mi da solução acira (concentrada)
+e completar a 1 Nitro com água destilada.Agitar mui,
+to ben com bastão de vidro, para horogeneizar. — É
+esta solução que se adiciona so extrato de solo.
+Preparo do Padrão Concentrado de 50 pow de p
+th vm pesa-filiro, tomar pequena quantidade (0,5 g
+ou menos) de KHJPO,, deixar por uma noite em estufa s At,
+tampar e esfriar. Tenos então
+pm
+Ko 390
+DEN
+Pe
+o o
+MM PO, = 13651 q
+4 ppm 1; 1.000.000 = 1 e9/kg = 1 mgllitro
+Precisamos 50 pon de P = 50 mg P/ litro
+136,1 mg de KM4PO, = 31 ng de P
+ng de KM2PO, = 50 mg de P
+MelICSO m 6.805 = 219,52 eg P = 0,2195 g de KHyPO,
+” »”
+por Vitro.
+Então, tomando 0,2195 g de KH,PO, e dissolvendo a 1 litro,te-
+mos ura solução com 50 ppm de P. Na prática, constatamos =
+maior facilidade em trabalhar com um padrão concentrado de 25
+ppa P, motivo pelo qual pesanos a nessa quantidade de KH,PO,
+(0,2195 9) e dissolveros em 2 litros. Antes de completar “o
+volume, adiciona-se 3 ml de N250, concentrado, para assegurar
+à perfeita dissolução do fosfato.
+5.
+
+--- PÁGINA 20 ---
+Preparo dos padrões de 1, 2, 36 4 poa de P.
+Parte-se do solução acira, contendo 25 ppa de P, e
+
+prepara-se 250 ml de cada um dos padrões.
+Padrão de 1 ppm de P = VN = VN" vosso
+AC TEVILAS EST
+ESTESPINE) ve
+
+25 Nº e 25 pon
+Toma-se 16 ni da solução de 25 ppm P, leva-se a balão de 111
+tro e completa-se o volume com a solução extratora HCl 0,050
+Me h50, 0,028 N.
+Padrao de 2 pon de P = VN = WIN" vos250
+ETPERAET no 2 po
+Vis2S0A2 cs 20 ve
+
+2 Nº 225 ppm
+Tona-se 20 ml da solução de 25 pom — P, leva-se a balão de
+250 ml e conpleta-se o volune com a solução extratora — MCl
+0,050 Ne M,50, 0,025 N .
+Padrão de 3 ppa de P = = VN vosso
+2503 VLS xe 3 69
+Vsa0x3 A ve?
+
+s Nº 25 ppm
+Tona-se 30 ml da solução de 25 ppm P, leva-se a balão — de
+250 nl 6 conpleta-se o volume com a solução extratora — MCH
+0,050 N e 250, Nº
+Padrão de & ppa de P = WI = VIN" veasoA
+250xATVIL2S nt po
+CESTPIRIITE ve.
+
+F Ns 25 99
+Toma-se NO ni da solução de 25 ppm P, leva-se a balão de 250
+1) é conpleta-se o volune con é solução extratora HC! 0,050
+enso x
+
+nn.
+
+--- PÁGINA 21 ---
+PREPARO DA CURVA OG TABELA PARA TRANSFORMAÇÃO DA
+LEITURA EM PPA DE p
+A primeira consideração e fazer É que, para o ata-
+que, tonesos 10 g de TFSA, usando 100 mi da solução extrato =
+ra. Então, e concentração de P sofreu ves diluição na razão
+V:10. Consideramos assin que, vma leitura do extrato de solo
+Igue à eitura de cada um dos padrões, deve ser multiplicada
+por 10. Teros então:
+Padrão de 1 ppm de P = 10 pon de P no selo
+Mo guardar os padrões nos frescos apropriados, após
+Seu preparo, costuna-se escrever nos rótulos:
+Ml TomdePmasolução — Pt 2 pon de Pna solução
+| 10 pon de Pno solo | 26 pon de Pro solo
+Py 1 Jomdernmasolção — PQ! & ppm de Pra solução
+à 30 ppa de P no solo | 0 ppa de Pno solo
+A Teitura desses quatro padrões, caso o colorivetro
+esteja ben regulado, guarda um proporção constante e, caso
+se Teve à um gráfico, &ã ums reta que passo pela origen, per
+nitindo estabelecer com segurança um Único fator, para as in
+terpolações e extrapotações.
+Leitura de padrões
+tm erteneçers de 125 ml, tone-se Sm) de cada vm =
+(os padrões e faz-se à reação cono se estivesse trabalhando -
+con extrato de solo. Faz-se 3 repetições de cada padrão, ou
+3 repetições dos padrões de 1, 2 e 3 ppa Pe? repetições do
+padrão de à pçe P. Decorrido o tempo necessário (nais ou mer
+nos 1 hora), procede-se à leitura,
+-.-
+
+--- PÁGINA 22 ---
+Cálculo do fator (F)
+Temos então:
+ppr - dados pelos padrões (10, 20, 30 e 40 ppm P no solo)
+Ieitura (L) - resultado de leitura dos padrões feito na escar
+1a togaríteica do colorivetro
+Freem ouppm=Fxl, oque permite as interpolações e
+Lt extropolações.
+Exemplos:
+Teros, por hipótese, os seguintes resultados da lei
+tura dos padrões:
+Pedéo pedro p= A8O nn 6o
+Peope= 0 Le Es 10 0,065
+160
+Pi pps 2O L=30 Fe 20 = 0,065
+E
+Py opm= 30 Um Fe do = 0,065
+“ão
+Pyopem = dO Leo FT 0,065
+eo
+O preparo da tabela vai depender do tipo do colorine
+tro. No Metronic modelo M, por exemplo, a escala só pernite
+Meituras de 5 em S unidades, na faixa mais expandida. — Neste
+caso, a tabela será feita do seguinte modo:
+Leitora Top — Fat
+5 e) (0,0608545 =0,3125)
+1 4 (o,06I5 x 10 = 0,625)
+1 1 (0,0625 x15=0,3375)
+20 1 (o06s 20 = 1,25)
+250 2 (0,065 x 25 21,565)
+Outros colorínetros permitem a leitura de unidade
+em unidade, então a tabela será feita de acordo.
+-.-
+
+--- PÁGINA 23 ---
+Gelo. Determinaçõe do petâssio e sódio trucáveis
+
+E feita por teio do fotêniro de chara, nos 20 ml
+do extrato de solo que sobraras após pipetar os S ml para a
+determinação do fósforo assinilável.
+
+Selecionado o filtro conveniente no fotêneiro, ca
+libra-se o calverâneiro no zero cos água destilada e no melo
+de escala (100) con uma solução padrão contendo 0,2 né/litro
+de K, 0,2 sÉ/litro de Na e 2,0 nE/Vitro de Ca.
+
+Tomar outras soluções padrão contendo:
+
+0,1 nE/Vitro de K = O,1 rt/litro de Na = 1,0 sk/Vitro de Ca
+0,3 né/litro de K - 6,3 rE/litro de Na - 3,0 pE/litro de Ca
+0,4 nE/Vitro de K = 0,4 rE/litro de Na - 4,0 rÉflitro de Ca
+Fazer à leitura e arctar. Teos então os — docos
+(para K e no)
+- Leitura do padrão 0,2 nE/1 - que cbrigenos a dar 100
+mo mo Ho 01 mE/ = que arotaros o ponto onde caiu
+mo mo No 03 REM - que anoteeos o ponto onde caiu
+mom no ORE = que anotaeos o ponto onde caiu
+
+(Obtidos essas leituras, construir às curves, woe
+para K e outra para Xa, interpolar as leituras possiveis na
+escala do gelvanônetro e preparar as tabelas. Quando os lei,
+turas dos arostras cairen fora da escala, diluir até — que
+Sua leitura seja possível e levar ev conta a diluição — so
+calcular 5 concentração de K ou ta.
+
+Nota: Considerando a diluição da rotina - 1:10 (109 — de
+TFSA para 100 nº do solução extratora),as leituras dos par
+drões & cE/litro corresponce- a rE/106 6 na arostra de so-
+to, porque:
+Padrão 0,1 mE/1 = 0,01 né/100 q
+9,01 nE/100 g x 10 (diluição) = 0,1 =6/100 q
+-.s.-
+
+--- PÁGINA 24 ---
+Padrao 0,2 mE/1 = 0,02 nE/100 q
+0,02 nE/100 g x 10 (diluição) = 0,2 mE/100 9
+Padrão 0,3 nE/1 = 0,03 nE/100 q
+0,03 nE/100 g x 10 (diluição) = 0,3 mE/100 q
+Padrão 0,4 mE/1 = 0,0% =E/100 q
+0,04 n&/100 g x 10 (diluição) = 0,4 nk/100 q
+Preparo dos padrões
+Na prática, preparanos un padrão concentrado contem
+do K, Na e Co, uma vez que, esta última determinação tartém
+pode ser feita no fotênetro de chama.
+Preparo do Padrão Concentrado:
+Ke 10 ENO
+Ne e 1,0 mb/Nitro
+6a = 10,0 nE/Nitro
+Para 1 litro:
+Pesar 0,0585 g de NaCl = 1,0 nt/Nitro
+O 0,076 gde KCl = 1,0 mí/Vitro
+Pipetar 200 =) de uma solução de 1.000 ppm de
+Ca = 10 eb/Nitro
+Levar tudo a balão de 1 Vitro e completar o volume.
+Cálculos:
+om
+x e 39,100
+E = 35,57
+Tel = 74557 g/litro ou | mEÉ/litro = 0,074 g/titro
+m
+Nes 22,990
+6135657
+Te = 5808 g/litro ou 1 né/Vitro = 0,0585 g/1itro
+nu.
+
+--- PÁGINA 25 ---
+Preparo de solução de 1.000 ppm de Ca:
+1 ng/litro= 1 ppm ou 1.000 eg/Nitro = 1.000 ppm ou
+1 9/1tro = 1.000 ppa
+mm
+Ca = 40,08
+eso
+0, = 48,00
+caco, 100,05
+100 gde Caco, = to gdeta
+x gdecaco; = 1géeta
+me 100 = 2,5 gde Caco,
+o
+Pesar 2,5 g de CaCO, p.a., dissolver em um pouco de
+MC) concentrado e conpletar o volune para 1.000 ml.
+Mota: "um pouco de NCI concentrado - umedecer o
+Caco e em seguida adicionar gota a gota o HCl atá não dar
+mois efervescência. Colocar mais 1 gota e aquecer. — Deixar
+esfriar e completar a 1 Vitro.
+Preparo dos padrões de 0,1 - 0,2 - 0,3 - 0,4 sE/Vitro, e
+partir do padrão concentrado de 1,0 mEÉ/litro de K e Na
+Padrão 0,1 mE/litro KeNa - para o preparo de 500 ml.
+meo voe som
+ESPERPATENT noso
+DESTETREIIE e.
+NºS OEA
+10
+Dilui-se 50 mi do padrão 1,0 mE/1 a 500 ml e obtém
+se o padrão 0,1 É/Vitro K e Na
+-n-
+
+--- PÁGINA 26 ---
+Padrão 0,2 mE/litro K e ta - para o preparo de 500 ml
+me CEEE TES
+520 x 022V 00 AAA
+Vs SD x 02 0) vv.
+" NS
+Dilui-se 10 nl do padrão 1,0 mE/! e 500 ml e obtém
+se o padrão 0,2 rÉ/Nitro K e Na.
+Padrão 0,3 nE/| K eta - para o preparo de 500 ml:
+me e vosso
+COPEREATENN) NSAAAAA
+GESTETRERRCE vo
+O No E
+Dilui-se 150 ml do padrão 1,0 mé/1 a SO0 ml e obtém
+se o padrão 0,3 mM! K e No.
+Padrão 9,4 mé/1 E eNa - para o preparo de 500 ml.
+me vosso
+500 x Oh = Vo ...a.
+Vs 500 x 0,4 e 200 0 NE
+To Ns 0 E
+Oiluinse 200 nº do padrão 1,0 mE/1 a 500 ml e obtêm
+se o padrão 0,4 né/1 K e ta.
+Nota: Obtidos as tabelas com as leituras desses pa
+i drões basta, na rotina, calibrar o galvanêvetro no zero com
+gua destilada e no meio da escala (100) com o padrão
+0,2 nE/titro K e ha.
+7. Calcário a ser aplicaco
+Os critérios adotados são es seguintes:
+Verificar os teores de Arº** e Ca? e mg,
+4) Se o teor de a1*** for sencr que 0,3 nÉ/100 9 e o de
+nun.
+
+--- PÁGINA 27 ---
+€a** + MG"? for maior que 2,0 nE/100 g, não se > recomenda
+catagen.
+
+b) Se o teor de AIº** for maior que 0,3 mE/100 g e o e
+Ca”? + mo”? for maior que 2,0, muitiplicar por 2 o aluni -
+mio encontrado, obtendo-se à calages à ser recomendada, em
+em.
+
+€) Se o teor de AIº*? for menor que 0,3 nE/100 geo de
+C8** + mo? tanbêém for menor que 2,0, precede-se da seguir
+te forma:
+
+2.0 + (6a + Mg) = ton/ha de cateário
+
+6) Se o teor de AI”? for maior que 0,3 5E/100 9 e o de
+Ca"? + ng"? for mencr que 2,0 nE/100 g, comparar os dados
+obtidos de Al x 2 e de 2,0 - (Co + mg). O valor nais alto
+
+== expressa à quantidade de calcário necessária, es kg/ha,
+
+Mota inportante: Caso a recomentação de calcário ultrapasse
+
+4 ton/a, aconseitar so interessado o fracionssento da dose
+
+e duas parcelas para culturas de alte rendivento. no caro
+
+de culturas de baixo rendimento, aóvertir so interessado ser
+
+antieconônico, a curto prazo, o exprego do calcário.
+
+8. Adubação adeguada
+
+Maseaos às recorendações de adubação em dois critê
+
+1) Provival renda beto do esitra
+
+1) Teores de nutrientes encontrados na análise do
+sete
+
+A) Provável renda bruta da cuttura
+
+4) Culturas de alta rentabilidade, notadarente as que se Toca,
+1ieam nas proximidades dos centros consuniidores. — Entre
+emos cultures poderos incluir as Portaliças (alface, com
+ves, tomate, alho, cebola, etc), coqueiro-anão, fruta-de-
+
+..-
+
+--- PÁGINA 28 ---
+conde,. Situense na faixa mais sita ce adubação — (100
+kg/ha de 4)
+
+b) Outras, como citrus em geral, têm uma rende bruta um pouco
+mois baixa. Podes ser situadas no faixa de 8O kg/ha de N.
+
+e) Benana, anão, cana-de-açúcar, trigo e outras de renda se-
+melhante, incluem-se em uma faixa de 60 kg/ha de N.
+
+d) Milho, forrageiras, arroz, abóboras, mandioca, ete., rece-
+ben a recomendação de O kg/ha de K.
+
+6) à faixa veis baixa (20 kg/ha de N), destina-se à — pastos
+perenes não submetidos a pastoreio intensivo.
+
+1) Em se tratando de leguninosas, levam à adubação recomenca-
+(a para as granfneas da mesva faixa de renda bruta, com à
+dose de N reduzida à metade.
+
+) Teores de nutrientes encontratos né análise do solo
+
+1) 0 nitrogênio (N), entora sirva de base à recomendação de
+adubação, não é determinado, devido a sua grande robilida-
+de na solução do solo - sua disponibilidade estã relaciona
+da à um grupo de fatores, entre os quais destacaros e grau
+de unidade do solo e a úpoca do uno. Assin sendo, o teor
+encontrado na análise expressaria apenas o NM presente no
+monento da retirada da arostra.
+
+db) Para recomendação de adubação fosfatada (p,0,), na práti-
+ca, consideramos os níveis.
+
+O a10ppadeP = baixo
+Vade? - nédiobaino
+2a Np[deP o midio-aito
+Malorque 30 ppa de P - alto
+Níveis baixo e nódio-baixo: Tevan Py0, na dese igual ao do
+bro da dose de À
+a.
+
+--- PÁGINA 29 ---
+Nível nédio-alto: leva PO; na dose igual à netade da dose
+em
+Nível alto: não necessita Pz0,
+e) Aevbação potássica (1,0). Tasbên no prática, consideraros
+os níveis:
+0a As pondeK = baixo
+MIMO pp de K = nédio-taiso
+101 a ISO pan de K = cédicnatto
+Maior que 150 ppm de K = alto
+Níveis baixo e védio-baixo: levar K20 na dose igual so dor
+bro da dose de à
+Nível médio-alto: leva K,0 na dose igual à cetade da dose
+de
+Nível alto: não necessita Ke
+Dedos Adicionais
+
+9. Widrogênio trocável + Alunínio trocâvel
+
+e) Pesar 59 de TASA.
+
+b) Passar para erlenmeyers de 125 nl e juntar 75 01 de acets
+to de cálcio 1H, pH 7,1.
+
+€) Arrolhar imediatamente. Agiter algunas vezes Gurante o ia
+e deixar repousar por uma noite (não esquecer de dessanchar
+5 montículos que se formar: no centro dos erlenmeyers).
+
+(6) No dis seguinte pipetar, em tronpa de vácuo, 25 =l do 17 -
+quido sobrenadante, passando para becher de 106 nl.
+
+e) Titular com Nack 0,025 N, usando fenolftatefna a 17º como
+indicador (3 gotas). A titulação está conpleta quando o
+quido, antes incolor, apresenta una cor rsea que — deve
+ser conparada com a cor obtida na titulação do ensaio em
+branco
+
+..s-
+
+--- PÁGINA 30 ---
+Note: Não esquecer de deixar o ensaio em branco tanbês de um
+dia para e outro
+táteuto:
+
+O e 4 x 1468 = e/100 q de Nº a até?
+
+4 = teitura na bureta para a sostra
+
+4, = Teitura do ensaio em branco ne bureta
+
+1,66 = fator de correção (constante)
+
+Preporo dos resgentes
+Solução extratora: acetato de cálcio 1X, ph 7,1
+Mehze0o) 6a. ão PMS 7688 6
+Equivalente grana = 176188 = 68,004 q
+
+2
+
+Sotução 1 N = 88,1 gíiitro
+
+O pt geralente dá quase 8,0. Corrigir para pH 7,1
+(om ácido acético glacial, pingando gote a gota e agitando -
+con bastão de viéro até obter 6H 7,1 ou entre 7,0 6 7,1.
+MAD 0,025 N = o preparo está contido no item kt; reagentes
+
+para determinação de alunínio trocâvel.
+
+Fenoittatefna 4 1 '
+
+Pesor 1 grave de fenolítaleira e dissolver
+em 198 ml de álcool sbsoluto (toner um balão de 100 ml, seco;
+colocar à fenolftalefna é conpletar o volure). Solúvel — em
+álcool.
+
+Como os álcoois em sus maioria são acidifica
+dos, deve-se colocar ne solução preparada algunas gotas — de
+MSDN D,1 N. Se passar, isto é, se aparecer róseo, coloca-se
+(gotas (mais ou menos 10) de MEI 0,1 N até ficar novoente
+branco. Checar com igue destilada.
+
+MON O,1N = o preparo está contido no item t: reagentes
+...
+
+--- PÁGINA 31 ---
+para detervinação do alurírio trocóvel.
+MION - para o preparo de 1 litro:
+MEL 36,66 gro Excepto
+MEO, Ne 3,66 giro PRE 6
+densidade: ess
+isento tio = 372
+RENT
+xe 366 = 3,0638 el
+vs
+Títlo:
+1007 = 3,0638 mi/litro
+mes
+xe 30638 x 109 = B,2005 7 8,3 nlflitro
+”
+Torar 8,3 = de FCI, pessor pera talão de 1 litro
+é completar o volure.
+10. Sódio trocive
+Foi tratado no item 6, juntamente com posêscio tro
+cáver.
+V. cálcio trocável
+Apôs determinar o Ca"* + no" no extrato de solo ok,
+tido pelo ataque de 10 gde TESA com 198 nl de solução — KCK
+* AM, inclinar a bateria o pisetor cutra alíquota de 25 el
+Adicionar 3 mi eo KO 9 V5i e uns pitado (8 50 no)
+de murexida, ficance a solução cos uma cur râvea. Titular =
+com EDTA (sal dissódico) 9,025 N, dardo uro virages do róveo
+para o violeta.
+Notas:
+18) 0 OM à 102 tem de ser colocado imediatemente antes da ti,
+tulaçõo. Não se poce colocar KOCH em todos 06 erlenmeçers
+en.
+
+--- PÁGINA 32 ---
+(da bateria e depois titular.
+
+22) Como à viragem é dificil de ver, deve-se, no finsl, titu
+lar de 2 em 2 gotas, até verificar que não muda mais — a
+cor. A leitura na bureta corresponde ao teor de Cs”, em
+ENO 9.
+
+Preparo dos reagentes
+
+Mo a 10% = Tomar 100 g de KON, passar para balão de 1 1i-
+
+tro e completar o volume
+
+Murexida (indicador) - Pesar exatamente 100 mg de purpurato
+
+de amônio (surexida) e 20 g de K50,. Passar pare
+um gra! e triturar muito ben, até o total desapare-
+Cimento dos cristais de K50,. Guardar em frasco -
+escuro, bem fechado.
+
+EDTA 0,025 N - O preparo está contido no iten 3: reagentes
+
+para determinação de Ca” + no”.
+
+12. magnésio trocâvel
+
+Após a titulação do cálcio trocável, temos os da
+dos:
+
+Ca + mgtt (item 3) e ca? Cien 11)
+
+MT (ea an) cc
+13. Soma das bases trocóveis ou Valor 5
+
+seca ente N a! cs oresltado é dado
+(em mE/100 q (duas decinais).
+1%. Copocidade de troca de cotfons (CTC) ou Valor T
+
+TeSseNsat? - o resultado é dado em
+mE/100 q (duas decimais).
+
+15. Indice de saturação em bases ou Valor V
+
+V=100S - o resultado é dado em percentagem (nº
+T
+cn
+
+--- PÁGINA 33 ---
+Inteiro). Se a primeira decina) for S ou mais, ar
+redonda para cima. Se menor que 5, arredondar para baixo.
+16. Indice de seturação es alunínio trocáve!
+
+Saturação AI”? = 100 MIT? - o resultado é dado
+
+TT
+en percentagem (nt inteiro). Pera arredoncar, seguir o mes
+mo critério adotado acima (item 15)
+
+2.
+
+--- PÁGINA 34 ---
+ANALISE CE CALCARIOS
+
+O Leboratério pode fornecer os seguintes dados
+1. 4 de Caco, (ou Cao)
+2. % de faco, (ou ego)
+3. Resfévo insolóvel « não dosado
+4. Granuloetria
+5º oe
+6. Interpretação dos resultados
+
+Porêm, se à orostra em estudo for constitulda por
+fragnento de rocha, fica automaticamente excluída a possibili
+dade de se fornecer e granuloretria e en consequência — o
+PR
+
+METODOS DE ANÁLISE
+4. e 2. Determinação do Ca + Mg
+1º Teste para identificação do reterial, antes de ser aceito
+para análise:
+
+1) Sobre un pedaço linpo da rocha, colocar 1 gota de HC)
+concentrado. Efervescência denota presença de caleá -
+rio.
+
+| b) Se o materiol já vier finamente triturado, toner peque,
+na quantidade em um vidro de relógio, umedecer ligei-
+ramente e colocar | a 2 gotas de Cl concentrado. Se
+der efervescência, trata-se de calcário.
+2º a) Retira-se um fragaento da rocha (línpo), coloca-se em
+um gra! e tritura-se o nais finamente possível
+-n»-
+
+--- PÁGINA 35 ---
+») Se o calcário já veio triturado, ainda assim levar pe
+quena quantidade a ue gral e triturar até pulverização
+completa.
+
+3? Pesa-se exatamente (em balança de precisão) 1 grama — do
+mterial obtido.
+
+At Passa-se para becher de 300 ou 460 nl, junta-se 18 ml de
+água destilada e 3 nl de HC) concentrado.
+
+Para dissolução completa do calcário, levar ao fogo.
+€ muito raro que se dissolva todo sew essa providência;no
+entanto, se acontecer, não será necessário levar so fogo.
+
+5? Esfriar, passar para balão de 1 Nitro, lavando cuidadosa-
+mente o becher, o funil e o gargalo do balão, fazendo -
+com que as águas de levagen calar no interior deste. Com
+pletar o volune e horogeneizar bem.
+
+6º Tomar, em erlenveyer de 125 nl:
+
+10 nº do extrato
+
+30 ni de água destilada
+
+A ml de coquetel
+4 gotas de Ericchrone Black-T
+
+Titular com EDTA (sal dissódico) 0,02 N. Viragen do ró-
+
+seo para azul puro. Leitura-direta na bureta,
+
+Determinação do a
+
+En erlenseyer de 125 ml, tonar:
+
+10 51 do extrato
+
+30 nº de água destilada
+
+361 de KONA 10%
+1 pitada de murexida (É 50 mo)
+
+Titular com o messo EDTA (0,02 N). Viragen do ró-
+
+Seo para o violeta. Leitura direta na bureta.
+
+Moto: Viragem difícil de ver. Sabe-se o ponto exato quando,
+
+30 e colocar nais 2 gotas, não virar nais.
+
+-n-
+
+--- PÁGINA 36 ---
+Determinação do Ng
+Não é determinado diretamente, obtém-se por subtra
+ção: .
+Mom (ca an) o ca
+Preparo dos reagentes
+Coquetel - o preparo está contido no item 3 (Ca + Ng trocê-
+veis) do capítulo sobre análise de solos.
+Murexida e Eriochrose 8.7. (indicadores) - idem (item 3, aná
+Vise de solos).
+MON a 10% = Pesar 100 g de KOH, passar para balão de 1 1i =
+tro e conpletar o volume.
+EoTA 0,02 N = partindo do sal dissódico:
+PMS TR a52
+mol = 3722529
+Sol. 1 N = 32,252 = 186,126 g/Nitro
+2
+nn = 86,126 g/Iitro
+ONO
+ne 186,126 x 0,02 = 3,72252 g/1itro
+(Com à pureza de 993:
+LTASP A OO = 3TR2S2 = 3,760 gUIitro
+” ”
+Toma-se 3,760 gramas de EDTA, passa-se para bar
+Vão de 1 litro e conpleta-se o volume
+Checar com 2 el de uma solução Caco, 0,05 H =
+(= 0,1 N) cujo preparo está contido no item 3 do
+capítulo sobre análise de solos.
+Para titular o EDTA 0,1 N, gastando 10 nl, tomar
+mos 10 ml da solução Caco, 0,05 mou 0,1 N.
+-n-
+
+--- PÁGINA 37 ---
+Para titelar o EDTA 0,02 N (= 9,01 H), gastando
+10 nl, tonaros:
+DORENTE
+DXEER
+STTERITEIT)
+CET
+Procedimento - em erlensezer de 125 ml, colo -
+2 mn de solução Cato, 0,05 n
+4 71 de coquetel
+30 6) de água destiada
+4 goras de Eriochrone B.T.
+AA titelação deve consunir exatamente 10 ml da so
+Iução 0,02 N EDTA. Se consumir mais, ir acrescentando pita -
+das de EDTA, até acertar o título.
+Cálculos - Varos supor que o resultado da análise seja:
+6a + ng= 9 nE/NOO q
+6a = 5,0 nE/100 q
+Mg = NA E/100 9
+Para o cálculo da percentage, a fórmula geral:
+res ga
+Valência x 10º
+4 = nE/100 gx PH, porque titulaos com | EDTA
+7
+0,02 N. O denominador 19, neste caso, deve-se
+o fato de terros tomado 10 nl da solução — de
+enlcário para titular.
+ou simplificando:
+Xe sE/0D gxPN = S,0x 100 = 50% de CACO,
+o 7
+o
+
+--- PÁGINA 38 ---
+6. Equivalente de Caco, = 3 Caco, + (éMsco, x 1,19). Noca
+46 em estudo:
+q. Caco, = 508 + (37% x 1,19) = 50 + 44 = 94% eq. de Caco,
+Varos supor que esse mesmo calcário apresentou os
+seguintes dados na
+Grarulometria = 8 malhas/polegada ou maior — 2%
+FD) s*
+20-60 20%
+60 ou renor 6
+PRNT = (2 x 0,0)4(S x 0,2)+(30 x 0,6)+(63 x 1,0).0,54 =
+nem
+Então, para um recomendação de calcário deve-se
+plicar, para cada tonelada:
+A,0 = 1,298 2 1,3 toneladas do calcário em apreço.
+7
+-s-
+
+--- PÁGINA 39 ---
+BIBLICORATIA
+
+International Soil Testing. 1966, Annual Report. — Contract
+AID/csd-287. North Carolina State University, Raleigh.
+
+Jackson, N.L. 196%. Análicis quínicos de suelos. Ediciones -
+sega, S.A. ,farcelons.
+
+Meyer, T.A. 6 Volk, G.M. 1952. The effect of particle size
+164 lirestone on soil reaction, exchangeable cations — and
+plant grovth. Soil Sclence 73: 37-52.
+
+Methods of soil analysis. Vol. 1-2. American Society of Agro
+mony, Madison, Wisconsin.
+
+Person, R.V. é Adams, F. 1967. Soil ecidity and liming. Agro
+momy 12. American Society of Agronomy, Madison, Wisconsin.
+
+Pierre, M.H., Poniman, 6.6. & Mellvaine, T.C. 1932. Soluble
+aluninun studies: 1. The concentration of aluninun in the
+displaced soil solution of naturaliy acid soils. — Sol!
+Science 34: 145-160.
+
+Molkwelss, S.J. 6 Ludrick, AE. 1969. Escolha do corretivo da
+acidez do solo. Folheto nº 2. Faculdade de Agronomia e Ve-
+terinária da Universidade Federal do Rio Grande do Sul
+
+co

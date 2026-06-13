@@ -1,0 +1,141 @@
+---
+documento_id: DOC_SOLO_IDR_001
+titulo: Nota Técnica 008/2023 - Manejo do solo
+instituicao: IDR-Paraná
+autores: 
+ano: 2023
+url_original: https://www.idrparana.pr.gov.br/system/files/publico/Publica%C3%A7%C3%B5es/Notas%20T%C3%A9cnicas/NotaTecnica008_2023ManejoSolo.pdf
+arquivo_original: originais/idr_parana/DOC_SOLO_IDR_001.pdf
+sha256: 7a12a8791e29409980ee6308d048e94795b8c4026086b9885b3a12df9ef8a027
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Rua da Bandeira, nº 500 | Cabral | Curitiba/PR | CEP 80035-270
+Manejo conservacionista do solo agrícola no Paraná: recomendações técnicas
+em época de ocorrência de chuvas intensas e volumosas
+NOTA TÉCNICA nº 008/2023 Curitiba, 01 de dezembro de 2023
+Os meses de setembro e outubro de 2023, época de intensa atividade de plantio na
+maioria das áreas agrícolas do Paraná, foram marcados por chuvas volumosas em
+todo o Estado (Figuras 1 e 2). Em outubro, áreas do Sudoeste e Sul registraram
+acumulados superiores a 600 mm, valores muito acima das médias históricas para
+estas regiões, da ordem de 114% e 134%, respectivamente. Nas demais regiões,
+embora o acumulado de chuvas não tenha sido expressivo, foi observado também a
+ocorrência frequente de chuvas de grande intensidade, com valores acima de 100
+mm/h, com alto potencial erosivo. Estas chuvas de alta intensidade
+estão sendo
+registradas com frequência cada vez maior no estado do Paraná, independentemente
+da ocorrência ou não dos eventos climáticos El Niño ou La Niña.
+Neste ano, estes eventos de chuvas intensas e volumosas estão relacionados ao
+fenômeno El Niño, que é um evento natural caracterizado pelo aquecimento acima da
+média (>0,5
+o
+C) das águas do Oceano Pacífico na sua porção equatorial, ocasionando
+modificação no padrão de circulação atmosférica sobre o Pacífico, alterando
+a
+distribuição de umidade e as temperaturas em várias áreas do planeta e ocasionando
+chuvas intensas e volumosas no sul do Brasil.
+Chuvas de elevada intensidade, como as ocorridas nesses dois meses, impactam os
+sistemas de produção agropecuários, especialmente os solos agrícolas, pois o ciclo da
+água nos ambientes terrestres é dependente dos solos. Na relação solo-água, parte da
+água precipitada poderá infiltrar, ficando armazenada nas camadas do solo
+e,
+posteriormente, sendo translocada de volta à atmosfera por evapotranspiração ou
+percolada até as camadas mais profundas. Outra fração dessa água pode escorrer
+superficialmente quando da ocorrência de precipitações de grande volume
+e
+intensidade, ocasionando arraste de partículas de solo e demais componentes do
+sistema de produção, como matéria orgânica, fertilizantes e pesticidas, sementes e
+outros, causando, consequentemente, processos erosivos e contaminação dos cursos
+de água. Portanto, o manejo adequado do solo agrícola com a adoção de práticas
+conservacionistas é determinante para a dinâmica da relação água/solo.
+Neste contexto, o IDR-Paraná tem verificado diversos problemas nos
+principais
+sistemas de produção agropecuários praticados no Paraná, a utilização de solos de
+baixa aptidão agrícola e suscetíveis aos processos erosivos; o preparo do solo (plantio
+convencional ou escarificação) que proporciona a desestruturação do solo e facilita o
+selamento superficial e seu arraste; a ausência de cobertura do solo (palha
+na
+superfície), o que favorece a desestruturação da camada superficial do solo e o seu
+selamento, com redução da infiltração da água no solo e o consequente aumento do
+
+--- PÁGINA 2 ---
+Rua da Bandeira, nº 500 | Cabral | Curitiba/PR | CEP 80035-270
+escorrimento superficial; a aplicação de carga excessiva (máquinas ou animais) em
+períodos em que o solo apresenta maior propensão a sua deformação (solos úmidos) e
+consequentemente, aumento de compactação; a ausência de práticas
+mecânicas
+(terraços agrícolas e semeadura em nível) que reduzem a energia da enxurrada
+superficial; a sucessão de culturas; a ausência de cultivos com espécies que produzam
+grande quantidade de fitomassa aérea e radicular, que ocasiona a compactação dos
+solos, reduzindo a infiltração da água; a falta de integração das
+práticas
+conservacionistas entre as áreas agrícolas e as estradas rurais, o que intensifica o mal
+manejo de água, aumentando a possibilidade de erosão.
+Esse manejo inadequado é observado na maioria das áreas de lavouras e pastagens
+do Paraná. Conjuntamente com a recorrência de precipitações de alta intensidade,
+estes dois fatores têm agravado a ocorrência dos processos erosivos verificados nos
+últimos meses. A redução da infiltração da água no solo e a ausência de práticas
+mecânicas de controle da enxurrada estão contribuindo para que grande volume de
+água seja direcionado aos recursos hídricos em curtos períodos de
+tempo,
+ocasionando enchentes.
+Não só as comunidades rurais, mas também a população urbana é afetada devido a
+estragos nas estradas rurais e rodovias, pois estas são comumente utilizadas como
+canais escoadouros das enxurradas, com destruição do pavimento, bueiros e pontes
+(muitas vezes ocasionando a interdição de rodovias), com desmoronamento
+de
+encostas e alagamentos de áreas urbanas (problemas sociais), e o assoreamento e
+perda de qualidade dos recursos hídricos (problemas ambientais).
+O IDR-Paraná reitera a necessidade contínua do uso de práticas conservacionistas do
+solo para minimizar os prejuízos nas lavouras e pastagens, principalmente quando se
+tem chuvas de altas intensidades. Reitera a necessidade de manejar o solo em sistema
+plantio direto (para preservar a sua estrutura); uso de terraços agrícolas
+bem
+dimensionados (para conter o escoamento superficial e reduzir a velocidade da água) e
+permitir o armazenamento da água nos canais, e posterior infiltração no
+solo;
+manutenção da cobertura permanente do solo (para proteção da superfície contra a
+erosividade da chuva); adoção da rotação de culturas (para aumentar a diversidade de
+plantas e infiltração de água); plantio em nível (para aumentar a rugosidade
+do
+terreno); controle do tráfego de máquinas e/ou animais (para reduzir a compactação);
+integração no planejamento e conservação das estradas e áreas agrícolas para evitar
+que a água das lavouras prejudiquem as estradas e vice versa.
+Vale lembrar que, para proteger os agricultores e sociedade em geral dos prejuízos da
+degradação dos solos e da água, o Paraná possui uma lei específica sobre
+a
+preservação do solo agrícola (Lei Estadual 8.014/1984), que valoriza a importância do
+solo para a produção agrícola, a necessidade de sua preservação e do uso das
+práticas conservacionistas preconizadas e prevê penalidades no caso da ocorrência de
+degradação do solo agrícola pelos seus usuários.
+
+--- PÁGINA 3 ---
+Rua da Bandeira, nº 500 | Cabral | Curitiba/PR | CEP 80035-270
+O IDR-Paraná ressalta ainda que, segundo os modelos meteorológicos, o El Niño tem
+alta probabilidade de se manter atuante até o inverno de 2024. Desta forma são
+esperadas chuvas volumosas e intensas para os próximos meses para o sul do Brasil,
+principalmente para o Rio Grande do Sul e Santa Catarina.
+O produtor deve estar preparado com manejo adequado dos solos para minimizar a
+ocorrência de processos erosivos e suas consequências, de modo a aumentar a
+quantidade de água armazenada no solo para também se proteger das estiagens que
+têm ocorrido com mais frequência e evitar a perda do seu maior patrimônio – o SOLO.
+Equipe Técnica
+Arnaldo Colozzi Filho - IDR-Paraná/SEAB
+Celso Daniel Seratto - IDR-Paraná/SEAB
+Edivan José Possamai - IDR-Paraná/SEAB
+Graziela Moraes de Cesare Barbosa - IDR-Paraná/SEAB
+Pablo Nitsche - IDR-Paraná/SEAB
+Richard Golba - IDR-Paraná/SEAB
+Anexo
+
+--- PÁGINA 4 ---
+Rua da Bandeira, nº 500 | Cabral | Curitiba/PR | CEP 80035-270
+Figura
+1.
+Precipitação (mm) registrada em setembro de 2023 no Paraná. Fonte: IDR-Paraná e
+Simepar.
+Figura
+2.
+Precipitação (mm) registrada em outubro de 2023 no Paraná. Fonte: IDR-Paraná e
+Simepar.

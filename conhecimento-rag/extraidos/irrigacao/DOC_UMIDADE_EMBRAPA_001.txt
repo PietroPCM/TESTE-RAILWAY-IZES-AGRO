@@ -1,0 +1,665 @@
+---
+documento_id: DOC_UMIDADE_EMBRAPA_001
+titulo: Determinação simplificada da umidade do solo visando o manejo de irrigação em Hortaliças
+instituicao: Embrapa
+autores: BRAGA, M. B.; GUEDES, I. M. R.; SILVA, J. da; LIMA, C. E. P.; BRAGA, M. B.; GUEDES, I. M. R.; SILVA, J. da; LIMA, C. E. P.
+ano: 2018
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1093695/1/BPD155.pdf
+arquivo_original: originais/embrapa/DOC_UMIDADE_EMBRAPA_001.pdf
+sha256: e8fc50dcb01a3a0e69e075cc2bf1125bd1016c7174cbf41fbd2b1b5e7777019e
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Determinação Simplificada da Umidade do Solo
+Visando o Manejo de Irrigação em Hortaliças
+BOLETIM DE
+PESQUISA E
+DESENVOLVIMENTO
+155
+ISSN 1677-2229
+Julho, 2018
+
+--- PÁGINA 2 ---
+
+
+--- PÁGINA 3 ---
+Embrapa Hortaliças
+Brasília, DF
+2018
+Determinação Simplificada da Umidade do Solo
+Visando o Manejo de Irrigação em Hortaliças
+Marcos Brandão Braga
+Italo Moraes Rocha Guedes
+Juscimar da Silva
+Carlos Eduardo Pacheco Lima
+BOLETIM DE PESQUISA E DESENVOLVIMENTO
+155
+ISSN 1677-2229
+Julho, 2018
+Empresa Brasileira de Pesquisa Agropecuária
+Embrapa Hortaliças
+Ministério da Agricultura, Pecuária e Abastecimento
+
+--- PÁGINA 4 ---
+Determinação simplificada da umidade do solo visando o manejo de irrigação
+em hortaliças / Marcos Brandão Braga ... [et al.]. - Brasília, DF: Embrapa
+Hortaliças, 2017.
+25 p. : il. color. ; 21 cm x 27 cm. (Boletim de Pesquisa e Desenvolvimento /
+Embrapa Hortaliças, ISSN 1677-2229 ; 155).
+1. Umidade do Solo. 2. Irrigação. 3. Hortaliça. I. Braga, Marcos Brandão. II.
+Guedes, Ítalo Moraes Rocha. III. Silva, Juscimar da. IV. Lima, Carlos Eduardo
+Pacheco. V. Embrapa Hortaliças. VI. Série.
+CDD 631.7
+Exemplares desta publicação podem ser adquiridos na
+Embrapa Hortaliças
+Rodovia BR-060, trecho Brasília-Anápolis, km 9
+Caixa Postal 218
+Brasília-DF
+CEP 70.351-970
+Fone: (61) 3385.9000
+Fax: (61) 3556.5744
+www.embrapa.br/fale-conosco/sac
+www.embrapa.br
+Todos os direitos reservados.
+A reprodução não autorizada desta publicação, no todo ou em parte,
+constitui violação dos direitos autorais (Lei nº 9.610).
+Dados Internacionais de Catalogação na Publicação (CIP)
+Embrapa Hortaliças
+© Embrapa, 2018
+Comitê Local de Publicações
+da Embrapa Hortaliças
+Presidente
+Jadir Borges Pinheiro
+Editora Técnica
+Mariana Rodrigues Fontenelle
+Secretária
+Gislaine Costa Neves
+Membros
+Carlos Eduardo Pacheco Lima
+Raphael Augusto de Castro e Melo
+Ailton Reis
+Giovani Olegário da Silva
+Iriani Rodrigues Maldonade
+Alice Maria Quezado Duval
+Jairo Vidal Vieira
+Rita de Fátima Alves Luengo
+Supervisora Editorial
+Caroline Pinheiro Reyes
+Normalização bibliográfica
+Antônia Veras de Souza
+Tratamento das ilustrações
+André L. Garcia
+Projeto gráfico da coleção
+Carlos Eduardo Felice Barbeiro
+Editoração eletrônica
+André L. Garcia
+Foto da capa
+Marcos Brandão Braga
+1ª edição
+1ª impressão (2018): 1.000 exemplares
+Antonia Veras de Souza (CRB 1/2023)
+
+--- PÁGINA 5 ---
+Sumário
+Resumo ...................................................................................... 7
+Abstract ...................................................................................... 8
+Introdução ................................................................................... 9
+Material e Métodos ................................................................... 11
+Resultados e Discussão ........................................................... 13
+Conclusões ............................................................................... 18
+Referências .............................................................................. 18
+
+--- PÁGINA 6 ---
+
+
+--- PÁGINA 7 ---
+Determinação Simplificada da Umidade do Solo
+Visando o Manejo de Irrigação em Hortaliças
+Marcos Brandão Braga
+1
+Italo Moraes Rocha Guedes
+2
+Juscimar da Silva
+3
+Carlos Eduardo Pacheco Lima
+4
+Resumo – Este trabalho teve como objetivo adequar uma metodologia
+de baixo custo e de fácil manuseio para a determinação da umidade do
+solo para fins de manejo de irrigação no cultivo de hortaliças. Para tanto,
+foram coletadas amostras de solo na área de cultivo com hortaliças na
+área experimental da Embrapa Hortaliças-DF e no Instituto Federal Goiano
+(IFGO ) campus do Morrinhos-GO em 2013. As amostras foram levadas
+ao laboratório de irrigação da Embrapa Hortaliças, onde foram realizados
+os testes e as adaptações da metodologia. Os resultados mostraram que a
+metodologia adaptada apresentou boa precisão e fácil manuseio.
+Termos para indexação: água no solo, método das pesagens, manejo de
+água.
+1
+Engenheiro-agrônomo, doutor em Irrigação, pesquisador da Embrapa Hortaliças, Brasília, DF
+2
+Engenheiro-agrônomo, doutor em Solos e Nutrição de Plantas, pesquisador da Embrapa Hortaliças, Brasília,
+DF
+3
+Engenheiro-agrônomo, doutor em Solos e Nutrição de Plantas, pesquisador da Embrapa Hortaliças, Brasília,
+DF
+4
+Engenheiro ambiental, doutor em Solos e Nutrição de Plantas, pesquisador da Embrapa Hortaliças, Brasília,
+DF
+7
+
+--- PÁGINA 8 ---
+8 BOLETIM DE PESQUISA E DESENVOLVIMENTO 155
+Simplified Determination of Soil Moisture for
+Irrigation Management in Vegetables
+Abstract – This study aimed to adapt a low-cost and easy methodology to
+determine and estimate soil moisture in irrigated cultivation of vegetables. For
+this purpose, soil samples were collected in the cultivation areas at Embrapa
+Hortaliças-DF and at Instituto Federal Goiano (IFGO) Morrinhos-GO campus
+in 2013. The samples were taken to the irrigation laboratory of Embrapa
+Hortaliças where tests of the methodology and its adaptations to the two
+areas were carried out. The results showed that the adapted methodology
+obtained good accuracy and is easy to handle.
+Index terms : Water content in soil; irrigation management; weighing method.
+
+--- PÁGINA 9 ---
+9 Determinação Simplificada da Umidade do Solo Visando o Manejo de Irrigação em Hortaliças
+Introdução
+O monitoramento regular da umidade do solo (Us) é fator primordial para o
+manejo racional da água de irrigação, tanto para estabelecer o momento de
+irrigar quanto para determinar a lâmina de água a ser aplicada. Ao longo do
+tempo foram desenvolvidas diversas metodologias e equipamentos para a
+determinação da umidade do solo, que define o teor de água existente no
+solo. Entre eles, existe grande variação de precisão, de custo e praticidade.
+Entre os métodos para determinação da umidade do solo, o gravimétrico
+direto (padrão de estufa) é o mais preciso e utilizado como padrão para a
+calibração de outros métodos (Bernardo et al., 2006). Por meio desse método,
+o teor de água no solo é determinado de forma direta e seu valor expresso
+em percentagem de umidade em massa (base seca - massa de água/massa
+de solo) ou em volume (base volumétrica – volume de água/volume de solo).
+Porém, Klaus e Timm (2012) assim como Marouelli et al. (2011) relatam que
+o principal fator limitante do método gravimétrico direto para fins de manejo
+de irrigação é não permitir que a umidade do solo seja determinada de forma
+rápida, pois requer balança de precisão e um tempo em estufa de secagem,
+com tempo que pode varia de 24 a 72 horas, a depender do tipo de solo, para
+a obtenção do resultado final. Esse intervalo é, em geral, demasiadamente
+longo para a tomada de decisão sobre quando e quanto irrigar, principalmente
+em cultivos de hortaliças que muitas vezes requerem uma ou mais irrigações
+por dia.
+Para maior agilidade na estimativa da umidade do solo existem atualmente
+no mercado diversos equipamentos e sensores, tais como blocos de gesso
+(resistência elétrica); reflectometria no domínio do tempo (TRD), sensores
+capacitivos (constante dielétrica); sonda de nêutrons (moderação de
+nêutrons); o tensiômetro e o Irrigas
+®
+(retenção de água no solo) (Klaus e
+Timm, 2006; Marouelli et al., 2011). Um dos equipamentos mais difundidos
+no mundo é o tensiômetro, porém seu uso exige que se conheça o
+funcionamento do equipamento e bastante habilidade no seu manuseio, o
+que tem limitado sua adoção por parte de muitos produtores irrigantes, como
+relatam Braga e Calgaro (2010). Um outro equipamento utilizado, o Irrigas
+®
+,
+é uma tecnologia bastante simples e acessível, mas sua precisão depende
+
+--- PÁGINA 10 ---
+10 BOLETIM DE PESQUISA E DESENVOLVIMENTO 155
+muito do manuseio e sua instalação na lavoura requer cuidados semelhantes
+àqueles do tensiômetro.
+Ainda que alguns equipamentos forneçam leituras diretas de umidade do
+solo, as mesmas são estimadas indiretamente, pelo próprio equipamento, a
+partir de propriedades do solo relacionadas a sua capacidade de retenção de
+umidade pelo solo. Por ser a umidade determinada indiretamente, a utilização
+de tais tipos de equipamentos está associada à necessidade de calibrações,
+realizadas com o intuito de incrementar a precisão nas estimativas da
+umidade, e são realizadas para condições particulares de cada solo (Costa
+et al., 2014).
+O uso de calibrações genéricas de equipamentos vindo da fábrica deve ser
+evitado, pois pode acarretar erros significativos na determinação da umidade
+do solo. Ademais a grande maioria desses equipamentos apresenta alto
+custo unitário, além de a maioria exigir a instalação de vários sensores por
+área e requerer mão-de-obra qualificada (Marouelli et al., 2011).
+Um dos equipamentos mais difundidos no mundo é o tensiômetro, porém seu
+uso exige conhecimento dos princípios de funcionamento e habilidade no
+seu manuseio, o que tem limitado sua adoção por parte de muitos produtores
+irrigantes, como relatam Braga e Calgaro (2010). Outro equipamento bastante
+utilizado é o Irrigas
+®
+pois é uma tecnologia bastante simples e acessível, mas
+sua precisão depende muito do manuseio e sua instalação na lavoura requer
+cuidados semelhantes àqueles do tensiômetros. Ressalta-se também que
+o Irrigas
+®
+não permite uma estimativa adequada do teor de água no solo,
+essencial para determinar a quantidade de água a ser aplicado à área por
+ciclo de irrigação.
+Marouelli et al. (2011) relatam que a maioria das tecnologias para o manejo
+da água de irrigação são dispendiosas, complexas e trabalhosas, e que os
+equipamentos para a medição da umidade do solo são de difícil adoção pela
+maioria dos produtores. Além disso, boa parte dos equipamentos presentes
+no mercado não está prontamente acessível a grande maioria dos produtores
+de hortaliças (Marouelli et al., 2008).
+Klar et al. (1966), citados em Klar (1984), propuseram uma metodologia
+que permite estimar a umidade do solo baseado no conhecimento de que
+
+--- PÁGINA 11 ---
+11 Determinação Simplificada da Umidade do Solo Visando o Manejo de Irrigação em Hortaliças
+quanto maior o teor de água em uma amostra de solo, menos água será
+necessária para preencher um determinado volume de controle e vice-versa.
+Esta metodologia, chamada de método das pesagens, tem mostrado boa
+precisão embora seja passível de melhorias, principalmente pela utilização
+de recursos não disponíveis à época em que foi desenvolvida. Ao contrário
+do método padrão de estufa, possibilita que a umidade do solo seja estimada
+logo após a retirada da amostra (Klar, 1984). O método das pesagens,
+conforme proposto por Klar et al. (1966), requer o uso de balança de alta
+precisão e pode apresentar erros significativos na determinação da umidade
+de solos caso não se corrija os valores da densidade de partículas do solo
+(Dp), normalmente usa-se 2,65 g/cm
+3
+.
+O objetivo do presente trabalho foi adaptar o método das pesagens utilizando-
+se recursos tecnológicos ausentes na metodologia original, visando dar maior
+praticidade à determinação da umidade do solo, possibilitando determinações
+rápidas e de fácil utilização pelo produtor, além de possibilitar uma precisão
+suficiente para a realização de um manejo adequado da irrigação.
+Material e métodos
+Os trabalhos foram realizados na Embrapa Hortaliças, Distrito Federal, Brasil,
+e também no Instituto Federal Goiano (IFGO) campus Morrinhos-GO, nos
+anos de 2012 e 2013. Os solos utilizados nos estudos foram classificados
+como Latossolo Vermelho distrófico típico (Embrapa Hortaliças) e Latossolo
+Vermelho escuro (Morrinhos-GO), fase cerrado (Santos et al., 2006) que
+apresentaram classes texturais variando entre franco argilosa, argila, a muito
+argilosa (Tabela 1).
+Primeiramente, foram coletadas seis amostras de solo nas profundidades de
+0,10 m, 0,20 m, 0,30 m e 0,40 m, totalizando 24 amostras, em uma área de
+cultivo de repolho de aproximadamente 0,5 ha na Embrapa Hortaliças e de
+2000 m
+2
+de cultivo com tomate indústria no IFGO - campos Morrinhos-GO.
+As amostras de solo foram retiradas e homogeneizadas no próprio campo
+formando amostras compostas de mesma profundidade, posteriormente
+foram acondicionadas em sacos plásticos de 2,0 kg. Cada amostra composta
+foi resultante da mistura de seis amostras simples retiradas em pontos
+
+--- PÁGINA 12 ---
+12 BOLETIM DE PESQUISA E DESENVOLVIMENTO 155
+distintos da área, conforme recomendado por Claessen (1997). As amostras
+compostas foram transportadas ao Laboratório de Irrigação da Embrapa
+Hortaliças, onde uma pequena parte de cada amostra composta (alíquota)
+foram colocadas em latas de alumínio, pesadas e posteriormente levadas a
+estufa com temperatura entre 105
+o
+C a 110
+o
+C por 48 horas. Outras alíquotas
+foram coletadas para determinação da densidade do solo (Ds), conforme
+metodologia descrita em Claessen (1997).
+Após a secagem das amostras, utilizou-se o método das pesagens (Klar et
+al.,1966) para se estabelecer os padrões de massa (pm) para cada profundidade
+do solo estudada, conforme metodologia descrita em Klar (1984) e Bernardo et
+al., (2006), sendo utilizado para tanto uma balança com duas casas decimais
+e precisão de 0,01 g, uma garrafa de vidro de 250 mL tipo “long neck”, em
+substituição ao erlenmeyer normalmente utilizado, e água de torneira.
+Para validação do modelo adaptado foram coletadas doze amostras simples
+de solo de maneira aleatória, na mesma área coletada anteriormente,
+Tabela 1. Composição granulométrica e classe textural dos solos da área experimental
+da Embrapa Hortaliças e do IFGO – Morrinhos-GO, nas diferentes profundidades
+amostradas. Brasília-DF.
+Solo Embrapa Hortaliças
+Profundidade (m)
+0,10 0,20 0,30 0,40
+Argila (%) 68,2 59,9 66,3 58,8
+Silte (%) 18,9 27,1 21,1 28,7
+Areia fina (%) 5,2 5,4 5,3 5,1
+Areia grossa (%) 7,7 7,6 7,3 7,4
+Classe textural
+Muito
+argiloso
+Argila
+Muito
+argiloso
+Argila
+Densidade solo (g/cm
+3
+) 1,0 1,0 1,1 1,15
+Solo IFGO – Morrinhos
+Profundidade (m)
+0,10 0,20 0,30 0,40
+Argila (%) 28,4 28,9 36,2 47,4
+Silte (%) 32,5 32,1 27,4 17,4
+Areia fina (%) 22,4 24,9 23,9 22,2
+Areia grossa (%) 16,7 14,1 12,4 13,0
+Classe textural
+Franco
+argilosa
+Franco
+argilosa
+Franco
+argilosa
+Argila
+Densidade solo (g/cm
+3
+) 1,31 1,28 1,22 1,07
+
+--- PÁGINA 13 ---
+13 Determinação Simplificada da Umidade do Solo Visando o Manejo de Irrigação em Hortaliças
+totalizando três amostras simples em cada uma das quatro profundidades.
+Para efeito de comparação, partes das amostras foram acondicionadas em
+latas de alumínio, pesadas e em seguida levadas a estufa para determinação
+da umidade gravimétrica pelo método padrão (Ubg). As umidades com base
+em volume (Ubv) foram determinadas através do produto entre Ubg e Ds
+(densidade aparente do solo), das referidas profundidades.
+Posteriormente, com o auxílio de programas computacionais de planilhas
+eletrônicas foram geradas tabelas e as equações para a estimativa da umidade
+do solo. Estas foram aplicadas em duas situações: em um campo com cultivo
+de repolho na Embrapa Hortaliças, e outro com tomate tipo indústria na área
+experimental do IFGO-Morrinhos-GO. Para a validação de campo foram
+gerados dois kits práticos compostos de: garrafa de vidro de 250 mL (tipo
+long neck), garrafa de plástico para armazena água e uma balança digital de
+precisão (0,1g) de pequeno porte e capacidade máxima de 500 g.
+Resultados e discussão
+Nas Figuras de 1 a 4 observam-se os pontos amostrados com as equações
+de ajustes que estimam a umidade do solo nas profundidades de 0,10 m;
+0,20 m; 0,30 m e 0,40 m, para as condições edáficas de solo da Embrapa
+Hortaliças-DF. Já as Figuras 5 a 8 mostram as mesmas relações, porém para
+o solo de cultivo no IFGO em Morrinhos-GO.
+Figura 1. Relação umidade do solo
+versus peso da garrafa com solo e
+água, na profundidade de 0,10 m (Solo
+Embrapa Hortaliças).
+Figura 2. Relação umidade do solo
+versus peso da garrafa com solo e
+água, na profundidade de 0,20 m (Solo
+Embrapa Hortaliças).
+
+--- PÁGINA 14 ---
+14 BOLETIM DE PESQUISA E DESENVOLVIMENTO 155
+Figura 3. Relação umidade do solo
+versus peso da garrafa com solo e
+água, na profundidade de 0,30 m.
+(Solo Embrapa Hortaliças).
+Figura 4. Relação umidade do solo
+versus peso da garrafa com solo e
+água, na profundidade de 0,40 m.
+(Solo Embrapa Hortaliças).
+Figura 5. Relação umidade do solo
+versus peso da garrafa com solo e
+água, na profundidade de 0,10 m (Solo
+IFGO – Morrinhos).
+Figura 6. Relação umidade do solo
+versus peso da garrafa com solo e
+água, na profundidade de 0,20 m
+(Solo IFGO – Morrinhos).
+Figura 7. Relação umidade do solo
+versus peso da garrafa com solo e água,
+na profundidade de 0,30 m (Solo IFGO
+– Morrinhos).
+Figura 8. Relação umidade do solo
+versus peso da garrafa com solo e
+água, na profundidade de 0,40 m
+(Solo IFGO – Morrinhos).
+Umidade do solo (%)
+Umidade do solo (%)
+Umidade do solo (%)
+Umidade do solo (%)
+
+--- PÁGINA 15 ---
+15 Determinação Simplificada da Umidade do Solo Visando o Manejo de Irrigação em Hortaliças
+Ressalta-se que, para as condições do solo da Embrapa Hortaliças, para as
+profundidades de 0,10 m e 0,20 m, a densidade do solo (Ds) foi igual a 1,0
+g/cm
+3
+, e por isso uma mesma equação explica tanto a umidade em base
+de peso (umidade gravimétrica - Ubg) como a em base de volume (Ubv).
+Como a Ds para as profundidades de 0,30 cm e 0,40 m foram iguais a 1,1 g/
+cm
+3
+e 1,15 g/cm
+3
+, respectivamente, as curvas de ajustes para umidade em
+base de volume (Ubv) e em base de peso (Ubg) não coincidiram, sendo,
+portanto, diferentes (Figura 4 e 5). Já para as condições edáficas do IFGO em
+Morrinhos-GO as curvas e equações geradas foram diferentes entre si, para
+as Ubg e Ubv, uma vez que os valores das densidades do solo (Ds) ao longo
+do perfil foram distintas.
+De maneira geral, para todos as profundidades e tipos de solo, foi possível
+obter bom ajuste das equações, fato mostrado pelos valores de coeficientes
+de determinação (R
+2
+) muito próximo de 1, ressaltando que os modelos
+gerados conseguiram explicar os valores observados. Demonstrando que
+com o auxílio das equações pode-se estimar, com boa precisão, a umidade
+do solo, tanto em base volume (Ubv) como em base de peso (Ubg).
+As Tabelas 2 e 3 mostram os resultados das amostras de solo coletadas para
+validação da metodologia proposta, usando as equações de ajustadas para
+cada situação. Nota-se que os valores das percentagens dos erros, dada
+relação da umidade gravimétrica estimada com auxílio das equações, foram
+todos inferiores a 5% (0,05) mostrando que a metodologia usada possui boa
+precisão na estimativa da umidade do solo.
+(continua)
+Tabela 2. Relação entre umidade gravimetria (Ubg) obtida usando o método padrão
+de estufa (MPE) e o método das pesagens proposto, para a condição da Embrapa
+Hortaliças – campo produção de repolho. Brasília-DF.
+Profundidade
+(m)
+(1)
+Ubg
+(Mpd)
+(%)
+Peso
+(G+Solo+água)
+(g)
+(2)
+Ubg Eq.
+(Mpes)
+(%)
+Erro Equações
+(%)
+0,10 34,42 467,59 34,36 0,06
+0,10 34,56 467,85 33,66 0,90
+0,10 34,47 468,02 33,21 1,26
+
+--- PÁGINA 16 ---
+16 BOLETIM DE PESQUISA E DESENVOLVIMENTO 155
+O método não interfere nas práticas agrícolas do cultivo, uma vez que a
+prática a ser realizada é somente de tirar amostras de solo na profundidade
+efetiva do sistema radicular da planta, sem deixar nenhum equipamento no
+campo. Esse método permite não só a tomada de decisão de quando irrigar,
+mas também quanto irrigar, ou seja, possibilita calcular a lâmina de irrigação
+a ser aplicada, usando para isso as equações propostas em Bernardo et al.
+(2006).
+Com o auxílio das equações obtidas do método das pesagens pode-se
+gerar tabelas correlacionado valores das pesagens das amostras (peso da
+garrafa contendo solo e água) com a umidade do solo, para a profundidade
+amostrada, possibilitando assim a tomada de decisão por parte do irrigante
+de maneira mais fácil.
+Tabela 2. Continuação.
+(1)
+Ubg (Mpd) é a umidade gravimétrica pelo método padrão de estufa;
+(2)
+Ubg Eq. (Mpes) é a umidade
+gravimétrica estimada pelas equações geradas pelo método das pesagens.
+G + solo + água = peso da garrafa com 100 g do solo e cheia com água.
+Média 34,48 467,82 33,74 0,74
+0,20 34,56 467,69 34,10 0,46
+0,20 34,12 467,88 33,59 0,53
+0,20 34,20 467,35 35,02 -0,82
+Média 34,29 467,64 34,23 0,06
+0,30 35,73 468,07 34,04 1,69
+0,30 35,38 468,01 34,21 1,17
+0,30 35,45 468,00 34,23 1,22
+Média 35,52 468,03 34,15 1,37
+0,40 36,06 467,55 36,42 -0,36
+0,40 36,06 467,45 36,69 -0,63
+0,40 35,95 467,53 36,47 -0,52
+Média 36,02 467,51 36,53 -0,51
+Profundidade
+(m)
+(1)
+Ubg
+(Mpd)
+(%)
+Peso
+(G+Solo+água)
+(g)
+(2)
+Ubg Eq.
+(Mpes)
+(%)
+Erro Equações
+(%)
+
+--- PÁGINA 17 ---
+17 Determinação Simplificada da Umidade do Solo Visando o Manejo de Irrigação em Hortaliças
+Tabela 3.
+ Relação entre umidade gravimetria (Ubg) obtida através do método padrão de estufa (Mpd) e o método das pesagens
+proposto, para a condição da IFGO – campo com tomate indústria, em Morrinhos-GO. Brasília-DF.
+Datas dos
+testes
+ Prof. (m)
+ (1)
+Ubg Mpd
+(%)
+(2)
+Ubv Mpd
+(%)
+Peso
+(G+água+Solo)
+(g)
+(3)
+Ubg Eq.
+Mpes
+(%)
+(4)
+Ubv Eq.
+Mpes
+(%)
+Erro rel.
+(%)
+12/07/2013
+ 0,10
+ 32,84
+ 43,01
+ 469,90
+ 32,87
+ 43,06
+ -0,10
+12/07/2013
+ 0,20
+ 30,11
+ 38,53
+ 471,30
+ 29,48
+ 37,74
+ 2,07
+12/07/2013
+ 0,30
+ 27,95
+ 34,09
+ 471,50
+ 28,93
+ 35,29
+ -3,52
+12/07/2013
+ 0,40
+ 28,46
+ 30,45
+ 472,90
+ 27,63
+ 29,56
+ 2,92
+16/08/2013
+ 0,10
+ 30,13
+ 39,47
+ 471,10
+ 30,04
+ 39,35
+ 0,30
+16/08/2013
+ 0,20
+ 29,13
+ 37,29
+ 471,80
+ 28,31
+ 36,24
+ 2,81
+16/08/2013
+ 0,30
+ 27,42
+ 33,45
+ 472,10
+ 27,47
+ 33,51
+ -0,16
+16/08/2013
+ 0,40
+ 28,02
+ 29,99
+ 473,10
+ 27,13
+ 29,03
+ 3,18
+(1)
+Ubg Mpd é a umidade gravimétrica padrão estufa e
+ (2)
+Ubv Mpd é a umidade base volume – determinadas pelo método padrão de estufa;
+ (3)
+Ubg Eq. Mpes é a umidade
+gravimétrica e
+ (4)
+UBv Eq. Mpes é a umidade base volume, estimadas pelas equações geradas pelo método das pesagens. G + solo + água = peso da garrafa com
+100 g do solo e cheia com água.
+
+--- PÁGINA 18 ---
+18 BOLETIM DE PESQUISA E DESENVOLVIMENTO 155
+Conclusões
+– O método das pesagens mostrou-se adequado para estimativa da umidade
+do solo, para as condições do estudo.
+– O método proposto é de baixo custo, fácil utilização e não requer treinamento
+específico para seu manejo, pois retirar amostras de solo e pesar todo
+produtor saber fazer.
+Agradecimentos
+A Fundação de Apoio a Pesquisa do Distrito Federal (FAP-DF), processo
+número: 0193.002043/2017-20, pelo suporte financeiro.
+Referências
+BERNARDO, S.; SOARES, A. A.; MANTOVANI, E. C. Manual de irrigação . 8. ed. Viçosa, UFV,
+2006. 625 p.
+BRAGA, M.B.; CALGARO, M. Uso da tensiometria no manejo de irrigação . Embrapa
+Semiárido, 2010. 28 p. (Embrapa Semiárido. Documentos, 235). Disponível em: < http://www.
+infoteca.cnptia.embrapa.br/infoteca/handle/doc/884330>. Acesso em: 04 jun. 2018.
+CLAESSEN, M. E. C. (Org.). Manual de métodos de análise de solo . 2 ed. rev. e atual. Rio de
+Janeiro: EMBRAPA-CNPS, 1997. 212 p. (EMBRAPA-CNPS. Documentos, 1). Disponível em:
+< http://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/330804>. Acesso em: 04 jun. 2018.
+COSTA, B. R. S.; CORREIA, J. S.; BASSOI, L. H. Calibração do sensor de capacitância
+IRRIGAP para medida da umidade em solo de textura franco argilosa . In: SIMPÓSIO
+NACIONAL DE INSTRUMENTAÇÃO AGROPECUÁRIA, 2014, São Carlos, SP. Anais do
+SIAGRO : ciência, inovação e mercado 2014. São Carlos, SP: Embrapa Instrumentação, 2014.
+Disponível em: < http://www.alice.cnptia.embrapa.br/alice/handle/doc/1004787>. Acesso em: 04
+jun. 2018.
+KLAR, A. E. A água no sistema solo-planta-atmosfera . São Paulo: Livraria Nobel, 1984. 408 p.
+KLAR, A. E.; VILLA NOVA, N.A.; MARCOS, Z. Z.; CERVELLINI, A. Determinação da umidade
+do solo pelo método das pesagens. Anais Escola Superior Agricola “Luiz de Queiroz” , v.
+23, p. 15-30. 1966.
+KLAUS, R.; TIMM, L. C. Solo, planta e atmosfera : conceitos, processos e aplicações. 2. ed.
+Barueri, SP: Manole, 2012. 524 p.
+
+--- PÁGINA 19 ---
+19 Determinação Simplificada da Umidade do Solo Visando o Manejo de Irrigação em Hortaliças
+MAROUELLI, W. A.; CARRIJO O. A.; SOUZA, R. B.; SILVA, W. L. C. Irrigação e fertirrigação
+na cultura do tomate . In: SOUSA V. F.; MAROUELLI, W. A.; COELHO, E. F.; PINTO, J. M.;
+COELHO FILHO, M. A. (Ed.). Irrigação e fertirrigação em fruteiras e hortaliças . Brasília, DF:
+Embrapa Informação Tecnológica, 2011. p. 739-769.
+MAROUELLI, W. A.; OLIVEIRA, A. S.; COELHO, E. F.; NOGUEIRA, L. C.; SOUSA, V. F. Manejo
+da água de irrigação. In: SOUSA, V. F.; MAROUELLI, W. A.; COELHO, E. F.; MAROUELLI, W.
+A.; SILVA, W. L. C.; SILVA, H. R. Irrigação por aspersão em hortaliças : qualidade da água,
+aspectos do sistema e método prático de manejo. 2. ed. Brasília, DF: Embrapa Informação
+Tecnológica, 2008. 150 p.
+SANTOS, H. G. dos; JACOMINE, P. K. T.; ANJOS, L. H. C. dos; OLIVEIRA, V. A. de; OLIVEIRA,
+J. B. de; COELHO, M. R.; LUMBRERAS, J. F.; CUNHA, T. J. F. Sistema brasileiro de
+classificação de solos . Brasília, DF: Embrapa-SPI; Rio de Janeiro: Embrapa Solos, 2006. 306
+p. Disponível em: <http://www.infoteca.cnptia.embrapa.br/infoteca/handle/doc/338818>. Acesso
+em: 04 jun. 2018.
+
+--- PÁGINA 20 ---
+

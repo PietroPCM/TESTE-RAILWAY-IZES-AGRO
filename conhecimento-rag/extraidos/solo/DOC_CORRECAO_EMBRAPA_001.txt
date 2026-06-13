@@ -1,0 +1,544 @@
+---
+documento_id: DOC_CORRECAO_EMBRAPA_001
+titulo: Práticas agrícolas relacionadas à calagem do solo
+instituicao: Embrapa
+autores: MARTINS, C. E.; MARTINS, C. E.
+ano: 2005
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/595886/1/COT47Praticasagricolasrelacionadas.pdf
+arquivo_original: originais/embrapa/DOC_CORRECAO_EMBRAPA_001.pdf
+sha256: c78f08cb77aed9932bc01c722ba2bb1bdc684680f1aca1ff24e30e387ace3a54
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Práticas agrícolas relacionadas
+à calagem do solo
+Carlos Eugênio Martins
+1
+1
+Engenheiro Agrônomo, D.Sc., Pesquisador da Embrapa Gado de Leite, Bolsista do CNPq – Rua Eugênio do Nascimento, 610 – Bairro Dom Bosco – 36038-330
+Juiz de Fora/MG – caeuma@cnpgl.embrapa.br
+47
+ISSN
+1678-3123
+Juiz de Fora, MG
+Dezembro, 2005
+Introdução
+O ponto de partida para o estabelecimento de culturas é o
+conhecimento de sua fertilidade natural, através dos
+resultados de análise do solo, expedidos por laboratórios
+credenciados. Uma vez conhecido tais resultados, a
+calagem é a primeira prática a ser adotada nos plantios
+racionais de qualquer cultura.
+Uma das principais características dos solos brasileiros é
+apresentar acidez elevada, proveniente principalmente das
+altas concentrações de alumínio tóxico, ferro e manganês
+na solução do solo. A acidez favorece o aparecimento de
+elementos nocivos ao crescimento e desenvolvimento das
+plantas, além de reduzir a disponibilidade de muitos
+nutrientes presentes na solução do solo, absorvidos e
+utilizados pelas plantas para que, ao serem metabolizados,
+produzam substâncias importantes para o crescimento e
+desenvolvimento das plantas e, utilizadas pelo homem e
+pelos animais.
+Para que se obtenham resultados expressivos no crescimen-
+to e desenvolvimento de plantas, há necessidade, portanto
+de se neutralizar os efeitos tóxicos dos fatores responsáveis
+pela acidez do solo por meio da calagem e, por conseguinte,
+aumentar a capacidade produtiva das plantas.
+Neste comunicado o leitor encontrará informações relacio-
+nadas à acidez e à alcalinidade do solo, ao poder de
+neutralização do calcário, à amostragem do solo, à inter-
+pretação dos resultados analíticos apresentados e suges-
+tões de recomendação de calagem baseado nos diferentes
+métodos empregado no Estado de Minas Gerais.
+Acidez e alcalinidade do solo
+O potencial hidrogeniônico (pH) do solo está diretamente
+relacionado com a acidez ou com a alcalinidade do mesmo.
+O pH 7,00, indica neutralidade do solo, ou seja, as cargas
+positivas se equivalem às cargas negativas. pH abaixo de
+7,00, comum na maioria dos solos brasileiros, indica
+acidez, enquanto pH acima de 7,00, indica basicidade ou
+alcalinidade. Essa situação de alcalinidade é comum em
+solos de fertilidade elevada, especialmente os que apresen-
+tam elevadas concentrações de cálcio, magnésio, potássio.
+São comuns os solos com alcalinidade elevada, conheci-
+dos como solos salinos, apresentarem alta concentração de
+sódio, elemento este que confere aumento substancial da
+alcalinidade.
+A acidez ou a alcalinidade conferem ao solo variações
+profundas na disponibilidade dos elementos nutritivos,
+conhecidos como nutrientes, conforme demonstra a Fig. 1.
+
+--- PÁGINA 2 ---
+2
+Práticas agrícolas relacionadas à calagem do solo
+Observa-se que na faixa de pH compreendida entre 6,00 a
+7,00, ideal para a grande maioria das culturas cultivadas
+no Brasil, encontra-se a maior disponibilidade de nutrien-
+tes, embora se observa para o molibdênio e cloro, que sua
+disponibilidade aumenta com o aumento do pH, enquanto
+o ferro, cobre, manganês, zinco, boro, fósforo, nitrogênio
+e enxofre, têm sua disponibilidade reduzida.
+Fato marcante a ser considerado na Fig. 1, é que o
+Alumínio em pH abaixo de 6,00, apresenta-se no solo
+com concentrações tóxicas para a maioria das plantas,
+interferindo na concentração e na absorção de nutrientes
+do solo, reduzindo o crescimento das plantas.
+Os melhores valores para o pH variam em função da planta.
+Da mesma forma vale salientar que as plantas tropicais, no
+caso de pastagens, especialmente as gramíneas tropicais,
+apresentam tolerância a fatores de acidez de moderada a
+alta, conferindo às plantas uma grande capacidade de
+produção de forragem, mesmo em solos com elevada
+acidez. A Brachiaria
+, por exemplo, é o gênero que apresenta
+maior tolerância aos fatores de acidez do solo.
+No caso das leguminosas, os gêneros Centrosema ,
+Desmodium , Calopogônio e Stylosanthes
+, são mais
+tolerantes quando comparados à soja perene e alfafa.
+Assim, as necessidades de calcário para corrigir a acidez
+do solo variam de acordo com a cultura que se quer
+estabelecer e com o grau de tecnologia adotado. Sistemas
+intensivos de e produção de leite que adotam adubação e
+irrigação exigem calagem para atingir 60% de saturação de
+base (V
+2
+), enquanto os sistemas menos tecnificados
+permitem que se trabalhe com V
+2
+de 40% (CFSEMG,
+1999). Isso reforça a necessidade da análise de solo anual
+e da sua correta interpretação por um técnico experiente,
+que também vai levar em conta o sistema de manejo e a
+capacidade de produção da cultura.
+Poder de neutralização do calcário
+Ao se avaliar a qualidade de um calcário, deve-se levar em
+consideração a sua capacidade de neutralizar a acidez do solo
+(poder de neutralização – PN), a reatividade do material (RE),
+que considera a natureza geológica e a granulometria do
+mesmo e, o teor de nutrientes, especialmente de cálcio (Ca) e
+magnésio (Mg). O poder de neutralização avalia o teor de
+materiais neutralizantes no calcário, ou seja, a capacidade de
+reação dos ânions presente. Considera-se o carbonato de
+cálcio (CaCO
+3
+) como padrão igual a 100%. A determinação
+do PN do calcário é feita em laboratório, usando ácido
+clorídrico, sendo o resultado expresso em %. Esta capacida-
+de de neutralizar a acidez que apresenta um calcário, também
+pode ser estimada, aproximadamente, determinando-se os
+teores de Ca e de Mg, teores que se expressam em dag/kg
+(%) de óxidos de cálcio (CaO) e de magnésio (MgO).
+A legislação brasileira define que os teores de cálcio e
+magnésio dos calcários devam ser expressos na forma de
+óxidos (CaO e MgO). Para poder ser comercializado, o
+calcário deve ter, no mínimo, 38% de óxido de cálcio e
+magnésio. O teor e o tipo de elementos que diminuem a
+acidez, e o tempo que levam para fazer efeito no solo são
+diferentes nos produtos comercializados.
+Ainda para se escolher um calcário deve-se considerar sua
+reatividade, que em parte depende da natureza geológica da
+rocha. A reatividade depende fundamentalmente da
+granulometria (finura com que o calcário é moído). A
+granulometria indica a capacidade de um corretivo reagir no
+solo envolvendo a velocidade de reação e o seu efeito
+residual no solo. Em relação a granulometria, a legislação
+atual determina as seguintes características mínimas: passar
+95% por peneira de 2 mm de malha, conforme
+especificação da Associação Brasileira de Normas Técnicas
+(ABNT Nº 10); 70% por peneira de 0,84 mm (ABNT Nº
+20) e passar 50% por peneira de 0,30 mm (ABNT Nº 50).
+Combinando o poder de neutralização (PN) com a
+reatividade (RE) de um calcário, tem-se o seu poder
+relativo de neutralização total (PRNT), que estima quanto
+de calcário irá reagir em um período de aproximadamente
+três anos.
+A legislação especifica quatro faixas de PRNT para efeito
+de classificação e comercialização de calcário:
+Faixa A: com PRNT entre 45,0 e 60,0%.
+Faixa B: com PRNT entre 60,1 e 75%,0.
+Faixa C: com PRNT entre 75,1 e 90,0%.
+Faixa D: com PRNT maior que 90,1%.
+Para corrigir a acidez do solo, usa-se mais calcário quanto
+menor for o seu PRNT. Por exemplo, uma tonelada de
+
+--- PÁGINA 3 ---
+3
+Práticas agrícolas relacionadas à calagem do solo
+calcário com PRNT = 100% equivale a 2 toneladas de
+calcário com PRNT = 50%, por isso é importante verificar
+os valores de PRNT junto ao provedor de calcário.
+Amostragem do solo
+A amostragem do solo deverá ser feita após o final da época
+chuvosa, sendo para a Região Sudeste os meses de abril/
+maio os mais indicados. Até pouco tempo, recomendavam-se
+duas amostragens anuais, sendo uma no final e outra no
+início da época chuvosa. Entretanto, como os resultados
+obtidos, quase sempre, apresentam valores semelhantes, um
+grupo de técnicos que compõem a Comissão de Fertilidade
+de Solo do Estado de Minas Gerais (CFSEMG, 1999) optou
+por recomendar a realização de uma única amostragem.
+Assim, a amostragem feita no final da época chuvosa, além
+de permitir conhecer a fertilidade do solo, reduz o custo de
+implantação da pastagem, pelo fato de reduzir o número de
+amostragens. Vale a pena ressaltar que a amostragem feita
+nesta época possibilita ao produtor adquirir corretivos e
+fertilizantes nos meses de entressafra (junho/julho) quando,
+geralmente, o preço destes insumos é menor.
+É muito importante subdividir a área a ser amostrada, de
+modo que esta seja a mais homogênea possível. Nesta
+subdivisão, deve-se levar em conta a vegetação, a posição
+topográfica (topo de morro, meia-encosta, baixada etc.), as
+características perceptíveis do solo (cor, textura, condição de
+drenagem, produtividade da cultura anterior, uso de fertilizan-
+tes e corretivos) etc. Portanto, os limites de uma gleba para
+amostragem não devem ser definidos exclusivamente pelo
+tamanho da área (hectares), mas, sim, pelas características
+mencionadas, as quais determinam sua homogeneidade. Para
+maior eficiência, não amostrar glebas superiores a dez
+hectares. Assim, áreas amorreadas não devem ser misturadas
+com áreas de baixadas, da mesma forma que numa área
+amorreada, por exemplo, não se devem misturar amostras
+que tenham cores muito diferentes. Estes cuidados são
+importantes, pois permitem obter resultados mais representa-
+tivos da fertilidade natural do solo.
+Para se proceder à amostragem do solo, percorre-se em
+ziguezague a área que se deseja avaliar, coletando-se de
+20 a 30 amostras simples por gleba, a uma profundidade
+de 0 a 20 cm. Dependendo da situação, é recomendável
+que a amostragem deva ser feita em outras profundidades.
+Para pastagens já estabelecidas, por exemplo, recomenda-
+se a amostragem na camada de 0 a 5 cm, ou até 0 a 7 cm.
+Quando necessário, pode-se retirar outra amostra compos-
+ta de 5 a 20 cm ou de 7 a 20 cm. Para áreas novas,
+principalmente quando se pretende a implantação de
+culturas perenes, como é o caso das pastagens, recomen-
+da-se coletar amostras simples nas profundidades de 0 a
+20, 20 a 40 e 40 a 60 cm (CFSEMG, 1999). As amos-
+tras simples das diferentes camadas devem ser coletadas
+no mesmo ponto e em igual número, obtendo-se amostras
+compostas para cada camada. A determinação da profundi-
+dade de amostragem deverá ser baseada nas sugestões de
+um técnico. Estas amostras retiradas são colocadas em um
+balde seco e limpo, destorroando em seguida a massa de
+solo proveniente destas amostras. Depois de destorroada e
+homogeneizada essa massa de solo, retira-se uma quanti-
+dade de 300 a 500 gramas, a ser colocada em saco
+plástico limpo, para envio ao laboratório. A identificação
+correta da amostra é importante, pois facilita a identificação
+do local amostrado, quando do recebimento dos resultados
+analíticos do Laboratório, evitando erros por ocasião da
+adubação e da calagem. Nesta identificação, deverão
+constar: nome do proprietário, município, nome da
+propriedade, cultura a ser plantada, local da amostra, e
+outras.É importante ressaltar que também deve ser solicita-
+da a análise textural do solo, uma vez que a recomendação
+da necessidade de calagem depende dela, assim como a
+recomendação da adubação fosfatada.
+Interpretação dos resultados da aná-
+lise do solo
+É importante considerar que as culturas e mesmo as
+variedades ou cultivares, variam muito nas suas capacida-
+des de tolerância ou sensibilidade à acidez ativa, à acidez
+trocável, saturação por bases, saturação por alumínio e
+disponibilidade de nutrientes. Desta forma, as classes de
+fertilidade devem ser interpretadas, considerando as
+exigências específicas a cada empreendimento agrícola,
+pecuário ou florestal.
+Existem vários manuais que orientam a interpretação dos
+resultados, porém esta deverá ser feita por técnico experi-
+ente em fazer tais interpretações. Interpretações erradas
+poderão promover prejuízos irreparáveis, relacionados ao
+aumento acentuado no custo de produção da cultura além
+de grandes alterações químicas no solo.
+Calagem
+A calagem tem como principal objetivo neutralizar o
+alumínio tóxico presente na solução do solo, responsável
+direto por sua acidez.
+É importante ressaltar que as forrageiras tropicais, utiliza-
+das na maioria dos sistemas de produção de leite e/ou
+carne do País, são medianamente tolerantes a fatores de
+acidez do solo e, portanto, não requerem grandes quanti-
+dades de calcário por ocasião do plantio, ou mesmo
+durante a fase de utilização da pastagem pelos animais. O
+calcário é um insumo barato, mas se o produtor tiver que
+implantar ou reformar áreas extensas, o investimento
+aplicado na prática da calagem será alto, em função da
+quantidade total utilizada. Entretanto, não se deve negli-
+
+--- PÁGINA 4 ---
+4
+Práticas agrícolas relacionadas à calagem do solo
+genciar esta importante característica que as forrageiras
+tropicais apresentam, qual seja, a de tolerância moderada a
+alta a fatores de acidez.
+De acordo com a 5
+a
+Aproximação (CFSEMG, 1999), o
+método mais indicado para a recomendação de calagem
+para o Estado de Minas Gerais, e, por analogia, para toda a
+Região Sudeste e parte do Centro-Oeste, deverá basear-se
+nos teores de alumínio (Al
++++
+) e de cálcio mais magnésio
+(Ca
+++
++ Mg
+++
+) (Método do Al e Ca + Mg trocáveis),
+embora também possa ser usado o método que se baseia
+na porcentagem de saturação de bases (V%).
+No primeiro caso, a equação que determina a quantidade
+de calagem (NC) a ser utilizada, considerando-se o PRNT
+de 100% é: NC = Y (Al
++++
+) + [X – (Ca
+++
++ Mg
+++
+)]
+.
+No segundo caso, considerando-se a saturação de bases
+(V%), o valor considerado para gramíneas forrageiras
+tropicais, para efeito de quantificar a necessidade de
+calagem, é de no máximo 60%. Neste caso a necessidade
+de calagem é determinada pela fórmula:
+Vale a pena salientar que ambas as alternativas relativas à
+recomendação de calcário são baseadas na capacidade da
+planta em responder ao corretivo aplicado.
+O calcário deverá ser aplicado a lanço sobre toda a área,
+com uma antecedência mínima de 60 dias do plantio,
+seguido de uma aração ou de uma gradagem.
+A seguir é apresentado um exemplo sobre necessidade de
+calagem (NC) para se corrigir a camada de 0 - 2 0cm,
+utilizando-se os dois métodos de recomendação.
+Método do Al e Ca + Mg trocáveis
+A quantidade de calcário a ser aplicada é baseada nos teores
+de Al e Ca + Mg, obtidos mediante análise química do solo.
+NC = Y (Al
++++
+) + [X – (Ca
+++
++ Mg
+++
+)]
+O valor Y varia com a textura do solo, enquanto o valor X
+é variável em função da exigência da cultura. Assim, Y e
+X, podem admitir os seguintes valores.
+Y=Valor 1: para solos arenosos (< 15% de argila)
+Valor 2: para solos de textura média (15 a 35% de argila)
+Valor 3: para solos argilosos (> 35% de argila)
+X=Valor 2: para a maioria das culturas
+Valor 1: para culturas tolerantes à saturação de
+alumínio. Ex.: eucalipto
+Valor 3: para culturas sensíveis à saturação de
+alumínio. Ex.: cafeeiro, alfafa etc.
+Obs: para as gramíneas tropicais, X assume o valor 2.
+Exemplo: Os resultados da análise de um determinado solo
+indicaram:
+Al
++++
+= 1,2 cmol
+c
+/dm
+3
+equivalente a meq/100 cm
+3
+Ca
+++
++ Mg
+++
+= 1,2 cmol
+c
+/dm
+3
+equivalente a meq/100 cm
+3
+Teor de argila = 36%
+(Nesse caso, Y admite valor 3)
+NC = [(3 x 1,2) + (2 – 1,2)] = 4,4 t/ha de calcário, com
+PRNT 100%
+Obs.: se o calcário tiver o PRNT de 80%, a quantidade a
+ser aplicada é de:
+Vale ressaltar que se o solo apresentasse textura média (15 a
+35% de argila), e com os mesmos teores de Al e Ca + Mg,
+a quantidade de calcário a ser aplicada, com PRNT de 80%,
+reduziria para 4,0 t/ha, isto porque Y assumiria o valor 2.
+Método da saturação de bases
+Neste método, a calagem é calculada para elevar a satura-
+ção de bases (V%) da capacidade de troca de cátions a pH
+7,0, a valores desejados de acordo com a cultura de
+interesse, sendo a necessidade de calagem calculada por:
+NC = necessidade de calcário em toneladas/ha, conside-
+rando-se a camada de incorporação de 0-20 cm e calcário
+com PRNT 100%.
+T = capacidade de troca de cátions do solo a pH 7,00 =
+cmol
+c
+/dm
+3
+de Ca
+++
++ Mg
+++
++ K
++
++ H
++
++ Al
++++
+.
+V2 = percentagem de saturação de bases (%) desejada
+para a cultura em questão (obtida por dados de pesquisa).
+V1 = percentagem de saturação (%) de bases do solo =
+100 x SB / T, onde
+SB = soma de bases = Ca
+++
++ Mg
+++
++ K
++
+( cmol
+c
+/dm
+3
+de solo)
+Exemplo: Os resultados da análise de um determinado solo
+indicaram:
+T = 10,2 cmol
+c
+/dm
+3
+V2 = 60% (desejada)
+V1 = 35%
+Para efeito de cálculo, a fórmula será desmembrada em
+duas partes:
+com PRNT de 100%, para uma incorporação a 20 cm de
+profundidade
+
+--- PÁGINA 5 ---
+5
+Práticas agrícolas relacionadas à calagem do solo
+Obs.: se o calcário tiver um PRNT de 80%, a quantidade a
+ser aplicada ao solo será de:
+É importante destacar que as gramíneas tropicais apresen-
+tam tolerância moderada a alta à saturação de alumínio;
+portanto, recomendação de calagem, utilizando valores de
+V2 elevados, poderá redundar em aumentos exagerados
+no custo de implantação da pastagem, além de promover
+alterações substanciais na disponibilidade de alguns
+nutrientes.
+Vale salientar que quando vai se implantar uma cultura,
+qualquer que seja ela, a calagem é diferente daquela
+destinada à correção de solo de uma cultura já estabelecida.
+A quantidade de calcário aplicada em uma pastagem já
+estabelecida, é bem menor que a quantidade recomendada
+para o plantio desta pastagem. Em geral recomenda-se a
+metade ou ¼ da recomendação de calagem para o plantio.
+Esta quantidade reduzida de calcário aplicada em uma
+pastagem já estabelecida, deve-se à:
+–
+Para incorporar o calcário numa pastagem formada
+não é possível aplicá-lo e depois arar e gradear para
+permitir a incorporação na massa de solo até 20 cm,
+já que isso acabaria com a cultura.
+–
+Distribuir grandes quantidades numa pastagem
+formada provocará um excesso de cálcio e magnésio
+na superfície, o que leva a alterações no metabolis-
+mo da planta.
+–
+Sem arar e gradear, o calcário não chegará às
+camadas mais profundas do solo, o que impede sua
+absorção pelo sistema radicular de algumas espécies
+de forrageiras, que chegam a ter raízes com mais de
+2 metros de profundidade.
+Passos a serem seguidos na calagem
+–
+Fazer anualmente a amostragem do solo. Há um
+grande dinamismo na interação entre alumínio,
+cálcio, magnésio e potássio e apenas a análise
+indicará se há necessidade da calagem.
+–
+Seguir corretamente as indicações de um técnico
+experiente. Isso também evita a supercalagem, o que
+torna o solo alcalino e provoca um descontrole no
+aproveitamento dos nutrientes necessários para a
+planta (Fig. 1).
+–
+Preparar o solo muito bem e permitir a total incorpo-
+ração do calcário, quando o objetivo é implantar uma
+cultura. A distribuição deve ser feita com antecedên-
+cia mínima de 60 dias do plantio.
+–
+Temperatura e umidade adequadas são indispensá-
+veis. Distribuindo o calcário em agosto, haverá
+tempo para que, até o plantio, a calagem tenha
+atingido seu objetivo principal de corrigir a acidez do
+solo.
+–
+Se existe um sistema de irrigação, o calcário pode
+ser distribuído por volta de três semanas antes do
+plantio, tempo suficiente para neutralizar o alumínio,
+desde que haja temperaturas elevadas.
+–
+Junho e julho são os meses em que os preços dos
+insumos estão mais baixos. Vale a pena fazer as
+compras nesse período.
+–
+No caso de pastagem estabelecida, o calcário só
+deve ser aplicado com o solo úmido. Ou seja, após
+uma chuva ou imediatamente antes da irrigação para
+que a água proceda à incorporação. Outro fator de
+incorporação é o casco do animal. O pisoteio na área
+de pastagem ajuda o processo, principalmente em
+sistemas intensivos, em que a taxa de lotação é
+maior.
+Referências bibliográficas
+COMISSÃO DE FERTILIDADE DE SOLO DO ESTADO DE
+MINAS GERAIS (CFSEMG).
+Recomendações para o uso de
+corretivos e fertilizantes em Minas Gerais
+; 5ª aproximação.
+Lavras: CFSEMG, 1999. 359p.
+MALAVOLTA, E.
+Manual de química agrícola – Adubos e
+adubação
+. Editora Agronômica CERES Ltda. São Paulo/SP.
+594. 1981.
+
+--- PÁGINA 6 ---
+6
+Práticas agrícolas relacionadas à calagem do solo
+Exemplares desta edição podem ser adquiridos na:
+Embrapa Gado de Leite
+Rua Eugênio do Nascimento, 610 – Bairro Dom
+Bosco – 36038-330 Juiz de Fora/MG
+Fone : (32) 3249-4700
+Fax : (32) 3249-4751
+E-mail : sac@cnpgl.embrapa.br
+1
+a
+edição
+1
+a
+impressão (2005): 500 exemplares
+Presidente : Pedro Braga Arcuri
+Secretária-Executiva : Inês Maria Rodrigues
+Membros :
+Aloisio Torres de Campos, Angela de Fátima
+A. Oliveira, Antonio Carlos Cóser,Carlos Eugênio Martins,
+Edna Froeder Arcuri, Jackson Silva e Oliveira, João César
+de Resende, John Furlong, Marlice Teixeira Ribeiro e
+Wanderlei Ferreira de Sá
+Supervisão editorial : Carlos Eugênio Martins
+Tratamento da ilustração e editoração eletrônica :
+Leonardo
+Fonseca
+Comunicado
+Técnico, 47
+Comitê de
+publicações
+Expediente

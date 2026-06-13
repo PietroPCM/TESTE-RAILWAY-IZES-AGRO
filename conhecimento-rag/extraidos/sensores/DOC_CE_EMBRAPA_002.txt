@@ -1,0 +1,762 @@
+---
+documento_id: DOC_CE_EMBRAPA_002
+titulo: Condutividade elétrica do solo, tópicos e equipamentos
+instituicao: Embrapa
+autores: RABELLO, L. M.; RABELLO, L. M.
+ano: 2009
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/658188/1/DOC432009.pdf
+arquivo_original: originais/embrapa/DOC_CE_EMBRAPA_002.pdf
+sha256: f930c92997a7379f84424a39dae5b3ff67f436e4d446036f858401846ab96973
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+43
+ISSN 1518-7179
+Novembro, 2009
+Condutividade elétrica do solo,
+tópicos e equipamentos
+
+--- PÁGINA 2 ---
+ISSN 1518-7179
+Setembro, 2009
+43 Documentos
+Empresa Brasileira de Pesquisa Agropecuária
+Ministério da Agricultura, Pecuária e Abastecimento
+Embrapa Instrumentação Agropecuária
+Embrapa Instrumentação Agropecuária
+São Carlos, SP
+2009
+Ladislau Marcelino Rabello
+Condutividade elétrica do solo,
+tópicos e equipamentos
+
+--- PÁGINA 3 ---
+Todos os direitos reservados.
+A reprodução não-autorizada desta publicação, no todo ou em parte,
+o constitui violação dos direitos autorais (Lei n 9.610).
+CIP-Brasil. Catalogação-na-publicação.
+Embrapa Instrumentação Agropecuária
+© Embrapa 2009
+Exemplares desta publicação podem ser adquiridos na:
+Embrapa Instrumentação Agropecuária
+Rua XV de Novembro, 1452
+Caixa Postal 741
+CEP 13560-970 - São Carlos-SP
+Fone: (16) 2107 2800
+Fax: (16) 2107 2902
+www.cnpdia.embrapa.br
+E-mail: sac@cnpdia.embrapa.br
+Comitê de Publicações da Unidade
+Presidente: Dr. Luiz Henrique Capparelli Mattoso
+Membros: Dra. Débora Marcondes Bastos Pereira Milori,
+Dr. João de Mendonça Naime,
+Dr. Washington Luiz de Barros Melo
+Valéria de Fátima Cardoso
+Membro Suplente: Dr. Paulo Sérgio de Paula Herrmann Junior
+Supervisor editorial: Dr. Victor Bertucci Neto
+Normalização bibliográfica: Valéria de Fátima Cardoso
+Tratamento de ilustrações: Valentim Monzane
+Capa: Ladislau Marcelino Rabello
+Editoração eletrônica: Manoela Campos
+a
+1 edição
+a
+1 impressão (2009): tiragem 300
+R114c
+Rabello, Ladislau Marcelino
+Condutividade elétrica do solo, tópicos e equipamentos. / Ladislau
+Marcelino Rabello. São Carlos: Embrapa Instrumentação Agropecuária, 2009.
+19 p.
+(Embrapa Instrumentação Agropecuária. Documentos,
+ISSN
+).
+1. Agricultura de precisão. 2. Condutividade elétrica. 3. Resistividade
+elétrica. 4.VERIS. 5. EM38. 6. Solo
+Análise. 7. Indução eletromagnética.
+8. Equipamento. I. Título. II. Série.
+CDD 21 ED 631.3
+1518-7179; 43
+
+--- PÁGINA 4 ---
+Ladislau Marcelino Rabello
+Engenharia Elétrica, Dr.,
+Pesquisador, Embrapa Instrumentação Agropecuária,
+C.P. 741, CEP 13560-970,
+rabello@cnpdia.embrapa.br
+Autor
+
+--- PÁGINA 5 ---
+Apresentação
+A crescente demanda de produção de alimento devido ao aumento da população em
+contraste com a diminuição das terras agriculturáveis, leva aos pesquisadores a grande
+desafio de desenvolver tecnologias e conhecimento que possam fomentar a agricultura, de
+modo a suprir esta grande demanda.
+Outros fatores também dificultam a produção, tal como o uso incorreto da água em
+sistemas de irrigação, o de defensivos e insumos agrícolas causando impactos indesejáveis
+ao meio ambiente e a degradação do solo devido ao preparo incorreto, entre outros.
+Durante muitos anos as lavouras foram tratadas de modo homogêneo não levando em
+conta a variabilidade espacial. Na aplicação de insumos, estimava-se a necessidade de
+tratamento do solo, fazendo com que determinadas áreas produtivas dentro da mesma
+lavoura recebessem a mesma quantidade que uma área não produtiva. O mesmo acontecia
+para áreas irrigadas.
+Começou-se então a observar que, mesmo dentro uma mesma lavoura, havia a necessidade
+de tratamento diferenciado de algumas áreas, para que no total a lavoura se torna ao
+menos homogênea.
+Este método de dividir a lavoura em zonas de manejo ficou conhecido como Agricultura de
+Precisão.
+O princípio dos estudos de Agricultura de Precisão em grandes áreas leva à coleta de um
+grande número de amostras para estudo das propriedades físicas e químicas da lavoura que
+são posteriormente levadas aos laboratórios e analisadas.
+Em seguida mapeia-se toda a
+região, com detalhamento das áreas segundo suas características próprias.
+Em grandes áreas de plantio fica difícil dimensionar a quantidade de amostras para análise.
+Quanto maior o número de amostras melhor será o resultado das análises. Porém este
+grande número acarreta custos e tempo.
+Com o advento de modernas tecnologias, tal como o GPS (sigla em inglês para Sistema de
+Posicionamento Global) tornou-se possível mapear as áreas com precisão adequada, em
+termos da localização da amostra e do dimensionamento das zonas de manejo.
+Outras técnicas foram incorporadas para minimizar custo e tempo, mas uma das que mais
+se adaptaram, por ser um método rápido e barato de se fazer uma pré-avaliação das
+propriedades físicas e químicas da área de lavoura, foi a medida de condutividade elétrica
+do solo.
+Esta é uma técnica já usada no início do século XX em geofísica para prospecção de
+petróleo e água, mas que veio a ser muito útil em agricultura de precisão.
+
+--- PÁGINA 6 ---
+Seu princípio baseia-se na propriedade do solo de variar a condução de corrente elétrica
+conforme suas propriedades físicas e químicas. Ao se fazer a medida de condutividade
+elétrica observa-se manchas de mesmas características que podem variar espacialmente em
+toda a área de análise.
+De posse destes valores mapeados geograficamente dentro da área, é possível dividir as
+regiões em áreas de manejo e, então, proceder à coleta de algumas amostras para analisá-
+las segundo as suas propriedades e tomar decisões de como e quanto intervir com os
+insumos, defensivos e irrigação.
+A agricultura de precisão tomou novo rumo com o uso do método de medida de
+condutividade elétrica diminuindo custo e tempo de análise para as devidas tomadas de
+decisões, sendo umas das contribuições da instrumentação agropecuária na busca de
+soluções para atender o aumento da demanda por alimentos.
+Álvaro Macedo da Silva
+Chefe Geral
+
+--- PÁGINA 7 ---
+Sumário
+Introdução............................................................................................................
+9
+Princípios Básicos de Medidas ECa .............................................................................
+9
+Fatores que Influenciam ECa ................................................................................... 14
+Aplicação da Medida de Eca em
+agricultura
+da salinidade do solo ................................................................................ 15
+Medida de outras propriedades físico-químicas com condutividade elétrica ..................... 17
+Equipamentos para medida de condutividade elétrica .................................................... 18
+Aplicação das medidas de condutividade elétrica em agricultura de precisão ..................... 19
+Comentários finais .................................................................................................. 19
+Referências .........................................................................................................
+19
+......................................................
+14
+Medidas
+
+--- PÁGINA 8 ---
+Introdução
+Durante as últimas décadas, a agricultura global tem dado grande salto quanto ao item de
+produção, para suprir as necessidades da crescente população mundial. Porém sofre grande
+pressão para melhorar a qualidades das sementes e usarem menos pesticidas e sistema de
+irrigação.
+Estima-se um número de 3 bilhões de pessoas no planeta para as próximas duas décadas.
+Em curto prazo os recursos naturais ainda serão disponíveis, mesmos que mal distribuídos
+principalmente aos menos ricos.
+No esforço de alimentar a população mundial, as atividades agrícolas têm causado grandes
+impactos ao meio ambiente, tais como o uso abusivo de fertilizantes e pesticidas,
+degradação do solo e qualidade da água. Desde os anos noventa práticas errôneas na
+produção agrícola contribuíram para uma degradação de 38%, correspondendo a 1.5
+bilhões de hectares em todo o planeta, estima-se, que desde desta década, 5,5 milhões de
+hectares são perdidos anualmente (WORLD RESOURCES INSTITUTE, 1998).
+Em termos globais a agricultura irrigada torna-se uma essencial contribuição para produção
+total de alimentos. No mundo 15% das terras usadas para plantio são irrigadas, destes,
+35% a 40% estão na produção de fibras e alimentos (RHOADES e LOVEDAY, 1990).
+Estima-se que de 10% a 15% da água para agricultura irrigada é utilizada de maneira
+errada, resultando em encharcamento e salinização (ALEXANDRATOS, 1995).
+Fora um grande avanço em algum ponto tecnológico para o aumento da produção agrícola
+em larga escala, a agricultura sustentável atualmente é vista como o mais viável recurso
+para demanda de alimento para a população mundial. O conceito de agricultura sustentável
+seria um delicado balanço entre maximizar a produção e manter a estabilidade econômica
+enquanto minimizando a utilização dos recursos naturais finitos e diminuindo os impactos
+ambientais nocivos pela utilização de agroquímicos poluentes.
+O grande desafio da agricultura sustentável é de manter a produtividade agrícola em
+consonância com o crescimento populacional, para isto a agricultura de precisão é uma
+importante ferramenta a ser utilizada.
+Convencionalmente as plantações são tratadas de forma homogênea, ignorando as
+inerentes variações entre solo e da cultura. Desde os anos 70, com o trabalho de Nielson e
+colaboradores, já demonstravam uma variabilidade espacial das propriedades do solo
+(NIELSON et al., 1973).
+Recentemente com a introdução de equipamentos de monitoramento de campo e do GPS,
+facilitaram o estudo e documentação da variabilidade espacial da cultura e das propriedades
+do solo em escala de campo.
+Condutividade Elétrica do solo,
+tópicos e equipamentos
+Ladislau Marcelino Rabello
+
+--- PÁGINA 9 ---
+A variabilidade espacial em culturas é o resultado de uma complexa interação de fatores,
+tais como, biológico (micróbios, vermes etc.), edáfico (salinidade, matéria orgânica,
+nutrientes, etc.), antrópico (atividades humanas, compactação do solo devido a máquinas
+agrícolas), topografia (relevo, elevação) e climático (umidade relativa, temperatura, etc.).
+O manejo de uma cultura em sítio-específico objetiva a orientar o manejo do solo, pestes e
+na cultura de acordo com a sua variação espacial dentro do campo (LARSON e ROBERT,
+1991).
+Podemos definir o manejo em sítio-específico de uma cultura como o manejo em uma
+escala espacial menor considerando a variabilidade local com o objetivo de minimizar os
+custos de produção e fazer o uso eficiente de agroquímicos para evitar impactos ambientais
+nocivos.
+A agricultura de precisão adotou rapidamente tecnologias eletrônicas e de informação para
+facilitar os estudos da cultura dentro de sua variabilidade espacial. Primeiro em meados dos
+anos 80 os equipamentos eram levados a campo, depois nos anos 90 surgem novas
+tecnologias como o GPS (sistema de posicionamento global) e de sistemas de informações
+geográficas (GIS) (VAN SCHILFGAARDE, 1999).
+Atualmente a agricultura de precisão adota tecnologias mais sofisticadas de sistemas GPS,
+sistemas de monitoramento de campo e sistemas de aplicações a taxas variadas de
+produtos agroquímicos combinados e adaptadas com sistemas GIS e sensoriamento remoto
+(indução eletromagnética, fotografia aérea, imagens de satélites, etc.) ou então o uso de
+tecnologias de medidas rápidas de propriedades do solo, tal como resistividade elétrica e
+TDR (time domain reflectometry) (PLANT, 2001).
+Para gerenciar a variabilidade dentro de uma cultura, devem ser especificadas regiões, geo-
+referenciadas, que exibem comportamento semelhante em se tratando de uma
+característica especifica, tal como, potencial de percolação, potencial de campo, etc. (VAN
+UFFELEN et al., 1997), estabelecendo em que medida e em que condições esses padrões
+espaciais são estáveis.
+Mapas de colheitas fornecem informações dos processos físicos, químicos e biológicos sob
+certas condições climáticas, informando básicas condições de implementação do manejo
+em sitio-especifico da cultura indicando onde aplicar os insumos ou correções necessárias,
+baseadas nos padrões espaciais de produtividade da cultura (LONG, 1998).
+Porém os mapas de colheitas sozinhos, não são suficientes para fornecer informações para
+distinguir entre as diversas fontes de variabilidade e não dão orientações claras sobre a
+influência da variabilidade do clima, pragas, doenças e propriedades físico-químicas do solo
+dentro de uma cultura em um determinado ano.
+Bullock e Bullock (2000), em seu trabalho demonstram a importância das medidas das
+variações das propriedades físicas e químicas do solo em agricultura de precisão. A
+medição da condutividade elétrica aparente do solo (EC ) é uma tecnologia que se tornou
+a
+uma ferramenta valiosa para identificar as características físico-químicas do solo que
+influenciam os padrões de rendimento das culturas e para estabelecer a variação espacial
+dessas propriedades do solo (CORWIN et al., 2003).
+A agricultura de precisão não requer apenas a informação espacial para determinar onde e
+como aplicar uma ação, tal como, o momento de fertilizar, o momento de aplicar pesticidas
+10
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 10 ---
+ou o momento de irrigação, mas também requer informações temporais para saber quando
+aplicar.
+Neste documento abordaremos um pouco sobre a teoria básica da medida de condutividade
+elétrica, alguns tópicos sobre as técnicas de medida de condutividade elétrica aparente
+(indução eletromagnética, resistividade elétrica e reflectometria no domínio do tempo) e
+aplicações de EC em agricultura.
+a
+Princípios Básicos de Medidas de Ec
+a
+Os primeiros estudos de medida de condutividade elétrica aparente começaram no inicio
+dos anos 1900, com os trabalhos de Archie (1942), conhecida como a lei empírica de
+Archie para rocha e solos arenosos saturados, descrito por:
+(1)
+Onde:
+- constante empírica;
+-1
+- condutividade elétrica do meio poroso (dS );
+3 -3
+- a porosidade (m
+m ); e
+m - o expoente de sedimentação.
+A corrente elétrica pode caminhar pelo meio, no caso o solo, de três maneiras (RHOADES
+et al., 1999):
+1 - a porção líquida, água ocupando os poros grandes;
+2 - na mistura sólido-líquido via troca de cátions associados com os minerais de argila; e
+3 - via sólida, contato direto das partículas do solo, umas com as outras.
+Que pode ser modelada de acordo com a equação abaixo,
+(2)
+Onde:
+3 -3
+e - são o conteúdo volumétrico de água no caminho solo+água (cm cm ) e no
+3 -3
+caminho continuo de água (cm cm ), respectivamente;
+3 -3
+e - são o volume da superfície de condutância (cm cm ) e a fase sólida
+3 -3
+endurecida do solo (cm cm ) respectivamente;
+-1
+e - são a especifica condutividade elétrica do caminho solo-água (dSm ) e do
+-1
+caminha só de liquido (dSm );
+-1
+e - são a condutividade elétrica da superficie de condutância (dSm ) e da fase
+-1
+sólida indurecida (dSm ) respectivamente.
+Fatores que influenciam Ec
+a
+A EC é influenciada por várias propriedades físicas e químicas do solo, tal como:
+a
+1-
+Salinidade do solo;
+2- Porcentagem de saturação;
+11
+m
+w a
+a EC f s =
+a
+w
+s
+f
+) ( )
+(
+) (
+2
+wc wc sc
+sc
+ss ws ws
+ss
+ss ws ws
+ss
+a
+EC
+EC
+EC
+EC
+EC
+EC
+Ec q
+q
+q
+q
+q q
++ +
+˙
+˚
+˘
+Í
+Î
+È
++
++
+=
+ws
+q
+wc
+q
+ss
+q
+sc
+q
+ws
+EC
+wc
+EC
+sc
+EC
+ss
+EC
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 11 ---
+3-
+Densidade volumétrica,
+4-
+Umidade.
+Como também a quantidade de argila; a capacidade de troca de cátions e matéria orgânica.
+As medidas de EC devem ser analisadas levando em conta estes fatores.
+a
+Outro fator é a temperatura. A condutividade eletrolítica é incrementada a um taxa de
+aproximadamente de 1,9% por graus Celsius. É tomada como referência a temperatura de
+25ºC.
+Aplicação da medida de EC em agricultura
+a
+Uma de suas primeiras aplicações foi a de medir a salinidade do solo. Solo salinidade se
+refere à presença de solutos inorgânicos dissolvidos na fase aquosa do solo, como
++ + +2 +2 - - - -2 -2
+exemplo: Na , K , Mg ,Ca ,Cl ,HCO , NO ,SO e CO .
+3 3 4 3
+Os efeitos da salinidade do solo são visíveis na redução do crescimento da planta; redução
+da produção e quebra da safra. A salinidade limita a captação da água pela planta
+reduzindo o potencial osmótico.
+Medidas da salinidade do solo
+Cinco métodos são empregados para a determinação da salinidade do solo em escala de
+campo:
+1- Observação visual da cultura
+É um método rápido e econômico, tenda a desvantagem que a salinidade é detectada após
+ter ocorrido danos na cultura;
+2- Condutância elétrica do solo maior que o normal da umidade;
+A solução de solo é colocada entre dois elétrodos, igualmente distanciados e de geometria
+conhecida (BOHN et al., 1979). Aplicando-se uma diferença de potencial constante entre
+os dois elétrodos a corrente é inversamente proporcional a resistência da solução de solo,
+representada na equação abaixo:
+(3)
+-1
+EC condutividade elétrica da solução (dS m );
+t
+K
+constante da célula,
+R a resistência medida.
+t
+3- Medida da resistividade elétrica (ER)
+O método de medida da resistividade elétrica consiste em injetar uma determinada intensidade
+de corrente elétrica na superfície do solo, através de dois elétrodos. Com a passagem da
+corrente elétrica no solo resulta numa diferença de potencial, que é medida por outros dois
+eletrodos nas vizinhanças dos elétrodos de corrente (Fig. 1). Este método foi desenvolvido por
+Schlumberger na França e por Wenner nos Estados Unidos nos anos 1900 (BURGER, 1992;
+TELFORD et al., 1990).
+12
+t
+t
+R
+k
+EC =
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 12 ---
+Fig. 1.
+esquema do método de medida de resistividade elétrica com o arranjo de 4
+eletrodos: eletrodos de corrente C e C ; eletrodos de potencial P e P e a o espaçamento
+1 2 1 2
+entre os eletrodos.
+A profundidade da medida de resistividade elétrica é proporcional a distância entre os
+3
+eletrodos ( a ). o volume medido na configuração da figura 2 é de ð a
+. Outros tipos de
+configurações podem ser visto nos trabalhos de Dobrin (1960), Telford et al. (1990) e
+Burger (1992).
+4- Medida com indução eletromagnética
+Uma bobina de transmissão induz um corrente de forma espiralada de sentido contrário no
+solo, a magnitude dessas espiras é proporcional a condutividade elétrica nas proximidades
+de cada espira. Cada espira de corrente gera um campo eletromagnético secundário que é
+proporcional ao valor da corrente fluindo dentro da espira.
+Uma fração do campo eletromagnético induzido, secundário, é detectada por outra bobina
+receptora, que é amplificado e convertido em uma saída de tensão. Este sinal é
+proporcional a condutividade elétrica do solo na região onde se esta a medir.
+Equipamentos de medida por indução eletromagnética estão disponíveis comercialmente. O
+modelo EM-38 de fabricação Geonics (Geonics Limited, Mississaug, Ontario, Canada) é o
+mais utilizado em medida de condutividade elétrica do solo para aplicações em agricultura
+(Fig. 2).
+Fig. 2.
+Sistema de medida de condutividade elétrica do solo por indução eletromagnética,
+modelo EM-38 (Geonics Limited).
+A profundidade de medida do EM-38, depende de sua configuração. Na configuração
+vertical atinge uma
+profundidade média de 1,5 m e na configuração horizontal, a
+profundidade varia de 0,75 a 1,0m (McNEILL, 1980, 1992; HENDRICKX e KACHANOSKI,
+2002).
+13
+Medidor de resistência
+a a
+a
+C 1 P
+1
+P 2 C 2
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 13 ---
+5- Reflectometria no domínio do tempo (TDR)
+Esta técnica baseia-se na medição do tempo de propagação, ida e volta de um pulso de
+voltagem, através de uma sonda. O qual é função da constante dielétrica ( e
+) do meio que
+se esta fazendo a medição.
+Pela medida da impedância da carga resistiva através da sonda (Z ), a condutividade
+L
+elétrica pode ser calculada por meio da equação 5 (GIESE e TIEMANN, 1975).
+(5)
+-12 -1
+e permissividade do vácuo (8.854 × 10 F m );
+0
+Z impedância da sonda ( Ù );
+0
+, onde Z é a impedância característica do cabo do testados, V a
+U 0
+Voltagem do pulso gerador e V a voltagem final refletida ao longo do tempo;
+f
+l comprimento da sonda.
+Medida de outras propriedades físico-químicas com condutividade
+elétrica
+A medida de condutividade elétrica é um produto de fatores tanto estáticos como
+dinâmicos que incluem a salinidade do solo, a mineralogia e argila, umidade, resistividade e
+temperatura (JOHNSON et al., 2003).
+Vários estudos têm sido realizados com condutividade elétrica mostrando a especificidade e
+complexidade de uma região com a variação espacial da medida de condutividade elétrica
+em função de cada particular propriedade, influenciando a medida de condutividade elétrica
+na região em estudo. Corwin e Lesch em seu trabalho mostram quais tipos de medidas
+podem ser feitas com a técnica de condutividade elétrica (CORWIN e LESCH, 2005), as
+quais são descriminadas abaixo:
+-
+- medidas diretas das propriedades do solo, salinidade e nutrientes (No );
+3
+- umidade;
+- textura (areia, argila, camadas de solo);
+- densidade volumétrica (compactação);
+- medidas indiretas das propriedades do solo, relacionadas com matérias orgânicas (carbono
+orgânico do solo, químicos orgânicos);
+- capacidade de troca catiônica;
+- lixiviação;
+- estudos de mananciais de água subterrânea;
+- classes de drenagem de solo;
+- mapas de propriedades do solo.
+14
+L
+a
+Z
+Z
+l
+c
+EC
+0 0
+e
+=
+1
+0
+1
+2
+-
+˙
+˙
+˚
+˘
+Í
+Í
+Î
+È
+- =
+f
+u L
+V
+V
+Z Z
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 14 ---
+Equipamentos para medida de condutividade elétrica
+A medida de condutividade elétrica é particularmente adequada para estudo da variabilidade
+espacial de um campo das propriedades do solo, por ser uma medida rápida, fácil e
+confiável que integra dentro de suas medidas as influências de muitas propriedades do solo
+que contribuem na condutância elétrica do solo.
+A condutividade elétrica serve como um meio de definir padrões espaciais que se mostram
+devido à variação da condutância elétrica, influenciadas pela salinidade, umidade, textura e
+resistividade.
+Alguns equipamentos foram desenvolvidos para possibilitar a medida de condutividade
+elétrica do solo, proporcionando mapas das variações da condutividade elétrica na região de
+estudo (McNEILL, 1992; FREELAND et al., 2002).
+Os equipamentos desenvolvidos utilizam as técnicas mencionadas atrás, tal como a medida
+de resistividade elétrica e de indução eletromagnética.
+O equipamento utilizado para medida de resistividade elétrica consiste de seis eletrodos em
+contato com o solo, sendo dois eletrodos para injeção de corrente e dois para medida da
+diferença de potencial, medida entre os dois eletrodos de corrente. Cada medida é
+registrada de acordo com sua posição georeferenciada, através de um sistema de GPS,
+Figura 3 (CARTER et al., 1993; RHOADES, 1992,1993). Equipamentos comerciais também
+estão disponíveis, como o da Empresa Veris Technologies¹ Figura 3 b.
+Fig. 3.
+Equipamentos desenvolvidos para medida de condutividade elétrica no solo:
+a)modelo experimental e b)modelo comercial Veris Technologies (CORWIN e LESCH, 2005).
+Em medidas para quantificação da condutividade elétrica utilizando a metodologia de
+indução eletromagnética, o equipamento muito utilizado é o EM-38 de fabricação da
+empresa Geonics, já mencionada acima (Fig. 2).
+Aplicação das medidas de condutividade elétrica em agricultura de
+precisão
+Métodos eficientes e precisos de medidas para a determinação das variações das
+propriedades físicas e químicas do solo dentro de uma região são de extrema importância
+para a agricultura de precisão (BULLOCK e BULLOCK, 2000).
+15
+¹Veris Technologies, Salinas, Kansas, USA, www.veristech.com
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 15 ---
+A habilidade para delinear áreas georeferenciadas dentro de uma região que mostram
+semelhantes comportamentos em função da produtividade é muito difícil devido a
+diferentes e complexas combinações de fatores tais como, edáficos, biológicos e
+metereológicos, que afetam a produtividade da cultura.
+Eletro condutividade do solo é hoje uma das mais usadas para caracterizar as variabilidades
+de campo com aplicações em agricultura de precisão, por ser fácil e confiável (RHOADES et
+al., 1999a e 1999b; CORWIN e LESCH, 2003).
+Utilizando mapas de condutividade elétrica para amostragem de solo, Jhonson e Corwin em
+seus estudos caracterizaram espacialmente a qualidade do solo, de acordo com suas
+propriedades físico-quimicas. Neste trabalho foram amostrados quatro valores
+georeferenciados de condutividade elétrica com a correspondente amostra de solo e depois
+correlacionadas com as propriedades físicas, químicas e biológicas do solo (JHONSON et
+al., 2001; CORWIN et al., 2003a).
+Os primeiros mapas de condutividade elétrica no Brasil foram montados por Inamasu e
+colaboradores (INAMASU et al., 2001). Neste trabalho eles estudaram a correlação das
+medidas de condutividade elétrica com a produtividade de uma plantação de milho.
+O sistema de medida de condutividade elétrica usado foi o sistema comercial de fabricação
+Veris. A cultura de milho correspondia a uma área de 30 ha de irrigação por pivô-central de
+um campo experimental de propriedade da Embrapa Milho e Sorgo, situada na cidade de
+Sete Lagoas no estado de Minas Gerais.
+Historicamente esta área já vem sendo utilizada pela Embrapa Milho e Sorgo já há vários
+anos sob cultivo de plantio direto.
+Os mapas de condutividade elétrica, para profundidade de 30 cm e 90 cm, são ilustrados
+na Figura 4, na Figura 5 é ilustrado o mapa de produtividade desta área realizado com uma
+colheitadeira comercial adaptada para este fim.
+Fig. 4.
+Mapas de condutividade elétrica do solo, a) profundidade de 90 cm, b) profundidade
+de 30 cm.
+16
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 16 ---
+Fig. 5
+: Mapa de produtividade de milho (em vermelho as áreas mais produtivas e em azuis
+áreas menos produtivas).
+Comentários finais
+Muitos estudos ainda são necessários para a utilização do método de condutividade elétrica
+do solo em agricultura de precisão, mas ainda sim tem sido um método rápido e barato.
+O fornecimento de dados que auxiliam a exploração da variabilidade é de grande
+importância. A análise qualitativa preliminar sobre os mapas de condutividade elétrica do
+solo sugere a divisão em subáreas mais homogêneas para um trabalho mais detalhado
+nessas subáreas, como o mapeamento da fertilidade do solo e de algumas propriedades do
+solo.
+Explorar a correlação da homogeneidade da condutividade elétrica do solo na análise da
+fertilidade e ou de outros parâmetros do solo (umidade, salinidade, matéria orgânica, etc.) É
+um dos primeiros passos para orientar o que, quando e como aplicar determinada resposta
+no sentido de corrigir ou melhorar os dados de produtividade, aplicando em agricultura de
+precisão.
+Referências
+ALEXANDRATOS, N. (Ed.). World Agriculture
+: Towards. Chichester: Wiley, 1995. p. 2010.
+ARCHIE, G.
+The Electrical Resistivity Log as an Aid in Determining Some Reservoir
+Characteristics . [
+S. l.: s. n.], 1942. (Transactions of AIME).
+BOHN, H. L.; McNEAL, B. L.; O'CONNOR, G. A. Soil Chemistry
+. New York: Wiley, 1979.
+BULLOCK, D. S.; BULLOCK, D. G. Economic optimality of input application rates in
+precision farming. Prec. Agric.
+, Dordrecht, v. 2, p. 71-101, 2000.
+BURGER, H. R. Exploration Geophysics of the Shallow Subsurface
+. Upper Saddle River:
+Prentice Hall, 1992.
+CARTER, L. M.; RHOADES, J. D.; CHESSON, J. H.
+Mechanization of soil salinity
+assessment for mapping
+. St. Joseph: ASAE, 1993. ASAE Winter Meetings, 12-17
+December 1993, Chicago,IL., MI, USA. (ASAE Paper No. 931557).
+Condutividade elétrica do solo, tópicos e equipamentos
+17
+
+--- PÁGINA 17 ---
+CORWIN, D. L.; LESCH, S. M. Application of soil electrical conductivity to precision
+agriculture: theory, principles, and guidelines. Agron. J
+., Madison, v. 95, n. 3, p. 455-471,
+2003.
+CORWIN, D. L.; KAFFKA, S. R.; HOPMANS, J. W.; MORI, Y.; LESCH, S. M.;OSTER, J. D.
+Assessment and field-scale mapping of soil quality properties of a saline-sodic soil.
+Geoderma
+, Amsterdam, v. 114, n. 3-4, p. 231-259, 2003a.
+CORWIN, D. L.; LESCH, S. M.;SHOUSE, P. J.; SOPPE, R.; AYARS, J. E. Identifying soil
+properties that influence cotton yield using soil sampling directed by apparent soil electrical
+conductivity. Agron. J.
+, Madison, v. 95, n. 2, p. 352-364, 2003b.
+CORWIN, D. L.; LESCH, S. M. Apparent soil electrical conductivity measurements in
+agriculture. Comput. Electron. Agric
+., New York, v. 46, p. 11-43, 2005.
+DOBRIN, M. B. Introduction to Geophysical Prospecting
+. New York: McGraw-Hill, 1960.
+FREELAND, R. S.; YODER, R. E.; AMMONS, J. T.; LEONARD, L. L. Mobilized surveying of
+soil conductivity using electromagnetic induction. Appl. Eng. Agric
+., St Joseph, v. 18, n. 1,
+p. 121-126, 2002.
+GIESE, K.; TIEMANN, R. Determination of the complex permittivity from thin-sample time
+domain reflectometry: improved analysis of the step response waveform.
+Adv. Mol. Relax.
+Process
+., Amsterdam, v. 7, p. 45-49, 1975.
+HENDRICKX, J. M. H.; KACHANOSKI, R. G. Solute content and concentration: indirect
+measurement of solute concentration: nonintrusive electromagnetic induction. In: DANE, J.
+H.; TOPP, G. C. (Ed.). Methods of soil Analisys : Part 4
+Physical Methods. Madison: Soil
+Science Society of America, 2002. p. 1297-1306. (Soil Sci. Soc. Am. Book Ser. 5).
+INAMASU, R. Y.; FRANCA, G. E.; TORRE-NETO, A.; MANTOVANI, E. C.; CRUVINEL, P. E.;
+GOMIDE, R. L.; LUCHIARI JUNIOR, A.; RABELLO, L. M.; SOUZA, R. V. de. Condutividade
+elétrica do solo: primeiros mapas no Brasil. In: BALASTREIRE, L. A.
+Avanços na agricultura
+de precisão no Brasil no período de 1999-2001
+. Piracicaba: L. A. Balastreire, 2002. Cap. 2.
+p. 32-37.1 CD-ROM. Trabalho apresentado no III Simpósio sobre Agricultura de Precisão,
+Piracicaba,
+2001.
+JHONSON, C. K.; DORAN, J. W.; DUKE, H. R.; WEINHOLD, B. J.; ESKRIDGE, K. M.;
+SHANAHAN, J. F. Field-scale electrical conductivity mapping for delineating soil conditions.
+Soil Sci. Soc. Am. J
+., Madison, v. 65, p. 1829-1837, 2001.
+JHONSON, C. K.; DORAN, J. W.; EGHBALL, B.; EIGENBERG, R. A.; WIENHOLD, B. J.;
+WOODBURY, B. L. Status of soil electrical conductivity studies by central state researches
+.
+St. Joseph: ASAE, 2003. Paper No. 032339, 2003 ASAE Annual International Meeting,
+27-30 July 2003. Las Vegas, NV.
+LARSON, W. E.; ROBERT, P. C. Farmming by soil. In: LAL, R.; PIERCE, F. J. (Ed.).
+Soil
+Management for sustainability
+. Ankeny: Soil and Water Conservation Society, 1991. p.
+103-112.
+LONG, D. S. Spatial autoregression modeling of site-specific wheat yield. Geoderma
+,
+Amsterdam, v. 85, p. 181-197, 1998.
+18
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 18 ---
+19
+McNEILL, J. D.
+Rapid, Accurate Mapping of soil Salinity using electromagnetic ground
+conductivity meters.
+Ontario: Geonics Limited, 1980. (Tech. Note, TN-18).
+McNEILL, J. D. Rapid, Accurate Mapping of soil Salinity using electromagnetic ground
+conductivity meters. In: TOPP, G. C.; REYNOLDS, W. D.; GREEN, R. E. (Ed.).
+Advances in
+Measurements of Soil Physical Properties
+: Bringing Theory into Pratice. Madison: ASA-
+CSSA-SSSA SSSA, 1992. p. 201-229. (Special Publication, No. 30).
+NIELSON, D. R.; BIGGAR, J. W.; ERH, K. T. Spatial variability of field-measured soil-water
+properties. Hilgardia
+, Berkeley, v. 42, n. 7, p. 215-259, 1973.
+PLANT, R. E. Site-specific management: the application of information technology to crop
+production. Comput. Electron. Agric
+., New York, v. 30, p. 9-29, 2001.
+RHOADES, J. D.; LOVEDAY, J. Salinity in irrigated agriculture. In: STEWART, B. A.;
+NIELSEN, D. R. (Ed.). Irrigation of Agricultural Crops
+. Madison: Soil Science Society of
+America, 1990. p. 1089-1142. (Agron. Monogr., No. 30).
+RHOADES, J. D. Instrumental field methods of salinity appraisal. In: TOPP, G. C.;
+REYNOLDS, W. D.; GREEN, R. E. (Ed.).
+Advances in Measurement of Soil Physical
+Properties
+: Bring Therory into Practice. Madison: Soil Science Society of America, 1992. p.
+231-248. (SSSA Special Publications, No. 30).
+RHOADES, J. D. Electrical
+conductivity methods for measuring and mapping soil salinity.
+In: SPARKS, D. L. (Ed.). Advances in Agronomy
+. San Diego: Academic Press, 1993. v. 49.
+p. 201-251.
+RHOADES, J. D.; CORWIN, D. L.; LESCH, S. M. Geospatial measurements of soil electrical
+conductivity to assess soil salinity and diffuse salt loading from irrigation. In: CORWIN, D.
+L.; LOAGUE, K.; ELLSWORTH, T. R. (Ed.).
+Assessment of Non-point Source Pollution in the
+Vadose Zone
+. Washington, DC: American Geophysical Union, 1999a. p. 197-215.
+(Geophysical Monograph, 108).
+RHOADES, J. D.; CHANDUVI, F.; LESCH, S. Soil salinity assessment:
+methods and
+interpretation of electrical conductivity measurements. Rome: Food and Agriculture
+Organization of the United Nations, 1999b. p. 1-150. (FAO Irrigation and Drainage Paper,
+57).
+nd
+TELFORD, W. M.; GLEDART, L. P.; SHERIFF, R. E. Applied Geophysical . 2
+ed. Cambridge:
+Cambridge University Press, 1990.
+VAN SCHILFGAARDE, J. Is precision agriculture sustainable? Am. J. Altern. Agric
+.,
+Greenbelt, v. 14, p. 43-46, 1999.
+VAN UFFELEN, C. G. R.; VERHAGEN, J.; BOUMA, J. Comparison of simulated crop yield
+patterns for site-specific management. Agric. Syst.
+, Essex, v. 54, p. 207-222, 1997.
+WORLD RESOURCES INSTITUTE. 1998-99 World Resources
+: A Guide to the Global
+Environment. New York: Oxford University Press, 1998.
+Condutividade elétrica do solo, tópicos e equipamentos
+
+--- PÁGINA 19 ---
+Embrapa Instrumentação Agropecuária

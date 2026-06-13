@@ -1,0 +1,106 @@
+---
+documento_id: DOC_MILHO_IDR_001
+titulo: Nota Técnica 07/2023 - Enfezamento do milho
+instituicao: IDR-Paraná
+autores: 
+ano: 2023
+url_original: https://www.idrparana.pr.gov.br/system/files/publico/Publica%C3%A7%C3%B5es/Notas%20T%C3%A9cnicas/NotaTecnica_07_2023_Enfezamento_Milho.pdf
+arquivo_original: originais/idr_parana/DOC_MILHO_IDR_001.pdf
+sha256: 94f8ec9c2a234effc64ca10ed790fbfffcd11e66ccb284089af1505a4cba3eda
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+Rua da Bandeira, 500 | Cabral | 80035-270 | Curitiba | Paraná | [41] 3250-2100 www.idrparana.pr.gov.br
+COMPLEXO DE ENFEZAMENTO DO MILHO NO PARANÁ
+SAFRA 202 2 /202 3
+NOTA TÉCNICA nº 07/2023 Curitiba, 28 de setembro de 2023
+O milho é o terceiro principal produto do valor bruto da produção (VBP) da agropecuária
+paranaense, correspondendo a 11% do VBP
+1
+, de um montante de R$ 20,2 bilhõe s gerados no
+ano de 2022. Na safra de 2022/2023, foram cultivados 2,8 milhões de hectares, com 385 mil
+hectares na primeira safra e 2,4 milhões de hectares na segunda safra, com uma produção de
+17,87 milhões de toneladas milho
+2
+, o que evidencia a importânc ia da segunda safra de milho no
+Paraná. Houve melhoria nos índices de produtividade na segunda safra de 2 022 /23 (5.785
+kg.ha
+- 1
+) , principalmente em comparação a safra de 20 20 /21 (2.637 kg.ha
+- 1
+), na qual houveram
+dificuldades em decorrência de estiagens e d a incidência do complexo de enfezamento do milho.
+A ocorrência do complexo de enfezamento do milho transmitido pela cigarrinha do milho
+( Dalbulus maidis
+), tem sido relatada nas regiões produtoras de milho do estado do Paraná desde
+a safra de 2018/2019. O levantamento da incidência da doença nos últimos três anos revelou
+que os patógenos do enfezamento do milho Fitoplasma ( Candidatus Phytoplasma asteris
+),
+Espiroplasma ( Spiroplasma kunkelii ) e Vírus da risca ( Mayse Rayado Fino
+Virus) estão presentes
+em todas as regiões produtoras do Estado. Os patógenos estão presentes em
+plantas
+sintomáticas e assintomáticas, plantas voluntárias e em lavouras comerciais, e em infecções
+mistas e individuais.
+Os níveis de comprometimento da produtividade do milho, dependem de fatores como a
+associação a patógenos oportunistas que podem resultar na quebra de colmos, utilização de
+cultivares altamente suscetíveis e intensidade populacional de cigarrinhas portadoras
+de
+patógenos.
+Para o enfrentamento ao complexo de enfezamento do milho r ecomenda - se o uso do
+manejo integrado de pragas alinhado com boas práticas agrícolas, com a adoção de diversas
+estratégias, especialmente: eliminação de plantas espontâneas (milho tiguera); sincronização do
+período de semeadura do milho ao nível de propriedade rural e regiões; uso de cultivares de
+milho que apresentem maior tolerância ao complexo de enfezamento; tratamento de sementes
+com inseticidas; controle químico e biológico com inseticidas via pulverizações. Especialmente
+nesta última safra, i ntensificou - se a utilização de duas práticas , que são o uso de cultivares de
+milho com maior tolerância ao complexo de enfezamento, bem como a utilização de inseticidas
+biológicos .
+1
+https://www.agricultura.pr.gov.br/Pagina/VBP-2022-Analise-resumida-dos-resultados-preliminares
+2
+https://www.agricultura.pr.gov.br/deral/safras
+
+--- PÁGINA 2 ---
+Rua da Bandeira, 500 | Cabral | 80035-270 | Curitiba | Paraná | [41] 3250-2100 www.idrparana.pr.gov.br
+A ADAPAR, por meio do Sistema de Monitoramento do Comércio e Uso de Agrotóx icos
+do E stado do Paraná - SIAGRO , vem acompanhando o uso de inseticidas ao longo do
+desenvolvimento da cultura do milho para o controle de D. maidis nos últimos anos.
+Comparando - se as dosagens médias utilizadas ao longo das safras, verifica - se que as dosa gens
+e as quantidades de inseticidas apresentam elevação ao longo das safras, e isso pode resultar
+em perda de eficiência dos ativos hoje disponibilizados, além de potencializar a ocorrência de
+outras pragas, pela perda de eficiência dos ativos ou por comp rometer os níveis de equilíbrio
+natural estabelecidos nas lavouras.
+Destaca-se que a ADAPAR emitiu a Portaria 133/2023
+3
+, que estabelece a obrigatoriedade
+da adoção de medidas de eliminação de plantas voluntárias de milho no Paraná. O milho
+voluntário é entendido como as plantas de milho que nascem sem serem semeadas, também
+chamadas de milho guaxo ou tiguera. Elas são originadas de espigas ou grãos perdidos durante
+as operações de colheita e transporte, sendo disseminadoras de pragas, como o percevejo e,
+principalmente, da cigarrinha-do-milho, inseto de difícil controle e transmissor dos enfezamentos
+pálido, vermelho e viroses. Em caso de descumprimento, o produtor terá de realizar o manejo
+das plantas voluntárias de milho, dentro do prazo máximo de 30 dias após a notificação da
+agência.
+Algumas ações de enfrentamento ao complexo de enfezamento do milho estão sendo
+desenvolvidas pela Rede de Agropesquisa
+4
+, que é composta pelo IDR-Paraná, EMBRAPA Milho
+e Sorgo, ADAPAR, universidades, cooperativas, Fundação Araucária e Sistema FAEP/Senar-PR.
+A rede desenvolverá pesquisa quanto ao monitoramento da cigarrinha e das doenças em nível
+estadual, avaliação da reação das cultivares de milho e testes de eficiência de
+produtos
+químicos e biológicos no controle dos insetos. Estes esforços visam contribuir com a redução
+das perdas de produtividade, qualidade e rentabilidade, provocadas por estes patógenos na
+cadeia produtiva do milho.
+Equipe Técnica responsável pela elaboração:
+Edivan José Possamai - IDR-Paraná/SEAB,
+Ivan Bordin - IDR-Paraná/SEAB,
+Marcílio Martins Araújo - ADAPAR/SEAB,
+Michele Regina Lopes da Silva - IDR-Paraná/SEAB,
+Rodolfo Bianco - IDR-Paraná/SEAB,
+3
+https://www.adapar.pr.gov.br/FAQ/Portarias-Adapar
+4
+https://www.agricultura.pr.gov.br/Rede-Agropesquisa/Pagina/Informacoes-Gerais-CEM

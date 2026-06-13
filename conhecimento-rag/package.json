@@ -1,0 +1,19 @@
+{
+  "name": "izes-agro-biblioteca-documental",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "download": "node scripts/biblioteca.mjs download",
+    "validate": "node scripts/biblioteca.mjs validate",
+    "extract": "node scripts/biblioteca.mjs extract",
+    "ocr": "node scripts/ocr.mjs",
+    "inventory": "node scripts/biblioteca.mjs inventory",
+    "check": "node scripts/biblioteca.mjs check",
+    "all": "node scripts/biblioteca.mjs all"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.80",
+    "pdfjs-dist": "5.3.31",
+    "tesseract.js": "^6.0.1"
+  }
+}

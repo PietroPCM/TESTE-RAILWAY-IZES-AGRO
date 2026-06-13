@@ -1,0 +1,13 @@
+documento_id,titulo,motivo,acao_necessaria
+"","Batata-doce","menos de 3 fontes confiáveis aceitas","localizar e validar fonte original adicional"
+"","Soja","menos de 3 fontes confiáveis aceitas","localizar e validar fonte original adicional"
+"","Milho","menos de 3 fontes confiáveis aceitas","localizar e validar fonte original adicional"
+"DOC_SOLO_EMBRAPA_001","Manual de métodos de análise de solo","OCR concluído; possíveis falhas de reconhecimento","revisão humana da qualidade do texto OCR"
+"DOC_SOLO_EMBRAPA_002","Métodos de análise de solos e calcário","OCR concluído; possíveis falhas de reconhecimento","revisão humana da qualidade do texto OCR"
+"DOC_BATATA_DOCE_EMBRAPA_001","Normas técnicas para a cultura da batata-doce, Santa Catarina","OCR concluído; possíveis falhas de reconhecimento","revisão humana da qualidade do texto OCR"
+"DOC_SOJA_EMBRAPA_001","Sistemas de produção para soja: Paraná - região do oeste","OCR concluído; possíveis falhas de reconhecimento","revisão humana da qualidade do texto OCR"
+"DOC_SOJA_EMBRAPA_002","Recomendações técnicas para a cultura da soja no Paraná 1990/91","OCR concluído; possíveis falhas de reconhecimento","revisão humana da qualidade do texto OCR"
+"DOC_MILHO_EMBRAPA_001","Sistema de produção para milho (revisão)","OCR concluído; possíveis falhas de reconhecimento","revisão humana da qualidade do texto OCR"
+"DOC_IRRIGACAO_FAO_001","Crop evapotranspiration - Guidelines for computing crop water requirements - FAO Irrigation and drainage paper 56","documento original não validado","revisão humana; aplicar OCR somente se confirmado PDF escaneado"
+"DOC_IRRIGACAO_FAO_002","Water quality for agriculture - FAO Irrigation and drainage paper 29 Rev. 1","OCR concluído; possíveis falhas de reconhecimento","revisão humana da qualidade do texto OCR"
+"DOC_SENSOR_ARTIGO_003","NPK Detection Spectroscopy on Non-Agriculture Soil","documento original não validado","revisão humana; aplicar OCR somente se confirmado PDF escaneado"

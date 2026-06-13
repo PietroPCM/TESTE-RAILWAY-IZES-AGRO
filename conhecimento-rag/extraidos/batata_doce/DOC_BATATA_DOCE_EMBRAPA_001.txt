@@ -1,0 +1,820 @@
+---
+documento_id: DOC_BATATA_DOCE_EMBRAPA_001
+titulo: Normas técnicas para a cultura da batata-doce, Santa Catarina
+instituicao: Embrapa
+autores: 
+ano: 1990
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/905861/1/SIDDOCUMENTOS15SISTEMADEPRODUCAODEBATATADOCE.pdf
+arquivo_original: originais/embrapa/DOC_BATATA_DOCE_EMBRAPA_001.pdf
+sha256: c70f852783a4d8f1b7ff7ab3a23eb496ef32d6d41c0e9e2b191f666f4cd00224
+data_acesso: 2026-06-13
+tipo_extracao: OCR
+possiveis_falhas_ocr: true
+revisao_humana: true
+--------------
+--- PÁGINA 1 ---
+NORMAS TÉCNICAS PARA
+A CULTURA DA BATATA-DOCE
+SANTA CATARINA
+' Te K =. 4º oe €
+f É e AE PERTO
+fã $ Sã no 7 o No RA
+Dei OD
+bp. ARE.
+à Y Wo * À NO Se
+oo EO e |
+qe A é
+CATARINA — Vinculadas à Secrearia de Estado do pa to pc
+
+--- PÁGINA 2 ---
+GOVERNADOR DO ESTADO DE SANTA CATARINA
+Pedro Ivo Figueiredo de Campos
+SECRETÁRIO DE ESTADO DA AGRICULTURA,
+(DO ABASTECIMENTO E DA IRRIGAÇÃO.
+“Athos de Almeida Lopes
+DIRETOR-GERAL DA SECRETARIA DE ESTADO DA AGRICULTURA,
+DO ABASTECIMENTO E DA IRRIGAÇÃO
+Frederico Antônio Bichele.
+EMPRESA CATARINENSE DE PESQUISA AGROPECUÁRIA
+DIRETORES
+Afonso Buss
+Diretor Presidente
+(João de Assis Daile Ore
+Direto de Administração é Finanças
+João Afonso Zanini Neto
+Diretor-Técnico
+CHEFES DOS ORGÃOS REGIONAIS DE PESQUISA
+Evaristo Antonio Espindola
+(Centro de Pesquisa para Pequenas Propriedades
+José Luiz Petri
+Estação Experimental de Caçador
+Antonio Domeval Alexandre
+Estação Experimental de Campos Novos
+Hamilton Justino Vieira
+Estação Experimental do Flanaíto Norte
+Milton Geraldo Ramos
+Estação Experimental de Ttajaí
+Garlos Luiz Gandin
+Estação Experimental de Ituporanga
+Cesar Itaqui Ramos
+Estação Experimental de Lages
+Emílio Brighenti
+Estação Experimental de São Joaquim
+Emilio Dela Bruna.
+Estação Experimental de Urussanga
+Jean-Pierre Henri Joseph Ducroquet
+Estação Experimental de Viera
+CHEFES DAS ASSESSORIAS
+Amélia Durieux Lopes
+Assessoria Administrativa
+Alabr Davina Carvalho Stofler
+Assessoria Jurídica
+CHEFES DOS DEPARTAMENTOS (SEDE)
+Nazareno Dalsasso Anguiski
+Financeiro
+(Osvaldo Carlos Rockenbach
+intormação e Divulgação.
+Sadi Sérgio Grimm
+Métodos Quantitativos
+Sérgio Benincá de Salles
+Projetos é Orçamentos
+Roque Paulo Kreutz
+Recursos Munmanos
+Dáriei Roque Segalin
+Recursos Materiais
+Hugo José Braga
+Recursos Naturais
+Milton Losso
+Teenico-Científico
+
+--- PÁGINA 3 ---
+EmMPASC EMATER SC/ACARESO
+Agropecuria S.A Senta Catarina
+NORMAS TÉCNICAS PARA
+A CULTURA DA BATATA-DOCE
+SANTA CATARINA
+FLORIANÓPOLIS
+JANEIRO, 1990
+
+--- PÁGINA 4 ---
+Empresa Catarinense de Pesquisa Agropecuária S.A. — EMPASC
+Estrada Geral do Itacorubi s/n? Caixa Postal 1460
+Fone (0482) 331344 — Telex 482 242 ECPA
+88001 — Florianópolis, SC — Brasil
+Editado pelo Departamento de Informação e Divulgação — DID/EMPASC
+Elaboração deste trabalho: Pedro Boff
+Lúcio Francisco Thomazeili
+João Favorito Debarba
+Antônio Amaury Silva Jónior
+Revisão técnica deste trabalho: Siegíried Mueller
+Juarez José Vanni Múlier
+Emílio Dela Bruna
+Eduardo Carlos Humeres Flores
+Edison Xavier de Almeida
+(Caros Luiz Gandin
+“Antonio Teixeira de Matos
+Roque Lino Braun
+Primeira edição: janeiro de 1990
+Tiragem: 5,000 exemplares.
+É permitida a reprodução parcial deste trabalho desde que citada a fonte.
+Referência bibliográfica
+EMPRESA CATARINENSE DE PESQUISA AGROPECUÁRIA/
+EMPRESA DE ASSISTÊNCIA TÉCNICA E EXTENSÃO
+RURAL-SC/ACARESC. Normas técnicas para a cultura
+(da batata-doce; Santa Catarina. Florianópolis, 1990. - 21p.
+(EMPASC/ACARESC, Sistemas de Produção, 15).
+1, Batata-doce — Sistemas de produção — Brasil — SC.
+1. Título. 11. Série.
+(O) /A EMBRAPA participa com 40% do capital social da EMPASC
+
+--- PÁGINA 5 ---
+APRESENTAÇÃO
+
+A importância da cultura da batata-doce, no Estado de Santa Catarina, está
+representada pela sua presença na maioria das propriedades rurais.
+
+Cabe à pesquisa e à extensão desenvolver e adaptar técnicas para melhorar a
+qualidade é produtividade da batata-doce, sem comprometer sua rusticidade, a qual
+possibilita adeptação a diferentes condições edafoclimáticas com pouca exigência de
+
+Este documento é fruto de uma discussão entre segmentos envolvidos com a
+cultura, e seu objetivo é fornecer subsídios aos técnicos e produtores de batata-do-
+Ce, para que possam discutir e, quando conveniente, alterar o sistema de produção
+vigente.
+
+A coordenação
+
+--- PÁGINA 6 ---
+SUMÁRIO
+
+Pág.
+LISTA DE TABELAS ...iiiiiiri eee 7
+1. INTRODUÇÃO. . .. iii EA
+1.1. Botânica .....1100o ESSSSSSSSSSCSSNCCCCCCC CTT TCA. |
+12. Importância sócio-econômica, . à... ía crian É
+1.3. Caracterização do produtor. .....1010 000 cc essas NO
+2. OPERAÇÕES TÉCNICAS. ..... AVES Kas ca cuentas E
+DI. CUNNIIOA, «é voce ce caca ensaia Ci ENS SR errar eme oo NR
+211. Caracterização . 1 .1u. uia erre enter RR
+2X bilandãO «rãs ds úueos no anca ea no ERERA ES COTA me o 2
+2.2. Obtenção de mudas ou ramas. «+ 116.1. cena 13
+ED MAIA cura ca maços DERUS OS PeTIE SS tunc eo nua ol da o
+2.4, Escolta do terreno e preparo do eoliisss eu o secos cenecerniatir o E
+38, NulieNO CaNRAÇÃO . «.v nao ao ando da eee ren nano VE
+20.9. Resposta BO BH «+ cuccnro arenoso ads ren curas 1
+2.5.2. Resposta ao nitrogênio. ..... pena ek NANA ES Mova neo NÉ
+2.5.3. Resposta ao fÓSÍORO. . «1.161.010. certo 14
+2.5.4. Resposta ao potássio ......11010.01 0020 rrcroto 1.
+25.6. Resposta à adubação Orgânica. ... 1.6.1 01 ci iii no 1
+DM O aa ca nana ea ea ca SS EEEAS penes co cever ca nn o É
+2.6.1. Métodos de plantio. . ....11i le cnc ear NM
+2.7. Práticas Culturais. 1.110.010 00000 as
+SÓ, e Sa NIN (GENS 00 scores com nom toa Gi NL AO cume É
+E. Desen does «e DIAS EVT De careca na coma ãiá SABE e e
+2.8.2. Medidas gerais de controle ..... 10.0... cer 16
+2.9. DOSNÇS. - . hu aaa rrenan 16
+3 NO QUINA casam aa cancao SADO ES TIS E pa a a aa cr a 3
+2.11. Armazenamento... 1.0.0.0 certo e 7
+2.12. Classificação e comercialização. «1.111.010. —
+2113, Utilização da batata-doce .....01 0110010100 02 1
+2131. Alimentação humalãs é «ué ce caca concerne 19
+213,2, Alimentação anémal. «uu ee veres comer ca nene cb uEr ss O
+3. COEFICIENTES TÉCNICOS... 1.110.000 20
+4. PARTICIPANTES DO ENCONTRO ....iiio cce 2
+
+--- PÁGINA 7 ---
+LISTA DE TABELAS
+
+Pás.
+
+TABELA 1 — Variação mensal de preço e de volume comercializado de
+batata-doce na CEASA de Santa Catarina, no ano de 1988... 11
+
+TABELA 2 — Características agronômicas de germoplasma de batata-doce
+testado no Alto Vale do Itaja(, SC .. 1.111.100 12
+
+TABELA 3— Classificação comercial de raízes de batata-doce, em São Paulo
+1 Ro de demalro 51514 6 cueca ce nes seua nano
+TABELA 4 — Composição química média da batata-doce. ..........1. 18
+
+TABELA 6 — Coeficientes técnicos para o cálculo do custo de produção de
+
+Tha de batata-doce, para as operações e insumos considerados
+nas normas técnicas. ...c11100100 0000 erros E
+
+7
+
+--- PÁGINA 8 ---
+NORMAS TÉCNICAS PARA
+A CULTURA DA BATATA-DOCE
+SANTA CATARINA
+1. INTRODUÇÃO
+1.1. Botânica
+
+A batata-doce pertence à família das Convolvuláceas, ao gênero Ipormoea e à
+espécie 1. batatas (L) Lam. Uma das características importantes que possui é a de
+armazenar reservas nutritivas nas raízes,
+
+Já foram identificadas onze espécies do gênero /pomoea. Até no momento,
+somente a batata-doce tem importância comercial, /pomoea tíliaçes é a espécie que
+apresnta maiores semelhanças com a batata-doce e acredita-se que a partir desta
+surgiu a (pomoea batatas.
+
+AA verdadeira origem da bstata-doce permanece até hoje indefinida. Muitas
+evidências indicam como centros de origem o Sul do México e o Noroeste da Amé-
+rica do Sul.
+
+“A batata-doce é uma planta rústica, de caule tenro, que se desenvolve raste-
+jante no solo, impedindo a erosão e o crescimento de plantas daninhas. As raízes
+são tuberosas e variam de forma, tamanho e coloração, conforme o germoplasma e
+o meio ambiente em que são produzidas,
+
+Por ser natural de regiões quentes, requer temperaturas elevadas durante todo
+o ciclo vegetativo. À geada é um fator limitante para a cultura, Temperaturas infe-
+tores a 100C prejudicam o crescimento e reduzem a produção.
+
+Um regime de chuvas que garanta 500 a 700mm bem distribuídos durante o
+ciclo da cultura é suficiente. Quando, após um período de seca, ocorrem chuvas
+abundantes e prolongadas, surgem rachaduras na superfície das raízes em formação.
+O excesso de chuvas, na maturação, também é prejudicial, pois poderá ocasionar
+apodrecimentos, afetando a conservação das raízes.
+
+1.2. Importância sócio-econômica
+
+Como produto de grande importância social, a batata-doce contribui de ma-
+
+meira decisiva para o suprimento alimentar das regiões mais pobres do planeta.
+9
+
+--- PÁGINA 9 ---
+No quadro mundial, despontam como grandes produtores a China, a Indoné-
+sia, a Índia e o Japão. No continente latino-americano, o Brasil surge como princi.
+pal produtor, contribuindo com 3 milhões de toneladas anuais.
+
+A batata-doce alcança a quarta colocação entre as hortaliças mais consumidas
+em nosso país, O consumo na região sul é de 5,6kg/habitante/ano. Os estados de
+maior produção são Rio Grande do Sul, Santa Catarina, Bahia, Paraná e Rio Grande
+do Norte. O rendimento nacional é de 10t/ha, muito abaixo de 40t/ha, índice alcan-
+(cado pela pesquisa.
+
+Em Santa Catarina, a batata-doce está presente em quase todas as proprieda-
+des rurais, com uma produtividade média de 15/ha,
+
+Em 1980 havia no Estado 55,953 produtores de batata-doce com uma produ-
+ção de 152.457 toneladas. Atualmente, as maiores produções concentram-se nas re-
+iões: Carbonífera, com 39.583t; Alto Vale do Itajaí, com 29.193t; Blumenau, com
+22.906t; Oeste Catarinense, com 16,837t; Serrana Catarinense, com 13,550t; Rio
+do Peixe, com 4.716.
+
+A área cultivada no Estado é de aproximadamente 8.000ha, dos quais 210ha
+destinam-se a indústria, 470ha a feiras livres e 7.320ha a consumo na própria pro-
+priedade. A cultura é considerada ainda marginal, não tendo recebido a devida
+valorização pelo muito que representa no consumo humano e animal.
+
+A TABELA 1 mostra o volume e preço de comercialização na CEASA de San-
+ta Catarina em 1988. Observa-se que o volume total de batata-doce comercializada
+foi de 1.105,742kg, dando uma média mensal! de 92.000kg. Houve uma maior con-
+centração de oferta no primeiro semestre. Isto ocorre devido à qualidade superior
+da raiz nesta época do ano, apresentando maior concentração de amido quando
+comparada ao período de setembro a dezembro, onde ocorre intensa brotação. Ao
+correlacionar-se a maior ou menor oferta com o preço (valor real IGP) deve ser con-
+
+siderado este aspecto de qualidade do produto, bem como o abastecimento, que é
+em mais de 97% feito com produto da região.
+1.3. Caracterização do produtor
+
+Os produtores catarinenses de batata-doce caracterizam-se por apresentar ní-
+vel de instrução primário, cultivam em terra própria e não recorrem ao crédito ru-
+ral. A área cultivada, por propriedade, varia de 0,1 a 2,5ha, nas regiões de maior
+produção. A adubação é orgânica ou residual. As ramas utilizadas originam-se de
+cultivos anteriores feitos na própria propriedade. Estas ramas são plantadas em ca-
+malhões ou covas, distanciadas 0,30 a 0,40m entre mudas e 0,80 a 1,20m entre ca-
+malhões.
+
+O controle de invasoras é feito por capina manual. As raízes permanecem no
+solo, sendo colhidas por ocasião da comercialização ou consumo.
+10
+
+--- PÁGINA 10 ---
+ê ss
+Hs sê ce ecsgHE
+& |z|/19o| 3SSsSSSS33SS
+2 2 8 '
+s |
+ã 8
+8 ||
+z *?|2Êf| aRSSSISRADER
+à S3|  =-seTARdDSSS|O
+3 é
+3 | 38 ê
+z 29º |sssaAISATSIS|E E
+ge | 1
+bl HM
+ê Y" E
+2 f
+il 1 +
+25|/ /'E88'88S EEIRSEASA
+8 EX se SSRSSSS | Ss
+3 e 5
+é [al is
+E sã
+8 8 |: esgestagaRsnia| e à
+2, | 3SgBSSaRSaSSD|S| 3:
+E | $| 58 |Sssassssados | É
+il: "Es
++ ||, iz
+. E | 22|3' NBS RO 8 ES
+É 8 3? a " E
+Sal sã
+3 uv =s| ASIBSSSNERSTZ|/8| 5;
+ê EBESSRTIRITICA CI DIFANA:
+| 8/8 a.
+E EB
++ = ts
+E | goexsess e ig
+" 24 | gSAAESRHSNGE|8| 23
+” 2? |RRAAASRATS TS 2| 25
+- " ti
+FE nd. z|55E
+É E | sisiissisdidlo| 23
+"
+
+--- PÁGINA 11 ---
+2. OPERAÇÕES TÉCNICAS
+2.1. Cultivares
+21.1. Caracterização
+
+AA batata-doce apresenta uma enorme variabilidade genética, o que lhe confere
+adaptabilidade a diferentes condições edafoclimáticas.
+
+Para selecionar uma cultivar deve-se considerar ciclo, local, época de plantio,
+objetivo da produção, preferência de mercado, resistência a pragas e doenças, den.
+tre outros aspectos,
+
+No Brasil, as cultivares comerciais apresentam casca branca, rosa ou roxa e
+polpa branca ou creme,
+
+2.1.2. Indicação
+
+Em Santa Catarina, vários clones de batata-doce são plantados, sem haver de-
+finição de cultivar. A TABELA 2 mostra resultados preliminares avaliados pela Es
+tação Experimental de Ituporanga, da EMPASC (1988).
+
+TABELA 2 — Características agronômicas de germaplasma de batata-doce testado
+no Alto Vale do Itajaí, SC
+RAIZ cor coR FORMA
+GERMOPLASMA — COMERCIAL — DA DA DAS
+(tha) — CASCA — POLPA RAIZES
+EEN 181-17 35,50 rosada branca-creme — arredondada
+Brazlândia Rosada?/ 30,38/ rosada branca-creme oblonga
+EEI 18116 29,00 creme branca oblonga
+EEN 181-14 24,000 roxa creme oblonga
+Braziândia Roxa?” — — 24,0b/ roxa creme alongada
+EEN 18111 19,98 creme — brancacreme — oblonga
+Jacareia/ 19,20 creme — brancacreme — oblonga
+EEIt181-15 17,60 roxa branca-creme oblonga
+AAA as. MM
+Poutivar.
+b/Média de 4 anos.
+“Média de 3anos.
+2
+
+--- PÁGINA 12 ---
+2.2. Obtenção de mudas ou ramas
+
+Mudas de raízes: são brotos enraizados de 20 a 30cm de comprimento, obti-
+(dos de raízes plantadas em viveiro ou de raízes conservadas a campo.
+
+Ramas: são pedaços de haste, com 8 a 10 folhas, obtidas também de raízes
+de batata-doce, plantadas em viveiro ou provenientes de plantios anteriores.
+
+2.3. Viveiro
+
+O processo de multiplicação em viveiros, a partir de raízes selecionadas, per-
+mite melhor controle de doenças e pragas, além de manter a qualidade genética do
+material.
+
+O local escolhido não deve ter sido cultivado com batata-doce nos últimos 5
+(anos, deve ser fértil, estar próximo à fonte de água e ser bem ensolarado.
+
+Cada batata-mãe enviveirada fornece, em média, 30 mudas e/ou ramas, por
+coleta. Para plantio de 1ha, são necessários em torno de 150 a 200kg de raízes de
+tamanho médio. A primeira coleta pode ser feita após 1 a 3 meses do enviveiramen-
+to das raízes, repetindo-se a operação quantas vezes forem necessárias.
+
+Em regiões frias, os viveiros podem ser feitos em estufas ou em túneis de
+plástico transparente. Com esta técnica, há possibilidade de acelerar a brotação das
+raízes e o produtor dispor de mudas para o plantio no início da primavera.
+
+2.4. Escolha do terreno e preparo do solo
+
+A batata-doce produz relativamente bem em vários tipos de solo; entretanto,
+as melhores produções são obtidas em solos leves. Os solos de boa estrutura favore.
+cem a oxigenação e penetração das raízes, Solos úmidos são desaconselháveis para a
+cultura.
+
+2.5. Nutrição e adubação
+
+/A adubação química pode ser dispensada, caso a batata-doce seja plantada em
+rotação com culturas já adubadas. Em áreas novas, sugere-se fazer análise de solo e
+seguir as recomendações das tabelas da Comissão de Fertilidade do Solo - RS/SC,
+Núcleo Regional Sul, da Sociedade Brasileira de Ciência do Solo.
+
+2.5.1. Resposta ao pH
+
+AA batata-doce, a exemplo da mandioca, produz relativamente bem em solos
+de baixo pH. Entretanto, recomenda-se corrigir o solo, segundo índice SMP, para
+pH 6,0. A aplicação de calcário dolomítico, quando necessária, supre também as
+deficiências de cálcio e magnésio.
+
+E)
+
+--- PÁGINA 13 ---
+2.5.2. Resposta ao nitrogênio
+.A adição de nitrogênio provoca um aumento considerável no crescimento da
+parte aérea. Entretanto, o aumento da produção de raízes depende da capacidade
+de suprimento de nitrogênio do solo e do tipo de cultivar a ser plantada,
+AA deficiência de nitrogênio pode ser observada pela diminuição do crescimen.
+to das ramas, dos entrenós e dos pecíolos. As folhas mais velhas ficam verde-claras e.
+as folhas mais novas verde-escuras, com tamanho reduzido.
+2.5.3. Resposta ao fósforo
+.A batata-doce não requer grande quantidade de fósforo disponível no solo. A
+presença de micorrizas vesiculares-arbusculares, nas raízes fibrosas, aumenta a capa-
+cidade da planta de absorver fósforo quando presente em baixa concentração.
+2.5.4. Resposta ao potássio
+AA adição de potássio ao solo resulta, normalmente, num aumento da produ-
+ção de raízes. Entretanto, altas dosagens deste elemento podem provocar crescimen-
+to excessivo das ramas e diminuição da produção de raízes, assim como reduzir o
+teor de amido.
+2.5.5. Resposta à adubação orgânica
+Além do suprimento de nutrientes, o material orgânico traz outros benefí-
+cios, tais como efeito positivo sobre a estrutura do solo, a capacidade de armaze-
+namento de água, a capacidade de troca de cátions e a taxa de liberação de nutri-
+entes. Para esterco de gado e suínos recomenda-se, em média, aplicar 20t/ha e pa-
+ra esterco de aves, no máximo 10t/ha.
+2.6. Plantio
+* Época — de 15/08 a 15/12, conforme a região é o método de obtenção de
+mudas/ramas.
+e Ciclo — de 110 a 180 dias, conforme a época de plantio e a cultivar.
+ Espaçamento — de 70 a 120cm, entre filas, e 25 a 40cm entre plantas, con-
+forme o manejo da cultura.
+As ramas e/ou mudas devem ser retiradas pelo menos um dia antes do plantio,
+deixando-as murchar à sombra, para evitar de quebrá-las ao serem plantadas.
+2.6.1. Métodos de plantio
+Planta-se sobre leiras ou camalhões. Os camalhões devem ter 30 a 40cm de
+un
+
+--- PÁGINA 14 ---
+altura, podendo ser construídos manualmente ou com sulcadores de tração animal
+ou trator.
+
+O plantio de mudas e/ou ramas sobre o camalhão pode ser feito com enxada.
+Nos solos leves, o uso de forquilha ou bengala torna a operação mais rápida.
+2.7. Práticas culturais
+
+AA capina pode ser feita com auxílio de enxada, ou do cultivador, quando
+necessário. Por ocasião da primeira capina, aconselha-se refazer os camalhões, pois a
+amontoa bem feita desfavorece o ataque de insetos. Os trabalhos mecânicos, princi-
+palmente o uso do cultivador, devem ser suspensos logo que as ramas (baraços)
+dificultem as operações.
+2.8. Pragas
+
+|O nível de exigência fitossanitária de uma cultura é dependente do mercado
+consumidor, o qual estimula o desenvolvimento qualitativo de um sistema de
+produção. No caso da batata-doce em Santa Catarina, em virtude de a produção
+estar baseada em pequenas propriedades de regime de exploração familiar, e haver
+uma grande variabilidade genética, o produtor tem permitido o ataque de alguns
+insetos, dispensando o uso de inseticidas. Entra os insetos que ocorrem na cultura,
+destaca-se a broca-da-raiz (Euscepes postfasciatus), da família Curculionidae, que
+pode causar danos econômicos. Outros insetos podem ocorrer esporadicamente sem
+causar danos significativos, tais como larva-alfinete, larva-arame, broca-do-coleto,
+bicho-bolo e lagarta-rosca.
+2.8.1. Broca-da-raiz
+2.8.1.1. Biologia da broca-da-raiz
+
+A fêmea da broca-da-raiz ovoposita nas ramas ou raízes da batata-doce, em
+incisões feitas com as mandíbulas. Após 8 a 10 dias, as larvas eclodem, sendo
+ápodas e de cor branca. As larvas iniciam sua alimentação fazendo galerias no tecido
+vegetal, onde numa câmara anexa transformam-se em pupas. Após 8 a 10 dias,
+emergem os adultos.
+2.8.1.2. Dano da broca-da-raiz
+
+As larvas causam dano direto, já que formam galerias nas ramas e principal
+mente nas raízes. Consequentemente, dependendo do grau de infestação, as raízes
+depreciam-se comercialmente.
+
+15
+
+--- PÁGINA 15 ---
+2.8.2. Medidas gerais de controle
+
+Até o momento não existem inseticidas registrados para a cultura da batata-
+“doce, Portanto, levando isto em consideração, e, principalmente, a rusticidade do
+material genético nas regiões produtoras de Santa Catarina, deve-se optar por outras
+medidas de controle como:
+
+Selecionar raízes-mãe sadias para a produção de mudas e/ou ramas.
+
+* Fazer rotação de culturas.
+
+é Eliminar restos de cultura aproveitando-os na alimentação animal.
+
+e Não armazenar a raiz comercial por períodos longos.
+
+2.9. Doenças
+
+Embora a batata-doce possa ser hospedeira de diversos patógenos, sua alta
+variabilidade genética permite um considerável grau de resistência a várias doem.
+(8. Porém, conforme o material genético e as condições climáticas predominan.
+tes em determinada região, o cultivo anual, numa mesma área, poderá eviden-
+ciar problemas fitopatológicos limitantes à cultura, caso não forem tomadas al-
+gumas medidas de controle.
+
+As doenças da parte aérea como ferrugem-branca, cercospora, antracnose e
+Phyllostícta não constituem problema até o momento. Doenças que causam mur.
+cha com infecção no coleto da rama podem reduzir significativamente a
+produção. Fusarium e Phoma foram encontrados associados a este sintoma, porém
+não se dispõe do diagnóstico exato do principal agente da murcha e morte da rama
+no estado de Santa Catarina. As doenças pós-colheita constituem um dos maiores
+problemas fitossanitários da cultura. Entre os patógenos envolvidos na deprecia
+ção do produto pós-colheita destacam-se Rhizapus stolonifer, Fusarium sp e
+Monilochaetes so.
+
+Problemas fisiológicos podem causar, nas raízes, rachaduras, escaldadura, co-
+ração duro e decomposição interna.
+
+Medidas gerais de controle
+
++ Fazer rotação de culturas,
+
+4 Usar ramas e/ou mudas selecionadas e sadias.
+
+€ Eliminar restos de cultura (rama, raiz), aproveitando-os para alimentação
+animal e outros fins.
+
+e Não danificar a raiz.
+
+* Fazer cura a campo da raiz colhida,
+
+(e Usar caixas limpas e desinfectadas para a colheita.
+
++ Manter limpas as áreas de manuseio e armazenamento.
+
+6
+
+--- PÁGINA 16 ---
+2.10. Colheita
+
+AA colheita pode ser feita manualmente com enxada, ou com auxílio de arado
+para remover as raízes. Antes da colheita, recomenda-se a retirada da parte aérea.
+
+As cultivares precoces estarão no ponto de colheita cerca de 100 a 110 dias
+após o plantio e as tardias, em torno de 180 dias.
+
+Às vezes os agricultores, em função do preço, deixam as raízes no solo após
+1a época de colheita. Esta prática propicia maior ataque de pragas e doenças devido
+ao maior tempo de exposição.
+
+Após a colheita, deve-se deixar as raízes expostas ao sol, de 30 minutos a 3
+horas, para que seja realizada a pré-cura a campo, devendo-se evitar as horas mais
+quentes.
+
+2.11. Armazenamento
+
+A batata-doce pode ser armazenada na forma de raiz ou raspa. O armazena-
+mento na forma de raiz pode ser feito no solo sem a colheita. Caso haja a colheita,
+deve-se preceder a cura antes do armazenamento, a fim de que a película externa
+desidrate, evitando-se a deterioração por patógenos. As raízes colhidas e curadas
+podem ser armazenadas em depósitos arejados ou galpões bem ventilados, disponí
+veis na propriedade.
+
+2.12. Classificação e comercialização
+
+Após a lavagem e seleção, as raízes são classificadas e embaladas. A lavagem
+56 deve ser realizada na época de comercialização. Em Santa Catarina, as raízes são
+classificadas em miúdas e graúdas.
+
+Não existe uma classificação oficial, mas a classificação utilizada nos centros
+de São Paulo e Rio de Janeiro leva em conta o peso médio por raiz.
+
+TABELA 3 — Classificação comercial de raízes de batata-doce, em São Paulo e Rio
+de Janeiro
+PESO DA RAIZ
+CLASSE o)
+Extra À 300 a 400
+Extra 200 a 300
+Especial 1502200
+” 802150
+iversas.
+> 400
+v
+
+--- PÁGINA 17 ---
+As raízes devem ser lisas, bem conformadas, apresentando formato alongado e
+uniforme, isentas de pragas e doenças.
+
+São considerados defeitos: danos de insetos, rachaduras, deformações, danos
+mecânicos e esverdeamento.
+
+Geralmente as raízes são comercializadas em caixas de madeira tipo K (23 a
+25k9) Ou em sacos.
+2.13. Utilização da batata-doce
+
+AA cultura da batata-doce está presente em quase todas as propriedades de San-
+ta Catarina, sendo utilizada para alimentação humana e/ou animal, dado seu alto va-
+lor energético.
+TABELA 4 — Composição química média da batata-doce
+VARIÁVEL AVALIADA RAIZ PARTE AÉREA
+Matéria seca (%) 330 152
+Proteína bruta (% na MSº/) 6,4 na
+Carboidratos solúveis totais (% na MS) 867 -
+Fibra bruta (% na MS) 280 26,5
+Gordura (% na MS) 110 38
+Cálcio (% na MS) 0.09 0,95
+Fósforo (% na MS) 015 0,20
+Ferro (mg/1009 MS) 29 -
+Potássio (mg/100g MS) 757,58 -
+Vitamina A (UI/1009 MS) 026.667 -
+Vitamina C (mg/1009 MS) 84,85 -
+Vitamina 8, (mg/1.000g MS) 0,90 -
+Tiamina (mg/100g MS) 0,29 -
+Riboflavina (ma/1009 MS) 0/20 -
+Niacina (mg/100g MS) 2,86 -
+Metionina alto =
+Nutrientes digestíveis totais (%) 89,0 60,0
+Digestibilidade in vitro da matéria orgânica (%) 291,5 64,0
+Amido (%) 200 -
+Brix (grau) 96 -
+9/MS: Matéria seca.
+FONTES: IBGE (1985); EMPASC (1988) e HUANG (1982).
+
+1"
+
+--- PÁGINA 18 ---
+213.1. Alimentação humana
+
+(A raiz da batata-doce é consumida em todo o país, na forma cozida, assada ou
+frita. As folhas levemente refogadas são largamente empregadas em diversos países
+do mundo. O suco extraído das raízes é indicado no tratamento de doenças do in-
+testino, azia, diarréia, úlceras gástricas e duodenais, como também para aumentar a
+vitalidade geral do sistema nervoso e despertar o apetite.
+
+A batata-doce apresenta, também, grande potencial para utilização na agro-in-
+dústria, servindo para produção de amido, farinha, álcool, doces e corantes naturais.
+A batata-doce, além de ter um potencial de produção de farinha tão alto quanto a
+mandioca, apresenta a vantagem de ter um valor nutricional maior do que esta,
+principalmente em proteínas, vitaminas e açúcares.
+
+2.13.2. Alimentação animal
+
+A batata-doce apresenta, também, grande potencial para utilização na alimen-
+tação animal. As raízes são excelentes fontes de energia. À colheita efetuada a par-
+tir de abril coincide com um período de grande carência alimentar para o rebanho
+bovino. As ramas ou baraços constituem-se num subproduto de bom valor nutriti-
+vo. Estas podem ser utilizadas especialmente na alimentação de vacas leiteiras an-
+tes da incidência de geadas, pois o frio intenso provoca a queima e queda de folhas.
+A rama pode ser ensilada, desde que seja efetuado um pré-murchamento de aproxi-
+madamente 24 horas. A produção de raspas secas a partir das raízes permite conser.
+var o produto por maiores períodos.
+
+1"
+
+--- PÁGINA 19 ---
+3. COEFICIENTES TÉCNICOS
+TABELA 5 — Coeficientes técnicos para o cálculo do custo de produção de 1ha de
+batata-doce, para as operações e insumos considerados nas normas
+técnicas
+ESPECIFICAÇÃO UNIDADE! — QUANTIDADE
+1. Operação-viveiro
+e Preparo do solo D/H os
++ Adubação e construção de túnel D/H 15
++ Capina D/H 15
+2. Operações lavoura comercial
++ Preparo do solo
+— Aração WI" 3/00u
+D/A 30
+— Gradagem Tr 200
+D/A 20
+— Distribuição adubo orgânico D/H 3o
+— Enleiramento nWT 1,00u
+D/A 7
+e Plantio
+— Coleta e preparo das mudas/ramas D/H 10,0
+— Plantio de mudas e ramas D/H 50
+e Tratos culturais
+— Capinas e amontoa D/H 6,0 mais
+D/A 10
+e Colheita
+— Mecânica D/A 2,0 mais
+o/H 100
+— Manual D/H 30,0
+* Classificação e embalagem D/H 100
+3. Insumos
+e Raízes ko 1502 200
+ Adubo orgânico t 10220
+e Caixaria tipo K A 1.000
+e Plástico (Túnel de viveiro) mê EM
+*/D/H =dia-homem
+híTr = hora-trator
+D/A =dia-animal
+ES
+
+--- PÁGINA 20 ---
+4. PARTICIPANTES DO ENCONTRO
+
+01. Ademar Schermark ACARESC/Laurentino, SC
+
+02. Antônio Amaury Silva Jnior EMPASC/E.E. Itajaí, SC
+
+103. Antônio Carlos Alves UFSC/Florianópolis, SC
+
+104. Carlos Luiz Gandin EMPASC/E.E. Ituporanga, SC
+05. Djalma Rogério Guimarães EMPASC/E.E. Ituporanga, SC
+16. Edison Xavier de Almeida EMPASC/E.E. Ituporanga, SC
+07. Eduardo Carlos Humeres EMPASC/E.E. São Joaquim, SC
+(OB. Edson Silva ACARESC/ Ituporanga, SC
+
+09. Francisco A. de Brito CEPA/Florianópolis, SC
+
+10. Gilberto Gava CIDASC/Rio do Sul, SC
+
+11. Guido Boinng CEPA/Florianópolis, SC
+
+12. 116i A. dos Santos ACARESC/Rio do Sul, SC
+
+13. João Carlos Weingartner ACARESC/Antônio Carlos, SC
+14. João F. Debarba ACARESC/Rio do Sul, SC
+
+15. João Luiz Tambosi IND. OLIVEIRA/Laurentino, SC
+16. José Emani Múller ACARESC/São José, SC
+
+17. José Stedile ACARESC/Ituporanga, SC
+
+18. Juarez José Vanni Múller EMPASC/E.E. Itajaí, SC
+
+19. Lúcio Francisco Thomazelli EMPASC/E.E. Ituporanga, SC
+20. Mari Inês Carissimi Boff EMPASC/E.E. Ituporanga, SC
+21. Osvaldo Carlos Rockenbach EMPASC/Florianópolis, SC
+22. Pedro Boff EMPASC/E.E. Ituporanga, SC
+23. Pedro Paulo Arruda ACARESC/Ituporanga, SC
+
+24. Roberto Beppler Neto. ACARESC/Florianópolis, SC
+25. Roque Lino Braun ACARESC/Florianópolis, SC
+26. Ronald Hamisch CRAVIL/Rio do Sul, SC
+
+27. Sebastião F. Abraão ACARESC/Rio do Sul, SC
+28.Valmir José Vizzotto EMPASC/E.E. Itajaí, SC
+
+a
+
+--- PÁGINA 21 ---
+SISTEMAS DE PRODUÇÃO JÁ PUBLICADOS
+à: gemas de Rrodueão peca les 20 equi de rggueão da Ari igggdo
+Besson eo Bom GSSo da Aa od
+2. Siremos de produção pero to 21 Simoes de prgdução pura Mugê (aorevião)
+BT ESSO SST asa pus 100
+3 guenas degroducio pera e âros 72 gives de frodução ger Sois (2erovisio]
+ESSES Bremer de Rroduçdo po SSIS
+4. Ssteos de frgduçõo para Mandic 23 Sitemas de Produção para Batata; consumo e
+ET area rc EN
+SET, de produção noz - juino de 1982
+5 Sstemas de grodução pera Feio, Poa
+meo uia aee to stema de Produção pera Cetois Ierevido
+Ee dA Ae NA)
+6 Sstemas de igeução paca Milho Irevião)
+Bom AS Ogre Ns 25 temos de Brodueão pera Mino (rio)
+sro ; Boer de Bresusio poa Mura GranTdes
+Sstemes de produção aura gelo revisão
+Bom anão 26 Sintomas de produção peça Arroz Irina (gigão)
+Biomas de Rrdusio po8 unenbindo fc
+9 gemas de redação pura Atroguiginndo revisão!
+ESTAS OS eia AE 27 pornos Ttsgicas sera Tomate
+BEE TASNARHO TES meio e 1905
+9. Setemas de Produção para Gago Leiteiro
+Besm A asorneu fes 28 Normes Técnicas pers Pirentão,
+BESTA RT no ce 1905
+fo ormos Tégnicas do Guivurg da Coto revisão)
+Bom FS SP TA SEE 29 Sistemas de tradução pera atas: consumo e
+11 geemes ce frgduçõo pura Aros ge semeia — Sms de odução 09 - dezembro de 1986
+Boer o area sa TAS á
+1a SmeE meo 20 Norma Tdenieas para a Guttura do Mean,
+Sstomes de Produção pera Videira SS ENOARSO ASS adES
+mn Ae ia ss ex
+va gssemas de frgcução para Masi (gusto Bom do Rosus Rs Mantido
+Bom o Boto a tesaigoso icoemntaho!
+asma . 22 Normas Tecricsees Fem, "
+stemas de tradução para Guga SER ETEARIS N$7 - mio
+Boletim no 151 — abril de 1979 ... Sã ”” "” e
+toras Técnicas da Culora do Pacino para Cape
+15 Betemas de freoução pura gggiocs troviãor — PO ESTE SOBRE DT SU RIGS SS
+Boleto ferantine e Meios trevo) sbt
+renome Ts Cura do ai BETE de RBdiddo RETA rico ce 1980
+abrirde 1980 bo"
+in gemes cemgduso pers regio tevior — 9 NSTTRS TASRSS CRS SONS SA ANS 1090
+istemas de frgoução por Fado visão Ps TENSARE MOVE a ANS o
+sismo so raça a
+26 Normas, Técnicas paia e Culturo de Cívos em Sant
+18 geserss ceprgução pers Ato Fo
+BEST AS Nó d 1000 STREM de trocução na 14 — janeiro de 1990
+19 Ste mas do Produção sura Videira (00cição — > 37 Morus Tócnicas para a Cultura da Bntta doce —
+Butita 146 - eso de 1607 ARES do Blogão no15 - joeiro do 1980
