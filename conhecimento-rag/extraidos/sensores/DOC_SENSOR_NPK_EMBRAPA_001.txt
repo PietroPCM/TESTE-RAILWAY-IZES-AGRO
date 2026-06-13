@@ -1,0 +1,1121 @@
+---
+documento_id: DOC_SENSOR_NPK_EMBRAPA_001
+titulo: Sistema para Sensoriamento de Potássio no Solo
+instituicao: Embrapa
+autores: LEMOS, S. G.; NOGUEIRA, A. R. A.; TORRE NETO, A.; PARRA, A.; ARTIGAS, J.; CHAMARRO, J. A.; LEMOS, S. G.; NOGUEIRA, A. R. A.; TORRE NETO, A.; PARRA, A.; ARTIGAS, J.; CHAMARRO, J. A.
+ano: 2004
+url_original: https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/30165/1/BPD092004.pdf
+arquivo_original: originais/embrapa/DOC_SENSOR_NPK_EMBRAPA_001.pdf
+sha256: 2c3c09b0d7e0a4ad8d80dfc649ee3505ab175a7ae1ccc2db3377f0e11319aed3
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+09
+ISSN 1517-1981
+Outubro 2000
+Sistema para Sensoriamento
+de Potássio no Solo
+ISSN 1678-0434
+Dezembro, 2004
+
+--- PÁGINA 2 ---
+República Federativa do Brasil
+Luiz Inácio Lula da Silva
+Presidente
+Ministério da Agricultura, Pecuária e Abastecimento
+Roberto Rodrigues
+Ministro
+Empresa Brasileira de Pesquisa Agropecuária - Embrapa
+Conselho de Administração
+José Amauri Dimárzio
+Presidente
+Clayton Campanhola
+Vice-Presidente
+Dietrich Garhard Quast
+Alexandre Kalil Pires
+Sérgio Fausto
+Urbano Campos Ribeiral
+Membros
+Diretoria Executiva da Embrapa
+Clayton Campanhola
+Diretor-Presidente
+Gustavo Kauark Chianca
+Hebert Cavalcante de Lima
+Mariza Barbosa
+Diretores-Executivos
+Embrapa Instrumentação Agropecuária
+Ladislau Martin Neto
+Chefe-Gera l
+Álvaro Macedo da Silva
+Chefe-Adjunto de Administração
+Luiz Henrique Capparelli Mattoso
+Chefe-Adjunto de Pesquisa e Desenvolvimento
+Ricardo Yassushi Inamasu
+Gerente da Área de Comunicação e Negócios
+
+--- PÁGINA 3 ---
+ISSN 1678-0434
+Dezembro, 2004
+Sherlan G. Lemos
+Ana Rita A. Nogueira
+André Torre Neto
+Aleix Parra
+Judit Artigas
+Julian Alonso Chamarro
+Empresa Brasileira de Pesquisa Agropecuária
+Ministério da Agricultura e do Abastecimento
+Embrapa Instrumentação Agropecuária
+09
+São Carlos, SP
+2004
+Sistema para Sensoriamento
+de Potássio no Solo
+
+--- PÁGINA 4 ---
+Exemplares desta publicação podem ser adquiridos na:
+Embrapa Instrumentação Agropacuária
+Rua XV de Novembro, 1452
+Caixa Postal 741
+CEP 13560-970 - São Carlos-SP
+Fone: (16) 3374 2477
+Fax: (16) 3372 5958
+www.cnpdia.embrapa.br
+E-mail: sac@cnpdia.embrap.br
+Comitê de Publicações da Unidade
+Presidente: Dr. Luiz Henrique Capparelli Mattoso
+Secretária-Executiva: Valéria de Fátima Cardoso
+Membros: Dra. Débora Marcondes Bastos Pereira Milori,
+Dr. João de Mendonça Naime,
+Dr. Washington Luiz de Barros Melo
+Membro Suplente: Dr. Paulo Sérgio de Paula Herrmann Junior
+Supervisor editorial: Dr. Rubens Bernardes Filho
+Revisor de texto: Valéria de Fátima Cardoso
+Normalização bibliográfica: Valéria de Fátima Cardoso
+Tratamento de ilustrações: Valentim Monzane
+Foto(s) capa: Rubens Bernardes Filho
+Editoração eletrônica: Valentim Monzane
+a 1 edição
+a 1 impressão (2004): tiragem 300
+Todos os direitos reservados.
+A reprodução não-autorizada desta publicação, no todo ou em parte,
+o constitui violação dos direitos autorais (Lei n
+9.610).
+CIP-Brasil. Catalogação-na-publicação.
+Embrapa Instrumentação Agropecuária
+Lemos, Sherlan G.
+Sistema para sensoriamento de potássio no solo / Sherlan G. Lemos, Ana Rita A.
+Nogueira, André Torre-Neto, Aleix Parra, Judit Artigas, Julian Alonso Chamarro.
+São
+Carlos: Embrapa Instrumentação Agropecuária, 2004.
+33 p.
+(Embrapa Instrumentação Agropecuária. Boletim de Pesquisa e
+Desenvolvimento; n. 09)
+1. Potássio. 2. Análise de solo. 3. Fertilidade do solo. 4. Sensor potenciométrico. 5.
+Agricultura de precisão. 6. Sistema de monitoramento remoto. I. Nogueira, Ana Rita A.
+II. Torre-Neto, André. III. Parra, Aleix. IV. Artigas, Judit. V. Chamarro, Julio Alonso. VI.
+Título. VII. Série.
+CDD (21. Ed.) 631.42
+© Embrapa 2004
+
+--- PÁGINA 5 ---
+Sumário
+Resumo ..................................................................................
+5
+Abstract .................................................................................
+6
+Introdução ...............................................................................
+7
+Materiais e Métodos .................................................................
+8
+Formulações das Membranas Seletivas ..................................
+8
+Construção dos Sensores de Configuração Tubular ..................
+8
+Sonda Analítica ...................................................................
+9
+Avaliação dos Eletrodos .......................................................
+12
+Determinação da Umidade via TDR (Reflectrometria
+no domínio do tempo) ..........................................................
+13
+Resultados e Discussões ...........................................................
+16
+Potássio .............................................................................
+16
+pH ....................................................................................
+24
+Conclusões .............................................................................
+32
+Referências Bibliográficas .......................................................... 32
+
+--- PÁGINA 6 ---
+Grupo de Análise Instrumental Aplicada, Embrapa Pecuária Sudeste, C.P. 339, 13.560-970 São Carlos, SP,
+Brazil; Departamento de Química, Universidade Federal de São Carlos, São Carlos, SP, Brasil; Embrapa
+Instrumentação Agropecuária, São Carlos, SP, Brazil; Grupo de
+Sensores e Biosensores, Departamento de Química, Universidade Autônoma de Barcelona, Bellaterra, Spain
+andre@cnpdia.embrapa.br
+Resumo
+8 P  VL VW HP D G H VHQ VRU L DP HQ W R SRW HQ FL RP pW U L FR EDVHDG R HP  HO HW U RG RV ñRQ  VHO HW L
+YRV
+IRL  G HVHQ YRO YL G R SDU D SU RSô VL W RV DJU ñFRO DV  2 V VHQ VRU HV IRU DP  FRQ VW U XñG RV XVDQ G
+R
+P HP EU DQ DV G H 3 9 & ñRQ  VHO HW L YDV VREU H XP  VXEVW U DW R Vô O L G R SU HSDU DG R
+FRP 
+FRP Sô VL W RV G H JU DIL W H H HSô [ L   8 P D SO DFD G H FREU H IRL  XVDG D FRP R HO HW U RG R G
+H
+U HIHU r Q FL D  8 P  FL U FXL W R HO HW U { Q L FR G H G RL V HVW Ý JL RV FRP SRVW R G H XP  DP SO L IL FDG RU  G
+H
+FRU U HQ W H H XP  G H YRO W DJHP  IRL  SU RM HW DG R SDU D FRQ HFW DU  R VHQ VRU  D XP  VL VW HP D G
+H
+DTXL VL oá R G L VW U L EXñG R  7U r V VHQ VRU HV ñRQ  VHO HW L YRV H W U r V VHQ VRU HV G H W HP SHU DW XU
+D
+FRP HU FL DL V H VHXV FL U FXL W RV DVVRFL DG RV IRU DP  P RQ W DG RV HP  XP  W XER G H 3 9 & SDU
+D
+FRQ VW L W XñU HP  XP D VRQ G D G H VRO R  2  FRQ W U RO H HO HW U { Q L FR IRL  P RQ W DG R HP  XP D FDL
+[ D
+VHO DG D IL [ DG D Q D H[ W U HP L G DG H VXSHU L RU  G D VRQ G D  2  VL VW HP D IRL  DYDO L DG R Q R FDP SR 
+ 
+RQ G H RV VHQ VRU HV DSU HVHQ W DU DP  VHQ VL EL O L G DG H G HQ W U R G D IDL [ D G H   P 9  G HF 
+
+( [ W U DW RV G H DP RVW U D G H VRO R IRU DP  DQ DO L VDG DV SRU  IRW RP HW U L D G H FKDP D H RV
+
+U HVXO W DG RV FRP SDU DG RV FRP  DV P HG L G DV G D VRQ G D  P RVW U DQ G R XP D U HO Doá R O L Q HDU
+U 
+  H    U HVSHFW L YDP HQ W H  SDU D  H  FP  G H SU RIXQ G L G DG H  R TXH L P SO L FD
+D
+YL DEL O L G DG H H FRQ IL DEL O L G DG H G HVVD L Q VW U XP HQ W Doá R SDU D DSO L FDoõ HV DJU ñFRO
+DV
+7HU P RV SDU D L Q G H[ Doá R  SRW Ý VVL R  L Q  VL W X  DQ Ý O L VH G H VRO R  IHU W L O L G DG H G R VRO R  VHQ VRU
+
+SRW HQ FL RP pW U L FR
+1
+Sherlan G. Lemos
+2
+Ana Rita A. Nogueira
+3
+André Torre Neto
+4
+Aleix Parra
+5
+Judit Artigas
+6
+Julian Alonso Chamarro
+Sistema para Sensoriamento
+de Potássio no Solo
+
+--- PÁGINA 7 ---
+Abstract
+$  SRW HQ W L RP HW U L F VHQ VRU  V\ VW HP  EDVHG  RQ  SRW DVVL XP  L RQ  VHO HFW L YH HO HFW U RG HV
+Z DV
+G HYHO RSHG  IRU  DJU L FXO W XU DO  SXU SRVHV  6 HQ VRU V Z HU H EXL O W  XVL Q J 3 9 & L RQ  VHO HFW L
+YH
+P HP EU DQ HV RYHU  DQ  L Q Q HU  VRO L G  FRQ W DFW  SU HSDU HG  Z L W K JU DSKL W H HSR[ \  FRP SRVL W HV 
+$ 
+FRSSHU  SO DW H Z DV XVHG  DV D U HIHU HQ FH HO HFW U RG H  $  W Z R VW DJH HO HFW U RQ L F FL U FXL W
+
+FRP SRVHG  RI FXU U HQ W  DQ G  YRO W DJH DP SO L IL HU V Z DV G HVL JQ HG  W R L Q W HU IDFH W KH VHQ VRU V W
+R
+D G L VW U L EXW HG  G DW D DFTXL VL W L RQ  V\ VW HP   7KU HH L RQ  VHO HFW L YH VHQ VRU V DQ G  W KU HH RII W
+KH
+VKHO I W HP SHU DW XU H VHQ VRU V DQ G  W KHL U  DVVRFL DW HG  FL U FXL W V Z HU H P RXQ W HG  L Q  D 3 9 & W
+XEH
+W R VHW  XS D VRL O  SU REH  7KH HO HFW U RQ L F FRQ W U RO V Z HU H SO DFHG  L Q  DQ  DL U W L JKW  ER[  IL [ HG  DW
+
+W KH XSSHU  SDU W  RI W KH SU REH  7KH V\ VW HP  Z DV HYDO XDW HG  L Q  W KH IL HO G   Z KHU H W KH
+ 
+VHQ VRU V SU HVHQ W HG  VHQ VL EL O L W \  Z L W KL Q  W KH U DQ JH RI   P 9  G HF   ( [ W U DFW V RI VRL O
+
+VDP SO HV Z HU H DQ DO \ ] HG  E\  D FXU U HQ W  IO DP H SKRW RP HW U \  DSSU RDFK  DQ G  W KH U HVXO W V 
+
+FRP SDU HG  Z L W K W KH SU REH P HDVXU HP HQ W V  VKRZ HG  D O L Q HDU  U HO DW L RQ VKL S U 
+
+DQ G     U HVSHFW L YHO \   W R  DQ G   FP  G HSW KV   Z KL FK L P SO L HV YL DEL O L W \  DQ G
+
+L Q VW U XP HQ W DW L RQ  U HO L DEL O L W \  IRU  DJU L FXO W XU DO  DSSO L FDW L RQ
+V
+,Q G H[  7HU P V  3 RW DVVL XP   L Q  VL W X  VRL O  DQ DO \ VL V  VRL O  IHU W L O L W \   SRW HQ W L RP HW U L F VHQ VRU
+Sherlan G. Lemos
+Ana Rita A. Nogueira
+André Torre Neto
+Aleix Parra
+Judit Artigas
+Julian Alonso Chamarro
+In-Soil Potassium
+Sensor System
+
+--- PÁGINA 8 ---
+Introdução
+2  SRW Ý VVL R p XP  G RV  Q XW U L HQ W HV Q HFHVVÝ U L RV SHO DV SO DQ W DV SDU D XP  FU HVFL P HQ W
+R
+VDG L R  “  R VHJXQ G R HP  TXDQ W L G DG H U HTXHU L G D SRU  HO DV G HSRL V G R Q L W U RJr Q L R H p
+R
+Q XW U L HQ W H FKDYH HQ YRO YL G R HP  YÝ U L RV SU RFHVVRV P HW DEô O L FRV W DL V FRP R  DW L YDoá
+R
+HQ ] L P Ý W L FD  FRQ W U RO H RVP ô W L FR G D HFRQ RP L D G H Ý JXD  SU RG Xoá R G H FDU ERL G U DW R
+H
+EDO DQ oR FDW L { Q L FR- 2 + 1 6 72 1      1 RYDV SU Ý W L FDV DJU ñFRO DV W r P  VL G R IRFDG
+DV
+G R SRQ W R G H YL VW D HFRQ { P L FR H DP EL HQ W DO   ( Q W U H HO DV HVW Ý  R XVR G H P pW RG RV G
+H
+IHU W L O L ] Doá R SDU D RW L P L ] DU  FXVW RV H P L Q L P L ] DU  RV L P SDFW RV DP EL HQ W DL V Q HJDW L YRV
+
+1 HVVH VHQ W L G R  Vá R FDG D YH]  P DL V U HO HYDQ W HV RV HVIRU oRV TXH W U DW DP  G H FRQ FHL W
+RV
+FRP R DJU L FXO W XU D VXVW HQ W Ý YHO  H DJU L FXO W XU D G H SU HFL Vá R5 2 % / ,1  H % $ 5 5 2 :   
+
+6 78 7+ 0 $ 1    
+
+$  DJU L FXO W XU D P RG HU Q D G HP DQ G D L Q IRU P Doõ HV L Q  VL W X G H IRU P D FRQ W ñQ XD G
+H
+SDU kP HW U RV G D IñVL FD H G D TXñP L FD G R VRO R  W DL V FRP R P DFU R H P L FU RQ XW U L HQ W HV 
+D
+VHU HP  FRQ VL G HU DG RV Q D P RG XO Doá R G D TXDQ W L G DG H G H IHU W L O L ] DQ W H D VHU  DSO L FDG R
+
+$ O JXQ V VL VW HP DV FRP HU FL DL V SHU P L W HP  D REW HQ oá R G H G DG RV IñVL FRV  P DV  Q á R KÝ
+
+P XL W D L Q VW U XP HQ W Doá R G HVHQ YRO YL G D SDU D VH G HW HU P L Q DU  FRQ FHQ W U Doõ HV G H SDU kP HW U
+RV
+FKDYH  FRP R D TXDQ W L G DG H G H Q L W U RJr Q L R  Iô VIRU R H SRW Ý VVL R Q R VRO R  ( VW HV H RXW U
+RV
+SDU kP HW U RV Vá R Q RU P DO P HQ W H REW L G RV SRU  P pW RG RV O DERU DW RU L DL V  P pW RG RV HVW HV
+TXH
+IRU Q HFHP  G DG RV G H JU DQ G H DFXU Ý FL D H SU HFL Vá R VREU H D FRP SRVL oá R G R VRO
+R
+$ 5 7,* $ 6  HW  DO      . $ 0 2 * $ : $  HW  DO     0 $ 6 6 2 1  HW  DO     1 2 5 / ,1  HW
+
+DO     5 8 =,&. $  HW  DO      ( Q W U HW DQ W R  HO HV Q á R SHU P L W HP  R P RQ L W RU DP HQ W R G
+R
+FRP SRU W DP HQ W R G D P L JU Doá R G H Q XW U L HQ W HV Q R SHU IL O  G R VRO R TXDQ G R VXEP HW L G R
+D
+G L IHU HQ W HV SU RFHVVRV G H L Q W HU Doá R  W DL V FRP R  VRU oá R  O L [ L YL Doá R  EL R DFXP XO Doá R
+H
+YRO DW L O L ] Doá R  5 DU RV H[ HP SO RV G H DQ Ý O L VH G H VRO RV L Q  VL W X Vá R HQ FRQ W U DG RV Q
+D
+O L W HU DW XU D$ 5 7,* $ 6  HW  DO       2 V G HVHQ YRO YL P HQ W RV G H L Q VW U XP HQ W Doá R DQ DO ñW L
+FD
+P DL V SU RP L VVRU D HVW á R Q D Ý U HD G H VHQ VRU HV  1 RV ø O W L P RV DQ RV D L Q VW U XP HQ W Doá
+R
+EDVHDG D HP  FRQ W DW R G L U HW R RX U HP RW R SU ô [ L P R j  FXO W XU D IRL  L Q W U RG X] L G D  $ V YDQ W DJHQ
+V
+G RV VHQ VRU HV Vá R D U REXVW H]   D YHU VDW L O L G DG H H R EDL [ R FXVW R G H SU RG Xoá R HP  P DVVD
+
+( O HV Vá R G L VSRVL W L YRV VL P SO HV FRP SDU DG RV FRP  RXW U DV W pFQ L FDV DQ DO ñW L FDV  W DL
+V
+FRP R  FU RP DW RJU DIL D RX HVSHFW U RVFRSL D H  P DL V G R TXH L VVR  HO HV RIHU HFHP 
+D
+SRVVL EL O L G DG H G H SU RM HW R G H VL VW HP DV SDU D DQ Ý O L VH L Q  VL W X0 $ ' 2 8  H 0 2 5 5 ,6 2 1 
+
+ 
+2  REM HW L YR G HVW H W U DEDO KR IRL  G HVHQ YRO YHU  XP D L Q VW U XP HQ W Doá R DQ DO ñW L FD TXH SHU P L W
+D
+R P RQ L W RU DP HQ W R G H SRW Ý VVL R G L U HW DP HQ W H Q R VRO R  REW HQ G R L Q IRU P Doõ HV FRQ W ñQ
+XDV
+L Q  VL W X SDU D HVW H Q XW U L HQ W H  3 DU D L VVR  IRL  G HVHQ YRO YL G D XP D VRQ G D G H VRO R SDU D
+. 
+FRQ W HQ G R W U r V HO HP HQ W RV ñRQ  VHO HW L YRV  O RFDO L ] DG RV HP  W U r V G L IHU HQ W
+HV
+SU RIXQ G L G DG HV  $  VRQ G D IRL  DVVRFL DG D D XP D L Q VW U XP HQ W Doá R FDSD]  G H W U DQ VP L W L U
+
+G DG RV G L JL W DL V YL D U Ý G L R  2  VL VW HP D G HVHQ YRO YL G R IRL  DYDO L DG R TXDQ W R DR IRU Q HFL P HQ W
+R
+G H G DG RV H TXDQ W R D FRP SU HHQ Vá R G D U HO Doá R HQ W U H R SRW Ý VVL R O L YU H Q DV U HVHU YDV G
+H
+Q XW U L HQ W HV Q R VRO R  W H[ W XU D G R VRO R H FU HVFL P HQ W R G H U Dñ] HV  R TXH SRG H RW L P L ] DU 
+R
+FRQ VXP R G H IHU W L O L ] DQ W HV  2 V U HVXO W DG RV REW L G RV IRU DP  FRP SDU DG RV FRP  P pW RG
+RV
+SDG U õ HV  HVSHFL IL FDP HQ W H H[ W U Doá R VHJXL G D SRU  IRW RP HW U L D G H FKDP D9 $ 1  5 $ ,- 
+
+ 
+7 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 9 ---
+A
+B
+C D
+A
+B
+C D
+Materiais e Métodos
+Formulações das Membranas Seletivas
+Š
+7RG RV RV U HDJHQ W HV XW L O L ] DG RV Vá R SU RYHQ L HQ W HV G D ) O XN D 6 XñoD   $ V FRP SRVL oõ
+HV
+G DV P HP EU DQ DV VHO HW L YDV HVW á R G HVFU L W DV Q D 7DEHO D ,  FRP  SU RSRU oõ HV U HO DW L YDV
+HP 
+SHVR  HQ W U H SDU r Q W HVHV
+Construção dos Sensores de Configuração Tubular
+1 D FRQ VW U Xoá R G RV VHQ VRU HV IRL  XW L O L ] DG R XP  FRQ HFW RU  Ir P HD G H FREU H G H  P P  G
+H
+FRP SU L P HQ W R  VRO G DG R D XP D SHoD FL U FXO DU  G H FREU H FRU W DG D G H XP  IL R G H FREU H
+
+VHQ G R HVVH FRQ HFW RU  L Q VHU L G R HP  XP  W XER G H 3 9 & FRP   P P  G H G L kP HW U R L Q W HU Q R
+H
+ P P  G H FRP SU L P HQ W R H VXD H[ W U HP L G DG H SU HHQ FKL G D FRP  D SDVW D G H JU DIL W H HSô [ L
+
+XW L O L ] DG D FRP R W U DQ VG XW RU   D TXDO  IRL  VHFD D   í & SRU   K  ' XU DQ W H
+R
+SU HHQ FKL P HQ W R  W RP RX VH R FXL G DG R G H Q á R HQ FKHU  FRP SO HW DP HQ W H R
+HVSDoR
+U HVW DQ W H D IL P  G H P DQ W HU  XP  SHTXHQ R YD] L R HQ W U H D VXSHU IñFL H G R JU DIL W H HSô [ L  H
+D
+VDñG D G R W XER G H 3 9 & XW L O L ] DG R SDU D SU RSRU FL RQ DU  XP D P HO KRU  DG HVá R G
+D
+P HP EU DQ D VHO HW L YD DR W U DQ VG XW RU   G L IL FXO W DQ G R D VDñG D G HVVD P HP EU DQ D G HFRU U HQ W
+H
+G H VXD XW L O L ] Doá R  DO pP  G H SU RP RYHU  XP D FDP DG D P DL V HVSHVVD G H P HP EU DQ D
+
+DXP HQ W DQ G R D YL G D ø W L O  G R VHQ VRU   M Ý  TXH VH VDEH TXH KÝ  XP D SHU G D SRU  O L [ L YL Doá R G
+D
+P HP EU DQ D Q R G HFRU U HU  G R XVR  $  ) L JXU D  G HP RQ VW U D R HVTXHP D VL P SO L IL FDG R G
+H
+FRQ VW U Xoá R G R VHQ VRU  H R DVSHFW R IL Q DO  G R P HVP R SDU D XW L O L ] Doá R
+( a ) ( b ) ( c ) ( d ) ( e )
+) L JXU D    ' HVHQ KR HVTXHP Ý W L FR G D IDEU L FDoá R G R VHQ VRU  ,6 (  XW L O L ] DG R Q R HVW XG R
+$ 
+7XER G H 3 9 & P P  G H G L kP HW U R L Q W HU Q R   P P  G H FRP SU L P HQ W R  %  &RQ HFW RU
+
+Ir P HD G H  P P  VRO G DG R D XP D SHoD FL U FXO DU  G H FREU H &  0 RQ W DJHP  IL Q DO  G
+R
+VHQ VRU  '  ' HW DO KH G D U HJL á R RQ G H R W U DQ VG XW RU  JU DIL W H HSô [ L  p G HSRVL W DG R (  ) RW
+R
+G R VHQ VRU 
+7DEHO D ,   ) RU P XO Doõ HV G DV P HP EU DQ DV VHO HW L YDV FRP  SU RSRU oõ HV U HO DW L YDV HP 
+SHVR
+ 
+8 Sistema para Sensoriamento de Potássio no Solo
+Parametro
+analisado
+Ionoforo Plastificante PVC Aditivo
+Potassio
+Valinomicina
+(2,5)
+Bis (2-etilhexil) sebacato
+(67)
+(30)
+tetrakis (4-clorofenil) borato de
+potassio (0,5)
+pH
+Tridodecilamina
+(1,0)
+Bis (2-etilhexil) sebacato
+(65,6)
+(32,8)
+tetrakis (4-clorofenil) borato de
+potassio (0,6)
+´
+´
+´
+´
+^
+
+--- PÁGINA 10 ---
+Os sensores foram encaixados no corpo da sonda de acordo com a
+configuração demonstrada na Figura 2, onde se pode observar o sensor
+instalado no centro de uma placa de cobre, a qual tem o papel de eletrodo de
+referência. A utilização de uma placa de cobre como eletrodo de referência se
+justifica pelo fato de que a mesma, em contato com o solo, sofre corrosão e se
+passiva, formando uma camada de óxido a qual gera um potencial constante
+(eletrodo de metal/óxido metálico). Além disso, o mesmo possui uma grande
+área superficial se comparado ao eletrodo de trabalho, outra condição
+necessária para a caracterização do mesmo como eletrodo de referência. Acima
+do sensor fica localizado um orifício o qual é a saída de um tubo de polietileno
+de 5 mm de diâmetro, projetado para ser utilizado na calibração do sensor após
+a inserção no solo. A entrada deste tubo localiza-se na parte superior da sonda,
+abaixo da caixa de controle da instrumentação, por onde são inseridas soluções
+de concentração conhecida do analito.
+F
+igura 2. Vista frontal do sensor na forma como fica instalado no corpo da
+sonda utilizada no trabalho. (A) Placa de cobre (eletrodo de referência); (B)
+orifício pelo qual se injetam soluções padrão do analito para a calibração do
+sensor; (C) sensor tubular íon-seletivo.
+Sonda Analítica
+A sonda desenvolvida possui três sensores independentes e três conjuntos de
+amplificadores de instrumentação dispostos ao longo do seu corpo. Ela é
+formada por partes móveis encaixáveis de tubos e conxões PVC. As três partes
+juntas formam um tubo único de 1 metro de comprimento possuindo sensores
+fixos na sua lateral de forma a estarem nas profundidades de 5, 20 e 50 cm do
+solo, quando instalada. Ao lado de cada sensor químico foi instalado um sensor
+físico (circuito integrado LM 35 DZ) para o monitoramento da temperatura. A
+instrumentação contendo os sistemas de amplificação dos sinais gerados pelos
+sensores e de transmissão dos dados está situada em uma pequena caixa na
+parte superior da sonda. Nesta caixa estão os sistemas de controle, tanto dos
+sensores químicos a serem utilizados, quanto dos sensores físicos de
+temperatura, também acoplados para o acompanhamento deste parâmetro, já
+que o mesmo possui grande influência na resposta dos sensores químicos. Os
+9 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 11 ---
+sensores são acoplados no corpo da sonda, presos em um rebaixamento feito
+no tubo de PVC para o perfeito encaixe, de modo que o sensor não fique acima
+do nível da superfície do tubo, minimizando a abrasão por arraste conseqüente
+da introdução e retirada da sonda do solo. Na Figura 3 tem-se um desenho
+esquemático da sonda. Toda instrumentação é alimentada por uma bateria de
+12 V.
+O circuito necessário para a obtenção dos resultados de modo completamente
+automático foi desenvolvido pela Embrapa Instrumentação Agropecuária, em
+São Carlos, SP, pelo Dr. André Torre-Neto, colaborador deste projeto. A
+transmissão dos dados é digital, usando o protocolo de comunicação RS-485. O
+TM
+programa de aquisição foi desenvolvido utilizando LabVIEW
+(National
+Instruments), uma linguagem gráfica de programação. O recurso Active X
+foi
+utilizado para produzir e armazenar os dados em forma de planilha eletrônica
+Excel (Microsoft®). Dois conjuntos de dados foram gerados: um conjunto a cada
+cinco minutos e o outro gerado pela média dos dados de cada hora. Nas Figuras
+4 e 5 temos a visualização da janela do programa desenvolvido para o
+gerenciamento da sonda analítica e da janela da planilha eletrônica responsável
+pelo armazenamento dos dados obtidos, respectivamente.
+Figura 3. Desenho representativo da sonda construída para o desenvolvimento
+deste trabalho. (A) Caixa contendo a instrumentação eletrônica de controle dos
+sensores químicos e físicos (temperatura); (B) um dos sensores adaptados ao
+corpo da sonda e; (C) tubo de PVC.
+10 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 12 ---
+Na Figura 4 pode-se observar duas janelas pertencentes ao programa. A janela
+do lado esquerdo é a responsável pelo funcionamento da sonda, com os botões
+de acionamento/encerramento do programa, acionamento/encerramento da
+planilha de aquisição de dados e um mostrador com informações sobre os
+potenciais e temperaturas em tempo real e sobre o tempo transcorrido da
+coleta. A janela do lado direito mostra uma evolução dos potenciais nos três
+sensores no decorrer da coleta e os potenciais atuais. Na Figura 5 pode-se
+observar alguns dados coletados em um intervalo de 5 minutos para cada
+tomada, com as médias e valores de máximos e mínimos tanto para os
+potenciais quanto para as temperaturas.
+Figura 4. Janelas do programa desenvolvido para o gerenciamento da sonda
+analítica.
+Figura 5. Planilha eletrônica responsável pelo armazenamento dos dados obtidos.
+11 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 13 ---
+Avaliação dos Eletrodos
+Antes da avaliação da sonda diretamente no solo, foi realizada uma avaliação da
+membrana para o estabelecimento de parâmetros em função das características
+eletroanalíticas pertencentes a esse tipo de eletrodo. A utilização de algodão
+-5
+umedecido com soluções analíticas de potássio nas concentrações 1 x 10 a 1
+-1 -1
+x 10 mol L
+de K foi efetuada com o propósito de reproduzir as condições de
+operação do eletrodo no solo de maneira aproximada. Neste experimento foram
+avaliados a sensibilidade, a faixa linear de trabalho e o limite de detecção de
+cada membrana depositada.
+A avaliação da sonda no solo incluiu a observação do comportamento da
+instrumentação eletrônica e do perfil dos analitos após a variação dos mesmos.
+O esquema para a realização desta etapa é o demonstrado na Figura 6, onde se
+pode observar a sonda instalada dentro de um tubo de PVC preenchido com
+solo. O tubo externo foi construído com três saídas laterais (conexões em T),
+situadas nas mesmas alturas em que os sensores estão fixos na sonda,
+possibilitando a coleta de amostras de solo para efeito de comparação com
+metodologias usuais empregadas para avaliação da fertilidade (extração com
+resina e determinação por fotometria de chama).
+( b )
+( a )
+Figura 6. (a) Esquema de montagem para a avaliação da sonda em laboratório.
+(1) Sonda de análise; (2) Sistema de aquisição e tratamento dos dados; (3)
+Tubo de PVC com aberturas a 5, 20 e 50 cm de altura. (b) Foto do sistema.
+12 Sistema para Sensoriamento de Potássio no Solo
+R
+dio
+Modem
+1
+2
+3
+
+--- PÁGINA 14 ---
+Após a introdução da sonda no solo, uma grande quantidade de água era jogada
+ao redor da mesma para permitir um melhor contato da interface
+membrana/solo. A avaliação dos sensores foi feita da seguinte forma: após o
+restabelecimento do equilíbrio hidrodinâmico do solo (teor de água próximo da
+sonda igual ao do solo das vizinhanças), foram injetadas, com auxílio de uma
+seringa, alíquotas de 3 ml de água e de soluções com concentrações diferentes
+dos analitos nos tubos de polietileno, cujas saídas se encontram acima dos
+sensores (Figura 6), sendo registradas as leituras após a estabilização do sinal.
+Além desse procedimento, também foi feita outra forma de avaliação dos
+sensores e da sonda. Nesta etapa, foi feita adição das soluções dos analitos
+diretamente ao solo, por fora da sonda, sem o auxílio dos tubos de polietileno,
+sendo registradas as variações de potencial. Após a adição do analito e variação
+do potencial, uma grande quantidade de água era adicionada para proporcionar
+o retorno do potencial à linha base inicial. Esse tipo de avaliação foi realizado
+por ser o que mais se aproximaria da realidade no dia-a-dia do cultivo no campo,
+onde os fertilizantes são aplicados sobre o solo. Para o monitoramento do
+3
+potássio foram adicionados 1,27 g/m
+de KCl, correspondentes a
+aproximadamente 150 kg K O/ha.
+2
+Quando foram empregados sensores para a avaliação da determinação in-situ de
+pH no solo, utilizou-se o ácido sulfúrico como corretivo para um solo básico e
+carbonato de cálcio como corretivo para um solo ácido. Novamente, alíquotas
+do solo nas diferentes profundidades foram tomadas para efeito de comparação
+com metodologias padrão.
+Para se avaliar a instrumentação de transmissão dos dados à longa distância,
+testes com a sonda analítica foram realizados em um solo próximo ao
+laboratório, de acordo com o esquema da Figura 7. Primeiramente uma curva de
+calibração foi obtida. Amostras foram coletadas em cada altura a 0,5 m de
+distância da sonda e analisadas pelo método padrão, sendo comparadas com o
+potencial interpolado provido pelo sistema de sensores. Esses testes foram
+realizados somente para o íon potássio.
+Determinação da Umidade via TDR (Reflectrometria no domínio do tempo)
+Construção da antena de transmissão
+Primeiramente foi realizado o cálculo do comprimento efetivo da antena e da
+distância entre as trilhas de cobre (pólos), parâmetros de grande importância
+para a técnica. Foi estipulado o comprimento total de 10 cm para cada trilha e
+distância de 2 mm entre as mesmas. A Figura 8 demonstra um esquema da
+antena desenvolvida e descreve todas as especificações para a construção da
+mesma.
+13 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 15 ---
+(1)
+(2)
+Figura 7. (a) Esquema de montagem para a avaliação da sonda no campo. (A)
+Sonda de análise; (B) Sistema de conversão e transmissão dos dados; (C)
+Sistema de recepção, aquisição e tratamento dos dados. (b) Foto do sistema
+montado no solo próximo ao laboratório.
+14 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 16 ---
+Figura 8. Desenho e especificações da antena desenvolvida para análise TDR.
+Materiais e equipamentos
+1. Papel “transfer” para confecção de circuito impresso;
+2. Placa de cobre com 0,2
+0,3 mm de espessura;
+3. Prensa manual (com aquecimento);
+4. Espátula;
+5. Fita adesiva transparente;
+6. Cola adesiva Araldite®;
+-1
+7. Solução de percloreto de ferro 100 g L .
+Procedimento
+Após a especificação de todas as dimensões, um desenho em tamanho real da
+antena foi confeccionado utilizando-se o programa Tango de diagramação de
+circuitos eletrônicos e, impresso na folha de papel “transfer” através de
+impressão a laser. O desenho impresso foi então transferido para a placa de
+cobre com a ajuda de uma prensa manual à quente. A placa foi isolada na face
+contrária ao desenho com a utilização de fita adesiva transparente e mergulhada
+na solução de percloreto de ferro por 20 a 30 minutos. Nessa etapa ocorre a
+corrosão do cobre que não está protegido, nem pelo “toner” da impressora a
+laser, nem pela fita adesiva, deixando somente as trilhas de cobre
+correspondentes ao desenho da antena TDR.
+Com as trilhas de cobre sobre a superfície da fita, procedeu-se a etapa de
+transferência para o tubo de PVC (sonda). Primeiro realizou-se a retirada do
+toner pela raspagem com a ajuda de uma espátula, deixando a superfície de
+cobre a amostra. Logo em seguida passou-se uma camada de cola Araldite
+sobre todo o conjunto antena/fita adesiva e colou-se na parede externa da
+sonda, próximo ao sensor íon-seletivo. Após a secagem da cola, retirou-se a fita
+15 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 17 ---
+adesiva (que não ficou colada pela incompatibilidade dos materiais adesivos da
+fita e do Araldite) tendo o cuidado de que a antena não seja removida
+juntamente com ela. Removida a fita, procedeu-se a solda dos terminais da
+antena à instrumentação de conexão ao aparelho de TDR que estão instalados
+no interior do tubo e possuem saída na parte inferior da caixa de controle. A
+Figura 10 demonstra a antena instalada no corpo da sonda e as conexões de
+contato com o equipamento responsável pela análise TDR.
+( a )
+( b )
+Figura 9. (a) Antena TDR instalada no corpo da sonda. (b) Conexões de contato
+com o equipamento para a análise TDR.
+Resultados e Discussão
+Potássio
+Com o objetivo de verificar a eficácia no funcionamento das membranas
+depositadas, uma avaliação dos parâmetros eletroanalíticos era realizada a cada
+deposição pela calibração com a utilização de algodões umedecidos com
+soluções padrão de KCl. Os sensores apresentaram sensibilidade média de 70
+mV/dec, o que representa um comportamento supernernstiano que pode ser
+atribuído às características da forma de calibração empregada. Na Figura 10
+temos o gráfico de uma dessas calibrações. Os sensores apresentaram ainda
+-4 -1 -1
+faixa linear de trabalho definida entre 1 x 10 e 1 x 10 mol L , podendo
+-1 -5 -1
+chegar até 1,0 mol L , e limite de detecção da ordem de 8 x 10 mol L
+.
+Após a avaliação da membrana foi realizada a avaliação da sonda no solo.
+Foram efetuadas várias calibrações com a adição das soluções padrão de KCl
+através dos tubos de silicone e os perfis dos potenciais adquiridos eram
+16 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 18 ---
+semelhantes aos potenciais observados quando da calibração realizada
+externamente com o auxílio dos algodões umedecidos. Também foram
+semelhantes a faixa linear de trabalho e o limite de detecção no solo. As
+equações das curvas analíticas obtidas para cada sensor estão demonstradas na
+Tabela II.
+Figura 10. Evolução dos potenciais pela calibração com algodões umedecidos
+com solução dos analitos de concentração conhecida.
+Tabela II. Curvas analíticas obtidas pela calibração dos sensores através dos
+tubos de silicone (n=4).
+Sensor
+Entretanto, esse tipo de calibração não é completamente informativo, uma vez
+que os padrões adicionados estão expressos como concentração em uma
+-1
+solução líquida (mol L
+). Ou seja, com o conhecimento do potencial, que é a
+informação gerada pela sonda, pode-se chegar a um valor de concentração de
+-1
+potássio em termos de mol L
+através das equações. Porém, o valor real da
+concentração de K no solo nunca poderá ser obtido, pois não se tem
+17 Sistema para Sensoriamento de Potássio no Solo
+Sensor Equacao
+5 cm y = 69,4(
+10,87) * x +
+369,1(
+51,22)
+20 cm y = 70,9(
+8,24) * x +
+374,4(
+78,53)
+50 cm y = 71,2(
+10,62) * x +
+408,7( 74,47)
+
+--- PÁGINA 19 ---
+conhecimento quantitativo da diluição provocada pelo solo. Assim, a
+concentração real de potássio proporcional ao potencial gerado pelo sensor será
+sempre menor que a concentração adicionada pelo tubo de silicone. Além disso,
+no programa de monitoramento da fertilidade de solos empregado no estado de
+São Paulo, os resultados para potássio são expressos na concentração do
+-3 -1
+mesmo presente em uma matriz sólida (mmol c dm ou mmol c g
+de solo).
+Sendo assim, esse tipo de calibração foi avaliado frente aos resultados obtidos
+pela metodologia comparativa, para que se pudesse obter uma relação entre os
+potenciais gerados e a concentração de K no solo. Foram realizadas cinco
+amostragens nas três alturas, com a concentração de potássio determinada
+através do método comparativo. Também, em cada amostragem realizada foi
+registrado o potencial respectivo, o qual foi utilizado nas equações da Tabela III
+para a obtenção do logaritmo da concentração de K (log K). As concentrações
+de potássio, tanto a obtida pela interpolação das curvas analíticas (log K),
+quanto a determinada pelo método comparativo, foram relacionadas entre si,
+sendo obtida uma nova equação, permitindo que o potencial obtido seja
+relacionado indiretamente com a concentração de potássio no solo. Na Figura
+11 é apresentado, como exemplo, a equação obtida para o sensor a 20 cm.
+Figura 11. Equação obtida a partir da relação entre o logaritmo da concentração
+de potássio e a concentração obtida pelo método comparativo. Dados para o
+sensor a 20 cm.
+18 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 20 ---
+Realizaram-se mais cinco amostragens em cada altura para a validação dos
+modelos obtidos, ou seja, de cada amostragem foi registrado o potencial
+respectivo, determinado o log K pela interpolação em cada curva analítica e
+realizada a determinação da concentração final de potássio pela utilização dos
+modelos. Na Tabela III é apresentada uma comparação dos resultados obtidos
+pela metodologia padrão com os obtidos pela utilização da calibração através
+dos tubos de silicone para o sensor de 20 cm. Os cinco primeiros resultados
+referem-se a etapa de construção do modelo e os cinco restantes referem-se à
+validação do mesmo. Com a utilização de um teste-t pareado, pôde-se verificar
+que os dois conjuntos de dados não são significativamente diferentes a um nível
+de confiança de 95%.
+Tabela III. Comparação dos resultados obtidos pela metodologia padrão com os
+pela utilização da calibração através dos tubos de silicone para o sensor de 20
+cm.
+Na Figura 12 tem-se uma demonstração da evolução dos potenciais frente a
+variação da concentração de potássio com a adição de uma solução de KCl 1
+-1
+mol L
+. Inicialmente, os sensores apresentam um valor constante de potencial.
+Depois da adição da solução, podem ser observadas três curvas de potencial
+diferentes. No sensor a 5 cm de profundidade, um salto abrupto de potencial é
+observado (aproximadamente 350 mV) sem retorno para a linha de base inicial.
+Um salto semelhante, porém mais suave (aproximadamente 250 mV) foi sofrido
+pelo sensor a 20 cm de profundidade. Era esperado um perfil mais largo para
+este sensor, entretanto a concentração da solução adicionada foi muito alta,
+saturando a área do sensor a 5 cm; conseqüentemente quase a mesma
+quantidade de potássio foi lixiviada ao sensor de 20 cm. A 50 cm, a curva
+obtida tem um salto de potencial mais baixo (aproximadamente 80 mV) e um
+perfil mais largo devido à diluição da solução.
+19 Sistema para Sensoriamento de Potássio no Solo
+mmol K / dm
+3
+solo
+Potencial (mV) Metodologia Padrao Calibracao atraves dos tubos
+106,5 9,82
+7,64
+183,6 31,7
+32,8
+221,2 42,4
+45,1
+349,1 88,5
+86,8
+104,0 8,16
+6,84
+96,68 6,85
+4,45
+217,8 39,1
+44,0
+175,3 21,3
+30,1
+133,3 19,6
+16,4
+129,9 18,9 15,3
+
+--- PÁGINA 21 ---
+Figura 12. Evolução dos potenciais frente a variação com adição de uma
+-1
+solução 1 mol L
+de KCl sobre o solo.
+Foram realizadas algumas amostragens em diferentes momentos do
+experimento e os resultados obtidos pelo método padrão foram usados em
+comparação aos respectivos potenciais tomados. As Figuras 13 e 14
+demonstram os registros dos potenciais e os resultados das análises pontuais
+via fotometria de chama para os sensores a 5 e 20 cm, respectivamente. Uma
+concordância satisfatória foi observada entre as duas metodologias, a qual está
+demonstrada na Tabela IV e, que pode ser utilizada como uma forma de
+calibração dos sensores no solo.
+Tabela IV. Equações lineares obtidas entre a metodologia comparativa e a sonda
+analítica.
+3
+FC: fotometria de chama (mmol K / dm solo)
+20 Sistema para Sensoriamento de Potássio no Solo
+Sensor Equacoes r
+2
+5 cm mV = 2,7965*FC + 40,804
+0,9925
+20 cm mV = 3,0492*FC + 83,692 0,9951
+
+--- PÁGINA 22 ---
+Figura 13. Evolução dos potenciais frente à mudança da concentração de K no
+solo e comparação com metodologia comparativa de determinação para o
+sensor a 5 cm de profundidade.
+Figura 14. Evolução dos potenciais frente à mudança da concentração de K no
+solo e comparação com metodologia comparativa de determinação para o
+sensor a 20 cm de profundidade.
+21 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 23 ---
+Uma réplica independente deste experimento foi realizada para a verificação da
+reprodutibilidade dos resultados e robustez do sistema. Assim, uma nova
+camada de membrana foi depositada, novos procedimentos de calibração e uma
+-1
+nova adição de uma solução 1 mol L
+de KCl sobre o perfil do solo foram
+realizados. Os resultados para adições sucessivas dessa solução alternadas com
+adições de água sobre o solo estão demonstrados nas Figuras 15 e 16 para os
+sensores a 5 e 20 cm, respectivamente.
+Novas amostras foram tomadas e os resultados obtidos pela metodologia
+padrão foram comparados aos potenciais gerados. Uma concordância
+satisfatória também foi observada entre as duas metodologias, a qual está
+demonstrada na Tabela V. Entretanto, obtivemos reprodutibilidade somente para
+o sensor a 20 cm, como pode ser visto pela equação apresentada na Tabela V,
+o que leva crer que esse tipo de calibração para o potássio - relação direta do
+potencial com a concentração de potássio no solo - pode ser eficiente.
+Figura 15. Evolução dos potenciais frente à mudança da concentração de K no
+solo e comparação com metodologia comparativa de determinação para o
+sensor a 5 cm de profundidade (replicata).
+22 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 24 ---
+Figura 16. Evolução dos potenciais frente à mudança da concentração de K no
+solo e comparação com metodologia comparativa de determinação para o
+sensor a 20 cm de profundidade (replicata).
+Tabela V. Equações lineares obtidas entre a metodologia comparativa e a sonda
+analítica.
+3
+FC: fotometria de chama (mmol K / dm solo)
+Após a verificação do comportamento da calibração externa por meio dos tubos
+de silicone, um novo experimento foi realizado para simular uma condição de
+campo pela adição de uma quantidade conhecida de fertilizante potássico (KCl)
+3
+sobre o solo (1,27 g/m
+de KCl correspondendo a aproximadamente 150 kg
+K2O/ha). Na Figura 17 têm-se os perfis do solo antes e após a adição do
+fertilizante. Podemos observar o claro comportamento da lixiviação do potássio
+nesse estudo. Em primeiro lugar há um grande salto de potencial no sensor a 5
+cm, indicando a presença do potássio nessa região. Minutos depois, com
+23 Sistema para Sensoriamento de Potássio no Solo
+Sensor Equacoes r
+2
+5 cm mV = 8,0489*FC 2,8485
+0,9761
+20 cm mV = 3,8766*FC + 71,237 0,9095
+
+--- PÁGINA 25 ---
+adições sucessivas de água, podemos observar a chegada do potássio no
+sensor a 20 cm, porém com um salto de potencial menor, enquanto a
+concentração de potássio no sensor a 5 cm já chegou a um máximo e já está
+retornando à quantidade inicial pelo retorno à linha base expresso no gráfico.
+Aproximadamente duas horas depois, o potássio lixiviado chega à região do
+sensor a 50 cm, porém em menor quantidade, e com uma banda de potencial
+mais larga, causada pela dispersão na coluna de solo.
+Figura 17. Evolução dos potenciais frente à adição de fertilizante potássico e
+adições sucessivas de água.
+Deve-se salientar que todos os experimentos descritos anteriormente foram
+realizados em condições de saturação da umidade, ou seja, em capacidade de
+campo. Sabemos de experimentos anteriores que os mesmos não podem ser
+extrapolados para solo com teores de umidade menores, visto que a umidade é
+um parâmetro de grande influência no comportamento dos íons do solo e, por
+conseqüência, na resposta dos sensores.
+Com o objetivo de se verificar a eficácia das membranas depositadas antes da
+utilização da sonda no solo, uma avaliação dos parâmetros eletroanalíticos era
+realizada pela utilização de algodões embebidos em soluções analíticas. Foram
+utilizados tampões com valores de pH variando entre 3 e 10, pois se sabe da
+literatura (SCHULTESS et al., 1981) que essa formulação de membrana possui
+faixa linear de trabalho de pH 2 a 12. Além disso, em solos não há uma
+variação dessa propriedade que necessite de uma faixa maior de trabalho. Na
+pH
+24 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 26 ---
+Figura 18 estão demonstradas algumas curvas analíticas para os sensores. As
+equações gerais das curvas analíticas obtidas foram: (a) 5 cm: E = -45,43pH
+(±0,13) + 570,08 (±1,080); (b) 20 cm: E = -42,54pH (±0,09) + 507,75
+(±0,720) e (c) 50 cm: E = -40,36pH (±0,13) + 560,50 (±1,080). Observa-
+se um comportamento similar entre os três sensores. Apesar disso, a
+sensibilidade nernstiana não foi alcançada devido às condições de
+experimentação serem diferentes das condições de análise geralmente
+empregadas. Entretanto, isso não afeta em nada a aplicabilidade analítica das
+membranas.
+Com a sonda instalada no tubo PVC preenchido com solo, foram realizadas
+várias calibrações com a adição das soluções-tampão através dos tubos de
+silicone e os perfis dos potenciais adquiridos eram semelhantes aos potenciais
+observados quando da calibração realizada externamente com o auxílio dos
+algodões umedecidos. Porém, as sensibilidades obtidas foram muito menores
+que as para a calibração com os algodões. As equações gerais obtidas para as
+curvas analíticas foram: (a) 5 cm: E = -26,75pH (±0,59) + 468,83 (±51,48),
+(b) 20 cm: E = -26,53pH (±6,38) + 406,77 (±41,18) e (c) 50 cm: E = -
+24,18pH (±7,71) + 479,94 (±68,54). O decréscimo da sensibilidade pode ser
+explicado devido a uma característica inerente ao solo de se comportar como
+um forte tampão. Mais uma vez, entretanto, isso não afeta em nada a
+aplicabilidade analítica das membranas.
+Na Figura 19 observa-se uma calibração realizada com a sonda no solo.
+Observa-se um comportamento irregular das variações em comparação com a
+calibração feita com os algodões, mesmo com as soluções-tampão possuindo
+concentrações elevadas, o que comprova o grande efeito tampão do solo.
+Figura 18. Calibração com algodões umedecidos para a análise de pH.
+25 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 27 ---
+Figura 19. Calibração da sonda no solo através dos tubos de silicone para a
+análise de pH.
+Após a obtenção das curvas analíticas para os sensores, a sonda foi retirada do
+tubo de PVC preenchido com solo, foram depositadas novas membranas e a
+sonda foi reinserida no tubo preenchido com solo (Latossolo Vermelho Escuro -
+LVE) para a avaliação do comportamento da sonda frente à adição de corretivos
+de pH. Primeiramente, foram adicionados 25 mL de uma solução concentrada
+de ácido sulfúrico (50% v/v) para simular uma correção básica. Na Figura 20,
+tem-se a evolução dos potenciais dos sensores frente à adição de ácido.
+Observa-se um salto abrupto em torno de 130 mV no sensor a 5 cm, indicando
+um aumento na concentração hidrogeniônica naquela região, ou seja, uma
+diminuição do pH. Após a estabilização do sinal, água em excesso foi despejada
+sobre o perfil do solo para fazer com que o ácido percolasse para as camadas
+inferiores. Assim, iniciou-se um decréscimo da concentração de H+ e um ligeiro
+aumento de pH. Enquanto isso, o ácido em excesso chega à região do sensor
+de 20 cm fazendo com o potencial atinja um valor aproximado de 130 mV.
+Entretanto, após a chegada desse excesso o pH começa a cair pela adição de
+água sobre o perfil do solo, fazendo com que a troca iônica (íons H+ por íons
+básicos) realizada na região a 5 cm de profundidade chegue ao sensor a 20 cm.
+Nesse ponto o potencial chega a 90 mV e se mantém até que lentamente todo
+o excesso de ácido sulfúrico despejado e que não foi trocado na camada de 5
+cm vai chegando à camada de 20 cm, aumentando o potencial e diminuindo o
+pH, como observado no gráfico. Na camada a 50 cm ocorre o mesmo, porém
+com maior intensidade, ou seja, a diminuição de pH é mais intensa
+(aproximadamente 70 mV), antes de o potencial subir novamente indicando a
+chegada do ácido em excesso depositado no topo da coluna e lixiviado pelas
+adições sucessivas de água.
+26 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 28 ---
+Nas Figuras 21 a 23 estão demonstradas comparações entre os potenciais
+individuais dos sensores e os resultados obtidos pela metodologia comparativa
+-1
+(extração com CaCL 2 0,05 mol L
+) de amostragens realizadas durante o
+experimento.
+Figura 20. Evolução dos potenciais frente à mudança de pH no solo.
+Figura 21. Evolução do sensor 5 cm frente à mudança de pH no solo e
+comparação com metodologia padrão de determinação. (solo:LVE)
+27 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 29 ---
+Figura 22. Evolução do sensor 20 cm frente à mudança de pH no solo e
+comparação com metodologia padrão de determinação. (solo: LVE)
+Figura 23. Evolução do sensor 50 cm frente à mudança de pH no solo e
+comparação com metodologia padrão de determinação. (solo: LVE)
+28 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 30 ---
+Pode-se observar que a concentração da solução de ácido sulfúrico utilizada foi
+muito alta, uma vez que o solo na região a 5 cm atingiu valores de pH muito
+baixos, fazendo com que o sensor trabalhasse na região limite da faixa de
+trabalho de pH, sujeito a erros. Ainda assim, houve uma concordância razoável
+entre os métodos para essa profundidade. Nas outras profundidades houve uma
+concordância muito boa entre os dois métodos. Entretanto, se os dados de
+potencial são colocados versus os resultados de pH, obtêm-se características
+diferentes para os três sensores estudados.
+Para o sensor a 5 cm obteve-se uma sensibilidade menor (y = -28,759x +
+2
+232,82, R
+= 0,8063), enquanto que para o sensor a 20 cm obteve-se uma
+sensibilidade semelhante à da calibração externa com algodões (y = -41,72x +
+2
+309,56, R = 0,9734) e para o sensor a 50 cm uma sensibilidade
+2
+supernernstiana (y = -162,64x + 996,36, R
+= 0,9992). Possivelmente essa
+última seja a sensibilidade característica desse sensor no solo, uma vez que o
+sensor a 20 cm ainda sofre grande influência do excesso de ácido adicionado à
+coluna, ou os mecanismos de troca são diferenciados a cada profundidade,
+necessitando a calibração individual a cada vez que a sonda seja instalada no
+solo.
+De posse dos resultados da análise do solo pela metodologia comparativa,
+verificou-se a utilização das calibrações realizadas tanto externamente (com os
+algodões) quanto internamente ao solo (adição de solução pelos tubos de
+silicone). Foram interpolados os potenciais obtidos no momento da tomada das
+amostras nas equações descritas anteriormente e os resultados estão
+demonstrados nas tabelas VI e VII. Observa-se que esse tipo de calibração não
+é eficiente para a determinação do pH do solo.
+Tabela VI. Comparação entre os resultados obtidos pela interpolação com a
+calibração externa (algodões) e o método padrão (extração com CaCl 2
+).
+Tabela VII. Comparação entre os resultados obtidos pela interpolação com a
+calibração interna (tubos de silicones) e o método padrão (extração com CaCl 2 ).
+29 Sistema para Sensoriamento de Potássio no Solo
+5 cm 20 cm 50 cm
+mV pH calc. pH det. mV pH calc. pH det. mV pH calc.
+pH det.
+59,3 8,72 5,70 104,6 8,01 5,10 168,8 7,81
+5,10
+188,0 6,30 2,82 89,9 8,31 5,06 142,0 8,37
+5,25
+164,0 6,76 2,22 176,8 6,53 3,30 138,5 8,44
+5,27
+162,5 6,78 1,69 178,6 6,50 3,04 236,3 6,41 4,67
+5 cm 20 cm 50 cm
+mV pH calc. pH det. mV pH calc. pH det. mV pH calc.
+pH det.
+59,3 14,5 5,70 104,6 10,9 5,10 168,8 12,7
+5,10
+188,0 9,70 2,82 89,9 11,4 5,06 142,0 13,8
+5,25
+164,0 10,6 2,22 176,8 8,41 3,30 138,5 14,0
+5,27
+162,5 10,7 1,69 178,6 8,34 3,04 236,3 10,0 4,67
+
+--- PÁGINA 31 ---
+Uma replicata deste experimento também foi realizada para a verificação da
+reprodutibilidade dos resultados e robustez do método. Assim, uma nova
+camada de membrana foi depositada e nova adição de uma solução de ácido
+sulfúrico (10% v/v) sobre o perfil do solo foi realizada. Entretanto, nesse
+experimento foi empregada Terra Roxa Estruturada (TR). Os resultados estão
+demonstrados nas Figuras 24 a 26.
+Figura 24. Evolução do sensor 5 cm frente à mudança de pH no solo e
+comparação com metodologia padrão de determinação. (solo:TR)
+Figura 25. Evolução do sensor 20 cm frente à mudança de pH no solo e
+comparação com metodologia padrão de determinação. (Solo: TR)
+30 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 32 ---
+Figura 26. Evolução do sensor 50 cm frente à mudança de pH no solo e
+comparação com metodologia padrão de determinação. (solo: TR)
+Pode-se verificar através da Figura 24 que a quantidade adicionada de ácido
+ofereceu uma variação de pH menos brusca à região do sensor de 5 cm.
+Entretanto, alguns valores de pH obtidos ainda foram muito baixos no que
+concerne a acidez naturalmente ocorrente no solo. Mesmo assim, observa-se
+boa concordância para o sensor a 5 cm, assim como para os outros, como se
+2
+pode perceber nas equações obtidas: (a) 5 cm: y = -22,329x + 268,54, R =
+2
+0,988; (b) 20 cm: y = -111,69x + 778,99, R = 0,9886; (c) y = -287,9x +
+2
+1786,2, R
+= 0,9739. Apesar dos sensores manterem uma certa ordem de
+sensibilidade (sensor de 50 cm mais sensível que o sensor de 20 cm, o qual é
+mais sensível que o sensor de 5 cm), não houve reprodutibilidade nos valores de
+sensibilidade, impossibilitando a definição de um modelo matemático
+relacionando o potencial elétrico com o pH. Isso pode ter acontecido devido à
+diferença entre os dois tipos de solo e às condições de experimentação
+utilizadas por último serem mais brandas.
+Também foi realizada uma tentativa de correção do solo com CaCO 3
+para a
+observação do comportamento da sonda. Na Figura 27 tem-se a evolução dos
+potenciais dos sensores a 5 e 20 cm, após a adição de CaCO 3
+sobre o solo e
+adição de água. Observa-se a atuação do CaCO 3
+como corretivo pelo
+decréscimo do potencial do sensor a 5 cm, indicando um aumento do pH
+naquela região, enquanto que na região a 20 cm o potencial se mantém
+praticamente inalterado durante o experimento. O fato do sensor a 20 cm se
+manter inalterado durante o experimento se deve à baixa solubilidade do
+CaCO 3 , que não proporciona a lixiviação desse analito, como esperado.
+31 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 33 ---
+Figura 27. Evolução dos potenciais frente à adição de CaCO 3 no solo.
+Conclusões
+Referências Bibliográficas
+Os sensores e a sonda construidos são eficazes em termos operacionais tanto
+em laboratório quanto in-situ. O sistema se mostra promissor para o uso em
+agricultura de precisão no mapeamento em tempo real da fertilidade solo
+através de instrumentação fixa na forma de rede de sensores.
+A reprodutibilidade e a calibração in-situ são processos a serem aperfeiçoados.
+As influências sobre os sensores de parâmetros físicos, como temperatura e
+umidade do solo, bem como parâmetros biológicos, como atividade
+microbiológica do solo, devem ser melhor estudados.
+ARTIGAS, J.; BELTRAN, A.; JIMENEZ, C.; BALDI, A.; MAS, R.; DOMINGUEZ,
+C.; ALONSO, J. Application of ion sensitive field effect transistor based sensors
+to soil analysis. Comput. Electron. Agric.
+, Amsterdam, v. 31, p. 281-293,
+2001.
+ARTIGAS, J.; JIMENEZ, C.; LEMOS, S. G.; NOGUEIRA, A. R. A.; TORRE-NETO,
+A.; ALONSO, J. Development of a screen-printed thick-film nitrate sensor based
+on a graphite-epoxy composite for agricultural applications. Sens. Actuators.
+,
+Lausanne, v. 88, p. 337-344, 2003.
+32 Sistema para Sensoriamento de Potássio no Solo
+
+--- PÁGINA 34 ---
+JOHNSTON, A. E. Advances in Soil Organic Matter Research In:
+The Impact on
+Agriculture and Environment.
+Cambridge, U.K: The Royal Society of Chemistry,
+1991. p. 299-314.
+KAMOGAWA, M. Y.; NOGUERIA, A. R. A.; MIYAZAWA, M.; ARTIGAS, J.;
+ALONSO, J. Determination of soil calcareous efficiency using flow system with
+pervaporative separation. Anal. Chim. Acta
+, Amsterdam, v. 438, p. 273-281,
+2001.
+MADOU, M. J.; MORRISON, S. R. Chemical Sensing with Solid-State Devices
+.
+San Diego, CA: Academic Press, 1989.
+MASSON, P.; MOREL, C.; MARTIN, E.; OBERSON, A.; FRIENSEN, D.
+Comparison of soluble P in soil water extracts determined by ion
+chromatography, colorimetric, and inductively coupled plasma techniques in
+PPB range. Commun. Soil Sci. Plant Anal
+., New York, v. 32, n. 13-14, p.2241-
+2253, 2001.
+NORLIN, E; IRGUM, K.; OHLSSON, K. E. Determination of the N-15/N-14 ratio
+of ammonium and ammonia in aqueous solutions by equilibrium headspace-gas
+chromatography-combustion-isotope ratio mass spectrometry. Analyst
+, London,
+v. 127, n. 6, p. 735-740, 2002.
+ROBLIN, P.; BARROW, D. A. Microsystems technology for remote monitoring
+and control in sustainable agricultural practices. Environ. Monit. Assess
+.,
+Dordrecht, v. 2, p. 385-392, 2000.
+RUZICKA, E.; HANSEN, H.; ZAGATTO, E. A. Flow injection analysis 7: use of
+ion-selective electrodes for rapid analysis of soil extracts and blood-
+serumsdetermination of potassium, sodium and nitrate. Anal. Chim. Acta
+,
+Amsterdam, v. 88, p. 1-16, 1977.
+SCHULTESS, P.; SHIJO, Y.; PHAM, H. V.; PRETSCH, E.; AMMANN, D.;
+SIMON, W. Analytica Chimica Acta
+, Amsterdam, v. 131, p. 111, 1981.
+SNYDER, C. Efficient fertilizer use : soil pH management. Disponível em:
+http://www.imcagrico.com
+. Acesso em: 12 jan. 2004.
+STUTHMAN, D. D. Contribution of durable disease resistance to sustainable
+agriculture. Euphytica
+, Vageningen, v. 124, n. 2, p. 253-258, 2002.
+VAN RAIJ, B.; ANDRADE, J. C.; CANTARELLA, H.; QUAGGIO, J. A.
+Análise
+química para avaliação da fertilidade de solos tropicais
+. Campinas: Instituto
+Agronômico, 2001. 258p.
+33 Sistema para Sensoriamento de Potássio no Solo

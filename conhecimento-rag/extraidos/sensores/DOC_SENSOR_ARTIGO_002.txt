@@ -1,0 +1,1066 @@
+---
+documento_id: DOC_SENSOR_ARTIGO_002
+titulo: Calibration of an Arduino-based low-cost capacitive soil moisture sensor for smart agriculture
+instituicao: Journal of Hydrology and Hydromechanics (Sciendo)
+autores: István Mihály Kulmány; Ákos Bede-Fazekas; Ana Beslin; Zsolt Giczi; Gábor Milics; Barna Kovács; Márk Kovács; Bálint Ambrus; László Bede; Viktória Vona
+ano: 2022
+url_original: https://sciendo.com/pdf/10.2478/johh-2022-0014
+arquivo_original: originais/artigos_cientificos/DOC_SENSOR_ARTIGO_002.pdf
+sha256: a915749728baf6d775f91bfd33f0f28fd292bb5b2c13fdd7783e7ff10d4afb58
+data_acesso: 2026-06-13
+tipo_extracao: camada textual do PDF
+--------------
+--- PÁGINA 1 ---
+J. Hydrol. Hydromech., 70, 2022, 3, 330–340
+https://doi.org/10.2478/johh-2022-0014
+©2022 István Mihály Kulmány et al., published by Sciendo. This work is licensed under the
+Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Licence.
+330
+Calibration of an Arduino-based low-cost capacitive soil moisture sensor for
+smart agriculture
+István Mihály Kulmány
+1*
+, Ákos Bede-Fazekas
+2, 7
+, Ana Beslin
+3
+, Zsolt Giczi
+1
+, Gábor Milics
+6
+,
+Barna Kovács
+5
+, Márk Kovács
+4
+, Bálint Ambrus
+1
+, László Bede
+1
+, Viktória Vona
+1
+1
+Faculty of Agricultural and Food Sciences, Széchenyi István University, Vár tér 2, 9200 Mosonmagyaróvár, Hungary.
+2
+Centre for Ecological Research, Institute of Ecology and Botany, Alkotmány utca 2-4, 2163 Vácrátót, Hungary.
+3
+Faculty of Sciences, Department of Mathematics and Informatics, University of Novi Sad, Trg Dositeja Obradovića 3, 21102 Novi Sad,
+Republic of Serbia.
+4
+Faculty of Mechanical Engineering, Budapest University of Technology and Economics, Műegyetem rkp. 3, 1111 Budapest, Hungary.
+5
+Ministry of Agriculture, Kossuth Lajos tér 11, 1055 Budapest, Hungary.
+6
+Institute of Agronomy, Department of Precision Agriculture and Digital Farming, Hungarian University of Agriculture and Life Sciences,
+Páter Károly utca 1, 2100 Gödöllő, Hungary.
+7
+Eötvös Loránd University, Faculty of Science, Department of Environmental and Landscape Geography, Pázmány Péter sétány 1/C, 1117
+Budapest, Hungary.
+*
+Corresponding author. E-mail: kulmanyi@gmail.com
+Abstract:
+Agriculture faces several challenges to use the available resources in a more environmentally sustainable
+manner. One of the most significant is to develop sustainable water management. The modern Internet of Things (IoT)
+techniques with real-time data collection and visualisation can play an important role in monitoring the readily available
+moisture in the soil. An automated Arduino-based low-cost capacitive soil moisture sensor has been calibrated and
+developed for data acquisition. A sensor- and soil-specific calibration was performed for the soil moisture sensors
+(SKU:SEN0193 - DFROBOT, Shanghai, China). A Repeatability and Reproducibility study was conducted by range of
+mean methods on clay loam, sandy loam and silt loam soil textures. The calibration process was based on the data
+provided by the capacitive sensors and the continuously and parallelly measured soil moisture content by the thermo-
+gravimetric method. It can be stated that the response of the sensors to changes in soil moisture differs from each other,
+which was also greatly influenced by different soil textures. Therefore, the calibration according to soil texture was
+required to ensure adequate measurement accuracy. After the calibration, it was found that a polynomial calibration
+function (R
+2
+≥ 0.89) was the most appropriate way for modelling the behaviour of the sensors at different soil textures.
+Keywords:
+IoT; Precision Agriculture; Low-cost capacitive soil moisture sensor; Thermo-gravimetric method; Repeata-
+bility and Reproducibility study; Non-linear regression.
+INTRODUCTION
+The development of the Internet of Things (IoT) techniques
+in agriculture could contribute to the solution for the three
+crucial new challenges being faced in the areas of climate
+change, bioenergy and water management (Hamidov
+and
+Helming, 2020). The IoT frameworks can improve the data
+management, real-time data collection, processing and visuali-
+sation in various areas of agriculture. Sensors for measuring air
+and soil temperature, air pressure, light intensity, soil moisture
+content and different gases concentration have already been
+developed within an intelligent wireless sensor
+network
+(Gaikwad et al., 2021; González-Buesa and Salvador, 2019;
+Nyéki et al., 2021; Ruiz-Garcia et al., 2009; Rusu et al., 2019).
+Environmental variables have a great influence on crop
+growth, therefore control and knowledge of these allows better
+crop production management, as the term ‘Precision Agricul-
+ture’ points out (Zhang et al., 2002). The most fundamental of
+these is considered to be the soil for any crops (Gao et al.,
+2019; Lichner et al., 2012). Its ability to retain and drain water
+as well as its nutrient supply capacity are essential properties
+(Xue et al., 2017). Water is one of the most critical resources
+for sustainable development, as water will increasingly
+be
+used in agriculture in the coming decades. Therefore, real-
+time monitoring of the changes in soil moisture content is im-
+portant in order to develop an effective irrigation strategy
+(Chartzoulakisa and Bertaki, 2015; Fereres and Soriano, 2007).
+Several techniques and devices have been used to determine
+the soil water content. There are two approaches. The first is
+direct and indirect methods (Bitelli, 2011; Su et al. 2014), while
+the second is remote sensing techniques which focus mainly on
+the spatial distribution and temporal variation of soil water
+content (Altese et al., 1996).
+The direct techniques include the feel and appearance meth-
+od (Klocke and Fischbach, 1984), the calcium carbide gas
+pressure method (Arsoy et al., 2013) and the
+thermo-
+gravimetric method (ASTM D2216-98, 1998) which can be
+used to calibrate other indirect approaches. The indirect meth-
+ods include a variety of methods such as the gamma ray attenu-
+ation method (Wilson, 1971), the neutron scattering method
+(Elder and Rasmussen, 1994), the Wenner method (Wenner,
+1915), the tensiometer method (Schmugge et al., 1980), the soil
+electrical conductivity method (Zegelin, 1996), the hygrometric
+method (Schmugge et al., 1980) and the soil dielectric method
+(Zegelin, 1996).
+Despite the many methodologies developed, the dielectric
+techniques including time domain reflectometry
+(TDR),
+frequency domain reflectometry (FDR), and capacitance sensor
+
+--- PÁGINA 2 ---
+Calibration of an Arduino-based low-cost capacitive soil moisture sensor for smart agriculture
+331
+stand out from these methods due to their
+automation
+capability, on-site measurements, high accuracy and
+easy
+installation (Rao and Singh, 2011; Selig and Manusukhani,
+1975; Topp and Davis, 1984). Capacitance sensors are often
+preferred over dielectric techniques because they provide real-
+time soil water content at a lower cost and consume less energy
+compared to TDR sensors (Pelletier et al., 2012; Visconti et al.,
+2014; Zhang et al., 2011). These techniques are widely used
+and their accuracy depends largely on the experience of the
+user, careful calibration and different soil properties.
+The
+thermo-gravimetric method can be a good tool to calibrate these
+devices, although due to the time and oven requirements, the
+calibration process is slow but extremely accurate (Ma et al.,
+2016; Placidi et al., 2020).
+To calibrate capacitive sensors, the
+sensor-to-sensor
+variability must always be considered, as this can greatly affect
+the measurement accuracy (Rosenbaum et al., 2011). To avoid
+this effect, the sensors can be calibrated individually with the
+soil samples, but this is time consuming and difficult
+to
+implement for many sensors (Vaz et al., 2013). In addition,
+two-step calibration procedures or empirical and semi-empirical
+soil moisture (SM) models can be used to accurately determine
+the soil moisture content (Dominguez-Nino et al., 2019; Jones
+et al., 2005). The most frequently-used SM models are the
+following: i) Kirchhoff Approximation Model (KAM) (Pinel et
+al., 2020); ii) Integral Equation Model (IEM) (Zhang et al.,
+2020); iii) Small Perturbation Model (SPM) (Burkholder et al.,
+2017); iv) Small Slope Approximation Method (SSAM) (Zhang
+et al., 2018), as well as the semi-empirical models such as the
+v) Dubois model (Zhu et al., 2019) and the iv) Oh model
+(Sekertekin et al., 2020).
+In this study, we focused on a low-cost capacitance sensor,
+identified as SKU:SEN0193 (DFROBOT, Shanghai, China).
+The main goal was to develop a standardized methodology to
+rapidly and effectively calibrate a capacitance sensor. To the
+best of the authors' knowledge, the sensor presented in this
+article has been calibrated twice under laboratory conditions
+(Nagahage et al., 2019; Placidi et al., 2020). The current paper
+complements the results already achieved so far by examining
+the operation of the sensor on three new soil textures (clay
+loam, sandy loam and silt loam) and introducing a new calibra-
+tion methodology to facilitate more efficient use.
+MATERIALS AND METHODS
+Location and sampling methods
+Soil samples were collected from the experimental field of
+the Department of Biosystems and Food Engineering of the
+Faculty of Agricultural and Food Sciences of Széchenyi István
+University [N47°54’20.00”; E17°15’10.00”]. The experimental
+field is an alluvial plain of the Leitha River - on
+which
+precision agriculture has been applied since 2001. The three
+sampling points were appointed according to different physical
+properties of soil, which were measured by Nyéki (2016),
+Kulmány and Milics (2017).
+Description of low-cost capacitive soil moisture monitoring
+system
+The data-collection system used in this study consisted of
+four main components: (i) three analog SKU:SEN0193 capaci-
+tive soil moisture sensors; (ii) an Arduino Nano v3.0 microcon-
+troller, (iii) a micro SD card adapter and (iv) DS1302 Real-Time
+Clock module (Table 1). The electrical power required for prop-
+er operation was taken from a 20.000 mAh capacity accumula-
+tor. The Arduino Nano microcontroller was operated at a speed
+of 20 MHz. The developed soil moisture monitoring system costs
+a total of 16.23 Euro (Table 1), making it a possible option to
+replace a commercial soil moisture sensor (Appendix A).
+Specification of analog capacitive soil moisture sensor
+Three analog SKU:SEN0193 capacitive soil moisture sensors
+(DFROBOT, Shanghai, China) v1.2 with dimensions of 99 mm -
+16 mm (L x W) were used for this research. The sensor measures
+soil moisture levels by capacitive sensing rather than resistive
+sensing. The sensors are made of corrosion-resistant material
+contributing to increasing their durability. They have an onboard
+voltage regulator providing an operating voltage range of 3.3 ~
+5.5 V. It has 2 pins for powering the device (5 V and Ground),
+and an analog output pin. Thus, it is perfect for interfacing with
+low-voltage microcontrollers. The output of the sensor is given as
+frequency variables, ranging from 260 Hz (high moisture) to 680
+Hz (low moisture). It varies on this pin according to the moisture
+level (lower moisture level equals higher frequency).
+Thermo-gravimetric method for soil moisture estimation
+The thermo-gravimetric method was used to calibrate the ana-
+log SKU:SEN0193 capacitive soil moisture sensors. Soil mois-
+ture content (GWC) was measured by gravimetric method (Black,
+1965) in parallel with sensor measurements for each soil texture.
+It was expressed by weight as the ratio of the mass difference
+between wet and dry soil samples. To establish this ratio, the
+water mass is determined by drying the soil sample at a tempera-
+ture of 100–110 °C in the oven until the mass becomes constant
+and by measuring the soil sample weight before and after drying.
+The gravimetric water content level (GWC level) is expressed as
+a percentage. It is calculated according to the following equation:
+( ) (
+)
+( ) ( )
+w2 –
+w3
+GWC (%)=
+100
+w3 – w1
+× ,
+(1)
+where w1 is the empty tare, w2
+is the weight of wet soil sample
+and tare, w3 is the weight of dry soil sample and tare.
+Soil sample preparation and measurement method
+The three soil samplings cover clay loam (S1), sandy loam
+(S2), and silt loam (S3) soil texture according to USDA Soil
+Taxonomy (Soil Survey Staff, 2003) (Figure 1).
+Table 1. The total cost of the developed low-cost capacitive soil moisture monitoring system.
+Component Units Units Cost (€) Subtotal (€)
+Total (€)
+SKU:SEN0193 3 1.6 4.8
+Micro SD Card Adapter 1 1.08 1.08
+Arduino Nano v3.0 1 2.40
+2.40
+DS1302 Real-Time Clock module 1 3.03
+3.03
+Micro SD Card (4GB) 1 4.3
+4.3
+Other components 1 0.62
+0.62
+16.23
+
+--- PÁGINA 3 ---
+István Mihály Kulmány et al.
+332
+Fig. 1. Soil samplings from experimental field.
+Fig. 2.
+Measurement method of analog capacitive soil moisture sensor.
+To measure the soil moisture content properly with the
+capacitive soil moisture sensor, samples from three soil textures
+were weighed out into four 1725 cm
+3
+plastic pots and they were
+compacted. Depending on the soil texture and moisture content,
+the soil samples were ground and homogenized by hand, pestle
+and mortar or soil grinder before weighing. The dry bulk densi-
+ty of the compacted soils ranged from between 1.20–1.56
+g cm
+–3
+, which fits in well with the range of the typical values of
+soil dry bulk density (Chaudhari et al., 2013; Zeri et al., 2018).
+The measurements of soil moisture content were carried out
+continuously by three capacitive soil moisture sensors at the
+rate of soil drying in atmospheric conditions 13 times between
+25 November 2020 and the end of January 2021. The gravimet-
+ric soil moisture content was also measured at the 13 measure-
+ment times. All experiments were performed at room tempera-
+ture (21 °C).
+The soil sample plots were allowed to reach equilibrium for
+15 minutes, before starting the measurements. Thereafter, the
+sensors were inserted into the soil in a row at a depth of 6.5 cm
+from the upper soil surface. Five repetitions of the measure-
+ments were carried out for each soil texture to properly describe
+the soil moisture content by capacitive sensors at each GWC
+level. One repetition lasted for two minutes with two seconds
+measurement frequency and an additional eight minutes was
+required to save the data in appropriate file format for subse-
+quent analysis (Figure 2). The exact volume of soil being
+measured by sensors is not known, but based on the result of
+two-sample t-tests performed, the used experimental design has
+no significant effect on the measured values ( p = 0.122).
+Data processing procedure
+The dataset collected from sensor measurements
+was
+cleaned first. The values recorded in the first 10 seconds of
+each repetition per sensor were not considered in calibration.
+This was necessary because until it reaches the optimal operat-
+ing time of capacitive sensors the variation is considerable in
+the dataset thus increasing the uncertainty in the analysis.
+Thereafter, a mean value was generated from the raw data
+for each repetition at each GWC level separately. Finally, an
+aggregated value was created from the mean of five repetitions
+at each GWC level, which was used later for analysing the
+behaviour of sensors at different soil textures (Figure 3).
+Calibration methods
+The variability observed in the data was caused by the heter-
+ogeneity of soil (1), sensor (2), moisture level (3) as well as the
+repetition of the measurements (4). Therefore, the calibration
+procedure was carried out considering the soil textures and
+sensors separately since their variability was considerable. To
+enable information collection on the behaviour of sensors at
+different soil textures, the calibration points were registered
+continuously at different GWC levels. Accordingly, the Re-
+peatability and Reproducibility study was conducted by the
+range and mean method (Rosenbaum et al., 2010; Tsai, 1988).
+The value of the Repeatability and Reproducibility was ex-
+pressed as a percentage using the following formulas:
+%
+repeatability
+gauge
+Repeatability
+σ
+σ
+= (2)
+%
+reproducibility
+gauge
+Reproducibility
+σ
+σ
+= (3)
+The estimate of
+repeatability
+σ ,
+reproducibility
+σ and
+gauge
+σ
+was
+calculated using the classical Gauge Repeatability and
+1 3
+2
+
+--- PÁGINA 4 ---
+Calibration of an Arduino-based low-cost capacitive soil moisture sensor for smart agriculture
+333
+Fig. 3. Data processing procedure for each soil texture. The soil textures are the following S1 = clay loam, S2 = sandy loam, S3 = silt loam.
+Reproducibility method according to Montgomery and Runger
+(1993).
+To fit and evaluate linear and non-linear regression models
+R statistical software (R Core Team, 2020) using its package
+'rcompanion' (Mangiafico, 2021) was applied. The first model
+was linear, the quadratic and cubic models were considered as
+polynomial in the second case, and the third was exponential.
+Their equations are given below:
+
+--- PÁGINA 5 ---
+István Mihály Kulmány et al.
+334
+Linear ( ) % GWC a b freq = + ⋅
+(4)
+Polynomial ( )
+2 3
+% GWC a b freq c freq d freq = + ⋅ + ⋅ + ⋅
+(5)
+Exponential ( ) %
+a b freq
+GWC e
++ ⋅
+=
+(6)
+The selection criteria for the best-fitted model were high
+coefficients of determination (R
+2
+) and low root mean square
+errors (RMSE). The model parameters were obtained
+by
+solving a least square problem with QR factorization using lm
+function in R statistical software. The uncertainty
+was
+determined as the maximum of the absolute value of
+the
+residuals.
+RESULTS
+Sensor variability study
+Descriptive statistics
+Table 2 shows the descriptive statistics of the frequencies
+(Hz) measured by sensors. In general, the range of the frequen-
+cy measured by the three sensors was different for each soil
+texture at the 13 different measurement times. Sensor 2 meas-
+ured the lowest, Sensor 3 the highest, while Sensor 1 measured
+the frequency between the previous two sensors at each soil
+moisture level. Moreover, it can be found that the sensors show
+higher dispersion for higher GWC levels (Figure 3).
+Reproducibility and Repeatability
+One can observe that only 24 percent of the variation in clay
+loam (1) and sandy loam (2) was caused by Repeatability,
+while 42 percent of the variability was caused by repetition in
+silt loam (3). On average the frequency range was the highest
+for the first sensor 33.54 Hz in clay loam and 30.69 Hz in sandy
+loam as well as in silt loam. It is concluded that the Repeatabil-
+ity is not substantial. 76 percent of the variability was caused by
+Reproducibility in clay loam and sandy loam and 58 percent in
+silt loam meaning the measurements differed between sensors.
+The results showed that there is a significant amount of varia-
+bility between the sensors.
+Sensor calibration
+Calibration for all sensors at different soil textures
+Significant differences were found between sensor variabil-
+ity (Table 3) and between the frequency measured by sensors
+(Table 2) at the different GWC levels. These findings envisaged
+a separate calibration procedure for the capacitive sensors at
+each soil texture which was also confirmed by unified calibra-
+tion for all sensors at different soil textures.
+The highest coefficient of determination and the lowest
+RMSE was achieved with the polynomial model in every soil
+texture. This model explained the 89 percent of the complete
+variation and 3.11 RMSE with ±11.07 GWC (%) uncertainty in
+clay loam. In sandy loam, the determination coefficient (R
+2
+)
+was 0.81 and RMSE 3.46 with ±11.60 GWC (%) uncertainty.
+In case of silt loam, the best-fitted model was also the polyno-
+mial, explaining 85 percent of the variation but with the lowest
+uncertainty (±8.74 GWC%) and RMSE (2.73) (Table 4). Con-
+sidering the amount of variability between the sensors, the need
+for a separate calibration was again confirmed.
+Table 2.
+Descriptive statistics of the frequencies (Hz) measured by sensors. The soil textures are the following S1 = clay loam, S2 = sandy
+loam, S3 = silt loam.
+Soil Sensors n Min Q1 Mean Q3
+Max
+S1
+Sensor 1 13 278.51 357.39 450.70 525.17
+603.41
+Sensor 2 13 260.21 308.07 402.82 470.27
+558.41
+Sensor 3 13 324.63 395.70 472.43 536.50
+610.47
+GWC level (%) 1 28.37 23.89 13.31 4.50
+1.80
+S2
+Sensor 1 13 291.28 395.44 478.55 584.32
+643.26
+Sensor 2 13 275.38 358.71 439.04 538.60
+599.60
+Sensor 3 13 334.63 425.07 498.76 588.91
+646.40
+GWC level (%) 1 25.51 14.50 8.67 1.52
+0.76
+S3
+Sensor 1 13 337.29 410.94 495.74 602.25
+622.26
+Sensor 2 13 310.72 366.46 456.17 555.03
+580.77
+Sensor 3 13 371.21 434.17 514.73 608.93
+626.72
+GWC level (%) 1 23.19 12.69 7.08 1.21 0.88
+Table 3.
+Reproducibility and Repeatability of sensors. The soil textures are the following S1 = clay loam, S2 = sandy loam, S3 = silt loam.
+Soil Sensor Mean Mean range σ gauge %Repeatability %Reproducibility
+p*
+S1
+1 450.70
+33.54
+41.08 24 76 0.001 2 402.82
+27.38
+3 472.43
+28.94
+S2
+1 478.55
+30.69
+35.27 24 76 0.000 2 439.04
+25.00
+3 498.76
+21.50
+S3
+1 495.74
+21.13
+11.20 42 58 0.001 2 456.17
+20.93
+3 514.73
+14.31
+*One-way ANOVA was used to obtain the p-value of mean frequency among three soil textures.
+
+--- PÁGINA 6 ---
+Calibration of an Arduino-based low-cost capacitive soil moisture sensor for smart agriculture
+335
+Table 4. Parameters of calibration functions for all sensors at different soil textures, determination coefficient (R
+2
+), root mean square error
+(RMSE) and uncertainty. The soil textures are the following S1 = clay loam, S2 = sandy loam, S3 = silt loam.
+Sensor Soil Function a b c d R
+2
+RMSE
+Uncertainty
+1,2,3
+S1
+Linear 50.29 –0.0836 – – 0.87 3.38
+10.74
+Polynomial –45.89 0.6351 –0.0017 1.32E–06 0.89 3.11
+11.07
+Exponential 137.48 –0.0056 – – 0.82 4.05
+12.51
+S2
+Linear 40.41 –0.0672 – – 0.77 3.84
+10.93
+Polynomial 26.40 0.1154 –0.0006 5.41E–07 0.81 3.46
+11.60
+Exponential 231.36 –0.0075 – – 0.78 3.74
+12.88
+S3
+Linear 37.24 –0.0617 – – 0.78 3.24
+9.30
+Polynomial 59.23 –0.0823 –0.0002 3.2E–07 0.85 2.73
+8.74
+Exponential 409.07 –0.0090 – – 0.83 2.87 9.65
+Table 5. Parameters of calibration functions for each sensor at different soil textures, determination coefficient (R
+2
+), root mean square error
+(RMSE) and uncertainty. The soil textures are the following S1 = clay loam, S2 = sandy loam, S3 = silt loam.
+Soil Sensor Function a b c d R
+2
+RMSE
+Uncertainty
+S1
+1
+Linear 51.27 –0.08 – – 0.95 2.13
+7.97
+Polynomial –27.93 0.49 –0.00136 1.03E–06 0.96 1.90
+7.53
+Exponential 149.75 –0.01 – – 0.89 3.08
+10.45
+2
+Linear 50.15 –0.09 – – 0.95 2.18
+5.91
+Polynomial –11.10 0.44 –0.00146 1.29E–06 0.97 1.68
+4.78
+Exponential 175.26 –0.01 – – 0.93 2.52
+7.13
+3
+Linear 59.37 –0.10 – – 0.94 2.33
+7.82
+Polynomial –119.56 1.13 –0.00272 1.97E–06 0.96 1.96
+7.47
+Exponential 267.77 –0.01 – – 0.89 3.14
+10.27
+S2
+1
+Linear 40.54 –0.07 – – 0.83 3.26
+8.93
+Polynomial 72.74 –0.18 3.24E–05 1.19E–07 0.89 2.64
+11.33
+Exponential 274.11 –0.01 – – 0.87 2.84
+10.93
+2
+Linear 40.04 –0.07 – – 0.81 3.49
+8.08
+Polynomial 97.63 –0.35 0.000344 –4.1E–08 0.89 2.59
+10.97
+Exponential 355.15 –0.01 – – 0.88 2.74
+10.63
+3
+Linear 47.50 –0.08 – – 0.81 3.46
+8.12
+Polynomial 35.85 0.16 –0.00083 7.71E–07 0.89 2.67
+8.10
+Exponential 627.86 –0.01 – – 0.85 3.05
+8.68
+S3
+1
+Linear 37.66 –0.06 – – 0.83 2.90
+6.60
+Polynomial 171.69 –0.77 0.001143 –5.7E–07 0.92 1.92
+5.90
+Exponential 731.08 –0.01 – – 0.92 1.91
+6.26
+2
+Linear 37.22 –0.07 – – 0.82 2.93
+6.88
+Polynomial 203.37 –1.04 0.00178 –1E–06 0.95 1.58
+7.55
+Exponential 899.58 –0.01 – – 0.95 1.59
+7.45
+3
+Linear 43.13 –0.07 – – 0.86 2.63
+6.57
+Polynomial 298.10 –1.42 0.002302 –1.3E–06 0.96 1.38
+5.44
+Exponential 1872.04 –0.01 – – 0.96 1.38 5.56
+Calibration for each sensor at different soil textures
+The results of soil texture specific sensor calibration are
+shown in Table 5. Based on the results of the calibration, it can
+be concluded that the strength of the calibration functions in-
+creased with the improvement of RMSE and decrease of uncer-
+tainty for each soil texture.
+For clay loam, the best results were obtained with the poly-
+nomial function in case of all sensors. The determination coef-
+ficient of the developed models ranged between 0.96 and 0.97,
+with an RMSE between 1.68 and 1.96. The smallest uncertainty
+was detected for the second sensor (±4.78 GWC%), while the
+measurement uncertainty of the first and third sensors is nearly
+the same (±7.53 and ±7.47 GWC%).
+For sandy loam, the best results were also obtained with the
+polynomial function in case of all sensors, but the uncertainty
+of the models is higher compared to the models developed on
+clay loam. The determination coefficient
+of the developed
+models was 0.89 in each case. The RMSE showed a slightly
+variability between the sensors; it varied between 2.59 and
+2.67. The smallest uncertainty was found for the third sensor
+with ±8.10 GWC (%), while the uncertainty of the first and
+second sensors was ±11.33 and ± 10.97 GWC (%).
+For silt loam, the best results were given by the polynomial
+and exponential function. The coefficient of determination of
+the developed models ranged from 0.92 to 0.96 between the
+sensors, but the R
+2
+value of the models was equal in each mod-
+el. In case of polynomial function, the RMSE values ranged
+between 1.38 and 1.92, while the RMSE of exponential func-
+tion was almost similar. The smallest uncertainty was achieved
+for the first (±5.90 GWC%) and third sensors (±5.44 GWC%)
+for the polynomial function. In the case of sensor 2, the uncer-
+tainty was ±5.44 GWC (%) for exponential function and ±5.56
+GWC (%) for polynomial function.
+DISCUSSION
+The soil capacitive sensors are widely used to predict the
+soil moisture content in agriculture but their efficiency particu-
+larly depends on the calibration procedure. The importance of
+
+--- PÁGINA 7 ---
+István Mihály Kulmány et al.
+336
+calibration was also emphasized by González-Teruel et al.
+(2018) regarding the use of capacitive sensors (PCB, Technical
+University of Cartagena, Spain). It was found that calibration of
+the sensors by soil type was required, but the uncertainty be-
+tween the sensors was negligible in their study. The importance
+of sensor (10HS, METER Group Inc., USA) and soil-specific
+calibration was also emphasized by Dominguez-Nino et al.
+(2019). Their results showed that using sensor and soil specific
+calibration, RMSE can be improved by 70 percent while accu-
+racy can be increased by 5 percent. Our results are in line with
+the findings of Nagahage et al. (2019) and Placidi et al. (2020)
+who conducted their studies also with the
+SKU:SEN0193
+(DFROBOT, Shanghai, China) sensor. Nagahage et al. (2019)
+emphasized the role of the mineral content of soil
+in
+determining the soil moisture content with capacitive sensors.
+They found that the determination of soil moisture content in
+high organic-rich soil mixing with mineral media is challenging
+because the capacitive soil moisture sensors operate at low
+frequencies and are sensitive to the soil texture and salinity
+level. By contrast, they also highlighted that the SKU:SEN0193
+sensor is able to work accurately to predict the soil moisture
+content in loam texture soil when applying a soil-specific cali-
+bration procedure. Placidi et al. (2020) indicated that the sam-
+ple preparation strongly influences the quality of sensor meas-
+urements. However, they stated that the SKU:SEN0193 sensor
+works properly in soils closer to natural conditions, while it is
+sometimes difficult to apply to determine the soil moisture
+content in disturbed soils (e.g. mixing) due to low bulk density
+with high pore space. It can be stated that to achieve the highest
+measuring accuracy, SKU:SEN0193 sensors must be calibrated
+for different soil textures in the widest possible measuring
+ranges under typical soil dry bulk density.
+CONCLUSION
+A new low-cost measurement system was designed, devel-
+oped and calibrated for monitoring the soil moisture content. To
+facilitate widespread use of the sensor, the applicability of the
+sensors was investigated on clay loam, sandy loam, and silt
+loam soil textures according to the USDA soil classification.
+The sensor response with GWC level was examined at the rate
+of soil drying in the atmosphere conditions using constant sam-
+ple volume. Based on the obtained results, it can be stated that
+the response of the sensors to changes in soil moisture differs
+from each other (Table 2, 3), which was also greatly influenced
+by different soil textures (Table 4). Calibration according to soil
+texture was required to ensure adequate measurement accuracy.
+After calibrating each sensor according to different soil tex-
+tures, it was found that a polynomial calibration function is the
+most appropriate for modelling the behaviour of the sensors
+(Table 5). This result suggests that the soil mixture constituents
+influence the accuracy of the sensor. Although the experimental
+investigations are still in progress, the results appear to be
+promising in order to demonstrate that the sensors can be used
+to determine moisture content under field conditions.
+Acknowledgements.
+The research presented in this paper was
+financed by Ministry of Human Capacities under agreement no.
+NTP-NFTÖ-20-B-0151. The authors greatly acknowledge the
+valuable contributions from colleagues of the “Research Area
+Excellence Program – 2019 (TUDFO/51757/2019-ITM)” and
+University of Győr. The authors would like to thank the contri-
+bution by the colleagues of Széchenyi István University, Centre
+of Foreign Languages which helped improve the quality of the
+paper. The sensors are owned by ENVI-AGRO Consulting Kft.
+REFERENCES
+Altese, E., Bolognani, O., Mancini, M., Troch, P.A., 1996. Retriev-
+ing soil moisture over bare soil from ERS 1 Synthetic Aperture
+Radar data: Sensitivity analysis based on a theoretical surface
+scattering model and field data. Water Resources Research, 32,
+3, 653–661.
+Arsoy, S., Ozgur, M., Keskin, E., Yilmaz, C., 2013. Usability of
+calcium carbide gas pressure method in hydrological sciences.
+Journal of Hydrology, 503, 1, 67–76.
+ASTM D2216-98, 1998. Standard Test Method for Laboratory
+Determination of Water (Moisture) Content of Soil and Rock by
+Mass. ASTM International, West Conshohocken,
+PA.
+www.astm.org
+Bitelli, M., 2011. Measuring soil water content: A
+review.
+HortTechnology, 21, 3, 293–300.
+Black, C.A., 1965. Methods of Soil Analysis: Part I, Physical and
+mineralogical properties. American Society of Agronomy, Mad-
+ison, Wisconsin.
+Burkholder, R.J., Johnson, J.T., Sanamzadeh, M., Tsang, L., Tan,
+S., 2017. Microwave thermal emission characteristics of a two-
+layer medium with rough interfaces using the second-order
+small perturbation method. IEEE Transactions on Geoscience
+and Remote Sensing, 14, 10, 1780–1784.
+Chartzoulakisa, K., Bertaki, M., 2015. Sustainable water manage-
+ment in agriculture under climate change. Agriculture and Agri-
+cultural Science Procedia, 4, 1, 88–98.
+Chaudhari, P.R., Ahire, D.V., Ahire, V.D., Chkravarty, M. and
+Maity, S., 2013. Soil bulk density as related to soil texture, or-
+ganic matter content and available total nutrients of Coimbatore
+soil. International Journal of Scientific and Research Publica-
+tions, 3, 1–8.
+Dominguez-Nino, J.M., Bogena, H.R., Huisman, J.A., Schilling,
+B., Casadesús, J., 2019. On the accuracy of factory-calibrated
+low-cost soil water content sensors. Sensors, 19, 1, 1–18.
+Elder, A.N., Rasmussen, T.C., 1994. Neutron probe calibration in
+unsaturated tuff. Soil Science Society of America Journal, 58, 5,
+1301–1307.
+Fereres, E., Soriano, M.A., 2007. Deficit irrigation for reducing
+agricultural water use. Journal of Experimental Botany, 58, 2,
+147–159.
+Gaikwad, S.V., Vibhute, A.D., Kale, K.V., Mehrotra, S.C., 2021.
+An innovative IoT based system for precision farming. Com-
+puters and Electronics in Agriculture, 187, 1, 106291.
+Gao, L., Wang, Y., Geris, J., Hallett, P.D., Peng, X., 2019. The role
+of sampling strategy on apparent temporal stability of soil mois-
+ture under subtropical hydroclimatic conditions. Journal of Hy-
+drology and Hydromechanics, 67, 260–270.
+González-Buesa, J., Salvador, M.L., 2019. An Arduino-based low-
+cost device for the measurement of the respiration rates of fruits
+and vegetables. Computers and Electronics in Agriculture, 162,
+1, 14–20.
+González-Teruel, J.D., Torres-Sánchez, R., Blaya-Ros,
+P.J.,
+Toledo-Moreo, A.B., Jiménez-Buendía, M., Soto-Valles,
+F.,
+2018. Design and calibration of a low-cost SDI-12 soil moisture
+sensor. Sensors, 19, 3, 1–16.
+Hamidov, A., Helming, K., 2020. Sustainability considerations in
+water-energy-food nexus research in irrigated agriculture. Sus-
+tainability, 12, 6274, 1–20.
+Jones, S.B., Blonquist, J.M., Robinson, D.A., Rasmussen, V.P., Or,
+D., 2005. Standardizing characterization of electromagnetic wa-
+ter content sensors: Part 1. Methodology. Vadose Zone Journal,
+4, 1, 1048–1058.
+Klocke, N.L., Fischbach, P.E., 1984. G84-690 Estimating Soil
+Moisture by Appearance and Feel. Historical Materials from
+University of Nebraska, Lincoln, Nebraska.
+Kulmány, I.M., Milics, G., 2017. A talaj elektromos vezetőképes-
+ségén alapuló helyspecifikus menedzsmentzóna lehatárolása
+
+--- PÁGINA 8 ---
+Calibration of an Arduino-based low-cost capacitive soil moisture sensor for smart agriculture
+337
+[Site-specific management zone delimitation based on soil elec-
+trical conductivity]. Agroinform Kft., Budapest, Hungary. (In
+Hungarian.)
+Lichner, L., Holko, L., Zhukova, N., Schacht, K., Rajkai, K., Fo-
+dor, N., Sándor, R., 2012. Plants and biological soil crust influ-
+ence the hydrophysical parameters and water flow in an aeolian
+sandy soil. Journal of Hydrology and Hydromechanics, 60,
+309–318.
+Ma, Y., Qu, L., Wang, W., Yang, X., Lei, T., 2016. Measuring soil
+water content through volume/mass replacement using a con-
+stant volume container. Geoderma, 271, 1, 42–49.
+Mangiafico, S., 2021. Package ‘rcompanion’: Functions
+to
+Support Extension Education Program Evaluation. R package
+version 2.4.1.
+https://cran.r-project.org/web/packages/
+rcompanion/rcompanion.pdf
+Montgomery, D.C, Runger, G.C., 1993. Gauge capability analysis
+and designed experiments. Part I: basic methods. Quality Engi-
+neering, 6, 1, 115–135.
+Nagahage, E.A., Nagahage, I.S.,Fujino, T., 2019. Calibration and
+validation of a low-cost capacitive moisture sensor to integrate
+the automated soil moisture monitoring system. Agriculture, 9,
+7, 1–10.
+Nyéki, A.É., 2016. A precíziós növénytermesztés és a fenntartható
+mezőgazdaság kapcsolata [Relationship between precision crop
+production and sustainable agriculture]. PhD dissertation, Mo-
+sonmagyaróvár, Hungary.
+Nyéki, A., Teschner, G., Ambrus, B., Neményi, M., Kovács, A.J.,
+2021. Architecting farmer-centric Internet of Things for preci-
+sion crop production. Hungarian Agricultural Engineering, 38,
+1, 71–78.
+Pelletier, M.G., Karthikeyan, S., Green, T.R., Schwartz, R.C., Wan-
+jura, J.D., Holt, G.A., 2012. Soil moisture sensing vie swept fre-
+quency-based microwave sensors. Sensors, 12, 1, 753–767.
+Placidi, P., Gasperini, L., Grassi, A., Cecconi, M., Scorzoni, A.,
+2020. Characterization of low-cost capacitive soil moisture sen-
+sors for IoT networks. Sensors, 20, 1, 1–14.
+Pinel, N., Bastard, C.L., Bourlier, C., 2020. Modeling of EM wave
+coherent scattering from a rough multilayered medium with the
+scalar Kirchhoff approximation for GPR applications. IEEE
+Transactions on Geoscience and Remote Sensing, 58, 3, 1654–
+1664.
+Rao, B.H., Singh, D.N., 2011. Moisture content determination by
+TDR and capacitance techniques: a comparative study. Interna-
+tional Journal of Earth Sciences, 4, 6, 132–137.
+Rosenbaum, U., Huisman, J.A., Vrba, J., Vereecken, H., Bogena,
+H.R., 2011. Correction of temperature and electrical conductivi-
+ty effects on dielectric permittivity measurements with ECH
+2O
+sensors. Vadose Zone Journal, 10, 1, 582–593.
+Rosenbaum, U., Huisman, J., Weuthen, A., Vereecken, H., Bogena,
+H., 2010. Sensor-to-sensor variability of the ECH
+2O EC-5, TE,
+and 5TE sensors in dielectric liquids. Vadose Zone Journal, 9, 1,
+181–186.
+R Core Team, 2020. R: A language and environment for statistical
+computing. R Foundation for Statistical Computing. Vienna.
+Austria. https://www.r-project.org.
+Ruiz-Garcia, L., Lunadei, L., Barreiro, P., Robla, I., 2009. A
+review of wireless sensor technologies and applications in agri-
+culture and food industry: State of the art and current trends.
+Sensors, 9, 6, 4728–4750.
+Rusu, C., Krozer, A., Johansson, C., Ahrentorp, F., Pettersson, T.,
+Jonasson, C., Rosevall, J., Ilver, D., Terzaghi, M., Chiatante D.,
+Montagnoli, A., 2019. Miniaturized wireless water content and
+conductivity soil sensor system. Computers and Electronics in
+Agriculture, 167, 2, 105076.
+Schmugge, T.J., Jackson, T.J., McKim, H.L., 1980. Survey of
+methods for soil moisture determination. Water Resources Re-
+search, 16, 1, 961–979.
+Sekertekin, A., Marangoz, A.M., Abdikan, S., 2020. ALOS-2 and
+Sentinel-1 SAR data sensitivity analysis to surface soil moisture
+over bare and vegetated agricultural fields. Computers and Elec-
+tronics in Agriculture, 171, 105303.
+Selig, E.T., Manusukhani, S., 1975. Relationship of soil moisture
+to the dielectric property. Journal of Geotechnical Engineering,
+101, 8, 755–770.
+Soil Survey Staff, 2003. Keys to Soil Taxonomy (9th edn). US
+Department
+of Agriculture, Natural Resources Conservation
+Service, Washington, DC, USA.
+Su, S.L., Singh, D.N., Baghini, M.S., 2014. A critical review of
+soil moisture measurement. Measurement, 54, 1, 147–159.
+Topp, G.C., Davis, J.L., 1984. Measurement of soil water content
+using time-domain reflectometry (TDR): A field evaluation.
+Soil Science Society of America Journal, 49, 5, 19–24.
+Tsai, P., 1988. Variable gauge repeatability and reproducibility
+study using the analysis of variance method. Quality Engineer-
+ing, 1, 1, 107–115.
+Vaz, C.M., Jones, S., Meding, M., Tuller, M., 2013. Evaluation of
+standard calibration functions for eight electromagnetic soil
+moisture sensors. Vadose Zone Journal, 12, 2, 1–16.
+Visconti, F., de Paz, J.M., Martínez, D., Molina, M.J., 2014. La-
+boratory and field assessment of the capacitive sensors Decagon
+10HS and 5TE for estimating the water content irrigated soils.
+Agricultural Water Management, 132, 1, 111–119.
+Wenner, F., 1915. A method of measuring earth resistivity. Journal
+of research of the National Bureau of Standards, 12, 1, 478–496.
+Wilson, R.G., 1971. Methods of measuring soil moisture. The
+Secretariat, Canadian National Committee for the International
+Hydrological Decade, Ottawa, Canada.
+Xue, R., Shen, P., Marschner, P., 2017. Soil water content during
+and after plant growth influence nutrient availability and micro-
+bial biomass. Journal of Soil Science and Plant Nutrition, 17, 3,
+702–715.
+Zegelin, S., 1996. Soil Moisture Measurement, Field Measurement
+Techniques in Hydrology-Workshop Notes, Corpus Christi Col-
+lege, Clayton, pp. C1–C22.
+Zeri, M., Alvalá, S.R.C., Carneiro, R., Cunha-Zeri, G., Costa, J.M.,
+Rossato Spatafora, L., Urbano, D., Vall-Llossera, M., Marengo,
+J., 2018. Tools for communicating agricultural drought over the
+Brazilian Semiarid using the soil moisture index. Water, 10,
+1421.
+Zhang, N., Wang, M., Wang, N., 2002. Precision agriculture - A
+worldwide overview. Computers and Electronics in Agriculture,
+36, 2–3, 113–132.
+Zhang, R.-B., Guo, J.-J., Zhang, L., Zhang, Y.-C., Wang, L.-H.,
+Wang, Q., 2011. A calibration method of detecting soil water
+content based on the information-sharing in wireless sensor
+network. Computers and Electronics in Agriculture, 76, 2, 161–
+168.
+Zhang, L., Wu, F., Zheng, Y., Chen, L., Zhang, J., Li, X., 2018.
+Probabilistic calibration of a coupled hydro-mechanical slope
+stability model with the integration of multiple observations.
+Georisk: Assessment and Management of Risk for Engineered
+Systems and Geohazards, 12, 3, 169–182.
+Zhang, L., Li, H., Xue, Z., 2020. Calibrated integral equation mod-
+el for bare soil moisture retrieval of synthetic aperture radar: A
+case study in Linze County. Applied Science, 10, 21, 7921.
+Zhu, L., Walker, J.P., Tsang, L., Huang, H., Ye, N., Rüdiger, C.,
+2019. Soil moisture retrieval from time series multi-angular ra-
+dar data using a dry down constrain. Remote Sensing of Envi-
+ronment, 231, 111237.
+Received 3 August 2021
+Accepted 28 April 2022
+
+--- PÁGINA 9 ---
+István Mihály Kulmány et al.
+338
+APPENDIX
+Appendix A Wiring of the devices
+
+--- PÁGINA 10 ---
+Calibration of an Arduino-based low-cost capacitive soil moisture sensor for smart agriculture
+339
+Appendix B Codes and software design for low-cost soil moisture monitoring system
+/* INCULED
+*/
+#include
+<SD.h>
+#include
+<SPI.h>
+#include
+<DS1302.h>
+/*RTC*/
+DS1302 rtc ( 3 , 4 , 5 );
+/*CONST*/
+long seconds = 00 ;
+long minutes = 00 ;
+long hours = 00 ;
+long previousMillis = 0 ;
+long intervall = 2000 ;
+int CS_pin = 10 ;
+int val1 = 0 ;
+int val2 = 0 ;
+int val3 = 0 ;
+File sd_file ;
+/*SETUP*/
+void setup () {
+/*RTC
+SETUP*/
+rtc . halt (false);
+rtc . writeProtect (false);
+rtc . setDOW ( TUESDAY ); // Set
+Day-of-Week to TUESDAY
+rtc . setTime ( 15 , 38 , 0 ); // Set
+the time to 15:38:00 (24hr format)
+rtc . setDate ( 27 , 8 , 2019 ); // Set
+the date to August 27th, 2019 */
+/*SERIAL
+PORT*/
+Serial . begin ( 9600 );
+/*SD
+SETUP*/
+pinMode ( CS_pin , OUTPUT );
+// SD Card Initialization
+if ( SD . begin ()) {
+Serial . println ( "SD card is initialized. Ready to go" );
+}
+else {
+Serial . println ( "Failed" );
+return;
+}
+sd_file = SD . open ( "data.txt" , FILE_WRITE );
+if ( sd_file ) {
+Serial . print ( "Mos1" );
+Serial . print ( "," );
+Serial . print ( "Mos2" );
+Serial . print ( "," );
+Serial . print ( "Mos3" );
+Serial . println ( "," );
+sd_file . print ( "Mos1" );
+sd_file . print ( "," );
+sd_file . print ( "Mos2" );
+sd_file . print ( "," );
+sd_file . print ( "Mos3" );
+sd_file . println ( "," );
+}
+sd_file . close (); //closing the file
+}
+
+--- PÁGINA 11 ---
+István Mihály Kulmány et al.
+340
+void loop () {
+unsigned long currentMillis = millis ();
+if( currentMillis - previousMillis > intervall )
+{
+/*OPEN SD
+FILE*/
+sd_file = SD . open ( "data.txt" , FILE_WRITE );
+if ( sd_file ) {
+senddata ();
+}
+// if the file didn't open, print an error:
+else {
+Serial . println ( "error opening file" );
+}
+delay ( 1000
+);
+}
+}
+/*DATA
+SENDING*/
+void senddata () {
+for( long seconds = 00 ; seconds < 60 ; seconds = seconds + 5 ) {
+val1 = analogRead ( A0 ); //connect
+sensor to Analog 1
+val2 = analogRead ( A1 ); //connect
+sensor to Analog 1
+val3 = analogRead ( A2 ); //connect
+sensor to Analog 1
+sd_file . print ( val1 );
+sd_file . print ( ";" );
+sd_file . print ( val2 );
+sd_file . print ( ";" );
+sd_file . print ( val3 );
+sd_file . println ( ";" );
+Serial . print ( val1 );
+Serial . print ( ", " );
+Serial . print ( val2 );
+Serial . print ( ", " );
+Serial . print ( val3 );
+Serial . println ( ", " );
+if( seconds >= 58 ) {
+minutes = minutes + 1 ;
+}
+if ( minutes > 59 ) {
+hours = hours + 1 ;
+minutes = 0 ;
+}
+sd_file . flush (); //saving the
+file
+delay ( 2000 );
+}
+sd_file . close (); //closing the file
+}
+The Arduino Code is divided into three parts. The first part
+is for initializing the code. The different libraries for the devic-
+es are taken place here and the global variables are declared.
+The second part is the setup part. In the setup part, the devices
+and the serial port for communicating between the PC are ini-
+tialized by the microcontroller. The third part is the loop. After
+the setup part, the code is repeated in this method as long as it
+is powered. Every two seconds, the “ data.txt
+” file in the SD
+card opens then reads the sensors’ data and requests the current
+time from the RTC. The data measured is written into the
+opened text file and it is sent to the computer through the serial
+port within the senddata method.

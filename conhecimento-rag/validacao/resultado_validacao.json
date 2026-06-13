@@ -1,0 +1,264 @@
+[
+  {
+    "documento_id": "DOC_SOLO_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_SOLO_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 6951466,
+    "sha256": "5019d946e068396728942537bacafd90b0ebb6342f07b370f5bd975b86d5d184",
+    "paginas": 233
+  },
+  {
+    "documento_id": "DOC_SOLO_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_SOLO_EMBRAPA_002.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 1065313,
+    "sha256": "ad15da7e492b624e1dc4bda0472804c4e6086d6fbbfefcb99a057e222d46d088",
+    "paginas": 39
+  },
+  {
+    "documento_id": "DOC_CORRECAO_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_CORRECAO_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 125748,
+    "sha256": "c78f08cb77aed9932bc01c722ba2bb1bdc684680f1aca1ff24e30e387ace3a54",
+    "paginas": 6
+  },
+  {
+    "documento_id": "DOC_CORRECAO_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_CORRECAO_EMBRAPA_002.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 700412,
+    "sha256": "53f98017a44776a3cf17777cbb8809f7c609d98c285d23bced7babad35f90e58",
+    "paginas": 2
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_IRRIGACAO_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 1352714,
+    "sha256": "50739a02841439fa3000417824e8e8a3a774aeb9a9cfe8c01259f9a08164b71a",
+    "paginas": 6
+  },
+  {
+    "documento_id": "DOC_UMIDADE_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_UMIDADE_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 1165257,
+    "sha256": "e8fc50dcb01a3a0e69e075cc2bf1125bd1016c7174cbf41fbd2b1b5e7777019e",
+    "paginas": 20
+  },
+  {
+    "documento_id": "DOC_SENSOR_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_SENSOR_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 4970670,
+    "sha256": "69d0df59f9bd8483b94b982c7edb42f3eb7c0ecf6220c39ec7d3ff24dd5085dc",
+    "paginas": 12
+  },
+  {
+    "documento_id": "DOC_SENSOR_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_SENSOR_EMBRAPA_002.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 6171772,
+    "sha256": "57385921c5c06d540955266cdb2827f4d53aa5c4651140a7f5f170cee776911f",
+    "paginas": 32
+  },
+  {
+    "documento_id": "DOC_SENSOR_NPK_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_SENSOR_NPK_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 3147707,
+    "sha256": "2c3c09b0d7e0a4ad8d80dfc649ee3505ab175a7ae1ccc2db3377f0e11319aed3",
+    "paginas": 34
+  },
+  {
+    "documento_id": "DOC_CE_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_CE_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 1884598,
+    "sha256": "361704ef314b7a61f8bcc7fc970f8379585064103b5d67ef02efd834a382e3ad",
+    "paginas": 4
+  },
+  {
+    "documento_id": "DOC_CE_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_CE_EMBRAPA_002.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 1308773,
+    "sha256": "f930c92997a7379f84424a39dae5b3ff67f436e4d446036f858401846ab96973",
+    "paginas": 19
+  },
+  {
+    "documento_id": "DOC_BATATA_DOCE_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_BATATA_DOCE_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 4906133,
+    "sha256": "c70f852783a4d8f1b7ff7ab3a23eb496ef32d6d41c0e9e2b191f666f4cd00224",
+    "paginas": 21
+  },
+  {
+    "documento_id": "DOC_SOJA_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_SOJA_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 18470626,
+    "sha256": "61d5c61c4ed682612503ed433af424b5a9ec1a147b0591b745681ecb47691713",
+    "paginas": 91
+  },
+  {
+    "documento_id": "DOC_SOJA_EMBRAPA_002",
+    "caminho": "originais/embrapa/DOC_SOJA_EMBRAPA_002.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 46500800,
+    "sha256": "b7eba00503e249dd5432bf0c9872445736273669069d3c04ab55db62035ef76d",
+    "paginas": 60
+  },
+  {
+    "documento_id": "DOC_MILHO_EMBRAPA_001",
+    "caminho": "originais/embrapa/DOC_MILHO_EMBRAPA_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 4492929,
+    "sha256": "f7332aaf3ace8b2ffeca840ef00894e79a5a373f8345b3e5e12ebdbfad1f52b0",
+    "paginas": 19
+  },
+  {
+    "documento_id": "DOC_SOLO_IDR_001",
+    "caminho": "originais/idr_parana/DOC_SOLO_IDR_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 303298,
+    "sha256": "7a12a8791e29409980ee6308d048e94795b8c4026086b9885b3a12df9ef8a027",
+    "paginas": 4
+  },
+  {
+    "documento_id": "DOC_MILHO_IDR_001",
+    "caminho": "originais/idr_parana/DOC_MILHO_IDR_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 287278,
+    "sha256": "94f8ec9c2a234effc64ca10ed790fbfffcd11e66ccb284089af1505a4cba3eda",
+    "paginas": 2
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_FAO_001",
+    "caminho": "originais/fao/DOC_IRRIGACAO_FAO_001.pdf",
+    "valido": false,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [
+      "arquivo inexistente ou ilegível: ENOENT: no such file or directory, open 'C:\\Users\\Alessandra\\Downloads\\izesagroback\\IZES-AGRO-1\\conhecimento-rag\\originais\\fao\\DOC_IRRIGACAO_FAO_001.pdf'"
+    ]
+  },
+  {
+    "documento_id": "DOC_IRRIGACAO_FAO_002",
+    "caminho": "originais/fao/DOC_IRRIGACAO_FAO_002.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 1996794,
+    "sha256": "62f501f411efdcbe1c20977e9481038021591ebaedfe29490482d26078ddbca2",
+    "paginas": 192
+  },
+  {
+    "documento_id": "DOC_NUTRIENTES_FAO_001",
+    "caminho": "originais/fao/DOC_NUTRIENTES_FAO_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 2870314,
+    "sha256": "a8e5007b1cd6517dc2e9542785122ea6e5706e5f8da35b0c68d83554a0a1ebcb",
+    "paginas": 366
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_001",
+    "caminho": "originais/artigos_cientificos/DOC_SENSOR_ARTIGO_001.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 2097629,
+    "sha256": "9410feec8b54c6b472d360ef51b1e34f6e7a867d287f959884dc6ae2c3dd5413",
+    "paginas": 24
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_002",
+    "caminho": "originais/artigos_cientificos/DOC_SENSOR_ARTIGO_002.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 1618455,
+    "sha256": "a915749728baf6d775f91bfd33f0f28fd292bb5b2c13fdd7783e7ff10d4afb58",
+    "paginas": 11
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_003",
+    "caminho": "originais/artigos_cientificos/DOC_SENSOR_ARTIGO_003.pdf",
+    "valido": false,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [
+      "arquivo inexistente ou ilegível: ENOENT: no such file or directory, open 'C:\\Users\\Alessandra\\Downloads\\izesagroback\\IZES-AGRO-1\\conhecimento-rag\\originais\\artigos_cientificos\\DOC_SENSOR_ARTIGO_003.pdf'"
+    ]
+  },
+  {
+    "documento_id": "DOC_SENSOR_ARTIGO_004",
+    "caminho": "originais/artigos_cientificos/DOC_SENSOR_ARTIGO_004.pdf",
+    "valido": true,
+    "html_falso": false,
+    "duplicado_de": "",
+    "erros": [],
+    "tamanho_bytes": 3579918,
+    "sha256": "38f18113685c5ebb0e026778cbef9b4f6703d682f77d895c09f5f26cd6d7e7f6",
+    "paginas": 27
+  }
+]

@@ -361,6 +361,10 @@ class RespostaIA(BaseModel):
     dados_consultados: List[str] = Field(default_factory=list, description="Quais dados foram consultados")
     atencoes: List[str] = Field(default_factory=list, description="Pontos de atenção adicionais")
     proximos_passos: List[str] = Field(default_factory=list, description="O que fazer depois")
+    fontes: List[Dict[str, Any]] = Field(
+        default_factory=list,
+        description="Fontes técnicas (RAG) que realmente entraram no contexto da resposta"
+    )
     
     # Qualidade
     confianca_geral: float = Field(..., ge=0.0, le=1.0, description="Confiança geral da resposta")
