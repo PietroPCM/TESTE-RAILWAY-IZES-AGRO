@@ -20,14 +20,19 @@ from app.services.contexto_ia import (
     servico_contexto_ia,
 )
 from app.services.openai_service import (
-    MODO_AGRO_COM_DADOS,
-    MODO_AGRO_GERAL,
-    MODO_ESCLARECIMENTO,
-    MODO_FORA_ESCOPO,
     OpenAIImageAnalysisError,
     ServicoOpenAI,
-    classificar_escopo_pergunta,
 )
+from app.services.ia.decisao import (
+    MODO_AGRO_COM_DADOS,
+    MODO_AGRO_GERAL,
+    MODO_CLIMA,
+    MODO_ESCLARECIMENTO,
+    MODO_FORA_ESCOPO,
+    decidir,
+)
+from app.services.ia.localizacao import resolver_localizacao
+from app.services.clima_service import servico_clima
 from app.utils.datetime_utils import utc_iso
 
 logger = logging.getLogger(__name__)
@@ -136,49 +141,50 @@ async def chat_ia(
             f"pergunta='{pergunta[:50]}...'"
         )
         
-        # 1. Interpretar a intenção usando também cliente_id e sensor_id.
-        #    Perguntas curtas/informais/contextuais não caem mais em fora_escopo
-        #    quando há contexto adequado.
-        modo_pergunta = classificar_escopo_pergunta(pergunta, cliente_id, sensor_id)
-        logger.info(f"IA Chat: intenção classificada como '{modo_pergunta}'")
+        # 1. Decisão estruturada de intenção (UMA vez), usando cliente_id e sensor_id.
+        decisao = decidir(pergunta, cliente_id=cliente_id, sensor_id=sensor_id)
+        logger.info(f"IA Chat: decisão modo='{decisao.modo}' dominio='{decisao.dominio}' "
+                    f"recursos(dados={decisao.necessita_dados_cliente}, clima={decisao.necessita_clima}, "
+                    f"rag={decisao.necessita_rag}) entidade='{decisao.tipo_entidade}'")
 
         # 2. Modos que não dependem dos dados reais do cliente.
-        if modo_pergunta in (MODO_FORA_ESCOPO, MODO_ESCLARECIMENTO, MODO_AGRO_GERAL):
-            contexto = ContextoIA(
-                cliente_id=cliente_id,
-                sensor_id=None,
-                usuario_pergunta=pergunta,
-            )
-            return await ServicoOpenAI().analisar_contexto(
-                contexto, pergunta_id, modo=modo_pergunta
-            )
+        if decisao.modo in (MODO_FORA_ESCOPO, MODO_ESCLARECIMENTO, MODO_AGRO_GERAL):
+            contexto = ContextoIA(cliente_id=cliente_id, sensor_id=None, usuario_pergunta=pergunta)
+            return await ServicoOpenAI().analisar_contexto(contexto, pergunta_id, decisao=decisao)
 
-        # 3. Modo agro_com_dados: montar contexto com dados reais do cliente.
-        logger.debug("Montando contexto IA com dados reais...")
+        # 3. Reunir dados reais do cliente (necessários para dados e/ou clima).
         try:
             contexto = await servico_contexto_ia.montar_contexto(
-                cliente_id=cliente_id,
-                pergunta=pergunta,
-                sensor_id=sensor_id,
-                usar_cache=True,
-                db=db,
-                exigir_cliente=True,
+                cliente_id=cliente_id, pergunta=pergunta, sensor_id=sensor_id,
+                usar_cache=True, db=db, exigir_cliente=True,
+                decisao=decisao if not decisao.necessita_clima else None,
             )
         except (ClienteIANaoEncontrado, SensorIANaoEncontrado):
             raise
         except Exception as e:
-            # Falha do banco/contexto não deve derrubar o endpoint.
             logger.error(f"Erro ao montar contexto IA; retornando erro controlado: {e}", exc_info=True)
             raise HTTPException(
                 status_code=503,
                 detail="Não foi possível consultar os dados do cliente agora. Tente novamente em instantes.",
             )
 
-        logger.debug(f"Contexto montado: {contexto.tokens_estimado} tokens")
+        # 4. Recurso climático, quando a intenção exige.
+        clima_dados, clima_indisponivel = None, False
+        if decisao.necessita_clima:
+            local = resolver_localizacao(contexto.sensores_relevantes, sensor_id, decisao.localizacao_texto)
+            if not local:
+                # Sem nenhuma localização segura: pedir esclarecimento de local.
+                return await ServicoOpenAI().analisar_contexto(
+                    contexto, pergunta_id, modo=MODO_ESCLARECIMENTO
+                )
+            clima_dados, clima_indisponivel = await _obter_clima(local)
 
-        # 4. Chamar IA com o modo já decidido.
-        logger.debug("Enviando para IA...")
-        resposta = await _chamar_ia(contexto, pergunta_id, modo=modo_pergunta)
+        # 5. Gerar resposta com a decisão e os recursos reunidos.
+        servico = ServicoOpenAI()
+        resposta = await servico.analisar_contexto(
+            contexto, pergunta_id, decisao=decisao,
+            clima_dados=clima_dados, clima_indisponivel=clima_indisponivel,
+        )
         
         # 4. Salvar no histórico
         if cliente_id not in historico_conversas:
@@ -287,6 +293,47 @@ async def limpar_historico_ia(
 # ============================================================================
 # Funções Auxiliares
 # ============================================================================
+
+async def _obter_clima(local):
+    """Consulta o serviço climático real e formata os dados para a IA.
+
+    Retorna (clima_dados, indisponivel). Em caso de falha (sem chave, timeout,
+    erro de rede), retorna (None, True) sem inventar previsão.
+    """
+    try:
+        resp = await servico_clima.obter_clima_por_coordenadas(local.latitude, local.longitude)
+        previsao = None
+        if resp.previsao_resumo:
+            previsao = {
+                "resumo": resp.previsao_resumo.resumo,
+                "probabilidade_chuva": resp.previsao_resumo.probabilidade_chuva,
+                "precipitacao_mm": resp.previsao_resumo.precipitacao_mm,
+            }
+        clima_dados = {
+            "localizacao": {
+                "cidade": resp.localizacao.cidade or local.descricao,
+                "latitude": local.latitude,
+                "longitude": local.longitude,
+                "origem_localizacao": local.origem,
+            },
+            "clima_atual": {
+                "temperatura": resp.clima_atual.temperatura,
+                "sensacao_termica": resp.clima_atual.sensacao_termica,
+                "umidade": resp.clima_atual.umidade,
+                "descricao": resp.clima_atual.descricao,
+                "vento": resp.clima_atual.vento,
+            },
+            "previsao_resumo": previsao,
+            "alerta_clima": {
+                "risco_geada": resp.alerta_clima.risco_geada,
+                "risco_seca": resp.alerta_clima.risco_seca,
+                "mensagem": resp.alerta_clima.mensagem,
+            },
+        }
+        return clima_dados, False
+    except Exception as exc:
+        logger.warning("Serviço climático indisponível (%s); seguindo sem previsão.", type(exc).__name__)
+        return None, True
 
 async def _chamar_ia(contexto: ContextoIA, pergunta_id: str, modo: Optional[str] = None) -> RespostaIA:
     """
